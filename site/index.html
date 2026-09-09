@@ -1,0 +1,197 @@
+<title>مرصد الأسواق</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#f4f6fa; --surface:#ffffff; --surface-2:#eaeef5; --line:#d3dae6;
+  --ink:#131a26; --ink-2:#4d5a70; --ink-3:#7b8798;
+  --accent:#a86b1e; --accent-soft:#f3e6d2;
+  --pos:#0f7a52; --pos-soft:#dcf0e6;
+  --neg:#b3312a; --neg-soft:#f8e0de;
+  --warn:#8a6a10; --warn-soft:#f7edd0;
+  --shadow:0 1px 2px rgba(19,26,38,.06),0 8px 24px -12px rgba(19,26,38,.18);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0a0f1a; --surface:#111a29; --surface-2:#182334; --line:#25334a;
+    --ink:#e6edf8; --ink-2:#9dabc2; --ink-3:#6d7d95;
+    --accent:#e0a458; --accent-soft:#33270f;
+    --pos:#3ec48a; --pos-soft:#0f2e22;
+    --neg:#f0685e; --neg-soft:#361816;
+    --warn:#e3bf5c; --warn-soft:#2e2611;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0a0f1a; --surface:#111a29; --surface-2:#182334; --line:#25334a;
+  --ink:#e6edf8; --ink-2:#9dabc2; --ink-3:#6d7d95;
+  --accent:#e0a458; --accent-soft:#33270f;
+  --pos:#3ec48a; --pos-soft:#0f2e22;
+  --neg:#f0685e; --neg-soft:#361816;
+  --warn:#e3bf5c; --warn-soft:#2e2611;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{direction:rtl;margin:0;background:var(--ground);color:var(--ink);
+  font-family:"IBM Plex Sans Arabic",system-ui,"Segoe UI",sans-serif;font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.num{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;direction:ltr;display:inline-block}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px 72px}
+.up{color:var(--pos)} .down{color:var(--neg)}
+
+header{border-bottom:1px solid var(--line);background:var(--surface)}
+.hd{max-width:1240px;margin:0 auto;padding:18px 20px;display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between}
+h1{font-family:"Readex Pro",sans-serif;font-weight:700;font-size:26px;margin:0}
+h1 .dot{color:var(--accent)}
+.sub{color:var(--ink-3);font-size:13px;margin:2px 0 0}
+.stamp{font-size:12px;color:var(--ink-3);display:flex;align-items:center;gap:8px}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--pos);box-shadow:0 0 0 3px var(--pos-soft)}
+
+.secttl{font-family:"Readex Pro",sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--ink-3);margin:28px 0 14px;display:flex;align-items:center;gap:10px}
+.secttl::after{content:"";flex:1;height:1px;background:var(--line)}
+.secttl small{font-weight:400;letter-spacing:0;color:var(--ink-3)}
+
+/* ===== indices ===== */
+.mkts{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:900px){.mkts{grid-template-columns:1fr}}
+.mkt{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.mkt-h{padding:12px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--surface-2)}
+.mkt-h h3{font-family:"Readex Pro",sans-serif;font-size:15px;margin:0}
+.mkt-h span{font-size:11.5px;color:var(--ink-3)}
+.idx{padding:14px 18px;border-bottom:1px solid var(--line)}
+.idx:last-child{border-bottom:0}
+.idx-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.idx-nm{font-weight:600;font-size:15px}
+.idx-nm small{display:block;font-weight:400;font-size:11.5px;color:var(--ink-3)}
+.idx-px{text-align:left}
+.idx-px .v{font-size:19px;font-weight:600}
+.idx-px .c{font-size:12.5px;font-weight:600;display:block}
+.wtype{display:inline-block;margin-top:6px;padding:2px 9px;border-radius:4px;font-size:11px;font-weight:600;letter-spacing:.02em}
+.w-price{background:var(--warn-soft);color:var(--warn)}
+.w-cap{background:var(--accent-soft);color:var(--accent)}
+.w-eq{background:var(--pos-soft);color:var(--pos)}
+.w-note{font-size:12.5px;color:var(--ink-2);margin:6px 0 0}
+.cons{margin-top:10px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}
+.con{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:6px 9px;border-radius:7px;background:var(--surface-2);font-size:12px}
+.con b{font-family:"IBM Plex Mono",monospace;font-weight:600;direction:ltr;font-size:11.5px}
+.con .w{color:var(--ink-3);font-size:10.5px;margin-inline-start:4px}
+.con .p{font-family:"IBM Plex Mono",monospace;direction:ltr;font-size:11.5px;text-align:left;line-height:1.3}
+.con .p i{display:block;font-style:normal;font-weight:600;font-size:10.5px}
+.stale{font-size:10.5px;color:var(--warn);margin-top:6px}
+
+/* ===== layout ===== */
+.cols{display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start}
+@media (max-width:900px){.cols{grid-template-columns:1fr}}
+
+/* ===== filters ===== */
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.chip{font:inherit;font-size:13px;padding:5px 13px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink-2);cursor:pointer;transition:.15s}
+.chip:hover{border-color:var(--accent);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.chip:focus-visible,input:focus-visible,summary:focus-visible,.srcbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.srch{flex:1;min-width:150px;font:inherit;font-size:13px;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.count{font-size:12px;color:var(--ink-3);margin:-4px 0 14px}
+
+/* ===== news ===== */
+.feed{display:flex;flex-direction:column;gap:14px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.item::before{content:"";position:absolute;inset-block:0;inset-inline-start:0;width:3px;background:var(--ink-3)}
+.item.pos::before{background:var(--pos)} .item.neg::before{background:var(--neg)} .item.mix::before{background:var(--warn)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:11.5px;color:var(--ink-3);margin-bottom:7px}
+.src{font-weight:600;color:var(--ink-2);display:inline-flex;align-items:center;gap:5px}
+.src::before{content:"✓";font-size:9px;color:var(--pos);border:1px solid var(--pos);border-radius:50%;width:12px;height:12px;display:inline-flex;align-items:center;justify-content:center}
+.tag{padding:1px 8px;border-radius:4px;background:var(--surface-2)}
+.sig{padding:1px 9px;border-radius:4px;font-weight:600;font-size:11px}
+.sig.pos{background:var(--pos-soft);color:var(--pos)} .sig.neg{background:var(--neg-soft);color:var(--neg)} .sig.mix{background:var(--warn-soft);color:var(--warn)}
+.hl{font-family:"Readex Pro",sans-serif;font-size:17px;font-weight:600;line-height:1.5;margin:0 0 10px;text-wrap:balance}
+.prices{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:7px;margin-bottom:10px}
+.pr{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 10px;border-radius:7px;border:1px solid var(--line);background:var(--surface-2);font-size:12.5px}
+.pr .l{line-height:1.3}.pr .l b{font-family:"IBM Plex Mono",monospace;direction:ltr;display:inline-block;font-size:11.5px}
+.pr .l small{display:block;color:var(--ink-3);font-size:10.5px}
+.pr .r{font-family:"IBM Plex Mono",monospace;direction:ltr;text-align:left;line-height:1.3;font-size:12px}
+.pr .r i{display:block;font-style:normal;font-weight:600;font-size:11px}
+.ben{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;margin:0 0 8px;padding:8px 12px;border-radius:7px;background:var(--surface-2)}
+.ben span b{font-weight:600}
+.ben .g b{color:var(--pos)} .ben .l b{color:var(--neg)}
+details{margin-top:8px;border-top:1px dashed var(--line);padding-top:10px}
+summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--accent);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸ ";display:inline-block;transition:.2s}
+details[open] summary::before{transform:rotate(-90deg)}
+.body{font-size:14px;color:var(--ink);margin:10px 0 0;max-width:68ch}
+.body p{margin:0 0 10px}
+.why{font-size:13.5px;color:var(--ink-2);margin:10px 0 0;padding:10px 12px;border-radius:7px;background:var(--accent-soft);max-width:68ch}
+.why strong{color:var(--ink)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}
+.conf{font-size:12px;color:var(--ink-3);display:flex;gap:8px;align-items:center}
+.bars{display:flex;gap:3px}.bars i{width:16px;height:4px;border-radius:2px;background:var(--line)}.bars i.on{background:var(--accent)}
+.srcbtn{font:inherit;font-size:12.5px;font-weight:600;padding:6px 14px;border-radius:7px;background:var(--ink);color:var(--ground);text-decoration:none;display:inline-flex;gap:6px;align-items:center}
+.srcbtn:hover{background:var(--accent);color:#fff}
+
+/* ===== side ===== */
+.side{display:flex;flex-direction:column;gap:20px;position:sticky;top:20px}
+@media (max-width:900px){.side{position:static}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow)}
+.panel h3{font-family:"Readex Pro",sans-serif;font-size:15px;margin:0 0 4px}
+.panel .note{font-size:12px;color:var(--ink-3);margin:0 0 12px}
+.wh{border-color:var(--accent)}
+.post{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+.post:first-of-type{border-top:0;padding-top:0;margin-top:0}
+.post .t{font-size:11.5px;color:var(--ink-3);margin-bottom:5px}
+.post .q{font-size:13.5px;line-height:1.65;margin:0 0 7px;border-inline-start:2px solid var(--accent);padding-inline-start:10px}
+.post .eff{font-size:12px;color:var(--ink-2);margin:0}
+.dq{display:flex;flex-direction:column;gap:7px;font-size:12.5px}
+.dq div{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dashed var(--line);padding-bottom:6px}
+.dq div:last-child{border:0}
+.dq .s{color:var(--ink-2)} .dq .t{font-size:11px;color:var(--ink-3);white-space:nowrap}
+.dq .ok::before{content:"● ";color:var(--pos)} .dq .lag::before{content:"● ";color:var(--warn)}
+.disc{margin-top:28px;border:1px solid var(--line);border-radius:10px;padding:14px 18px;background:var(--warn-soft);color:var(--ink-2);font-size:13px}
+.disc b{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header><div class="hd">
+  <div><h1>مرصد الأسواق<span class="dot">.</span></h1>
+  <p class="sub">مؤشرات مصنّفة حسب طريقة الترجيح · مراقبة البيت الأبيض · أخبار موثوقة مربوطة بالأسهم</p></div>
+  <div class="stamp"><span class="pulse"></span> نسخة <span class="num">v0.3</span> · بُنيت <span class="num">2026-09-09 13:35</span> الرياض</div>
+</div></header>
+
+<div class="wrap">
+
+<h2 class="secttl">المؤشرات <small>— مقسّمة حسب السوق وطريقة الترجيح</small></h2>
+<div class="mkts" id="mkts"></div>
+
+<div class="cols" style="margin-top:8px">
+<main>
+  <h2 class="secttl">الأخبار <small>— مصادر موثوقة فقط، نص عربي كامل، وزر للمصدر</small></h2>
+  <div class="bar" id="bar">
+    <button class="chip" data-f="all" aria-pressed="true">الكل</button>
+    <button class="chip" data-f="us" aria-pressed="false">أمريكي</button>
+    <button class="chip" data-f="sa" aria-pressed="false">سعودي</button>
+    <button class="chip" data-f="macro" aria-pressed="false">ماكرو</button>
+    <button class="chip" data-f="pos" aria-pressed="false">إيجابي</button>
+    <button class="chip" data-f="neg" aria-pressed="false">سلبي</button>
+    <input class="srch" id="q" type="search" placeholder="بحث برمز السهم أو كلمة…" aria-label="بحث">
+  </div>
+  <p class="count" id="count"></p>
+  <div class="feed" id="feed"></div>
+</main>
+
+<aside class="side">
+  <div class="panel wh">
+    <h3>مراقب البيت الأبيض</h3>
+    <p class="note">منشورات الرئيس الأمريكي ذات الأثر السوقي</p>
+    <div id="posts"></div>
+  </div>
+  <div class="panel">
+    <h3>جودة البيانات</h3>
+    <p class="note">من أين جاء كل رقم ومتى</p>
+    <div class="dq" id="dq"></div>
+  </div>
+</aside>
+</div>
+
+<div class="disc"><b>تنبيه:</b> أداة رصد وتحليل، ليست توصية استثمارية. النصوص العربية إعادة صياغة كاملة لمضمون الخبر من مصدره — الزر يوصلك للنص الأصلي. أسعار السوق السعودي متأخرة (إغلاق أو 15 دقيقة). القرار وتبعاته عليك.</div>
+</div>
+
+<script>
+/* v0.3 base — data blocks (IDX, NEWS, POSTS, DQ) are replaced by the build step. */
+</script>
