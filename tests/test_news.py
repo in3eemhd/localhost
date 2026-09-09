@@ -327,3 +327,112 @@ def test_analyze_cli(raw, tmp_path):
     data = json.loads(out.read_text(encoding="utf-8"))
     assert data["analysis_mode"] == "rules" and len(data["items"]) == len(raw["items"])
     assert data["sectors"]["banks"] == "البنوك"
+
+
+# ---------------------------------------------------------------- fetch: http robustness (mocked)
+class _Resp:
+    def __init__(self, status, body=b"", ctype="application/rss+xml", url=None):
+        self.status_code, self.content, self.url = status, body, url
+        self.headers = {"Content-Type": ctype}
+
+
+FEED_XML = open(os.path.join(FIXTURES, "atom_sample.xml"), "rb").read()
+
+
+def test_looks_like_feed():
+    assert fn.looks_like_feed(FEED_XML)
+    assert fn.looks_like_feed(b'<?xml version="1.0"?>\n<rss version="2.0"><channel/></rss>')
+    assert not fn.looks_like_feed(b"<html><body>no feed</body></html>")
+    assert not fn.looks_like_feed(b"")
+
+
+def test_403_retries_with_alternate_profile(monkeypatch):
+    calls = []
+
+    def fake_get(url, timeout, profile):
+        calls.append(profile["User-Agent"])
+        return _Resp(403, b"blocked", "text/html") if len(calls) == 1 else _Resp(200, FEED_XML, url=url)
+
+    monkeypatch.setattr(fn, "_http_get", fake_get)
+    notes = []
+    body, eff = fn.fetch_feed("https://example.sa/rss", timeout=1, retries=0, notes=notes)
+    assert body == FEED_XML and eff == "https://example.sa/rss"
+    assert len(calls) == 2 and calls[0] != calls[1]
+    assert calls[1] == fn.UA_PROFILES[1]["User-Agent"]
+    assert any("403" in n for n in notes)
+
+
+def test_403_twice_is_permanent_no_retry_loop(monkeypatch):
+    calls = []
+    monkeypatch.setattr(fn, "_http_get", lambda url, timeout, profile: (calls.append(1), _Resp(403, b"x", "text/html"))[1])
+    monkeypatch.setattr(fn.time, "sleep", lambda s: None)
+    with pytest.raises(RuntimeError, match="HTTP 403"):
+        fn.fetch_feed("https://example.sa/rss", timeout=1, retries=3)
+    assert len(calls) == 2  # 4xx is permanent: no backoff retries
+
+
+def test_autodiscovery_one_hop(monkeypatch):
+    html = (b"<html><head><title>x</title>"
+            b'<link rel="alternate" type="application/atom+xml" href="/atom.xml">'
+            b'<link rel="alternate" type="application/rss+xml" title="RSS" href="/ar/rss/latest.xml">'
+            b"</head><body></body></html>")
+    seen = []
+
+    def fake_get(url, timeout, profile):
+        seen.append(url)
+        if url.endswith("/ar/rss"):
+            return _Resp(200, html, "text/html; charset=utf-8", url=url)
+        if url.endswith("/ar/rss/latest.xml"):
+            return _Resp(200, FEED_XML, url=url)
+        raise AssertionError(url)
+
+    monkeypatch.setattr(fn, "_http_get", fake_get)
+    notes = []
+    body, eff = fn.fetch_feed("https://www.argaam.com/ar/rss", timeout=1, retries=0, notes=notes)
+    assert body == FEED_XML
+    assert eff == "https://www.argaam.com/ar/rss/latest.xml"  # rss preferred over atom, relative href resolved
+    assert seen == ["https://www.argaam.com/ar/rss", "https://www.argaam.com/ar/rss/latest.xml"]
+    assert any("autodiscovered" in n for n in notes)
+
+
+def test_autodiscovery_is_capped_to_one_hop(monkeypatch):
+    html = b'<html><head><link rel="alternate" type="application/rss+xml" href="https://x.sa/other"></head></html>'
+    seen = []
+
+    def fake_get(url, timeout, profile):
+        seen.append(url)
+        return _Resp(200, html, "text/html", url=url)  # every page is HTML pointing at another page
+
+    monkeypatch.setattr(fn, "_http_get", fake_get)
+    with pytest.raises(RuntimeError, match="not a feed"):
+        fn.fetch_feed("https://x.sa/rss", timeout=1, retries=0)
+    assert seen == ["https://x.sa/rss", "https://x.sa/other"]
+
+
+def test_discover_feed_url_anchor_fallback():
+    html = b'<html><body><a href="//www.spa.gov.sa/rss?lang=ar">RSS</a><a href="/about">about</a></body></html>'
+    assert fn.discover_feed_url(html, "https://www.spa.gov.sa/") == "https://www.spa.gov.sa/rss?lang=ar"
+    assert fn.discover_feed_url(b"<html><body>nothing</body></html>", "https://x/") is None
+
+
+def test_run_reports_effective_url_and_notes(monkeypatch):
+    html = b'<html><head><link rel="alternate" type="application/rss+xml" href="https://site.sa/feed.xml"></head></html>'
+    monkeypatch.setattr(fn, "_http_get", lambda url, timeout, profile:
+                        _Resp(200, html, "text/html", url=url) if url == "https://site.sa/" else _Resp(200, FEED_XML, url=url))
+    res = fn.run([{"name": "s", "url": "https://site.sa/", "priority": 1}], window_hours=1e6, now=NOW)
+    rep = res["feeds"][0]
+    assert rep["ok"] and rep["effective_url"] == "https://site.sa/feed.xml" and rep["notes"]
+
+
+def test_default_feed_list_shape():
+    urls = [f["url"] for f in fn.DEFAULT_FEEDS]
+    assert len(urls) == len(set(urls))
+    assert all(u.startswith("https://") for u in urls)
+    gn = [u for u in urls if "news.google.com/rss/search" in u]
+    assert len(gn) >= 10
+    for site in ("argaam.com", "arabnews.com", "alarabiya.net", "saudiexchange.sa", "mubasher.info",
+                 "aleqt.com", "maaal.com", "cnbcarabia.com"):
+        assert any(f"site%3A{site}" in u for u in gn), site
+    # Saudi-first: every priority-1 feed comes before any priority-2/3 feed once sorted (stable)
+    pr = [f["priority"] for f in sorted(fn.DEFAULT_FEEDS, key=lambda f: f["priority"])]
+    assert pr == sorted(pr) and pr[0] == 1

@@ -26,6 +26,7 @@ jobs:
     timeout-minutes: 15
     outputs:
       changed: ${{ steps.commit.outputs.changed }}
+      pages: ${{ steps.pages.outcome }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -82,17 +83,24 @@ jobs:
 
       - name: Configure Pages
         id: pages
+        continue-on-error: true
         uses: actions/configure-pages@v5
         with:
           enablement: true
 
       - name: Upload site
+        if: steps.pages.outcome == 'success'
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
 
+      - name: Pages not enabled yet
+        if: steps.pages.outcome != 'success'
+        run: echo "::warning::GitHub Pages is not enabled for this repository. Enable it once under Settings > Pages > Source = GitHub Actions, then re-run."
+
   deploy:
     needs: update
+    if: needs.update.outputs.pages == 'success'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

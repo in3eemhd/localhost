@@ -14,7 +14,8 @@ Output schema (data/news_raw.json):
 {
   "generated_at_utc": "YYYY-MM-DDTHH:MM:SSZ",
   "window_hours": 48,
-  "feeds": [{"name", "url", "priority", "ok", "count", "kept", "error"}],
+  "feeds": [{"name", "url", "priority", "ok", "count", "kept", "error",
+             "effective_url"?, "notes"?}],   # notes: 403 retry / autodiscovery trail
   "items": [
     {"title", "link", "source", "published_utc", "published_riyadh",
      "precision": "second"|"minute"|"day", "summary", "fetched_at_utc",
@@ -39,7 +40,7 @@ from email.utils import parsedate_to_datetime
 from html import unescape
 from html.parser import HTMLParser
 from typing import Any, Iterable
-from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
+from urllib.parse import parse_qsl, quote_plus, urlencode, urljoin, urlparse, urlunparse
 
 try:  # requests is provided by scripts/requirements.txt (owned elsewhere)
     import requests
@@ -59,62 +60,62 @@ USER_AGENT = (
 # 3 = global macro. Broken URLs are simply logged; several variants are listed
 # for publishers whose RSS path is not stable. `lang` is a hint only.
 # ---------------------------------------------------------------------------
+def gnews(query: str, lang: str = "ar") -> str:
+    """Google News RSS search URL (worked reliably from GitHub Actions)."""
+    if lang == "ar":
+        tail = "hl=ar&gl=SA&ceid=SA:ar"
+    else:
+        tail = "hl=en-US&gl=US&ceid=US:en"
+    return f"https://news.google.com/rss/search?q={quote_plus(query)}&{tail}"
+
+
 DEFAULT_FEEDS: list[dict[str, Any]] = [
-    # --- Saudi Exchange / official -------------------------------------
+    # --- Google News, scoped to Saudi sources that block/omit direct RSS ---
+    # (Google News worked from GitHub Actions; these guarantee Saudi coverage)
+    {"name": "Google News – تداول/تاسي", "priority": 1, "lang": "ar",
+     "url": "https://news.google.com/rss/search?q=Tadawul+OR+%D8%AA%D8%A7%D8%B3%D9%8A&hl=ar&gl=SA&ceid=SA:ar"},
+    {"name": "Google News – أرقام", "priority": 1, "lang": "ar", "url": gnews("site:argaam.com when:2d")},
+    {"name": "Google News – Saudi Exchange", "priority": 1, "lang": "ar", "url": gnews("site:saudiexchange.sa when:2d")},
+    {"name": "Google News – مباشر السعودية", "priority": 1, "lang": "ar", "url": gnews("site:mubasher.info السعودية when:2d")},
+    {"name": "Google News – الاقتصادية", "priority": 1, "lang": "ar", "url": gnews("site:aleqt.com when:2d")},
+    {"name": "Google News – معال", "priority": 1, "lang": "ar", "url": gnews("site:maaal.com when:2d")},
+    {"name": "Google News – Arab News Business", "priority": 1, "lang": "en", "url": gnews("site:arabnews.com business when:2d", "en")},
+    {"name": "Google News – Reuters Saudi", "priority": 1, "lang": "en",
+     "url": gnews("site:reuters.com (Saudi OR Tadawul OR Aramco) when:2d", "en")},
+    {"name": "Google News – السوق السعودية", "priority": 1, "lang": "ar", "url": gnews("السوق السعودية أسهم when:2d")},
+    {"name": "Google News – العربية أسواق", "priority": 2, "lang": "ar", "url": gnews("site:alarabiya.net أسواق when:2d")},
+    {"name": "Google News – CNBC عربية", "priority": 2, "lang": "ar", "url": gnews("site:cnbcarabia.com when:2d")},
+    {"name": "Google News – الشرق بلومبرغ", "priority": 2, "lang": "ar", "url": gnews("site:asharqbusiness.com السعودية when:2d")},
+    # --- Saudi Exchange / official (403 -> alt browser profile retry) ------
     {"name": "Saudi Exchange – إعلانات الشركات", "priority": 1, "lang": "ar",
      "url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/rss/announcements?locale=ar"},
     {"name": "Saudi Exchange – Announcements", "priority": 1, "lang": "en",
      "url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/rss/announcements?locale=en"},
-    {"name": "واس – الاقتصاد", "priority": 1, "lang": "ar",
-     "url": "https://www.spa.gov.sa/rss/economy"},
-    {"name": "SPA – Economy", "priority": 1, "lang": "en",
-     "url": "https://www.spa.gov.sa/en/rss/economy"},
-    # --- Saudi financial press ------------------------------------------
-    {"name": "أرقام", "priority": 1, "lang": "ar",
-     "url": "https://www.argaam.com/ar/rss"},
-    {"name": "أرقام – السوق السعودي", "priority": 1, "lang": "ar",
-     "url": "https://www.argaam.com/ar/rss/saudi-stock-market"},
-    {"name": "Argaam (EN)", "priority": 1, "lang": "en",
-     "url": "https://www.argaam.com/en/rss"},
-    {"name": "مباشر – السعودية", "priority": 1, "lang": "ar",
-     "url": "https://www.mubasher.info/rss/sa"},
-    {"name": "مباشر", "priority": 1, "lang": "ar",
-     "url": "https://www.mubasher.info/rss"},
-    {"name": "Mubasher (EN)", "priority": 1, "lang": "en",
-     "url": "https://english.mubasher.info/rss"},
-    {"name": "الاقتصادية", "priority": 1, "lang": "ar",
-     "url": "https://www.aleqt.com/rss"},
-    {"name": "Arab News – Business", "priority": 1, "lang": "en",
-     "url": "https://www.arabnews.com/cat/2/rss.xml"},
-    {"name": "Arab News – Business (alt)", "priority": 1, "lang": "en",
-     "url": "https://www.arabnews.com/business/rss"},
-    {"name": "Saudi Gazette – Business", "priority": 1, "lang": "en",
-     "url": "https://saudigazette.com.sa/rssFeed/74"},
+    {"name": "واس – RSS", "priority": 1, "lang": "ar", "url": "https://www.spa.gov.sa/rss?lang=ar"},
+    {"name": "واس – الاقتصاد", "priority": 1, "lang": "ar", "url": "https://www.spa.gov.sa/rss/economy"},
+    {"name": "SPA – RSS (EN)", "priority": 1, "lang": "en", "url": "https://www.spa.gov.sa/rss?lang=en"},
+    # --- Saudi financial press (candidates; HTML answers go through autodiscovery) --
+    {"name": "أرقام – الأحدث", "priority": 1, "lang": "ar", "url": "https://www.argaam.com/ar/rss/latest"},
+    {"name": "أرقام", "priority": 1, "lang": "ar", "url": "https://www.argaam.com/ar/rss"},
+    {"name": "Argaam (EN)", "priority": 1, "lang": "en", "url": "https://www.argaam.com/en/rss/latest"},
+    {"name": "مباشر – السعودية", "priority": 1, "lang": "ar", "url": "https://www.mubasher.info/countries/sa/news"},
+    {"name": "Mubasher (EN)", "priority": 1, "lang": "en", "url": "https://english.mubasher.info/countries/sa/news"},
+    {"name": "الاقتصادية", "priority": 1, "lang": "ar", "url": "https://www.aleqt.com/rss.xml"},
+    {"name": "الاقتصادية – feed", "priority": 1, "lang": "ar", "url": "https://www.aleqt.com/feed"},
+    {"name": "معال", "priority": 1, "lang": "ar", "url": "https://maaal.com/feed/"},
+    {"name": "Arab News", "priority": 1, "lang": "en", "url": "https://www.arabnews.com/rss.xml"},
+    {"name": "Arab News – Business", "priority": 1, "lang": "en", "url": "https://www.arabnews.com/cat/2/rss.xml"},
+    {"name": "Saudi Gazette – Business", "priority": 1, "lang": "en", "url": "https://saudigazette.com.sa/rssFeed/74"},
     # --- Gulf / regional -------------------------------------------------
-    {"name": "العربية – أسواق", "priority": 2, "lang": "ar",
-     "url": "https://www.alarabiya.net/feed/rss2/ar/aswaq.xml"},
-    {"name": "العربية – اقتصاد", "priority": 2, "lang": "ar",
-     "url": "https://www.alarabiya.net/.mrss/ar/aswaq.xml"},
-    {"name": "الشرق بلومبرغ", "priority": 2, "lang": "ar",
-     "url": "https://asharqbusiness.com/rss"},
-    {"name": "الشرق بلومبرغ – الأسواق", "priority": 2, "lang": "ar",
-     "url": "https://asharqbusiness.com/rss/markets"},
-    {"name": "CNBC عربية", "priority": 2, "lang": "ar",
-     "url": "https://www.cnbcarabia.com/rss"},
-    {"name": "CNBC عربية – أخبار", "priority": 2, "lang": "ar",
-     "url": "https://www.cnbcarabia.com/rss/news"},
-    {"name": "Zawya – Saudi Arabia", "priority": 2, "lang": "en",
-     "url": "https://www.zawya.com/en/rss/saudi-arabia"},
-    # --- Google News aggregations (Reuters/Bloomberg/etc. surface here) --
-    {"name": "Google News – تداول/تاسي", "priority": 1, "lang": "ar",
-     "url": "https://news.google.com/rss/search?q=Tadawul+OR+%D8%AA%D8%A7%D8%B3%D9%8A&hl=ar&gl=SA&ceid=SA:ar"},
-    {"name": "Google News – Reuters Saudi", "priority": 1, "lang": "en",
-     "url": "https://news.google.com/rss/search?q=site%3Areuters.com+(Saudi+OR+Tadawul+OR+Aramco)&hl=en-US&gl=US&ceid=US:en"},
-    {"name": "Google News – السوق السعودية", "priority": 1, "lang": "ar",
-     "url": "https://news.google.com/rss/search?q=%D8%A7%D9%84%D8%B3%D9%88%D9%82+%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9+%D8%A3%D8%B3%D9%87%D9%85&hl=ar&gl=SA&ceid=SA:ar"},
+    {"name": "العربية – أسواق", "priority": 2, "lang": "ar", "url": "https://www.alarabiya.net/.rss/ar/aswaq.xml"},
+    {"name": "العربية – أسواق (feed)", "priority": 2, "lang": "ar", "url": "https://www.alarabiya.net/feed/rss2/ar/aswaq.xml"},
+    {"name": "العربية – RSS tools", "priority": 2, "lang": "ar", "url": "https://www.alarabiya.net/tools/rss"},
+    {"name": "الشرق بلومبرغ", "priority": 2, "lang": "ar", "url": "https://asharqbusiness.com/rss"},
+    {"name": "CNBC عربية", "priority": 2, "lang": "ar", "url": "https://www.cnbcarabia.com/rss"},
+    {"name": "Zawya – Saudi Arabia", "priority": 2, "lang": "en", "url": "https://www.zawya.com/en/rss/saudi-arabia"},
     # --- Global macro --------------------------------------------------
     {"name": "Google News – Oil/OPEC/Fed", "priority": 3, "lang": "en",
-     "url": "https://news.google.com/rss/search?q=(Brent+OR+OPEC+OR+%22Federal+Reserve%22)+when:2d&hl=en-US&gl=US&ceid=US:en"},
+     "url": gnews("(Brent OR OPEC OR \"Federal Reserve\") when:2d", "en")},
     {"name": "CNBC – Markets", "priority": 3, "lang": "en",
      "url": "https://www.cnbc.com/id/10000664/device/rss/rss.html"},
 ]
@@ -427,36 +428,127 @@ def parse_feed(raw: bytes, feed_name: str) -> list[dict[str, Any]]:
 # ---------------------------------------------------------------------------
 # Fetching
 # ---------------------------------------------------------------------------
-def fetch_bytes(url: str, timeout: float, retries: int = 1) -> bytes:
-    """HTTP GET (with retries) or local file read for `file://` / plain paths."""
-    if url.startswith("file://"):
-        with open(url[len("file://"):], "rb") as fh:
-            return fh.read()
-    if not re.match(r"^https?://", url) and os.path.exists(url):
-        with open(url, "rb") as fh:
-            return fh.read()
+# Two realistic desktop browser profiles. A 403 with the first is retried once
+# with the second (some Saudi CDNs block anything that names a bot).
+UA_PROFILES: list[dict[str, str]] = [
+    {"User-Agent": USER_AGENT,
+     "Accept": "application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.9, */*;q=0.8",
+     "Accept-Language": "ar,en;q=0.8"},
+    {"User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/128.0.0.0 Safari/537.36"),
+     "Accept": "application/rss+xml, application/xml;q=0.9, */*;q=0.8",
+     "Accept-Language": "en-US,en;q=0.9,ar;q=0.8",
+     "Cache-Control": "no-cache",
+     "Sec-Fetch-Dest": "document", "Sec-Fetch-Mode": "navigate", "Sec-Fetch-Site": "none",
+     "Upgrade-Insecure-Requests": "1"},
+]
+
+
+def looks_like_feed(body: bytes) -> bool:
+    head = body[:8192].lower()
+    return b"<" in head and any(m in head for m in (b"<rss", b"<feed", b"<rdf:rdf", b"<channel"))
+
+
+class _FeedLinkFinder(HTMLParser):
+    """Collects RSS/Atom autodiscovery links from an HTML page."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.links: list[tuple[int, str]] = []  # (rank, href) lower rank = better
+
+    def handle_starttag(self, tag, attrs):
+        a = {k.lower(): (v or "") for k, v in attrs}
+        href = a.get("href", "").strip()
+        if not href:
+            return
+        if tag == "link":
+            rel = a.get("rel", "").lower()
+            typ = a.get("type", "").lower()
+            if "alternate" in rel and ("rss" in typ or "atom" in typ or "xml" in typ):
+                self.links.append((0 if "rss" in typ else 1, href))
+        elif tag == "a":
+            h = href.lower()
+            if re.search(r"(/rss(\.xml|/|$|\?)|\.rss($|\?)|/feed(/|$|\?)|feed\.xml|rss\.xml|/atom(\.xml)?($|\?))", h):
+                self.links.append((2, href))
+
+
+def discover_feed_url(html: bytes, base_url: str) -> str | None:
+    """Return the best RSS/Atom URL advertised by an HTML page, or None."""
+    try:
+        p = _FeedLinkFinder()
+        p.feed(_decode(html))
+        p.close()
+    except Exception:  # pragma: no cover
+        return None
+    if not p.links:
+        return None
+    p.links.sort(key=lambda x: x[0])
+    href = p.links[0][1]
+    if href.startswith("//"):
+        href = urlparse(base_url).scheme + ":" + href
+    return urljoin(base_url, href)
+
+
+def _http_get(url: str, timeout: float, profile: dict[str, str]):
+    """Thin wrapper (mocked in tests)."""
     if requests is None:
         raise RuntimeError("requests is not installed")
+    return requests.get(url, headers=profile, timeout=timeout, allow_redirects=True)
+
+
+def fetch_feed(url: str, timeout: float, retries: int = 1, discover: bool = True,
+               notes: list[str] | None = None) -> tuple[bytes, str]:
+    """Fetch a feed. Returns (bytes, effective_url).
+
+    * local paths / file:// are read directly (used by tests)
+    * HTTP 403 -> one retry with a different browser profile
+    * HTML instead of a feed -> RSS/Atom autodiscovery, capped to one hop
+    * connection errors / 5xx -> `retries` extra attempts with backoff
+    * 4xx other than 403 is treated as permanent (no retry)
+    """
+    notes = notes if notes is not None else []
+    if url.startswith("file://"):
+        with open(url[len("file://"):], "rb") as fh:
+            return fh.read(), url
+    if not re.match(r"^https?://", url) and os.path.exists(url):
+        with open(url, "rb") as fh:
+            return fh.read(), url
+
     last: Exception | None = None
-    headers = {"User-Agent": USER_AGENT,
-               "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml;q=0.9, */*;q=0.5",
-               "Accept-Language": "ar,en;q=0.8"}
     for attempt in range(retries + 1):
         try:
-            r = requests.get(url, headers=headers, timeout=timeout, allow_redirects=True)
-            if r.status_code >= 400:
+            r = _http_get(url, timeout, UA_PROFILES[0])
+            if r.status_code == 403:
+                notes.append("403 -> retried with alternate browser profile")
+                r = _http_get(url, timeout, UA_PROFILES[1])
+            if r.status_code >= 500 or r.status_code in (408, 429):
                 raise RuntimeError(f"HTTP {r.status_code}")
+            if r.status_code >= 400:
+                raise PermissionError(f"HTTP {r.status_code}")
+            body = r.content or b""
+            final_url = getattr(r, "url", None) or url
+            if looks_like_feed(body):
+                return body, final_url
             ctype = (r.headers.get("Content-Type") or "").lower()
-            body = r.content
-            if b"<" not in body[:2048] or ("text/html" in ctype and b"<rss" not in body[:4096]
-                                          and b"<feed" not in body[:4096]):
-                raise RuntimeError(f"not a feed (content-type={ctype or '?'})")
-            return body
-        except Exception as exc:  # noqa: BLE001
+            if discover and (b"<html" in body[:8192].lower() or "html" in ctype):
+                found = discover_feed_url(body, final_url)
+                if found and normalize_link(found) != normalize_link(url):
+                    notes.append(f"autodiscovered {found}")
+                    log.info("autodiscovery %s -> %s", url, found)
+                    return fetch_feed(found, timeout, retries=retries, discover=False, notes=notes)
+            raise PermissionError(f"not a feed (content-type={ctype or '?'})")
+        except PermissionError as exc:  # permanent: 4xx / not a feed
+            raise RuntimeError(str(exc)) from None
+        except Exception as exc:  # noqa: BLE001 - transient
             last = exc
             if attempt < retries:
                 time.sleep(1.5 * (attempt + 1))
     raise RuntimeError(str(last))
+
+
+def fetch_bytes(url: str, timeout: float, retries: int = 1) -> bytes:
+    """Backwards-compatible helper: bytes only."""
+    return fetch_feed(url, timeout, retries)[0]
 
 
 def build_items(entries: Iterable[dict[str, Any]], feed: dict[str, Any], now: datetime,
@@ -537,17 +629,24 @@ def run(feeds: list[dict[str, Any]], window_hours: float = 48, max_items: int = 
             log.warning("SKIP %-40s time budget (%.0fs) exhausted", name, budget)
             report.append(entry)
             continue
+        notes: list[str] = []
         try:
-            raw = fetch_bytes(url, timeout=timeout, retries=retries)
+            raw, effective = fetch_feed(url, timeout=timeout, retries=retries, notes=notes)
             entries = parse_feed(raw, name)
             items, dropped = build_items(entries, feed, now, window_hours)
             entry.update(ok=True, count=len(entries), kept=len(items))
+            if effective != url:
+                entry["effective_url"] = effective
+            if notes:
+                entry["notes"] = notes
             ok_count += 1
             all_items.extend(items)
             log.info("OK   %-40s entries=%d kept=%d dropped=%d", name, len(entries), len(items), dropped)
         except Exception as exc:  # noqa: BLE001
             entry["error"] = f"{type(exc).__name__}: {exc}"[:300]
-            log.warning("FAIL %-40s %s", name, entry["error"])
+            if notes:
+                entry["notes"] = notes
+            log.warning("FAIL %-40s %s%s", name, entry["error"], f"  [{'; '.join(notes)}]" if notes else "")
         report.append(entry)
 
     # Sort by priority first so dedupe keeps the Saudi-source copy, then newest.
