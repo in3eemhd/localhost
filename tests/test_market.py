@@ -38,6 +38,27 @@ def yahoo_fixture(symbol="^TASI.SR", price=11500.25, closes=(11300.0, 11350.5, 1
     }], "error": None}}
 
 
+# US session on 2025-06-02: 09:30-16:00 New York (EDT, UTC-4) = 13:30-20:00 UTC.
+US_SESSION_START = int(datetime(2025, 6, 2, 13, 30, tzinfo=timezone.utc).timestamp())
+US_SESSION_END = int(datetime(2025, 6, 2, 20, 0, tzinfo=timezone.utc).timestamp())
+
+
+def us_fixture(symbol="AAPL", price=200.0, closes=(195.0, 196.0, 197.0, 198.0, 200.0), market_time=MARKET_TIME,
+               trading_period=True, currency="USD"):
+    fx = yahoo_fixture(symbol, price=price, closes=closes, trading_period=False)
+    meta = fx["chart"]["result"][0]["meta"]
+    meta.update(currency=currency, exchangeName="NMS", regularMarketTime=market_time, chartPreviousClose=190.0)
+    fx["chart"]["result"][0]["timestamp"] = [US_SESSION_START - (len(closes) - 1 - i) * DAY for i in range(len(closes))]
+    if trading_period:
+        meta["currentTradingPeriod"] = {"regular": {"start": US_SESSION_START, "end": US_SESSION_END, "gmtoffset": -14400}}
+    return fx
+
+
+def quote_obj(symbol, price, prev, mcap, market_time=MARKET_TIME, state="REGULAR", volume=5000, currency="USD"):
+    return {"symbol": symbol, "regularMarketPrice": price, "regularMarketPreviousClose": prev, "marketCap": mcap,
+            "regularMarketTime": market_time, "marketState": state, "regularMarketVolume": volume, "currency": currency}
+
+
 SAUDIEXCHANGE_HTML = """
 <html><body><div class="indices">
 <table class="table">
@@ -144,6 +165,61 @@ def test_parse_yahoo_chart_rejects_missing_price():
         fm.parse_yahoo_chart(fx, now=NOW)
     with pytest.raises(fm.FetchError):
         fm.parse_yahoo_chart({"chart": {"result": None}}, now=NOW)
+
+
+def test_parse_yahoo_chart_us_uses_new_york_calendar_and_session():
+    ny = fm.MARKETS["us"]["tz"]
+    # 11:58 UTC is before the 13:30 UTC open -> closed (pre-market); last bar is "today" in NY
+    p = fm.parse_yahoo_chart(us_fixture(), now=NOW, tz=ny)
+    assert p["price"] == 200.0 and p["prev_close"] == 198.0 and p["currency"] == "USD"
+    assert p["session_date"] == "2025-06-02" and p["is_closed"] is True
+    # inside the regular session -> open
+    during = datetime(2025, 6, 2, 15, 0, tzinfo=timezone.utc)
+    p = fm.parse_yahoo_chart(us_fixture(market_time=int(during.timestamp()) - 60), now=during, tz=ny)
+    assert p["is_closed"] is False
+    # a bar stamped 23:30 UTC belongs to the same NY day (19:30 EDT), but the next Riyadh day
+    late = int(datetime(2025, 6, 2, 23, 30, tzinfo=timezone.utc).timestamp())
+    fx = us_fixture(market_time=late)
+    assert fm.parse_yahoo_chart(fx, now=NOW, tz=ny)["session_date"] == "2025-06-02"
+    assert fm.parse_yahoo_chart(fx, now=NOW)["session_date"] == "2025-06-03"
+
+
+def test_parse_yahoo_quote():
+    p = fm.parse_yahoo_quote(quote_obj("MSFT", 460.25, 455.0, 3.4e12), now=NOW, tz=fm.MARKETS["us"]["tz"])
+    assert p["price"] == 460.25 and p["prev_close"] == 455.0 and p["market_cap"] == 3.4e12
+    assert p["change_pts"] == pytest.approx(5.25) and p["change_pct"] == pytest.approx(5.25 / 455 * 100, abs=1e-4)
+    assert p["volume"] == 5000 and p["is_closed"] is False and p["session_date"] == "2025-06-02"
+    assert p["as_of"] == datetime(2025, 6, 2, 11, 58, 40, tzinfo=timezone.utc)
+    assert fm.parse_yahoo_quote(quote_obj("MSFT", 1, 1, 1, state="CLOSED"), now=NOW)["is_closed"] is True
+    assert fm.parse_yahoo_quote({"symbol": "MSFT", "regularMarketPrice": 1}, now=NOW)["is_closed"] is None
+    with pytest.raises(fm.FetchError):
+        fm.parse_yahoo_quote({"symbol": "MSFT", "marketCap": 1}, now=NOW)
+
+
+def test_local_time_conversion_handles_us_dst():
+    ny = fm.MARKETS["us"]["tz"]
+    summer = datetime(2025, 7, 1, 20, 0, tzinfo=timezone.utc)   # EDT, UTC-4
+    winter = datetime(2025, 12, 1, 21, 0, tzinfo=timezone.utc)  # EST, UTC-5
+    assert fm.fmt_local(summer, ny) == "2025-07-01 16:00:00"
+    assert fm.fmt_local(winter, ny) == "2025-12-01 16:00:00"
+    assert fm.fmt_riyadh(summer) == "2025-07-01 23:00:00" and fm.fmt_riyadh(winter) == "2025-12-02 00:00:00"
+    us = fm.as_of_fields(summer, "us")
+    assert us == {"as_of_utc": "2025-07-01T20:00:00Z", "as_of_local": "2025-07-01 16:00:00", "tz": "America/New_York"}
+    sa = fm.as_of_fields(summer, "sa")
+    assert sa == {"as_of_utc": "2025-07-01T20:00:00Z", "as_of_local": "2025-07-01 23:00:00", "tz": "Asia/Riyadh",
+                  "as_of_riyadh": "2025-07-01 23:00:00"}
+    assert fm.as_of_fields(None, "us") == {"as_of_utc": None, "as_of_local": None, "tz": "America/New_York"}
+
+
+def test_us_eastern_fallback_matches_zoneinfo():
+    """The built-in rule (used only when tzdata is missing) must agree with the real zone."""
+    zoneinfo = pytest.importorskip("zoneinfo")
+    real, fb = zoneinfo.ZoneInfo("America/New_York"), fm._USEastern()
+    probes = [datetime(2025, 3, 9, 6, 59, tzinfo=timezone.utc), datetime(2025, 3, 9, 7, 0, tzinfo=timezone.utc),
+              datetime(2025, 11, 2, 5, 59, tzinfo=timezone.utc), datetime(2025, 11, 2, 6, 0, tzinfo=timezone.utc),
+              datetime(2026, 1, 15, 12, tzinfo=timezone.utc), datetime(2026, 8, 15, 12, tzinfo=timezone.utc)]
+    for dt in probes:
+        assert fm.fmt_local(dt, fb) == fm.fmt_local(dt, real), dt
 
 
 def test_parse_saudiexchange_html():
@@ -284,6 +360,54 @@ def test_stocks_partial_failure_and_market_cap(monkeypatch):
     assert [e["what"] for e in errors] == ["stock:1120:yahoo"] and "429" in errors[0]["detail"]
 
 
+def test_stocks_prefer_batched_quote_then_chart_fallback_mixed_markets(monkeypatch):
+    s = use_session(monkeypatch, {
+        "getcrumb": FakeResponse(text="abc123"),
+        "v7/finance/quote": FakeResponse(body={"quoteResponse": {"result": [
+            quote_obj("AAPL", 201.5, 200.0, 3.0e12),
+            quote_obj("2222.SR", 27.5, 27.0, 6.6e12, currency="SAR", state="CLOSED"),
+            {"symbol": "MSFT", "marketCap": 3.4e12},            # stub: no price -> chart, keep mcap
+        ], "error": None}}),
+        "chart/MSFT": FakeResponse(body=us_fixture("MSFT", price=460.0, closes=(450.0, 452.0, 455.0, 458.0, 460.0))),
+        "chart/BRK-B": FakeResponse(429),
+    })
+    cons = fm.load_constituents(fm.DEFAULT_CONSTITUENTS, "sa")[:1] + [
+        c for c in fm.load_constituents(fm.DEFAULT_CONSTITUENTS_US, "us") if c["code"] in ("AAPL", "MSFT", "BRK-B")]
+    assert sorted(c["code"] for c in cons) == ["2222", "AAPL", "BRK-B", "MSFT"]
+    errors = []
+    stocks = fm.fetch_stocks(cons, errors, NOW, pause=0.25)
+    by = {st["code"]: st for st in stocks}
+
+    aramco = by["2222"]
+    assert aramco["market"] == "sa" and aramco["currency"] == "SAR" and aramco["source"] == "yahoo_quote"
+    assert aramco["price"] == 27.5 and aramco["prev_close"] == 27.0 and aramco["is_closed"] is True
+    assert aramco["market_cap"] == aramco["market_cap_sar"] == 6.6e12 and "market_cap_usd" not in aramco
+    assert aramco["as_of_riyadh"] == "2025-06-02 14:58:40" and aramco["as_of_local"] == aramco["as_of_riyadh"]
+
+    aapl = by["AAPL"]
+    assert aapl["market"] == "us" and aapl["currency"] == "USD" and aapl["source"] == "yahoo_quote"
+    assert aapl["price"] == 201.5 and aapl["change_pct"] == pytest.approx(0.75) and aapl["is_closed"] is False
+    assert aapl["market_cap"] == aapl["market_cap_usd"] == 3.0e12 and "market_cap_sar" not in aapl
+    assert aapl["as_of_utc"] == "2025-06-02T11:58:40Z" and aapl["as_of_local"] == "2025-06-02 07:58:40"
+    assert aapl["tz"] == "America/New_York" and "as_of_riyadh" not in aapl
+
+    msft = by["MSFT"]  # priced via chart, market cap from the stub quote
+    assert msft["source"] == "yahoo" and "chart/MSFT" in msft["source_url"]
+    assert msft["price"] == 460.0 and msft["prev_close"] == 458.0 and msft["market_cap_usd"] == 3.4e12
+
+    brk = by["BRK-B"]
+    assert brk["yahoo"] == "BRK-B" and brk["name_ar"] == "بيركشاير هاثاواي"
+    assert all(brk[k] is None for k in ("price", "prev_close", "change_pct", "volume", "market_cap", "market_cap_usd",
+                                        "as_of_utc", "as_of_local", "is_closed", "source", "source_url"))
+    assert [e["what"] for e in errors] == ["stock:BRK-B:yahoo"]
+
+    # only the two unpriced symbols hit the chart endpoint; one batched quote call for all four
+    chart_calls = [c for c in s.calls if "/v8/finance/chart/" in c[0]]
+    assert {c[0].rsplit("/", 1)[1] for c in chart_calls} == {"MSFT", "BRK-B"}
+    quote_calls = [c for c in s.calls if "v7/finance/quote" in c[0]]
+    assert len(quote_calls) == 1 and set(quote_calls[0][1]["symbols"].split(",")) == {"2222.SR", "AAPL", "MSFT", "BRK-B"}
+
+
 def test_stocks_quote_endpoint_failure_is_soft(monkeypatch):
     use_session(monkeypatch, {"chart/2222.SR": FakeResponse(body=yahoo_fixture("2222.SR", price=27.5))})
     errors = []
@@ -296,10 +420,16 @@ def test_stocks_quote_endpoint_failure_is_soft(monkeypatch):
 # End to end: CLI, schema, exit codes
 # --------------------------------------------------------------------------- #
 
-INDEX_KEYS = {"code", "name_ar", "value", "change_pts", "change_pct", "as_of_utc", "as_of_riyadh",
-              "session_date", "is_closed", "source", "source_url"}
-STOCK_KEYS = {"code", "yahoo", "name_ar", "name_en", "sector_ar", "price", "prev_close", "change_pct",
-              "volume", "market_cap_sar", "as_of_utc", "source", "source_url"}
+COMMON_INDEX_KEYS = {"code", "market", "name_ar", "name_en", "yahoo", "currency", "value", "change_pts", "change_pct",
+                     "as_of_utc", "as_of_local", "tz", "session_date", "is_closed", "source", "source_url"}
+COMMON_STOCK_KEYS = {"code", "yahoo", "market", "name_ar", "name_en", "sector_ar", "currency", "price", "prev_close",
+                     "change_pct", "volume", "market_cap", "as_of_utc", "as_of_local", "tz", "is_closed",
+                     "source", "source_url"}
+SA_INDEX_KEYS = COMMON_INDEX_KEYS | {"as_of_riyadh"}
+US_INDEX_KEYS = COMMON_INDEX_KEYS
+SA_STOCK_KEYS = COMMON_STOCK_KEYS | {"as_of_riyadh", "market_cap_sar"}
+US_STOCK_KEYS = COMMON_STOCK_KEYS | {"market_cap_usd"}
+PAYLOAD_KEYS = {"generated_at_utc", "generated_at_riyadh", "generated_at_new_york", "markets", "indices", "stocks", "errors"}
 
 
 def test_main_writes_schema_and_exits_0(monkeypatch, tmp_path):
@@ -309,24 +439,96 @@ def test_main_writes_schema_and_exits_0(monkeypatch, tmp_path):
         "indices-performance": FakeResponse(text=SAUDIEXCHANGE_HTML),
     })
     out = tmp_path / "data" / "market.json"
-    rc = fm.main(["--out", str(out), "--constituents", fm.DEFAULT_CONSTITUENTS, "--no-quote", "--sleep", "0"])
+    rc = fm.main(["--out", str(out), "--constituents", fm.DEFAULT_CONSTITUENTS, "--markets", "sa",
+                  "--no-quote", "--sleep", "0"])
     assert rc == 0 and out.exists()
     data = json.loads(out.read_text(encoding="utf-8"))
-    assert set(data) == {"generated_at_utc", "generated_at_riyadh", "indices", "stocks", "errors"}
+    assert set(data) == PAYLOAD_KEYS
     assert data["generated_at_utc"] == "2025-06-02T12:00:00Z"
     assert data["generated_at_riyadh"] == "2025-06-02 15:00:00"
+    assert data["generated_at_new_york"] == "2025-06-02 08:00:00"  # EDT
+    assert data["markets"] == ["sa"]
     assert [i["code"] for i in data["indices"]] == ["TASI", "MT30", "NomuC"]
     for i in data["indices"]:
-        assert set(i) == INDEX_KEYS
+        assert set(i) == SA_INDEX_KEYS and i["market"] == "sa" and i["currency"] == "SAR" and i["tz"] == "Asia/Riyadh"
+        assert i["as_of_riyadh"] == i["as_of_local"]
     assert len(data["stocks"]) >= 40
     for s in data["stocks"]:
-        assert set(s) == STOCK_KEYS and s["yahoo"] == f"{s['code']}.SR"
+        assert set(s) == SA_STOCK_KEYS and s["yahoo"] == f"{s['code']}.SR"
+        assert s["market"] == "sa" and s["currency"] == "SAR" and s["tz"] == "Asia/Riyadh"
     aramco = next(s for s in data["stocks"] if s["code"] == "2222")
     assert aramco["price"] == 27.5 and aramco["name_ar"] == "أرامكو السعودية" and aramco["sector_ar"] == "الطاقة"
+    assert aramco["as_of_utc"] == "2025-06-02T11:58:40Z" and aramco["as_of_riyadh"] == "2025-06-02 14:58:40"
+    assert aramco["is_closed"] is False
     # every other stock 404'd in the fake -> null fields + one error each
     assert sum(1 for s in data["stocks"] if s["price"] is None) == len(data["stocks"]) - 1
     assert all({"what", "detail"} == set(e) for e in data["errors"])
     assert len(data["errors"]) == len(data["stocks"]) - 1
+
+
+def test_main_both_markets_default(monkeypatch, tmp_path):
+    use_session(monkeypatch, {
+        "chart/%5ETASI.SR": FakeResponse(body=yahoo_fixture()),
+        "chart/%5EGSPC": FakeResponse(body=us_fixture("^GSPC", price=6000.5)),
+        "chart/%5EDJI": FakeResponse(body=us_fixture("^DJI", price=42000.0)),
+        "chart/2222.SR": FakeResponse(body=yahoo_fixture("2222.SR", price=27.5)),
+        "chart/AAPL": FakeResponse(body=us_fixture("AAPL", price=201.5, closes=(198.0, 199.0, 200.0, 200.0, 201.5))),
+        "indices-performance": FakeResponse(text=SAUDIEXCHANGE_HTML),
+    })
+    out = tmp_path / "market.json"
+    rc = fm.main(["--out", str(out), "--no-quote", "--sleep", "0"])
+    assert rc == 0
+    data = json.loads(out.read_text(encoding="utf-8"))
+    assert data["markets"] == ["sa", "us"]
+    # SA indices first, then US ones; ^IXIC 404'd so it is absent (never fabricated)
+    assert [i["code"] for i in data["indices"]] == ["TASI", "MT30", "NomuC", "^GSPC", "^DJI"]
+    assert {"index:^IXIC:yahoo"} <= {e["what"] for e in data["errors"]}
+    spx = next(i for i in data["indices"] if i["code"] == "^GSPC")
+    assert set(spx) == US_INDEX_KEYS and spx["market"] == "us" and spx["currency"] == "USD"
+    assert spx["name_ar"] == "ستاندرد آند بورز 500" and spx["value"] == 6000.5
+    assert spx["tz"] == "America/New_York" and spx["as_of_local"] == "2025-06-02 07:58:40"
+    assert "as_of_riyadh" not in spx and "market_cap_sar" not in spx
+    stocks_by_mkt = {m: [s for s in data["stocks"] if s["market"] == m] for m in ("sa", "us")}
+    assert len(stocks_by_mkt["sa"]) >= 40 and len(stocks_by_mkt["us"]) >= 40
+    for s in stocks_by_mkt["us"]:
+        assert set(s) == US_STOCK_KEYS and s["currency"] == "USD" and s["yahoo"] == s["code"] and s["tz"] == "America/New_York"
+    aapl = next(s for s in stocks_by_mkt["us"] if s["code"] == "AAPL")
+    assert aapl["price"] == 201.5 and aapl["prev_close"] == 200.0 and aapl["name_ar"] == "أبل" and aapl["sector_ar"] == "التقنية"
+    assert aapl["as_of_utc"] == "2025-06-02T11:58:40Z" and aapl["as_of_local"] == "2025-06-02 07:58:40"
+    assert aapl["market_cap_usd"] is None and aapl["market_cap"] is None  # --no-quote
+
+
+def test_main_markets_us_only(monkeypatch, tmp_path):
+    s = use_session(monkeypatch, {"chart/%5EGSPC": FakeResponse(body=us_fixture("^GSPC", price=6000.5))})
+    out = tmp_path / "market.json"
+    rc = fm.main(["--out", str(out), "--markets", "us", "--no-quote", "--sleep", "0",
+                  "--constituents-us", fm.DEFAULT_CONSTITUENTS_US])
+    assert rc == 0
+    data = json.loads(out.read_text(encoding="utf-8"))
+    assert data["markets"] == ["us"]
+    assert [i["code"] for i in data["indices"]] == ["^GSPC"]
+    assert all(st["market"] == "us" for st in data["stocks"]) and len(data["stocks"]) >= 40
+    # no Saudi source was touched at all
+    assert not any("TASI" in c[0] or "saudiexchange" in c[0] or "stooq" in c[0] for c in s.calls)
+
+
+def test_markets_flag_rejects_unknown():
+    with pytest.raises(SystemExit):
+        fm.parse_args(["--out", "x.json", "--markets", "sa,jp"])
+    assert fm.parse_markets("us, sa,us") == ["us", "sa"]
+
+
+def test_main_us_constituents_missing_is_soft(monkeypatch, tmp_path):
+    use_session(monkeypatch, {
+        "chart/%5ETASI.SR": FakeResponse(body=yahoo_fixture()),
+        "chart/2222.SR": FakeResponse(body=yahoo_fixture("2222.SR", price=27.5)),
+    })
+    out = tmp_path / "market.json"
+    rc = fm.main(["--out", str(out), "--constituents-us", str(tmp_path / "nope.json"), "--no-quote", "--no-stooq", "--sleep", "0"])
+    assert rc == 0
+    data = json.loads(out.read_text(encoding="utf-8"))
+    assert "constituents:us" in {e["what"] for e in data["errors"]}
+    assert all(st["market"] == "sa" for st in data["stocks"]) and len(data["stocks"]) >= 40
 
 
 def test_main_exits_1_and_keeps_previous_file_when_nothing_fetched(tmp_path):
@@ -340,11 +542,11 @@ def test_main_exits_1_and_keeps_previous_file_when_nothing_fetched(tmp_path):
 def test_main_missing_constituents_still_writes_indices(monkeypatch, tmp_path):
     use_session(monkeypatch, {"chart/%5ETASI.SR": FakeResponse(body=yahoo_fixture())})
     out = tmp_path / "market.json"
-    rc = fm.main(["--out", str(out), "--constituents", str(tmp_path / "nope.json"), "--no-stooq"])
+    rc = fm.main(["--out", str(out), "--constituents", str(tmp_path / "nope.json"), "--no-stooq", "--markets", "sa"])
     assert rc == 0
     data = json.loads(out.read_text(encoding="utf-8"))
     assert data["stocks"] == [] and data["indices"][0]["code"] == "TASI"
-    assert {e["what"] for e in data["errors"]} == {"constituents", "index:saudiexchange"}
+    assert {e["what"] for e in data["errors"]} == {"constituents:sa", "index:saudiexchange"}
 
 
 def test_constituents_file_is_sane():
@@ -357,3 +559,22 @@ def test_constituents_file_is_sane():
         assert c["code"].isdigit() and c["yahoo"] == f"{c['code']}.SR"
         assert c["name_ar"] and c["name_en"] and c["sector_ar"]
         assert isinstance(c["approx_mcap_bn_sar"], (int, float)) and c["approx_mcap_bn_sar"] > 0
+        assert c["market"] == "sa"
+
+
+US_SECTORS = {"التقنية", "الرعاية الصحية", "المالية", "الطاقة", "السلع الاستهلاكية", "السلع الأساسية", "الصناعة",
+              "الاتصالات", "المواد", "المرافق", "العقار"}
+
+
+def test_us_constituents_file_is_sane():
+    cons = fm.load_constituents(fm.DEFAULT_CONSTITUENTS_US, "us")
+    codes = [c["code"] for c in cons]
+    assert len(cons) >= 45 and len(set(codes)) == len(codes)
+    for must in ("AAPL", "MSFT", "NVDA", "GOOGL", "AMZN", "META", "BRK-B", "TSLA", "AVGO", "LLY", "JPM", "XOM"):
+        assert must in codes
+    for c in cons:
+        assert c["market"] == "us" and c["yahoo"] == c["code"] and c["code"] == c["code"].upper()
+        assert c["name_ar"] and c["name_en"] and c["sector_ar"] in US_SECTORS
+        assert isinstance(c["approx_mcap_bn_usd"], (int, float)) and c["approx_mcap_bn_usd"] > 0
+    assert next(c for c in cons if c["code"] == "AAPL")["name_ar"] == "أبل"
+    assert next(c for c in cons if c["code"] == "NVDA")["name_ar"] == "إنفيديا"
