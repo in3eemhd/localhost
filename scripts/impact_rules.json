@@ -1,0 +1,372 @@
+{
+  "_doc": "Keyword rules for analyze_news.py rules mode. Matching is case-insensitive substring on title+summary (Arabic diacritics stripped, hamza/ta-marbuta normalized). Impacts are integers -3..+3 per sector key and are summed across matching rules, then clamped. Rules are applied in listed order; the first matching rule that defines beneficiary/hurt wins those fields.",
+  "sectors": {
+    "energy": "الطاقة",
+    "banks": "البنوك",
+    "petrochem": "البتروكيماويات",
+    "insurance": "التأمين",
+    "transport": "النقل",
+    "realestate": "العقار",
+    "cement": "الأسمنت",
+    "tech": "التقنية",
+    "smallcaps": "الشركات الصغيرة",
+    "telecom": "الاتصالات",
+    "health": "الرعاية الصحية",
+    "retail": "التجزئة",
+    "food": "الأغذية",
+    "utilities": "المرافق"
+  },
+  "ambiguous_context": {
+    "_doc": "A keyword (rule or market keyword) containing one of these words as a whole word only counts if at least one context term also appears in the item text. market=='sa' additionally requires an explicit Saudi signal (sa keyword or a constituent ticker); the source being Saudi is not enough. A value may be a list (any of these must appear) or {\"any\": [...], \"none\": [...]} (none of these may appear).",
+    "brent": ["oil", "crude", "barrel", "barrels", "opec", "خام", "نفط", "برميل", "$", "dollar", "دولار", "price", "prices", "سعر"],
+    "برنت": ["خام", "نفط", "برميل", "دولار", "سعر", "أوبك", "oil", "crude", "$"],
+    "fed": ["rate", "rates", "interest", "fomc", "powell", "فائدة", "inflation", "basis points", "central bank", "الفيدرالي"],
+    "كيان": ["سهم", "أسهم", "شركة", "الشركة", "2350", "تداول", "سابك", "بتروكيماويات"],
+    "kayan": ["stock", "shares", "share", "company", "2350", "tadawul", "sabic", "petrochemical"],
+    "علم": ["سهم", "أسهم", "شركة", "الشركة", "7203", "تداول", "التقنية", "رقمي"],
+    "elm": ["stock", "shares", "share", "company", "7203", "tadawul", "digital", "tech"],
+    "نمو": ["سوق نمو", "السوق الموازية", "الموازية", "إدراج", "مدرجة", "انتقال", "تداول"],
+    "المملكة": {"none": ["المملكة المتحدة", "المملكة الأردنية", "مملكة البحرين", "المملكة المغربية", "المملكة البريطانية"]}
+  },
+  "market_keywords": {
+    "sa": ["تاسي", "تداول", "السوق السعودي", "السوق السعودية", "الأسهم السعودية", "أرامكو", "نمو", "هيئة السوق المالية", "الراجحي", "سابك", "الرياض", "جدة", "سعودي", "السعودية", "tadawul", "tasi", "saudi", "aramco", "riyadh", "cma", "nomu", "sabic", "pif", "sar ", "جازان", "أبها", "نجران", "الدمام", "الشرقية", "ينبع", "الجبيل", "مكة", "المدينة المنورة", "نيوم", "jazan", "jizan", "abha", "najran", "dammam", "khobar", "yanbu", "jubail", "jeddah", "neom", "makkah", "سعودية", "السعوديه", "الشركات السعودية", "سوق الأسهم", "المؤشر العام", "نمو - السوق الموازية", "السوق الموازية", "saudi arabia", "ksa", "tadawul all share", "saudi exchange", "vision 2030", "رؤية 2030", "الرياض المالية", "ريال", "riyal", "sar", "المملكة", "بالمملكة"],
+    "us": ["wall street", "s&p 500", "s&p", "nasdaq", "dow jones", "federal reserve", "the fed", "fed ", "treasury", "وول ستريت", "ناسداك", "داو جونز", "الفيدرالي", "الاحتياطي الاتحادي", "الخزانة الأمريكية", "wall st", "s&p 500"],
+    "macro": ["oil", "brent", "wti", "opec", "crude", "gold", "inflation", "recession", "tariff", "gdp", "نفط", "برنت", "أوبك", "الخام", "ذهب", "تضخم", "ركود", "رسوم جمركية", "الناتج المحلي", "غاز", "gas prices", "iran", "إيران", "هرمز", "hormuz", "houthi", "حوثي", "الحوثي", "exports", "صادرات", "الصادرات", "trade surplus", "trade deficit", "الفائض التجاري", "العجز التجاري", "central bank", "البنك المركزي", "ecb", "boj", "imf", "صندوق النقد", "world bank", "البنك الدولي", "global economy", "الاقتصاد العالمي", "geopolit", "جيوسياسي", "war", "حرب", "commodities", "السلع", "copper", "النحاس", "aluminium", "aluminum", "الألمنيوم", "lng", "الغاز المسال", "shipping rates", "supply chain", "سلاسل الإمداد", "dollar index", "مؤشر الدولار", "exchange rate", "سعر الصرف", "currency", "العملات", "الين", "اليورو", "euro", "yen", "gcc", "gulf", "الخليج", "خليجي", "الخليجية", "خليجية"],
+    "macro_geo": ["china", "الصين", "الصينية", "الصيني", "europe", "أوروبا", "الأوروبي", "japan", "اليابان", "india", "الهند", "israel", "إسرائيل", "gaza", "غزة", "yemen", "اليمن", "ukraine", "أوكرانيا", "russia", "روسيا"],
+    "_doc": "sa = explicit Saudi signal (or a constituent ticker in text). us/macro = finance keywords. macro_geo = geography-only words: an item whose only signal is geography is 'other' (not macro) and gets its relevance penalised unless a strong (cf>=2) rule or ticker matches."
+  },
+  "rules": [
+    {
+      "id": "oil_up",
+      "keywords": ["oil prices rise", "oil rises", "oil jumps", "oil surges", "oil climbs", "brent rises", "brent jumps", "brent tops", "brent above", "crude rises", "crude jumps", "ارتفاع النفط", "ارتفاع أسعار النفط", "النفط يرتفع", "برنت يرتفع", "برنت يتجاوز", "برنت يقفز", "صعود النفط", "قفز النفط", "النفط يقفز", "الخام يرتفع"],
+      "signal": "mix",
+      "cf": 3,
+      "impact": {"energy": 3, "petrochem": -1, "transport": -2, "banks": 1, "utilities": -1},
+      "why": "ارتفاع النفط يرفع إيراد أرامكو والدخل الحكومي والسيولة، ويضغط على تكلفة الوقود واللقيم للنقل والبتروكيماويات",
+      "beneficiary": {"name": "أرامكو (2222)", "why": "كل دولار إضافي في سعر البرميل يذهب مباشرة إلى إيراد التصدير والتوزيعات"},
+      "hurt": {"name": "البحري (4030) وشركات الطيران", "why": "الوقود أكبر بند تكلفة والناقلات معرّضة للمخاطر"}
+    },
+    {
+      "id": "oil_down",
+      "keywords": ["oil falls", "oil drops", "oil slides", "oil slumps", "oil tumbles", "oil plunges", "brent falls", "brent drops", "brent slides", "crude falls", "crude drops", "تراجع النفط", "هبوط النفط", "انخفاض النفط", "تراجع أسعار النفط", "النفط يتراجع", "النفط يهبط", "برنت يتراجع", "برنت يهبط", "الخام يتراجع", "انخفاض أسعار النفط"],
+      "signal": "neg",
+      "cf": 3,
+      "impact": {"energy": -3, "petrochem": 1, "transport": 2, "banks": -1},
+      "why": "تراجع النفط يخفض إيرادات أرامكو والحكومة والسيولة في السوق، ويخفف تكلفة الوقود على النقل",
+      "beneficiary": {"name": "شركات النقل والطيران", "why": "انخفاض تكلفة الوقود"},
+      "hurt": {"name": "أرامكو (2222)", "why": "إيراد التصدير والتوزيعات مرتبطة بسعر البرميل"}
+    },
+    {
+      "id": "oil_generic",
+      "keywords": ["oil", "brent", "crude", "opec", "نفط", "برنت", "الخام", "أوبك"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"energy": 1, "petrochem": 0},
+      "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر"
+    },
+    {
+      "id": "opec_cut",
+      "keywords": ["opec+ cut", "opec cut", "output cut", "production cut", "خفض الإنتاج", "خفض إنتاج", "تخفيض الإنتاج", "أوبك+ تخفض"],
+      "signal": "mix",
+      "cf": 2,
+      "impact": {"energy": 1, "petrochem": -1},
+      "why": "خفض الإنتاج يدعم السعر لكنه يقلل الكميات المصدَّرة"
+    },
+    {
+      "id": "fed_hike",
+      "keywords": ["rate hike", "raises rates", "hikes rates", "raise interest", "higher for longer", "رفع الفائدة", "رفع أسعار الفائدة", "يرفع الفائدة", "زيادة الفائدة"],
+      "signal": "mix",
+      "cf": 3,
+      "impact": {"banks": 2, "realestate": -2, "smallcaps": -2, "tech": -1, "cement": -1},
+      "why": "ربط الريال بالدولار ينقل قرار الفيدرالي إلى ساما: هامش الفائدة للبنوك يتحسن، وتكلفة التمويل ترتفع على العقار والشركات الصغيرة",
+      "beneficiary": {"name": "الراجحي (1120) والبنوك", "why": "ارتفاع هامش الفائدة الصافي"},
+      "hurt": {"name": "العقار والشركات المثقلة بالديون", "why": "ارتفاع تكلفة التمويل والرهن العقاري"}
+    },
+    {
+      "id": "fed_cut",
+      "keywords": ["rate cut", "cuts rates", "cut interest", "lowers rates", "خفض الفائدة", "خفض أسعار الفائدة", "يخفض الفائدة", "تخفيض الفائدة", "تثبيت الفائدة"],
+      "signal": "pos",
+      "cf": 3,
+      "impact": {"banks": -1, "realestate": 2, "smallcaps": 2, "tech": 1, "cement": 1, "retail": 1},
+      "why": "خفض الفائدة يخفض تكلفة التمويل ويدعم العقار والشركات الصغيرة، ويضغط قليلاً على هوامش البنوك",
+      "beneficiary": {"name": "العقار (دار الأركان 4300، الرياض ريت)", "why": "انخفاض تكلفة الرهن والتمويل"},
+      "hurt": {"name": "البنوك", "why": "تراجع هامش الفائدة الصافي"}
+    },
+    {
+      "id": "fed_generic",
+      "keywords": ["federal reserve", "the fed", "fed", "fomc", "powell", "interest rate", "الفيدرالي", "الاحتياطي الفيدرالي", "الاحتياطي الاتحادي", "ساما", "سعر الفائدة", "الفائدة"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"banks": 1, "realestate": -1},
+      "why": "أخبار الفائدة تؤثر مباشرة على البنوك والعقار بسبب ربط الريال بالدولار"
+    },
+    {
+      "id": "attack",
+      "keywords": ["attack", "drone strike", "missile", "houthi", "houthis", "strikes on", "explosion", "hormuz", "tanker", "sabotage", "هجوم", "هجمات", "مسيرة", "مسيّرة", "صاروخ", "صواريخ", "حوثي", "الحوثي", "الحوثيين", "انفجار", "هرمز", "ناقلة", "قصف", "استهداف"],
+      "signal": "neg",
+      "cf": 3,
+      "impact": {"energy": -1, "insurance": -3, "transport": -2, "petrochem": -1, "utilities": -1, "banks": -1},
+      "why": "مخاطر جيوسياسية: مطالبات التأمين والحرائق، وارتفاع أقساط الشحن، وخطر تشغيلي على منشآت الطاقة، مقابل علاوة سعر في النفط",
+      "beneficiary": {"name": "أرامكو (2222)", "why": "علاوة المخاطر ترفع سعر البرميل أكثر مما يضر التوقف المؤقت"},
+      "hurt": {"name": "التأمين (التعاونية 8010، بوبا 8210) والبحري (4030)", "why": "مطالبات حرائق ومنشآت وارتفاع مخاطر الملاحة"}
+    },
+    {
+      "id": "ceasefire",
+      "keywords": ["ceasefire", "truce", "peace deal", "de-escalation", "وقف إطلاق النار", "هدنة", "تهدئة", "اتفاق سلام"],
+      "signal": "pos",
+      "cf": 2,
+      "impact": {"energy": -1, "insurance": 2, "transport": 2, "banks": 1, "smallcaps": 1},
+      "why": "تراجع علاوة المخاطر يخفف على التأمين والشحن ويحسن شهية المخاطرة",
+      "beneficiary": {"name": "التأمين والنقل", "why": "انخفاض المخاطر التشغيلية وأقساط الشحن"},
+      "hurt": {"name": "أرامكو (2222)", "why": "تبخر علاوة المخاطر من سعر البرميل"}
+    },
+    {
+      "id": "earnings_up",
+      "keywords": ["profit rises", "profit jumps", "profit up", "profits rise", "net profit rises", "record profit", "earnings beat", "beats estimates", "ارتفاع أرباح", "ارتفاع الأرباح", "أرباح قياسية", "ترتفع أرباح", "نمو أرباح", "نمو الأرباح", "تحقق أرباحا", "تحقق أرباحاً", "قفزة في الأرباح", "زيادة الأرباح", "تحول إلى الربحية", "تحول للربحية"],
+      "signal": "pos",
+      "cf": 2,
+      "impact": {},
+      "why": "نتائج إيجابية تدعم السهم والقطاع"
+    },
+    {
+      "id": "earnings_down",
+      "keywords": ["profit falls", "profit drops", "profit slumps", "net loss", "losses widen", "loss widens", "misses estimates", "earnings miss", "تراجع أرباح", "تراجع الأرباح", "انخفاض أرباح", "انخفاض الأرباح", "خسائر", "خسارة", "تتحول إلى الخسارة", "تتحول للخسارة", "هبوط أرباح", "تسجل خسائر"],
+      "signal": "neg",
+      "cf": 2,
+      "impact": {},
+      "why": "نتائج سلبية تضغط على السهم"
+    },
+    {
+      "id": "earnings_generic",
+      "keywords": ["earnings", "net profit", "quarterly results", "annual results", "أرباح", "النتائج المالية", "نتائج الربع", "صافي الربح", "نتائج مالية"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {},
+      "why": "إعلان نتائج مالية"
+    },
+    {
+      "id": "dividend",
+      "keywords": ["dividend", "dividends", "cash distribution", "توزيعات", "توزيع أرباح", "توزيعات نقدية", "أرباح نقدية"],
+      "signal": "pos",
+      "cf": 2,
+      "impact": {},
+      "why": "إعلان توزيعات يدعم السهم ويجذب المستثمرين الباحثين عن العائد"
+    },
+    {
+      "id": "rights_issue",
+      "keywords": ["rights issue", "rights offering", "capital increase", "حقوق أولوية", "حقوق الأولوية", "زيادة رأس المال", "طرح أسهم حقوق"],
+      "signal": "neg",
+      "cf": 2,
+      "impact": {"smallcaps": -1},
+      "why": "زيادة رأس المال عبر حقوق أولوية تخفف حصص المساهمين الحاليين وغالباً تشير إلى ضغوط سيولة"
+    },
+    {
+      "id": "capital_reduction",
+      "keywords": ["capital reduction", "reduce its capital", "reduce capital", "تخفيض رأس المال", "تخفيض رأس مال", "خفض رأس المال", "إطفاء الخسائر", "اطفاء الخسائر"],
+      "signal": "neg",
+      "cf": 2,
+      "impact": {"smallcaps": -2},
+      "why": "تخفيض رأس المال لإطفاء خسائر متراكمة إشارة على تعثر مالي"
+    },
+    {
+      "id": "contract_award",
+      "keywords": ["awarded", "contract award", "wins contract", "secures contract", "signs contract", "signs agreement", "letter of award", "ترسية", "ترسية عقد", "توقيع عقد", "توقيع اتفاقية", "فوز بعقد", "الفوز بمشروع", "الحصول على عقد", "عقد بقيمة", "اتفاقية بقيمة"],
+      "signal": "pos",
+      "cf": 2,
+      "impact": {"cement": 1, "smallcaps": 1},
+      "why": "ترسية عقد أو اتفاقية تعزز الإيرادات المستقبلية"
+    },
+    {
+      "id": "ipo",
+      "keywords": ["ipo", "initial public offering", "listing", "lists on", "debuts on", "book-building", "bookbuilding", "prospectus", "إدراج", "طرح عام", "الطرح العام", "اكتتاب", "بناء سجل الأوامر", "نشرة الإصدار", "نشرة إصدار"],
+      "signal": "pos",
+      "cf": 2,
+      "impact": {"banks": 1, "smallcaps": 1},
+      "why": "الطروحات تعمق السوق وتدعم عمولات البنوك الاستثمارية، مع سحب سيولة مؤقت من الأسهم القائمة"
+    },
+    {
+      "id": "acquisition",
+      "keywords": ["acquisition", "acquires", "merger", "takeover", "استحواذ", "الاستحواذ", "اندماج", "دمج", "تستحوذ"],
+      "signal": "pos",
+      "cf": 2,
+      "impact": {},
+      "why": "صفقات الاستحواذ والاندماج تعيد تسعير الأصول وتخلق تكاملاً"
+    },
+    {
+      "id": "sukuk_debt",
+      "keywords": ["sukuk", "bond issuance", "issues bonds", "debt issuance", "صكوك", "سندات", "إصدار صكوك", "طرح صكوك", "تسهيلات ائتمانية", "قرض مرابحة"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"banks": 1},
+      "why": "إصدارات الدين تعكس نشاط التمويل وتدعم دخل البنوك من الرسوم"
+    },
+    {
+      "id": "bank_sector",
+      "keywords": ["bank", "banks", "banking", "lending", "loan growth", "sama", "بنك", "البنوك", "المصارف", "مصرف", "الإقراض", "التمويل العقاري", "ساما"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"banks": 1},
+      "why": "خبر يخص القطاع المصرفي"
+    },
+    {
+      "id": "petrochem_sector",
+      "keywords": ["petrochemical", "petrochemicals", "sabic", "polyethylene", "naphtha", "feedstock", "بتروكيماويات", "البتروكيماويات", "سابك", "اللقيم", "النفثا", "بوليمرات"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"petrochem": 1},
+      "why": "خبر يخص قطاع البتروكيماويات"
+    },
+    {
+      "id": "feedstock_price",
+      "keywords": ["feedstock price", "gas price increase", "raises gas price", "رفع أسعار اللقيم", "رفع سعر الغاز", "زيادة أسعار اللقيم"],
+      "signal": "neg",
+      "cf": 3,
+      "impact": {"petrochem": -3, "cement": -1, "utilities": -1, "energy": 1},
+      "why": "رفع أسعار اللقيم يضرب هوامش البتروكيماويات والأسمنت مباشرة"
+    },
+    {
+      "id": "insurance_sector",
+      "keywords": ["insurance", "insurer", "reinsurance", "premiums", "تأمين", "التأمين", "أقساط", "التعاونية", "بوبا"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"insurance": 1},
+      "why": "خبر يخص قطاع التأمين"
+    },
+    {
+      "id": "realestate_sector",
+      "keywords": ["real estate", "property", "housing", "mortgage", "reit", "عقار", "العقار", "العقاري", "الإسكان", "الرهن", "ريت", "مشروع سكني", "التطوير العقاري"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"realestate": 1, "cement": 1},
+      "why": "خبر يخص القطاع العقاري وسلسلة البناء"
+    },
+    {
+      "id": "cement_sector",
+      "keywords": ["cement", "construction", "infrastructure", "giga-project", "gigaproject", "neom", "أسمنت", "الأسمنت", "إسمنت", "الإنشاءات", "البنية التحتية", "المشاريع الكبرى", "نيوم", "القدية", "البحر الأحمر"],
+      "signal": "pos",
+      "cf": 1,
+      "impact": {"cement": 1, "realestate": 1},
+      "why": "المشاريع الكبرى والبنية التحتية تدعم الطلب على الأسمنت ومواد البناء"
+    },
+    {
+      "id": "tech_sector",
+      "keywords": ["technology", "tech ", "software", "artificial intelligence", " ai ", "data center", "datacenter", "cloud", "digital", "التقنية", "تقنية", "الذكاء الاصطناعي", "مراكز البيانات", "مركز بيانات", "الرقمي", "التحول الرقمي", "البرمجيات"],
+      "signal": "pos",
+      "cf": 1,
+      "impact": {"tech": 1, "telecom": 1},
+      "why": "الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات"
+    },
+    {
+      "id": "telecom_sector",
+      "keywords": ["telecom", "telecommunications", "5g", "stc", "mobily", "zain", "fiber", "اتصالات", "الاتصالات", "موبايلي", "زين", "الألياف"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"telecom": 1},
+      "why": "خبر يخص قطاع الاتصالات"
+    },
+    {
+      "id": "health_sector",
+      "keywords": ["hospital", "healthcare", "health care", "pharma", "pharmaceutical", "clinic", "مستشفى", "مستشفيات", "الرعاية الصحية", "الصحة", "أدوية", "دواء", "الدوائية", "طبي"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"health": 1},
+      "why": "خبر يخص قطاع الرعاية الصحية"
+    },
+    {
+      "id": "retail_sector",
+      "keywords": ["retail", "retailer", "consumer spending", "e-commerce", "shopping", "تجزئة", "التجزئة", "الإنفاق الاستهلاكي", "التجارة الإلكترونية", "المستهلك", "الجملة"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"retail": 1},
+      "why": "خبر يخص قطاع التجزئة والإنفاق الاستهلاكي"
+    },
+    {
+      "id": "food_sector",
+      "keywords": ["food", "dairy", "poultry", "agriculture", "almarai", "wheat", "sugar", "أغذية", "الأغذية", "الغذاء", "ألبان", "دواجن", "المراعي", "زراعة", "الزراعية", "القمح", "السكر"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"food": 1},
+      "why": "خبر يخص قطاع الأغذية والزراعة"
+    },
+    {
+      "id": "utilities_sector",
+      "keywords": ["electricity", "power plant", "desalination", "water", "utility", "utilities", "renewable", "solar", "الكهرباء", "محطة كهرباء", "تحلية", "المياه", "المرافق", "الطاقة المتجددة", "الطاقة الشمسية", "أكوا باور"],
+      "signal": "pos",
+      "cf": 1,
+      "impact": {"utilities": 1},
+      "why": "مشاريع الكهرباء والمياه والطاقة المتجددة تدعم قطاع المرافق"
+    },
+    {
+      "id": "transport_sector",
+      "keywords": ["airline", "airport", "shipping", "logistics", "port", "flynas", "saudia", "bahri", "طيران", "الطيران", "مطار", "الشحن", "الملاحة", "اللوجستية", "ميناء", "موانئ", "البحري", "ناس", "سال"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"transport": 1},
+      "why": "خبر يخص قطاع النقل واللوجستيات"
+    },
+    {
+      "id": "market_up",
+      "keywords": ["tasi rises", "tasi gains", "tasi closes higher", "tasi edges higher", "index rises", "stocks rise", "stocks gain", "higher at close", "closes higher", "تاسي يرتفع", "المؤشر يرتفع", "يغلق مرتفعا", "يغلق مرتفعاً", "ارتفاع المؤشر", "صعود المؤشر", "يغلق على ارتفاع", "مكاسب المؤشر", "يواصل الصعود", "تاسي يصعد"],
+      "signal": "pos",
+      "cf": 2,
+      "impact": {"banks": 1, "energy": 1, "smallcaps": 1},
+      "why": "إغلاق إيجابي للمؤشر يعكس شهية مخاطرة أفضل"
+    },
+    {
+      "id": "market_down",
+      "keywords": ["tasi falls", "tasi drops", "tasi closes lower", "tasi slips", "index falls", "stocks fall", "stocks drop", "stocks slide", "lower at close", "closes lower", "sell-off", "selloff", "تاسي يتراجع", "تاسي يهبط", "المؤشر يتراجع", "يغلق منخفضا", "يغلق منخفضاً", "تراجع المؤشر", "هبوط المؤشر", "يغلق على تراجع", "خسائر المؤشر", "موجة بيع", "تاسي يخسر"],
+      "signal": "neg",
+      "cf": 2,
+      "impact": {"banks": -1, "energy": -1, "smallcaps": -2},
+      "why": "إغلاق سلبي للمؤشر يعكس ضغط بيع وتراجع شهية المخاطرة"
+    },
+    {
+      "id": "tariff_trade_war",
+      "keywords": ["tariff", "tariffs", "trade war", "رسوم جمركية", "الرسوم الجمركية", "حرب تجارية", "التعريفات الجمركية"],
+      "signal": "neg",
+      "cf": 2,
+      "impact": {"petrochem": -2, "energy": -1, "transport": -1, "smallcaps": -1},
+      "why": "الحروب التجارية تضعف الطلب العالمي على النفط والبتروكيماويات وحركة الشحن"
+    },
+    {
+      "id": "inflation",
+      "keywords": ["inflation", "cpi", "consumer prices", "التضخم", "تضخم", "مؤشر أسعار المستهلك", "أسعار المستهلك"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"retail": -1, "food": -1, "banks": 1},
+      "why": "التضخم يضغط على القوة الشرائية ويؤجل خفض الفائدة"
+    },
+    {
+      "id": "pif_investment",
+      "keywords": ["pif", "public investment fund", "sovereign wealth", "صندوق الاستثمارات العامة", "صندوق الاستثمارات", "الصندوق السيادي"],
+      "signal": "pos",
+      "cf": 2,
+      "impact": {"realestate": 1, "cement": 1, "tech": 1, "smallcaps": 1},
+      "why": "استثمارات صندوق الاستثمارات العامة تدعم المشاريع والقطاعات المستهدفة في رؤية 2030"
+    },
+    {
+      "id": "regulatory_sanction",
+      "keywords": ["suspends trading", "trading suspended", "fine", "penalty", "violation", "cma fines", "تعليق تداول", "تعليق التداول", "غرامة", "مخالفة", "عقوبة", "إيقاف التداول", "هيئة السوق المالية تعاقب"],
+      "signal": "neg",
+      "cf": 2,
+      "impact": {"smallcaps": -1},
+      "why": "إجراءات تنظيمية أو عقوبات تضغط على السهم المعني"
+    },
+    {
+      "id": "credit_rating",
+      "keywords": ["credit rating", "moody's", "fitch", "s&p global ratings", "upgrades", "upgrade", "downgrade", "downgrades", "تصنيف ائتماني", "التصنيف الائتماني", "موديز", "فيتش", "رفع التصنيف", "خفض التصنيف"],
+      "signal": "mix",
+      "cf": 2,
+      "impact": {"banks": 1},
+      "why": "تغير التصنيف الائتماني ينعكس على تكلفة التمويل السيادي والمصرفي"
+    },
+    {
+      "id": "foreign_inflows",
+      "keywords": ["foreign investors", "foreign inflows", "msci", "ftse", "index inclusion", "المستثمرين الأجانب", "المستثمرون الأجانب", "تدفقات أجنبية", "الأجانب", "مؤشر إم إس سي آي", "فوتسي"],
+      "signal": "pos",
+      "cf": 2,
+      "impact": {"banks": 1, "energy": 1, "petrochem": 1, "telecom": 1},
+      "why": "التدفقات الأجنبية تتركز في الأسهم القيادية ذات الوزن الكبير بالمؤشر"
+    }
+  ]
+}

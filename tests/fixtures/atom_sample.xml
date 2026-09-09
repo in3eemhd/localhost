@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Arab News Business</title>
+  <link href="https://www.arabnews.com/business"/>
+  <updated>2026-09-09T08:00:00Z</updated>
+  <entry>
+    <title>Oil prices rise as Brent tops $100 after tanker attacks near Hormuz</title>
+    <link rel="alternate" href="https://www.arabnews.com/node/3000001/business"/>
+    <id>tag:arabnews.com,2026:3000001</id>
+    <updated>2026-09-09T07:05:09Z</updated>
+    <summary type="html">&lt;p&gt;Brent crude climbed above $100 a barrel on Wednesday. Bahri shares fell.&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <title>Fed signals rate cut in September as inflation cools</title>
+    <link rel="alternate" href="https://www.arabnews.com/node/3000002/business"/>
+    <id>tag:arabnews.com,2026:3000002</id>
+    <published>2026-09-08T22:30:00+00:00</published>
+    <updated>2026-09-08T22:30:00+00:00</updated>
+    <summary>The Federal Reserve is expected to cut interest rates at its next meeting.</summary>
+  </entry>
+  <entry>
+    <title>Saudi Aramco reports 12% jump in Q2 profit, announces dividend</title>
+    <link rel="alternate" href="https://www.argaam.com/ar/article/articledetail/id/1000001"/>
+    <id>tag:arabnews.com,2026:3000003</id>
+    <updated>2026-09-09T07:30:00Z</updated>
+    <summary>Same story as the Argaam item, same canonical link: must be deduped.</summary>
+  </entry>
+  <entry>
+    <title>Google News redirect item</title>
+    <link rel="alternate" href="https://news.google.com/rss/articles/CBMiRWh0dHBzOi8vd3d3LnJldXRlcnMuY29tL21hcmtldHMvc2F1ZGktc3RvY2tzLWNsb3NlLWhpZ2hlci0yMDI2LTA5LTA5L9IBAA?oc=5"/>
+    <id>tag:google,2026:gn1</id>
+    <updated>2026-09-09T06:00:00Z</updated>
+    <summary>Reuters via Google News: Saudi stocks close higher as banks gain.</summary>
+  </entry>
+</feed>

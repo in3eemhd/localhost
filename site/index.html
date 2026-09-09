@@ -1,0 +1,647 @@
+<title>مرصد الأسواق</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#f4f6fa; --surface:#ffffff; --surface-2:#eaeef5; --line:#d3dae6;
+  --ink:#131a26; --ink-2:#4d5a70; --ink-3:#7b8798;
+  --accent:#a86b1e; --accent-soft:#f3e6d2;
+  --pos:#0f7a52; --pos-soft:#dcf0e6;
+  --neg:#b3312a; --neg-soft:#f8e0de;
+  --warn:#8a6a10; --warn-soft:#f7edd0;
+  --hm0:#e9ecf1;
+  --hp1:#cfe9dc; --hp2:#8fcdb0; --hp3:#2f9a6e;
+  --hn1:#f5d9d6; --hn2:#e69c95; --hn3:#c94a40;
+  --shadow:0 1px 2px rgba(19,26,38,.06),0 8px 24px -12px rgba(19,26,38,.18);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0a0f1a; --surface:#111a29; --surface-2:#182334; --line:#25334a;
+    --ink:#e6edf8; --ink-2:#9dabc2; --ink-3:#6d7d95;
+    --accent:#e0a458; --accent-soft:#33270f;
+    --pos:#3ec48a; --pos-soft:#0f2e22;
+    --neg:#f0685e; --neg-soft:#361816;
+    --warn:#e3bf5c; --warn-soft:#2e2611;
+    --hm0:#1c2739;
+    --hp1:#17402f; --hp2:#1f6b4c; --hp3:#2f9a6e;
+    --hn1:#3f1f1c; --hn2:#7a2f29; --hn3:#c94a40;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0a0f1a; --surface:#111a29; --surface-2:#182334; --line:#25334a;
+  --ink:#e6edf8; --ink-2:#9dabc2; --ink-3:#6d7d95;
+  --accent:#e0a458; --accent-soft:#33270f;
+  --pos:#3ec48a; --pos-soft:#0f2e22;
+  --neg:#f0685e; --neg-soft:#361816;
+  --warn:#e3bf5c; --warn-soft:#2e2611;
+  --hm0:#1c2739;
+  --hp1:#17402f; --hp2:#1f6b4c; --hp3:#2f9a6e;
+  --hn1:#3f1f1c; --hn2:#7a2f29; --hn3:#c94a40;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{direction:rtl;margin:0;background:var(--ground);color:var(--ink);
+  font-family:"IBM Plex Sans Arabic",system-ui,"Segoe UI",sans-serif;font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.num{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px 72px}
+.up{color:var(--pos)} .down{color:var(--neg)}
+
+header{border-bottom:1px solid var(--line);background:var(--surface)}
+.hd{max-width:1240px;margin:0 auto;padding:18px 20px;display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;justify-content:space-between}
+h1{font-family:"Readex Pro",sans-serif;font-weight:700;font-size:26px;margin:0}
+h1 .dot{color:var(--accent)}
+.sub{color:var(--ink-3);font-size:13px;margin:2px 0 0}
+.stamp{font-size:12px;color:var(--ink-3);display:grid;gap:3px;text-align:left}
+.stamp div{display:flex;align-items:center;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--pos);box-shadow:0 0 0 3px var(--pos-soft)}
+.pulse.off{background:var(--warn);box-shadow:0 0 0 3px var(--warn-soft)}
+.stamp b{color:var(--ink-2);font-weight:600}
+.mode{padding:1px 8px;border-radius:4px;font-size:11px;font-weight:600;background:var(--surface-2);color:var(--ink-2)}
+.mode.snap{background:var(--warn-soft);color:var(--warn)}
+
+.secttl{font-family:"Readex Pro",sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--ink-3);margin:28px 0 14px;display:flex;align-items:center;gap:10px}
+.secttl::after{content:"";flex:1;height:1px;background:var(--line)}
+.secttl small{font-weight:400;letter-spacing:0;color:var(--ink-3)}
+
+/* ===== freshness banner ===== */
+.fresh{margin-top:20px;border:1px solid var(--line);border-inline-start:4px solid var(--warn);border-radius:10px;padding:12px 16px;background:var(--surface);font-size:13px;color:var(--ink-2);display:grid;gap:4px}
+.fresh b{color:var(--ink)}
+.fresh,.dq,.tb,.hl,.body,.why,.win{overflow-wrap:anywhere}
+.fresh.ok{border-inline-start-color:var(--pos)}
+.fresh.snap{border-inline-start-color:var(--neg);background:var(--warn-soft)}
+.fresh.snap .big{font-size:15px;font-weight:700;color:var(--ink)}
+
+/* ===== indices ===== */
+.mkts{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:900px){.mkts{grid-template-columns:1fr}}
+.mkt{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.mkt-h{padding:12px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--surface-2);gap:10px;flex-wrap:wrap}
+.mkt-h h3{font-family:"Readex Pro",sans-serif;font-size:15px;margin:0}
+.mkt-h span{font-size:11.5px;color:var(--ink-3)}
+.idx{padding:14px 18px;border-bottom:1px solid var(--line)}
+.idx:last-child{border-bottom:0}
+.idx-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.idx-nm{font-weight:600;font-size:15px}
+.idx-nm small{display:block;font-weight:400;font-size:11.5px;color:var(--ink-3)}
+.idx-px{text-align:left}
+.idx-px .v{font-size:19px;font-weight:600}
+.idx-px .c{font-size:12.5px;font-weight:600;display:block}
+.idx-px .asof{display:block;font-size:10.5px;color:var(--ink-3)}
+.wtype{display:inline-block;margin-top:6px;padding:2px 9px;border-radius:4px;font-size:11px;font-weight:600;letter-spacing:.02em}
+.w-price{background:var(--warn-soft);color:var(--warn)}
+.w-cap{background:var(--accent-soft);color:var(--accent)}
+.w-eq{background:var(--pos-soft);color:var(--pos)}
+.w-live{background:var(--warn-soft);color:var(--warn)}
+.w-closed{background:var(--surface-2);color:var(--ink-2)}
+.w-note{font-size:12.5px;color:var(--ink-2);margin:6px 0 0}
+.stale{font-size:10.5px;color:var(--warn);margin-top:6px}
+.srclink{font-size:11px;color:var(--ink-3);text-decoration:none;border-bottom:1px dotted var(--ink-3)}
+.srclink:hover{color:var(--accent);border-color:var(--accent)}
+.empty{color:var(--ink-3);font-size:13px;padding:14px 18px}
+
+/* ===== heatmap (news × sector) ===== */
+.hmwrap{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:16px 18px}
+.hmhead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start;margin-bottom:12px}
+.hmhead p{margin:0;font-size:13px;color:var(--ink-2);max-width:68ch}
+.legend{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink-3);white-space:nowrap}
+.legend i{width:18px;height:12px;border-radius:3px;display:inline-block;border:1px solid var(--line)}
+.hmscroll{overflow-x:auto}
+table.hm{border-collapse:separate;border-spacing:2px;min-width:760px;width:100%;font-size:12px}
+.hm th{font-weight:600;color:var(--ink-2);text-align:right;padding:4px 6px;vertical-align:bottom;background:transparent}
+.hm th.col{font-size:11px;line-height:1.35;max-width:112px;text-align:center;vertical-align:bottom;font-weight:500;unicode-bidi:plaintext}
+.hm th.col small{display:block;color:var(--ink-3);font-weight:400;font-size:10px}
+.hm th.row{white-space:nowrap;min-width:150px}
+.hm th.row small{display:block;color:var(--ink-3);font-weight:400;font-size:10.5px;font-family:"IBM Plex Mono",monospace;direction:ltr;text-align:right}
+.hm td{text-align:center;padding:0;height:40px;border-radius:5px;background:var(--hm0);position:relative;cursor:default;transition:outline .1s}
+.hm td:hover,.hm td:focus-visible{outline:2px solid var(--ink);outline-offset:-1px;z-index:1}
+.hm td span{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:12px;direction:ltr;display:inline-block;color:var(--ink)}
+.hm td.p3,.hm td.n3{color:#fff}.hm td.p3 span,.hm td.n3 span{color:#fff}
+.hm td.p1{background:var(--hp1)} .hm td.p2{background:var(--hp2)} .hm td.p3{background:var(--hp3)}
+.hm td.n1{background:var(--hn1)} .hm td.n2{background:var(--hn2)} .hm td.n3{background:var(--hn3)}
+.hm td.tot{background:var(--surface-2);font-weight:700}
+.hm td.tot span{font-size:13px}
+.hm tr.top th.row{color:var(--pos)}
+.hmtip{position:fixed;z-index:50;max-width:320px;background:var(--ink);color:var(--ground);font-size:12.5px;line-height:1.55;padding:9px 12px;border-radius:8px;pointer-events:none;box-shadow:var(--shadow);display:none}
+.hmtip b{display:block;font-weight:600;margin-bottom:2px}
+.hmtip .num{font-size:12px}
+.hmfoot{margin-top:12px;font-size:12px;color:var(--ink-3)}
+.winners{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.win{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--surface-2);font-size:12.5px}
+.win .k{font-size:10.5px;color:var(--ink-3);letter-spacing:.05em}
+.win .v{font-weight:600;font-size:14px;margin:2px 0}
+.win.g .v{color:var(--pos)} .win.l .v{color:var(--neg)}
+
+/* ===== price treemap ===== */
+.tm{position:relative;width:100%;height:560px;overflow:hidden;border-radius:8px;direction:ltr;background:var(--surface-2)}
+@media (max-width:900px){.tm{height:480px}}
+.tm .sec{position:absolute;overflow:hidden;background:var(--surface)}
+.tm .sh{position:absolute;left:0;right:0;top:0;height:18px;line-height:18px;font-size:10.5px;font-weight:600;color:var(--ink-2);padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:rtl;text-align:right;background:var(--surface-2)}
+.cell{position:absolute;overflow:hidden;border:1px solid var(--surface);border-radius:3px;padding:2px 4px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:default;line-height:1.15;color:var(--ink);background:var(--hm0)}
+.cell .cd{font-family:"IBM Plex Mono",monospace;font-weight:600;letter-spacing:.01em;white-space:nowrap}
+.cell .nm{font-size:10.5px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;direction:rtl}
+.cell .pc{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.cell.p1{background:var(--hp1)} .cell.p2{background:var(--hp2)} .cell.p3{background:var(--hp3)}
+.cell.n1{background:var(--hn1)} .cell.n2{background:var(--hn2)} .cell.n3{background:var(--hn3)}
+.cell.p3,.cell.n3{color:#fff} .cell.p3 .nm,.cell.n3 .nm{color:rgba(255,255,255,.85)}
+.cell:hover,.cell:focus-visible{outline:2px solid var(--ink);outline-offset:-2px;z-index:2}
+.tmgrid{display:none}
+.tm.narrow{height:auto;direction:rtl;background:transparent}
+.tm.narrow .tmgrid{display:block}
+.tmgrid h4{margin:12px 0 6px;font-size:12px;color:var(--ink-2);font-weight:600}
+.tmgrid h4:first-child{margin-top:0}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:4px}
+.tiles .cell{position:static;height:58px;border-radius:6px}
+.movers{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:700px){.movers{grid-template-columns:1fr}}
+.mv{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--surface-2)}
+.mv h4{margin:0 0 6px;font-size:11px;letter-spacing:.05em;color:var(--ink-3);font-weight:600}
+.mv.g h4{color:var(--pos)} .mv.l h4{color:var(--neg)}
+.mv .cons{margin-top:0;grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.cons{margin-top:10px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}
+.con{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:6px 9px;border-radius:7px;background:var(--surface);font-size:12px}
+.con b{font-family:"IBM Plex Mono",monospace;font-weight:600;direction:ltr;font-size:11.5px}
+.con .w{color:var(--ink-3);font-size:10.5px;margin-inline-start:4px}
+.con .p{font-family:"IBM Plex Mono",monospace;direction:ltr;font-size:11.5px;text-align:left;line-height:1.3}
+.con .p i{display:block;font-style:normal;font-weight:600;font-size:10.5px}
+
+/* ===== layout ===== */
+.cols{display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start}
+@media (max-width:900px){.cols{grid-template-columns:1fr}}
+
+/* ===== filters ===== */
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.chip{font:inherit;font-size:13px;padding:5px 13px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink-2);cursor:pointer;transition:.15s}
+.chip:hover{border-color:var(--accent);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.chip:focus-visible,input:focus-visible,summary:focus-visible,.srcbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.srch{flex:1;min-width:150px;font:inherit;font-size:13px;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.count{font-size:12px;color:var(--ink-3);margin:-4px 0 14px}
+
+/* ===== news ===== */
+.feed{display:flex;flex-direction:column;gap:14px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.item::before{content:"";position:absolute;inset-block:0;inset-inline-start:0;width:3px;background:var(--ink-3)}
+.item.pos::before{background:var(--pos)} .item.neg::before{background:var(--neg)} .item.mix::before{background:var(--warn)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:11.5px;color:var(--ink-3);margin-bottom:7px}
+.src{font-weight:600;color:var(--ink-2);display:inline-flex;align-items:center;gap:5px}
+.src::before{content:"✓";font-size:9px;color:var(--pos);border:1px solid var(--pos);border-radius:50%;width:12px;height:12px;display:inline-flex;align-items:center;justify-content:center}
+.tag{padding:1px 8px;border-radius:4px;background:var(--surface-2)}
+.sig{padding:1px 9px;border-radius:4px;font-weight:600;font-size:11px}
+.sig.pos{background:var(--pos-soft);color:var(--pos)} .sig.neg{background:var(--neg-soft);color:var(--neg)} .sig.mix{background:var(--warn-soft);color:var(--warn)}
+.tm-badge{display:inline-flex;gap:6px;align-items:center}
+.tm-badge .num{font-size:11px}
+.tm-badge.approx{color:var(--warn)}
+.tm-badge.exact{color:var(--pos)}
+.hl{font-family:"Readex Pro",sans-serif;font-size:17px;font-weight:600;line-height:1.5;margin:0 0 10px;text-wrap:balance}
+.hl a{color:inherit;text-decoration:none}
+.hl a:hover{color:var(--accent)}
+.topben{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+@media (max-width:600px){.topben{grid-template-columns:1fr}}
+.tb{border-radius:8px;padding:9px 12px;font-size:13px;line-height:1.5}
+.tb .k{display:block;font-size:10.5px;letter-spacing:.06em;font-weight:600;margin-bottom:2px}
+.tb.g{background:var(--pos-soft);color:var(--ink)} .tb.g .k{color:var(--pos)}
+.tb.l{background:var(--neg-soft);color:var(--ink)} .tb.l .k{color:var(--neg)}
+.tb b{font-weight:700}
+.prices{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:7px;margin-bottom:10px}
+.pr{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 10px;border-radius:7px;border:1px solid var(--line);background:var(--surface-2);font-size:12.5px}
+.pr .l{line-height:1.3}.pr .l b{font-family:"IBM Plex Mono",monospace;direction:ltr;display:inline-block;font-size:11.5px}
+.pr .l small{display:block;color:var(--ink-3);font-size:10.5px}
+.pr .r{font-family:"IBM Plex Mono",monospace;direction:ltr;text-align:left;line-height:1.3;font-size:12px}
+.pr .r i{display:block;font-style:normal;font-weight:600;font-size:11px}
+details{margin-top:8px;border-top:1px dashed var(--line);padding-top:10px}
+summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--accent);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸ ";display:inline-block;transition:.2s}
+details[open] summary::before{transform:rotate(-90deg)}
+.body{font-size:14px;color:var(--ink);margin:10px 0 0;max-width:68ch}
+.body p{margin:0 0 10px}
+.body.en{direction:ltr;text-align:left;font-family:system-ui,"Segoe UI",sans-serif}
+.langb{display:inline-block;padding:0 6px;border-radius:4px;background:var(--surface-2);color:var(--ink-3);font-size:10.5px;font-family:"IBM Plex Mono",monospace;margin-inline-start:6px;vertical-align:middle}
+.why{font-size:13.5px;color:var(--ink-2);margin:10px 0 0;padding:10px 12px;border-radius:7px;background:var(--accent-soft);max-width:68ch}
+.why strong{color:var(--ink)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}
+.conf{font-size:12px;color:var(--ink-3);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.bars{display:flex;gap:3px}.bars i{width:16px;height:4px;border-radius:2px;background:var(--line)}.bars i.on{background:var(--accent)}
+.srcs{display:flex;gap:6px;flex-wrap:wrap}
+.srcbtn{font:inherit;font-size:12.5px;font-weight:600;padding:6px 14px;border-radius:7px;background:var(--ink);color:var(--ground);text-decoration:none;display:inline-flex;gap:6px;align-items:center}
+.srcbtn:hover{background:var(--accent);color:#fff}
+.srcbtn.alt{background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line)}
+
+/* ===== side ===== */
+.side{display:flex;flex-direction:column;gap:20px;position:sticky;top:20px}
+@media (max-width:900px){.side{position:static}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow)}
+.panel h3{font-family:"Readex Pro",sans-serif;font-size:15px;margin:0 0 4px}
+.panel .note{font-size:12px;color:var(--ink-3);margin:0 0 12px}
+.wh{border-color:var(--accent)}
+.post{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+.post:first-of-type{border-top:0;padding-top:0;margin-top:0}
+.post .t{font-size:11.5px;color:var(--ink-3);margin-bottom:5px}
+.post .q{font-size:13.5px;line-height:1.65;margin:0 0 7px;border-inline-start:2px solid var(--accent);padding-inline-start:10px}
+.post .eff{font-size:12px;color:var(--ink-2);margin:0}
+.dq{display:flex;flex-direction:column;gap:7px;font-size:12.5px}
+.dq div{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dashed var(--line);padding-bottom:6px}
+.dq div:last-child{border:0}
+.dq .s{color:var(--ink-2)} .dq .t{font-size:11px;color:var(--ink-3);text-align:left}
+.dq .lag+.t,.dq .bad+.t{color:var(--warn)}
+.dq .ok::before{content:"● ";color:var(--pos)} .dq .lag::before{content:"● ";color:var(--warn)} .dq .bad::before{content:"● ";color:var(--neg)}
+.dq .lag{color:var(--warn)} .dq .bad{color:var(--neg)}
+.dq h5{margin:6px 0 0;font-size:10.5px;letter-spacing:.06em;color:var(--ink-3);font-weight:600}
+.disc{margin-top:28px;border:1px solid var(--line);border-radius:10px;padding:14px 18px;background:var(--warn-soft);color:var(--ink-2);font-size:13px}
+.disc b{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header><div class="hd">
+  <div><h1>مرصد الأسواق<span class="dot">.</span></h1>
+  <p class="sub">السوق السعودي أولاً · خريطة أسعار حرارية · خريطة أثر كل خبر · المستفيد الأكبر محدد بالاسم · طوابع زمنية بالثانية</p></div>
+  <div class="stamp">
+    <div><span class="pulse" id="pulse"></span> نسخة <b class="num">v0.5</b> <span class="mode" id="mode">جارٍ التحميل…</span></div>
+    <div>بُنيت <b class="num" id="built">—</b> الرياض <span class="num" id="builtUtc"></span></div>
+    <div>الآن <b class="num" id="now">—</b> · عمر البيانات <b class="num" id="age">—</b></div>
+  </div>
+</div></header>
+
+<div class="wrap">
+
+<div class="fresh" id="fresh"><div>جارٍ تحميل البيانات…</div></div>
+
+<h2 class="secttl">المؤشرات <small>— السعودي أولاً، ثم الأمريكي</small></h2>
+<div class="mkts" id="mkts"></div>
+
+<h2 class="secttl">خريطة الأسعار الحرارية <small>— مساحة كل مربع بحسب القيمة السوقية، ولونه بحسب تغيّر اليوم</small></h2>
+<div class="hmwrap">
+  <div class="hmhead">
+    <p id="tmnote">كل مربع سهم، مجمّع داخل قطاعه. المساحة تعكس القيمة السوقية، واللون نسبة التغيّر: أخضر صعود وأحمر هبوط، والرقم مكتوب داخل كل مربع. مرّر الفأرة لقراءة السعر والإغلاق السابق والحجم والمصدر.</p>
+    <div class="legend"><span class="num">−3%</span><i style="background:var(--hn3)"></i><i style="background:var(--hn2)"></i><i style="background:var(--hn1)"></i><i style="background:var(--hm0)"></i><i style="background:var(--hp1)"></i><i style="background:var(--hp2)"></i><i style="background:var(--hp3)"></i><span class="num">+3%</span></div>
+  </div>
+  <div class="tm" id="tm"></div>
+  <div class="movers" id="movers"></div>
+  <p class="hmfoot" id="tmfoot"></p>
+</div>
+
+<h2 class="secttl">خريطة أثر الأخبار <small>— أثر كل خبر على كل قطاع أو شركة</small></h2>
+<div class="hmwrap">
+  <div class="hmhead">
+    <p>كل عمود خبر، وكل صف قطاع أو شركة سعودية. الرقم في الخلية هو تقدير الأثر من −3 (ضرر كبير) إلى +3 (استفادة كبيرة)، والعمود الأخير مجموع الأثر. مرّر الفأرة على أي خلية لقراءة السبب. الأثر تقدير تحليلي مبني على مضمون الخبر، وليس حركة سعر مرصودة.</p>
+    <div class="legend"><span>ضرر</span><i style="background:var(--hn3)"></i><i style="background:var(--hn2)"></i><i style="background:var(--hn1)"></i><i style="background:var(--hm0)"></i><i style="background:var(--hp1)"></i><i style="background:var(--hp2)"></i><i style="background:var(--hp3)"></i><span>استفادة</span></div>
+  </div>
+  <div class="hmscroll"><table class="hm" id="hm"></table></div>
+  <div class="winners" id="winners"></div>
+  <p class="hmfoot">الصفوف مرتبة من الأكثر استفادة إلى الأكثر تضرراً بمجموع الأثر عبر كل الأخبار. الأعمدة أحدث عشرة أخبار سعودية أو ماكرو لها أثر مقدّر.</p>
+</div>
+<div class="hmtip" id="hmtip"></div>
+
+<div class="cols" style="margin-top:8px">
+<main>
+  <h2 class="secttl">الأخبار <small>— مصادر مسمّاة، وقت النشر ووقت الاسترجاع، والمستفيد الأكبر في أعلى كل خبر</small></h2>
+  <div class="bar" id="bar">
+    <button class="chip" data-f="all" aria-pressed="true">الكل</button>
+    <button class="chip" data-f="sa" aria-pressed="false">سعودي</button>
+    <button class="chip" data-f="macro" aria-pressed="false">نفط وجيوسياسة</button>
+    <button class="chip" data-f="us" aria-pressed="false">أمريكي</button>
+    <button class="chip" data-f="pos" aria-pressed="false">إيجابي</button>
+    <button class="chip" data-f="neg" aria-pressed="false">سلبي</button>
+    <input class="srch" id="q" type="search" placeholder="بحث برمز السهم أو كلمة…" aria-label="بحث">
+  </div>
+  <p class="count" id="count"></p>
+  <div class="feed" id="feed"></div>
+</main>
+
+<aside class="side">
+  <div class="panel">
+    <h3>جودة البيانات</h3>
+    <p class="note">من أين جاء كل رقم، ومتى، وما الذي لم نستطع تأكيده</p>
+    <div class="dq" id="dq"></div>
+  </div>
+  <div class="panel wh" id="whpanel" hidden>
+    <h3>مراقب البيت الأبيض</h3>
+    <p class="note">منشورات الرئيس الأمريكي ذات الأثر السوقي</p>
+    <div id="posts"></div>
+  </div>
+</aside>
+</div>
+
+<div class="disc"><b>تنبيه:</b> أداة رصد وتحليل، ليست توصية استثمارية. النصوص العربية إعادة صياغة لمضمون الخبر من مصدره، والزر يوصلك للنص الأصلي. تقديرات «المستفيد» و«الأثر» تحليل تحريري لا قياس سعري. القرار وتبعاته عليك.</div>
+</div>
+
+<script>
+/* ===================== EMBEDDED SNAPSHOT (fallback when data/*.json cannot be fetched) ===================== */
+/*SNAPSHOT_START*/
+const SNAPSHOT_MARKET={"generated_at_utc":"2026-09-09T13:25:14Z","generated_at_riyadh":"2026-09-09 16:25:14","indices":[{"code":"TASI","name_ar":"المؤشر العام تاسي","market":"sa","value":11036.25,"change_pts":11.52,"change_pct":0.1,"as_of_utc":"2026-09-08T12:00:00Z","as_of_riyadh":"2026-09-08 15:00:00","session_date":"2026-09-08","is_closed":true,"source":"Arab News · Closing Bell","source_url":"https://www.arabnews.com/business/closing-bell-tasi-edges-higher-to-11036-3000940"},{"code":"MT30","name_ar":"إم إس سي آي تداول 30","market":"sa","value":1481.58,"change_pts":1.24,"change_pct":0.08,"as_of_utc":"2026-09-08T12:00:00Z","as_of_riyadh":"2026-09-08 15:00:00","session_date":"2026-09-08","is_closed":true,"source":"Arab News","source_url":"https://www.arabnews.com/business/closing-bell-tasi-edges-higher-to-11036-3000940"},{"code":"NOMU","name_ar":"نمو الحد الأعلى (السوق الموازية)","market":"sa","value":21770.9,"change_pts":64.23,"change_pct":0.3,"as_of_utc":"2026-09-09T11:42:07Z","as_of_riyadh":"2026-09-09 14:42:07","session_date":"2026-09-09","is_closed":false,"source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch/indices-performance?locale=ar"},{"code":"^GSPC","name_ar":"S&P 500","market":"us","value":7673.52,"change_pts":-44.76,"change_pct":-0.58,"as_of_utc":"2026-09-08T20:00:00Z","as_of_riyadh":"2026-09-08 23:00:00","session_date":"2026-09-08","is_closed":true,"source":"Yahoo Finance","source_url":"https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-8-133744027.html"},{"code":"^DJI","name_ar":"داو جونز","market":"us","value":52786.07,"change_pts":-630.33,"change_pct":-1.18,"as_of_utc":"2026-09-08T20:00:00Z","as_of_riyadh":"2026-09-08 23:00:00","session_date":"2026-09-08","is_closed":true,"source":"Yahoo Finance","source_url":"https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-8-133744027.html"},{"code":"^IXIC","name_ar":"ناسداك المجمع","market":"us","value":26421.41,"change_pts":-84.82,"change_pct":-0.32,"as_of_utc":"2026-09-08T20:00:00Z","as_of_riyadh":"2026-09-08 23:00:00","session_date":"2026-09-08","is_closed":true,"source":"Yahoo Finance","source_url":"https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-8-133744027.html"}],"stocks":[{"code":"2222","name_ar":"أرامكو السعودية","name_en":"Saudi Aramco","sector_ar":"الطاقة","price":27.85,"prev_close":27.63,"change_pct":0.8,"volume":12400000,"market_cap_sar":6740000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"2380","name_ar":"بترو رابغ","name_en":"Petro Rabigh","sector_ar":"الطاقة","price":8.1,"prev_close":8.2,"change_pct":-1.22,"volume":3100000,"market_cap_sar":13300000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"2030","name_ar":"المصافي","name_en":"SARCO","sector_ar":"الطاقة","price":58.4,"prev_close":58,"change_pct":0.69,"volume":210000,"market_cap_sar":1750000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"1120","name_ar":"مصرف الراجحي","name_en":"Al Rajhi Bank","sector_ar":"البنوك","price":96.3,"prev_close":96.01,"change_pct":0.3,"volume":4800000,"market_cap_sar":385000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"1180","name_ar":"البنك الأهلي السعودي","name_en":"SNB","sector_ar":"البنوك","price":36.2,"prev_close":36.4,"change_pct":-0.55,"volume":6100000,"market_cap_sar":217000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"1010","name_ar":"بنك الرياض","name_en":"Riyad Bank","sector_ar":"البنوك","price":27.1,"prev_close":27.06,"change_pct":0.15,"volume":2900000,"market_cap_sar":81000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"1150","name_ar":"مصرف الإنماء","name_en":"Alinma Bank","sector_ar":"البنوك","price":27.8,"prev_close":27.5,"change_pct":1.09,"volume":5200000,"market_cap_sar":69000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"1060","name_ar":"البنك السعودي الأول","name_en":"SAB","sector_ar":"البنوك","price":34.5,"prev_close":34.6,"change_pct":-0.29,"volume":1400000,"market_cap_sar":71000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"1080","name_ar":"البنك العربي الوطني","name_en":"ANB","sector_ar":"البنوك","price":19.9,"prev_close":19.82,"change_pct":0.4,"volume":1900000,"market_cap_sar":44000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"1111","name_ar":"مجموعة تداول","name_en":"Tadawul Group","sector_ar":"الخدمات المالية","price":180,"prev_close":177.34,"change_pct":1.5,"volume":260000,"market_cap_sar":21600000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"2010","name_ar":"سابك","name_en":"SABIC","sector_ar":"المواد الأساسية","price":62.4,"prev_close":63.41,"change_pct":-1.6,"volume":3300000,"market_cap_sar":187000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"1211","name_ar":"معادن","name_en":"Ma'aden","sector_ar":"المواد الأساسية","price":48.9,"prev_close":48.46,"change_pct":0.9,"volume":2700000,"market_cap_sar":150000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"2020","name_ar":"سابك للمغذيات الزراعية","name_en":"SABIC Agri-Nutrients","sector_ar":"المواد الأساسية","price":112,"prev_close":111.5,"change_pct":0.45,"volume":480000,"market_cap_sar":53000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"2290","name_ar":"ينساب","name_en":"Yansab","sector_ar":"المواد الأساسية","price":34.1,"prev_close":34.81,"change_pct":-2.05,"volume":900000,"market_cap_sar":19000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"2350","name_ar":"كيان السعودية","name_en":"Saudi Kayan","sector_ar":"المواد الأساسية","price":6.05,"prev_close":6.25,"change_pct":-3.2,"volume":7800000,"market_cap_sar":9080000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"2090","name_ar":"الجبس الوطني","name_en":"National Gypsum","sector_ar":"المواد الأساسية","price":12.7,"prev_close":13.17,"change_pct":-3.57,"volume":650000,"market_cap_sar":800000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"Investing.com","source_url":"https://www.investing.com/news/stock-market-news/saudi-arabia-stocks-higher-at-close-of-trade-tadawul-all-share-up-010-4891685"},{"code":"7010","name_ar":"إس تي سي","name_en":"stc","sector_ar":"الاتصالات","price":41.5,"prev_close":41.42,"change_pct":0.2,"volume":2100000,"market_cap_sar":207000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"7020","name_ar":"موبايلي","name_en":"Mobily","sector_ar":"الاتصالات","price":55,"prev_close":55.22,"change_pct":-0.4,"volume":700000,"market_cap_sar":42000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"7030","name_ar":"زين السعودية","name_en":"Zain KSA","sector_ar":"الاتصالات","price":10.9,"prev_close":10.89,"change_pct":0.09,"volume":1500000,"market_cap_sar":9800000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"8010","name_ar":"التعاونية","name_en":"Tawuniya","sector_ar":"التأمين","price":128,"prev_close":131.42,"change_pct":-2.6,"volume":310000,"market_cap_sar":16000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"8210","name_ar":"بوبا العربية","name_en":"Bupa Arabia","sector_ar":"التأمين","price":170,"prev_close":175.44,"change_pct":-3.1,"volume":180000,"market_cap_sar":25000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"8310","name_ar":"أمانة للتأمين","name_en":"Amana Insurance","sector_ar":"التأمين","price":8.9,"prev_close":9.32,"change_pct":-4.51,"volume":1200000,"market_cap_sar":383000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"4300","name_ar":"دار الأركان","name_en":"Dar Al Arkan","sector_ar":"العقار","price":19.2,"prev_close":19.53,"change_pct":-1.7,"volume":2600000,"market_cap_sar":20700000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"4250","name_ar":"جبل عمر","name_en":"Jabal Omar","sector_ar":"العقار","price":20.1,"prev_close":19.65,"change_pct":2.29,"volume":1900000,"market_cap_sar":25000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"4324","name_ar":"بنان العقارية","name_en":"Banan Real Estate","sector_ar":"العقار","price":3.5,"prev_close":3.24,"change_pct":8.02,"volume":9800000,"market_cap_sar":350000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"Investing.com","source_url":"https://www.investing.com/news/stock-market-news/saudi-arabia-stocks-higher-at-close-of-trade-tadawul-all-share-up-010-4891685"},{"code":"4030","name_ar":"البحري","name_en":"Bahri","sector_ar":"النقل","price":26.4,"prev_close":26.97,"change_pct":-2.11,"volume":1100000,"market_cap_sar":20900000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"5110","name_ar":"السعودية للكهرباء","name_en":"Saudi Electricity","sector_ar":"المرافق العامة","price":15.4,"prev_close":15.52,"change_pct":-0.8,"volume":3400000,"market_cap_sar":64000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"2082","name_ar":"أكوا باور","name_en":"ACWA Power","sector_ar":"المرافق العامة","price":250,"prev_close":245.34,"change_pct":1.9,"volume":420000,"market_cap_sar":183000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"4190","name_ar":"جرير","name_en":"Jarir","sector_ar":"تجزئة السلع الكمالية","price":13.2,"prev_close":13.12,"change_pct":0.61,"volume":1600000,"market_cap_sar":15800000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"4001","name_ar":"أسواق العثيم","name_en":"Al Othaim Markets","sector_ar":"تجزئة الأغذية","price":9.5,"prev_close":9.52,"change_pct":-0.21,"volume":900000,"market_cap_sar":8600000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"1213","name_ar":"نسيج العالمية","name_en":"Naseej International","sector_ar":"السلع طويلة الأجل","price":16.96,"prev_close":17.68,"change_pct":-4.07,"volume":540000,"market_cap_sar":500000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"7200","name_ar":"المعمر لأنظمة المعلومات","name_en":"MIS","sector_ar":"البرامج والخدمات","price":140,"prev_close":138.34,"change_pct":1.2,"volume":95000,"market_cap_sar":3500000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"7203","name_ar":"علم","name_en":"Elm","sector_ar":"البرامج والخدمات","price":900,"prev_close":893.74,"change_pct":0.7,"volume":60000,"market_cap_sar":72000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"4013","name_ar":"سليمان الحبيب","name_en":"Dr. Sulaiman Al Habib","sector_ar":"الرعاية الصحية","price":280,"prev_close":279.16,"change_pct":0.3,"volume":150000,"market_cap_sar":98000000000,"as_of_utc":"2026-09-08T12:00:00Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"},{"code":"9619","name_ar":"مجموعة الأعمال المتعددة","name_en":"Multi Business Group","sector_ar":"نمو","price":14.2,"prev_close":null,"change_pct":null,"volume":null,"market_cap_sar":null,"as_of_utc":"2026-09-09T11:42:07Z","source":"تداول السعودية","source_url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/nomu-parallel-market-watch"}],"errors":[{"what":"إغلاق الأربعاء 9 سبتمبر للسوق الرئيسية","detail":"لقطة 11,029.54 (−0.06%) ظهرت في مقتطف بحث ولم يتأكد أنها إغلاق نهائي، فلم تُعتمد."},{"what":"أسعار الأسهم الفردية ليوم الأربعاء","detail":"صفحات الأسعار (تداول، أرقام، مباشر، Investing) محجوبة من شبكة الجلسة؛ الأسعار المعروضة إغلاق الثلاثاء."}]};
+const SNAPSHOT_NEWS={"generated_at_utc":"2026-09-09T13:25:14Z","fetch_window_utc":["2026-09-09T13:16:00Z","2026-09-09T13:24:30Z"],"sectors":{"aramco":"أرامكو","banks":"البنوك الكبرى","petchem":"البتروكيماويات","insurance":"التأمين","transport":"النقل والشحن","realestate":"العقار","cement":"الأسمنت ومواد البناء","tech":"التقنية ومراكز البيانات","nomu":"الأسهم الصغيرة ونمو","tadawul":"مجموعة تداول"},"sector_tickers":{"aramco":"2222","banks":"1120 · 1180","petchem":"2010 · 2290 · 2350","insurance":"8210 · 8010 · 8310","transport":"4030","realestate":"4300 · 4250 · 4324","cement":"2090","tech":"7200 · 7203","nomu":"السوق الموازية","tadawul":"1111"},"posts":[{"when":"7 سبتمبر · Truth Social · عبر CNBC","quote":"«حققنا مئات المليارات من الدولارات على الأسهم» — ضمن سلسلة منشورات مكثفة خلال جلسة هابطة.","effect":"أثر مباشر محدود، لكنه يرفع احتمال إعلان سياسي مفاجئ."},{"when":"9 سبتمبر · القيادة المركزية الأمريكية","quote":"إعلان تدمير خمس ناقلات إيرانية رداً على استهداف سفينة حربية.","effect":"هذا هو المحرك الفعلي لبرنت فوق 100 دولار اليوم."}],"items":[{"title":"برنت يتجاوز 100 دولار بعد تدمير أمريكا خمس ناقلات إيرانية ورد إيران بمهاجمة 10 سفن وقاعدة في الأردن","link":"https://www.cnn.com/2026/09/09/economy/oil-price-iran-war","links":[{"url":"https://www.cnn.com/2026/09/09/economy/oil-price-iran-war","label":"CNN"},{"url":"https://www.aljazeera.com/news/2026/9/9/us-destroys-five-iranian-tankers-iran-retaliates-with-attacks-on-jordan-base","label":"Al Jazeera"},{"url":"https://fortune.com/article/price-of-oil-09-09-2026/","label":"Fortune"}],"source":"CNN Business · Al Jazeera · Fortune","topic_ar":"نفط · جيوسياسة","published_utc":"2026-09-09T11:00:00Z","published_riyadh":"2026-09-09 14:00","precision":"minute","fetched_at_utc":"2026-09-09T13:17:02Z","summary":"Brent crude topped $100 a barrel on Wednesday for the first time since July after CENTCOM said it destroyed five Iranian tankers; Iran retaliated against about 10 vessels and a US base in Jordan. Brent was at $102.05 at 7 a.m. ET, up $2.20; WTI rose 1.3% to about $94. Hormuz transits fell to the lowest since May.","summary_ar":"تجاوز خام برنت 100 دولار للبرميل يوم الأربعاء 9 سبتمبر للمرة الأولى منذ يوليو، بعد أن أعلنت القيادة المركزية الأمريكية تدمير خمس ناقلات نفط إيرانية، أربع في خليج عمان وواحدة قرب جزيرة خرج، رداً على محاولات الحرس الثوري استهداف سفينة حربية أمريكية.\n\nردت إيران بمهاجمة نحو 10 سفن وقاعدة أمريكية في الأردن، وأدانت السعودية الأربعاء الهجمات الإيرانية على الأردن. سجّل برنت 102.05 دولار عند الساعة 7 صباحاً بتوقيت شرق أمريكا، بزيادة 2.20 دولار عن اليوم السابق، وارتفع الخام الأمريكي 1.3% إلى نحو 94 دولاراً. انخفضت حركة الملاحة عبر مضيق هرمز إلى أدنى مستوى منذ مايو بمتوسط 10 سفن يومياً.\n\nتراجعت العقود الآجلة للأسهم الأمريكية، وهو ما يضغط على شهية المخاطرة في الأسواق الخليجية رغم دعم أسعار النفط لإيرادات السعودية.","analysis_ar":"النفط فوق 100 يعمل في اتجاهين على تداول: إيجابي لأرامكو والإيرادات الحكومية، وسلبي للشحن والبتروكيماويات والطيران. الأهم: هذا خبر اليوم ولم يظهر في إغلاق الثلاثاء بعد، فأثره الكامل يأتي في الجلسات القادمة.","lang":"en","market":"macro","signal":"mix","tickers":[{"code":"2222","name_ar":"أرامكو"},{"code":"4030","name_ar":"البحري"},{"code":"2010","name_ar":"سابك"},{"code":"2290","name_ar":"ينساب"}],"beneficiary":{"name":"أرامكو (2222)","why":"كل دولار فوق 90 يذهب مباشرة لإيراد التصدير وتوزيعات الأرباح، بينما ضرر المنشآت محدود ومؤمَّن"},"hurt":{"name":"البحري (4030) والبتروكيماويات (سابك 2010، ينساب 2290)","why":"الناقلات هدف مباشر، والنفثا مدخل إنتاج يرفع التكلفة"},"impact":{"aramco":{"score":3,"why":"كل دولار فوق 90 يذهب لإيراد التصدير والتوزيعات"},"banks":{"score":1,"why":"إيراد حكومي أعلى يعني ودائع وإنفاقاً"},"petchem":{"score":-2,"why":"النفثا مدخل إنتاج فينضغط الهامش"},"transport":{"score":-3,"why":"الناقلات هدف مباشر، وهرمز عند أدنى حركة منذ مايو"},"cement":{"score":-1,"why":"طاقة أغلى"}},"cf":3},{"title":"السعودية تعلّق العمل في منشآت طاقة جنوبية بعد هجمات حوثية على أربع مدن أصابت 73 شخصاً","link":"https://www.bloomberg.com/news/articles/2026-09-08/saudi-arabia-says-several-energy-sites-halted-after-attacks","links":[{"url":"https://www.bloomberg.com/news/articles/2026-09-08/saudi-arabia-says-several-energy-sites-halted-after-attacks","label":"Bloomberg"},{"url":"https://www.npr.org/2026/09/08/g-s1-142296/houthi-attacks-saudi-arabia","label":"NPR"},{"url":"https://attaqa.net/2026/09/08/","label":"الطاقة"}],"source":"Bloomberg · NPR · رويترز عبر Business Recorder","topic_ar":"أمن الطاقة","published_utc":"2026-09-08T09:00:00Z","published_riyadh":"2026-09-08","precision":"day","fetched_at_utc":"2026-09-09T13:18:40Z","summary":"Houthi missile and drone attacks on Abha, Khamis Mushait, Jazan and Najran injured 73 and set energy facilities on fire; the Energy Ministry temporarily halted operations at several southern sites. Brent rose 1.68% to $98.63 at 12:01 GMT.","summary_ar":"شنّ الحوثيون يوم الثلاثاء 8 سبتمبر هجمات بصواريخ باليستية ومسيّرات على أبها وخميس مشيط وجازان ونجران، ما أدى إلى إصابة 73 شخصاً واندلاع حرائق في منشآت طاقة. أعلن مصدر مسؤول في وزارة الطاقة تعليق العمليات مؤقتاً في عدد من منشآت قطاع الطاقة بالمنطقة الجنوبية ريثما تسيطر فرق الطوارئ على الحرائق.\n\nقال الحوثيون إنهم استهدفوا منشآت لأرامكو في أبها ونجران وجازان، حيث تقع مصفاة جازان بطاقة 400 ألف برميل يومياً التي استُهدفت مراراً منذ يوليو. وصف التحالف التصعيد بالخطير وتعهد باتخاذ كل الإجراءات لردع الميليشيا. ارتفع خام برنت 1.68% إلى 98.63 دولار عند 12:01 بتوقيت غرينتش.","analysis_ar":"السوق قرأ الخبر كخبر سعر لا كخبر إنتاج: أرامكو صعدت رغم التوقف. الخطر الحقيقي على تداول ليس أرامكو بل التأمين والطيران والسياحة الجنوبية، وهذه لم تُسعَّر بعد.","lang":"en","market":"sa","signal":"neg","tickers":[{"code":"2222","name_ar":"أرامكو"},{"code":"8210","name_ar":"بوبا"},{"code":"8010","name_ar":"التعاونية"}],"beneficiary":{"name":"أرامكو (2222)","why":"صعد السهم 0.8% في نفس الجلسة: علاوة السعر فاقت أثر التوقف المؤقت"},"hurt":{"name":"التأمين (بوبا 8210، التعاونية 8010) ومرافق الجنوب","why":"مطالبات حرائق ومنشآت، وخطر تشغيلي على مصفاة جازان 400 ألف برميل يومياً"},"impact":{"aramco":{"score":1,"why":"صعدت 0.8% في نفس الجلسة: علاوة السعر فاقت أثر التوقف"},"banks":{"score":-1,"why":"حذر عام وخروج سيولة"},"petchem":{"score":-1,"why":"مخاطر لوجستيات البحر الأحمر"},"insurance":{"score":-3,"why":"مطالبات حرائق ومنشآت وإصابات في أربع مدن"},"transport":{"score":-2,"why":"البحر الأحمر يزداد خطراً"},"realestate":{"score":-1,"why":"معنويات"},"nomu":{"score":-1,"why":"خروج سيولة من الأسهم الصغيرة"}},"cf":3},{"title":"تاسي يعكس خسائره ويغلق الثلاثاء مرتفعاً 0.10% عند 11,036 بدعم الراجحي وأرامكو، وبنان الأفضل والجبس الأسوأ","link":"https://www.brecorder.com/news/40438487/most-gulf-stocks-edge-up-amid-caution-over-us-iran-standoff-saudi-energy-strikes","links":[{"url":"https://www.brecorder.com/news/40438487/most-gulf-stocks-edge-up-amid-caution-over-us-iran-standoff-saudi-energy-strikes","label":"رويترز / BR"},{"url":"https://www.investing.com/news/stock-market-news/saudi-arabia-stocks-higher-at-close-of-trade-tadawul-all-share-up-010-4891685","label":"Investing.com"}],"source":"رويترز عبر Business Recorder · Investing.com","topic_ar":"إغلاق الجلسة","published_utc":"2026-09-08T12:00:00Z","published_riyadh":"2026-09-08 15:00","precision":"minute","fetched_at_utc":"2026-09-09T13:19:11Z","summary":"TASI reversed early losses to close Tuesday up 0.10% at 11,036.25, lifted by Al Rajhi (+0.3%) and Aramco (+0.8%). Turnover SAR 3.21bn on 164m shares; 92 gainers vs 160 decliners. Banan +8.02% to 3.50; National Gypsum -3.57% to a five-year low.","summary_ar":"أنهى مؤشر السوق السعودية الرئيسية جلسة الثلاثاء 8 سبتمبر على ارتفاع 0.10% (+11.52 نقطة) عند 11,036.25 بعد أن عكس خسائر مبكرة، بدعم من ارتفاع مصرف الراجحي 0.3% وأرامكو 0.8%. بلغت السيولة 3.21 مليار ريال بحجم 164 مليون سهم، مع 92 سهماً صاعداً و160 هابطاً.\n\nبحسب Investing.com قادت قطاعات الاستثمار الصناعي والتجزئة والأسمنت الارتفاع، وكان بنان العقارية الأفضل أداءً بارتفاع 8.02% إلى 3.50 ريال، بينما هبط الجبس الوطني 3.57% إلى 12.70 ريال مسجلاً أدنى مستوى في 5 سنوات. أغلق MT30 عند 1,481.58 (+0.08%).","analysis_ar":"مؤشر أخضر بأغلبية أسهم حمراء يعني أن الصعود ضيّق يحمله سهمان. راقب السيولة: 3.21 مليار أقل من الإثنين (3.42) وهو حذر لا ثقة.","lang":"en","market":"sa","signal":"mix","tickers":[{"code":"1120","name_ar":"الراجحي"},{"code":"2222","name_ar":"أرامكو"},{"code":"4324","name_ar":"بنان العقارية"},{"code":"2090","name_ar":"الجبس الوطني"}],"beneficiary":{"name":"أرامكو (2222) والراجحي (1120)","why":"الثقلان اللذان قلبا المؤشر من الأحمر إلى الأخضر"},"hurt":{"name":"الأسمنت ومواد البناء (الجبس الوطني 2090)","why":"أدنى مستوى في 5 سنوات مع 160 سهماً هابطاً مقابل 92 صاعداً"},"impact":{"aramco":{"score":1,"why":"أحد سهمين قلبا المؤشر للأخضر"},"banks":{"score":1,"why":"الراجحي +0.3% قاد المؤشر"},"realestate":{"score":2,"why":"بنان +8.02% الأفضل في السوق"},"cement":{"score":-2,"why":"الجبس الوطني −3.57% أدنى مستوى في 5 سنوات"},"nomu":{"score":1,"why":"الاستثمار الصناعي والتجزئة قادا الارتفاع"},"tadawul":{"score":-1,"why":"سيولة أقل من الإثنين"}},"cf":2},{"title":"تداول توافق لميريل لينش السعودية على صناعة السوق في 13 ورقة مالية بالسوق الرئيسية ونمو اعتباراً من اليوم","link":"https://www.saudiexchange.sa/wps/portal/saudiexchange/newsandreports/issuer-news/news-detail-wcm/?newsId=9256&locale=en","source":"تداول السعودية","topic_ar":"إعلان رسمي · صناعة سوق","published_utc":"2026-09-09T05:00:34Z","published_riyadh":"2026-09-09 08:00:34","precision":"second","fetched_at_utc":"2026-09-09T13:16:20Z","summary":"Saudi Exchange approved Merrill Lynch KSA to act as market maker on 13 securities in the Main Market and Nomu, effective 9 September 2026.","summary_ar":"أعلنت شركة تداول السعودية الموافقة على طلب ميريل لينش المملكة العربية السعودية لممارسة أنشطة صناعة السوق على 13 ورقة مالية مدرجة في السوق الرئيسية والسوق الموازية نمو، اعتباراً من 9 سبتمبر 2026.\n\nتتضمن التزامات صانع السوق حداً أدنى لتواجد الأوامر وحجمها وحداً أقصى لفرق السعر. تأتي الخطوة امتداداً لموافقات سابقة لميريل لينش شملت 20 ورقة مالية ثم صدر للخدمات اللوجستية (1832) في أغسطس، بهدف تعزيز السيولة في الأسهم الأقل نشاطاً.","analysis_ar":"الخبر الوحيد اليوم بطابع زمني دقيق بالثانية لأنه إعلان رسمي. أثره تراكمي: السيولة في الأسهم الصغيرة تتحسن على أسابيع لا أيام.","lang":"ar","market":"sa","signal":"pos","tickers":[{"code":"1111","name_ar":"مجموعة تداول"}],"beneficiary":{"name":"الأسهم الصغيرة والمتوسطة المشمولة ومجموعة تداول (1111)","why":"فروق أسعار أضيق وسيولة أعمق تعني دوران أعلى وعمولات أكثر"},"hurt":{"name":"لا متضرر مباشر","why":null},"impact":{"realestate":{"score":1,"why":"سيولة أفضل للأسهم الصغيرة"},"nomu":{"score":3,"why":"13 ورقة تحصل على صانع سوق: فروق أضيق وسيولة أعمق"},"tadawul":{"score":2,"why":"دوران أعلى يعني عمولات أكثر"}},"cf":2},{"title":"تداول تعيد تصنيف 10 شركات وفق GICS من الأحد 13 سبتمبر، أبرزها نقل جبل عمر من العقار إلى الخدمات الاستهلاكية","link":"https://www.argaam.com/ar/article/articledetail/id/1934727","source":"أرقام","topic_ar":"إعادة تصنيف قطاعي","published_utc":"2026-09-09T06:30:00Z","published_riyadh":"2026-09-09","precision":"day","fetched_at_utc":"2026-09-09T13:20:05Z","summary":null,"summary_ar":"أعلنت تداول السعودية إعادة تصنيف عشر شركات مدرجة (أربع في السوق الرئيسية وست في نمو) وفق معيار GICS اعتباراً من بداية تداول الأحد 13 سبتمبر 2026. أبرز التغييرات نقل جبل عمر للتطوير (4250) إلى قطاع السلع الاستهلاكية الكمالية بدلاً من العقار.\n\nفي السوق الموازية صُنفت مجموعة الأعمال المتعددة (9619) ضمن السلع الرأسمالية، والفاخرة للخياطة الرجالية (9618) ضمن تجزئة السلع الكمالية. قد تؤثر إعادة التصنيف على أوزان المؤشرات القطاعية والصناديق التي تتبعها.","analysis_ar":"خبر إجرائي لكنه يحرّك تدفقات الصناديق يوم التنفيذ. القائمة الكاملة للشركات العشر لم تظهر في المقتطف.","lang":"ar","market":"sa","signal":"pos","tickers":[{"code":"4250","name_ar":"جبل عمر"},{"code":"9619","name_ar":"الأعمال المتعددة"},{"code":"9618","name_ar":"الفاخرة"}],"beneficiary":{"name":"جبل عمر (4250)","why":"تصنيف الفنادق يجذب صناديق الخدمات الاستهلاكية ويُخرجه من مقارنات العقار المثقلة"},"hurt":{"name":"مؤشر قطاع العقار","why":"يفقد مكوّناً ثقيلاً فيتغير وزنه في الصناديق المتتبعة"},"impact":{"realestate":{"score":2,"why":"جبل عمر ينتقل لتصنيف الفنادق ويجذب صناديق جديدة"},"nomu":{"score":1,"why":"ست شركات نمو تُعاد لتصنيف أدق"}},"cf":1},{"title":"الناتج المحلي السعودي ينكمش 4.7% في الربع الثاني مع هبوط الأنشطة النفطية 24.7%","link":"https://www.argaam.com/ar/article/articledetail/id/1924400","source":"أرقام · الهيئة العامة للإحصاء","topic_ar":"ماكرو سعودي","published_utc":"2026-09-09T07:00:00Z","published_riyadh":"2026-09-09","precision":"day","fetched_at_utc":"2026-09-09T13:20:48Z","summary":null,"summary_ar":"أعلنت الهيئة العامة للإحصاء أن الناتج المحلي الإجمالي الحقيقي تراجع 4.7% على أساس سنوي في الربع الثاني من 2026، و4.9% مقارنة بالربع الأول، متأثراً بانخفاض الأنشطة النفطية 24.7% سنوياً في انعكاس مباشر لاضطرابات الإمدادات عبر مضيق هرمز.\n\nفي المقابل نمت الأنشطة غير النفطية 0.6% سنوياً، وارتفعت الأنشطة الحكومية 0.9% سنوياً.","analysis_ar":"أهم رقم ماكرو هذا العام، والسوق لم يتفاعل معه لأنه خبر كمّيات لا أسعار. المؤشر الذي يجب مراقبته هو الأنشطة غير النفطية.","lang":"ar","market":"sa","signal":"neg","tickers":[{"code":"2222","name_ar":"أرامكو"},{"code":"1120","name_ar":"الراجحي"}],"beneficiary":{"name":"البنوك والتجزئة نسبياً","why":"الأنشطة غير النفطية ما زالت موجبة (+0.6%) وهي التي تحمي الإقراض والاستهلاك"},"hurt":{"name":"المقاولات والشركات المرتبطة بالإنفاق الحكومي","why":"ضعف الإيراد النفطي كمّاً ينعكس على المشاريع إن طال"},"impact":{"aramco":{"score":-1,"why":"الإنتاج النفطي −24.7% كمّاً، يعوّضه السعر جزئياً"},"banks":{"score":1,"why":"غير النفطي +0.6% يحمي الإقراض"},"petchem":{"score":-1,"why":"تباطؤ الإنتاج النفطي يضغط اللقيم"},"transport":{"score":-1,"why":"كميات أقل للشحن"},"realestate":{"score":-1,"why":"إنفاق حكومي أضعف إن طال"},"cement":{"score":-2,"why":"أكثر القطاعات ارتباطاً بالإنفاق الحكومي"},"tech":{"score":1,"why":"غير النفطي هو محرك الطلب"}},"cf":2},{"title":"احتمالات رفع الفيدرالي في 16 سبتمبر تتأرجح بين 30% و62%: صدمة النفط تصطدم بضعف الوظائف، وساما تتبع القرار","link":"https://www.chase.com/personal/investments/learning-and-insights/article/september-2026-rate-hike-now-expected-amid-energy-shocks","links":[{"url":"https://www.chase.com/personal/investments/learning-and-insights/article/september-2026-rate-hike-now-expected-amid-energy-shocks","label":"JPMorgan"},{"url":"https://www.forbes.com/sites/billconerly/2026/08/12/why-the-fed-will-raise-rates-in-september-despite-cooler-cpi/","label":"Forbes"}],"source":"JPMorgan (Chase) · Forbes","topic_ar":"الفيدرالي 16 سبتمبر","published_utc":"2026-09-01T14:00:00Z","published_riyadh":"2026-09-01","precision":"day","fetched_at_utc":"2026-09-09T13:21:30Z","summary":"Markets put the odds of a 25bp Fed hike on 16 September between roughly 30% and 62% as energy-driven inflation collides with a weak July jobs report (-23k). JPMorgan expects a hike; Goldman does not. SAMA follows the Fed because of the riyal peg.","summary_ar":"يترقب المستثمرون قرار الاحتياطي الفيدرالي في 16 سبتمبر بعد تثبيت الفائدة عند 3.50%–3.75% في كل اجتماعات 2026. تتأرجح احتمالات الرفع بين نحو 62% في أوائل أغسطس و30–40% بعد تقرير الوظائف الضعيف، مع انقسام: جي بي مورغان يتوقع رفعاً بـ25 نقطة أساس بينما غولدمان ساكس يستبعده.\n\nالسبب تضخم الطاقة الناتج عن حرب إيران مقابل تباطؤ سوق العمل (فقدان 23 ألف وظيفة في يوليو). يهم القرار السوق السعودية مباشرة لأن ساما تتبع الفيدرالي.","analysis_ar":"لتداول، قرار الفيدرالي هو قرار ساما. رفع = بنوك تستفيد وعقار يتضرر. تثبيت = العكس جزئياً.","lang":"en","market":"macro","signal":"mix","tickers":[{"code":"1120","name_ar":"الراجحي"},{"code":"1180","name_ar":"الأهلي"},{"code":"4300","name_ar":"دار الأركان"}],"beneficiary":{"name":"البنوك (الراجحي 1120، الأهلي 1180)","why":"رفع الفائدة يعني هوامش أعلى لفترة أطول لأن ساما تتبع الفيدرالي بسبب ربط الريال"},"hurt":{"name":"العقار المثقل بالديون (دار الأركان 4300، جبل عمر 4250)","why":"تكلفة تمويل أعلى تضغط الهوامش والتقييم"},"impact":{"banks":{"score":2,"why":"رفع الفائدة = هوامش أعلى لفترة أطول عبر ساما"},"petchem":{"score":-1,"why":"ديون بالدولار تصبح أغلى"},"insurance":{"score":1,"why":"عوائد استثمار أعلى على المحافظ"},"transport":{"score":-1,"why":"تمويل الأسطول أغلى"},"realestate":{"score":-2,"why":"تكلفة تمويل أعلى للمطورين المثقلين بالديون"},"cement":{"score":-1,"why":"تمويل المشاريع أغلى"},"tech":{"score":-1,"why":"تقييمات النمو تتأثر"},"nomu":{"score":-1,"why":"الأسهم الصغيرة أكثر حساسية للفائدة"}},"cf":2},{"title":"أمانة للتأمين تعيّن مستشاراً مالياً لخفض رأس المال 30% من 430 إلى 301 مليون ريال لإطفاء خسائر 129 مليوناً","link":"https://www.argaam.com/en/article/articledetail/id/1928104","links":[{"url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/newsandreports/issuer-news/issuer-announcements","label":"تداول"},{"url":"https://www.argaam.com/en/article/articledetail/id/1928104","label":"أرقام"}],"source":"تداول السعودية · أرقام","topic_ar":"تخفيض رأس مال","published_utc":"2026-09-09T06:45:00Z","published_riyadh":"2026-09-09","precision":"day","fetched_at_utc":"2026-09-09T13:22:14Z","summary":null,"summary_ar":"أعلنت شركة أمانة للتأمين التعاوني يوم 9 سبتمبر تعيين مستشار مالي لعملية تخفيض رأس المال، تنفيذاً لتوصية مجلس الإدارة في 10 أغسطس بخفض رأس المال 30% من 430 مليون ريال إلى 301 مليون ريال لإطفاء خسائر متراكمة بقيمة 129 مليون ريال.\n\nأكدت الشركة أن التخفيض لن يؤثر سلباً على التزاماتها، ويبقى خاضعاً لموافقة هيئة السوق المالية والجمعية العامة غير العادية.","analysis_ar":"يتزامن مع خطر مطالبات الهجمات الجنوبية، فقطاع التأمين يتلقى ضربتين في يومين.","lang":"ar","market":"sa","signal":"neg","tickers":[{"code":"8310","name_ar":"أمانة للتأمين"}],"beneficiary":{"name":"لا مستفيد","why":"تنظيف ميزانية فقط"},"hurt":{"name":"مساهمو أمانة (8310) وقطاع التأمين معنوياً","why":"خسائر النصف الأول 23.2 مليون ريال مقابل 249 ألفاً قبل عام"},"impact":{"insurance":{"score":-2,"why":"خسائر متراكمة تعادل 30% من رأس المال في شركة من القطاع"}},"cf":1},{"title":"إدارات تتسلم خطاب ترسية من المعمر لأنظمة المعلومات، امتداداً لعقود مراكز بيانات الذكاء الاصطناعي","link":"https://www.argaam.com/en/article/articledetail/id/1736135","links":[{"url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/newsandreports/issuer-news/issuer-announcements","label":"تداول"},{"url":"https://www.argaam.com/en/article/articledetail/id/1736135","label":"أرقام"}],"source":"تداول السعودية · أرقام","topic_ar":"ترسية · مراكز بيانات","published_utc":"2026-09-09T07:10:00Z","published_riyadh":"2026-09-09","precision":"day","fetched_at_utc":"2026-09-09T13:22:59Z","summary":null,"summary_ar":"أعلنت شركة إدارات للاتصالات وتقنية المعلومات يوم 9 سبتمبر تسلمها خطاب ترسية من شركة المعمر لأنظمة المعلومات. لم تظهر قيمة العقد في مقتطفات البحث.\n\nتأتي الترسية امتداداً لتعاون سابق شمل عقد باطن لمشروع مركز بيانات للذكاء الاصطناعي بقيمة 72.45 مليون ريال في مارس 2026، وعقداً أقدم بقيمة 125.8 مليون ريال.","analysis_ar":"قيمة العقد مجهولة فالإشارة ضعيفة، لكن الاتجاه واضح: الطلب على مراكز البيانات مستمر رغم الجيوسياسة.","lang":"ar","market":"sa","signal":"pos","tickers":[{"code":"7200","name_ar":"المعمر (MIS)"},{"code":"9542","name_ar":"إدارات"}],"beneficiary":{"name":"إدارات (نمو) ثم المعمر (7200)","why":"تراكم أعمال جديد للأولى، وتأكيد استمرار خط مشاريع مراكز البيانات للثانية"},"hurt":{"name":"لا متضرر","why":null},"impact":{"tech":{"score":2,"why":"ترسية جديدة تؤكد استمرار خط مشاريع مراكز البيانات"},"nomu":{"score":2,"why":"إدارات في نمو هي المستفيد الأول"}},"cf":1},{"title":"اكتتاب حقوق أولوية نسيج العالمية بقيمة 163.46 مليون ريال مستمر حتى 13 سبتمبر لمعالجة خسائر بلغت نصف رأس المال","link":"https://www.saudiexchange.sa/wps/portal/saudiexchange/newsandreports/issuer-news/news-detail-wcm/?newsId=9562&locale=en","links":[{"url":"https://www.saudiexchange.sa/wps/portal/saudiexchange/newsandreports/issuer-news/news-detail-wcm/?newsId=9562&locale=en","label":"تداول"},{"url":"https://www.sahmcapital.com/news/content/naseej-publishes-rights-issue-prospectus-for-sar-163m-2026-06-30","label":"Sahm"}],"source":"تداول السعودية · Sahm Capital","topic_ar":"حقوق أولوية","published_utc":"2026-09-08T05:00:00Z","published_riyadh":"2026-09-08","precision":"day","fetched_at_utc":"2026-09-09T13:23:40Z","summary":null,"summary_ar":"تستمر فترة الاكتتاب في أسهم حقوق الأولوية لشركة نسيج العالمية التجارية حتى الأحد 13 سبتمبر 2026، بعد انتهاء فترة تداول الحقوق يوم الثلاثاء 8 سبتمبر. تسعى الشركة لرفع رأس مالها بقيمة 163.46 مليون ريال لمعالجة خسائر متراكمة بلغت نصف رأس المال بموجب المادة 132 من نظام الشركات.","analysis_ar":"اكتتاب إنقاذي لا توسعي. راقب نسبة التغطية عند الإعلان.","lang":"ar","market":"sa","signal":"neg","tickers":[{"code":"1213","name_ar":"نسيج (السريع سابقاً)"}],"beneficiary":{"name":"ميزانية نسيج (1213) إن اكتمل الاكتتاب","why":null},"hurt":{"name":"المساهمون الذين لا يكتتبون","why":"تخفيف ملكية"},"impact":{},"cf":1},{"title":"كوالكوم توقّع صفقة رقائق ذكاء اصطناعي مع أمازون بقيمة تصل إلى 60 مليار دولار","link":"https://www.fool.com/coverage/stock-market-today/2026/09/08/stock-market-today-sept-8-stocks-slide-amid-surging-oil-prices-persistent-geopolotical-tenisons/","source":"Motley Fool","topic_ar":"صفقة · رقائق","published_utc":"2026-09-08T20:15:00Z","published_riyadh":"2026-09-08 23:15","precision":"minute","fetched_at_utc":"2026-09-09T13:24:21Z","summary":"Qualcomm announced an agreement to supply Amazon with AI data-center chips worth up to $60 billion. Qualcomm rose 3.17% to $174.09 while Amazon slipped 0.60%.","summary_ar":null,"analysis_ar":"خبر أمريكي محتفظ به من النسخة السابقة للسياق.","lang":"en","market":"us","signal":"pos","tickers":[{"code":"QCOM","name_ar":"كوالكوم"},{"code":"AMZN","name_ar":"أمازون"}],"beneficiary":{"name":"كوالكوم (QCOM)","why":"تغيّر في قصة السهم من الهواتف إلى مراكز البيانات"},"hurt":{"name":"أمازون هامشياً","why":"نفقة رأسمالية"},"impact":{},"cf":2}]};
+/*SNAPSHOT_END*/
+/* STATIC=true is stamped by scripts/build_static.py: no fetch, render the embedded snapshot as a static build */
+const STATIC=/*STATIC_MODE*/false;
+
+/* static fallback weights for the treemap when market_cap_sar is missing (approx. relative size) */
+const FALLBACK_W={"2222":100,"1120":6,"7010":3.2,"1180":3.2,"2010":2.9,"2082":2.8,"1211":2.3,"4013":1.5,"1010":1.2,"7203":1.1,"1060":1.1,"1150":1.05,"5110":1,"2020":0.8,"1080":0.7,"7020":0.65,"4250":0.4,"8210":0.4,"1111":0.35,"4300":0.33,"4030":0.33,"2290":0.3,"4190":0.25,"8010":0.25,"2380":0.2,"7030":0.15,"2350":0.14,"4001":0.13,"7200":0.06,"2030":0.03,"2090":0.02,"1213":0.01,"8310":0.01,"4324":0.01};
+
+/* ===================== HELPERS ===================== */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const url=u=>(typeof u==="string"&&/^https?:\/\//i.test(u))?u:null;
+const num=v=>(typeof v==="number"&&isFinite(v))?v:(typeof v==="string"&&v.trim()!==""&&isFinite(+v))?+v:null;
+const pad=n=>String(n).padStart(2,"0");
+const sgn=v=>v>=0?"+":"";
+const fmt=(v,d=2)=>v==null?"—":v.toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+const fmtPct=v=>v==null?"—":sgn(v)+v.toFixed(2)+"%";
+const chg=(c,cls="")=>c==null?`<span class="${cls}" style="color:var(--ink-3)">—</span>`:`<span class="${cls} ${c>=0?"up":"down"}">${fmtPct(c)}</span>`;
+const big=(v,unit="")=>{if(v==null)return "—";const a=Math.abs(v);let s;if(a>=1e12)s=(v/1e12).toFixed(2)+" تريليون";else if(a>=1e9)s=(v/1e9).toFixed(2)+" مليار";else if(a>=1e6)s=(v/1e6).toFixed(1)+" مليون";else if(a>=1e3)s=(v/1e3).toFixed(0)+" ألف";else s=String(v);return s+(unit?" "+unit:"")};
+const parseD=s=>{if(!s)return null;const d=new Date(s);return isNaN(d)?null:d};
+const fmtUtc=d=>d?`${d.getUTCFullYear()}-${pad(d.getUTCMonth()+1)}-${pad(d.getUTCDate())} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())}`:"—";
+const fmtR=d=>d?fmtUtc(new Date(d.getTime()+3*3600e3)):"—";
+const MONTHS=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+const dayAr=d=>{if(!d)return "";const r=new Date(d.getTime()+3*3600e3);return `${r.getUTCDate()} ${MONTHS[r.getUTCMonth()]}`};
+const STALE_MS=24*3600e3;
+const isStale=d=>!d||(Date.now()-d.getTime())>STALE_MS;
+const trunc=(s,n)=>{s=String(s||"").trim();return s.length>n?s.slice(0,n).replace(/[\s،,.:؛]+$/,"")+"…":s};
+const arr=v=>Array.isArray(v)?v:[];
+const obj=v=>(v&&typeof v==="object"&&!Array.isArray(v))?v:{};
+const cellCls=c=>{if(c==null)return "z";const a=Math.abs(c);if(a<0.5)return "z";const k=a<1.5?1:a<3?2:3;return (c>0?"p":"n")+k};
+const cls=v=>v===0?"":(v>0?"p":"n")+Math.min(3,Math.abs(v));
+
+/* ===================== LOADER ===================== */
+const QS=new URLSearchParams(location.search);
+const SAMPLE=QS.get("sample")==="1";
+const paths=f=>SAMPLE?[`sample/${f}`]:[`data/${f}`,`../data/${f}`];
+async function loadOne(list){
+  for(const p of list){
+    try{
+      const ctl=new AbortController();const t=setTimeout(()=>ctl.abort(),4000);
+      const r=await fetch(p,{cache:"no-store",signal:ctl.signal});clearTimeout(t);
+      if(!r.ok)continue;
+      const j=await r.json();
+      if(j&&typeof j==="object")return {data:j,path:p};
+    }catch(e){/* silent: try next candidate */}
+  }
+  return null;
+}
+
+let MARKET=null,NEWS=null,MODE="snapshot",SRC={market:null,news:null};
+let genDate=null;
+
+(async()=>{
+  /* always await so module-level declarations below finish before rendering */
+  const [m,n]=await (STATIC?Promise.resolve([null,null]):Promise.all([loadOne(paths("market.json")),loadOne(paths("news.json"))]));
+  MARKET=obj(m?m.data:SNAPSHOT_MARKET);NEWS=obj(n?n.data:SNAPSHOT_NEWS);
+  SRC.market=m?m.path:null;SRC.news=n?n.path:null;
+  MODE=STATIC?"static":(m&&n)?(SAMPLE?"sample":"live"):(m||n)?"partial":"snapshot";
+  try{renderAll();}catch(e){console.error(e);$("fresh").innerHTML=`<div><b>خطأ في العرض:</b> ${esc(e.message)}</div>`;}
+})();
+
+/* ===================== RENDER ===================== */
+function renderAll(){
+  renderStamps();renderBanner();renderIndices();renderTreemap();renderImpact();renderFeed();renderDQ();renderPosts();
+}
+
+/* header stamps + clock */
+function renderStamps(){
+  genDate=parseD(MARKET.generated_at_utc)||parseD(NEWS.generated_at_utc);
+  $("built").textContent=MARKET.generated_at_riyadh||fmtR(genDate);
+  $("builtUtc").textContent=genDate?"("+fmtUtc(genDate)+" UTC)":"";
+  const modeTxt={live:"بيانات حية",sample:"عينة اختبار",partial:"جزئي: ملف واحد من اللقطة",snapshot:"نسخة ثابتة",static:"لقطة"}[MODE];
+  const md=$("mode");md.textContent=modeTxt;md.className="mode"+(MODE==="live"||MODE==="sample"||MODE==="static"?"":" snap");
+  $("pulse").className="pulse"+(MODE==="snapshot"||MODE==="partial"?" off":"");
+  tick();
+}
+function tick(){
+  const n=new Date();$("now").textContent=fmtR(n);
+  if(!genDate){$("age").textContent="—";return;}
+  let s=Math.max(0,Math.floor((n-genDate)/1000));const d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),sec=s%60;
+  $("age").textContent=(d?d+"ي ":"")+(h||d?h+"س ":"")+m+"د "+sec+"ث";
+}
+tick();setInterval(tick,1000);
+
+/* banner */
+function renderBanner(){
+  const f=$("fresh");const errs=arr(MARKET.errors);
+  if(MODE==="snapshot"){
+    f.className="fresh snap";
+    f.innerHTML=`<div class="big">نسخة ثابتة: تعذر تحميل البيانات الحية</div>
+     <div>تُعرض اللقطة المضمّنة في الصفحة، المولّدة في <b class="num">${esc(MARKET.generated_at_riyadh||fmtR(genDate))}</b> الرياض. حدّث الصفحة لاحقاً أو افتحها من الخادم لقراءة <span class="num">data/market.json</span> و<span class="num">data/news.json</span>.</div>`;
+    return;
+  }
+  f.className="fresh"+(errs.length||MODE==="partial"?"":" ok");
+  const staticLine=MODE==="static"?`<div><b>لقطة ثابتة</b> مولّدة <b class="num">${esc(MARKET.generated_at_riyadh||fmtR(genDate))}</b> من البيانات الحية — النسخة الحية على GitHub Pages.</div>`:"";
+  const win=arr(NEWS.fetch_window_utc);
+  const sa=arr(MARKET.indices).filter(i=>isSa(i));const lastClosed=sa.filter(i=>i.is_closed!==false).map(i=>parseD(i.as_of_utc)).filter(Boolean).sort((a,b)=>b-a)[0];
+  f.innerHTML=`${staticLine}
+   ${MODE==="partial"?`<div><b>تحميل جزئي:</b> ${SRC.market?"":"ملف السوق غير متاح، "}${SRC.news?"":"ملف الأخبار غير متاح، "}عُرضت اللقطة المضمّنة بدلاً منه.</div>`:""}
+   <div><b>مصدر البيانات:</b> ${MODE==="static"?"data/market.json · data/news.json (مضمّنة)":`<span class="num">${esc(SRC.market||"snapshot")}</span> · <span class="num">${esc(SRC.news||"snapshot")}</span>`} · مولّدة <b class="num">${esc(MARKET.generated_at_riyadh||fmtR(genDate))}</b> الرياض${lastClosed?` · آخر إغلاق سعودي مؤكد <b class="num">${fmtR(lastClosed)}</b>`:""}.</div>
+   ${errs.length?`<div><b>ما لم نستطع تأكيده (${errs.length}):</b> ${errs.map(e=>`${esc(e.what||"")}${e.detail?" — "+esc(trunc(e.detail,140)):""}`).join(" · ")}</div>`:`<div><b>لا أخطاء مسجّلة</b> في ملف السوق.</div>`}
+   ${win.length===2?`<div><b>نافذة استرجاع الأخبار:</b> <span class="num">${fmtUtc(parseD(win[0]))}</span> إلى <span class="num">${fmtUtc(parseD(win[1]))}</span> UTC.</div>`:""}`;
+}
+
+/* indices */
+function isSa(i){if(i.market)return i.market==="sa";const c=String(i.code||"");return !/^\^/.test(c)&&!/^(SPX|DJI|IXIC|NDX|RUT)$/i.test(c);}
+function renderIndices(){
+  const all=arr(MARKET.indices);
+  const groups=[{title:"السوق السعودي (تداول)",list:all.filter(isSa)},{title:"السوق الأمريكي",list:all.filter(i=>!isSa(i))}];
+  $("mkts").innerHTML=groups.map(g=>{
+    const latest=g.list.map(i=>parseD(i.as_of_utc)).filter(Boolean).sort((a,b)=>b-a)[0];
+    return `<section class="mkt"><div class="mkt-h"><h3>${g.title}</h3><span>${latest?`أحدث بيانات: <span class="num">${fmtR(latest)}</span> الرياض`:"لا بيانات"}</span></div>
+    ${g.list.length?g.list.map(i=>{
+      const asof=parseD(i.as_of_utc);const live=i.is_closed===false;const stale=isStale(asof);const v=num(i.value),c=num(i.change_pct),p=num(i.change_pts);const u=url(i.source_url);
+      return `<div class="idx"><div class="idx-top">
+        <div><div class="idx-nm">${esc(i.name_ar||i.code||"—")}<small class="num">${esc(i.code||"")}${i.session_date?" · "+esc(i.session_date):""}</small></div>
+          <span class="wtype ${live?"w-live":"w-closed"}">${live?"أثناء الجلسة":"إغلاق"}</span></div>
+        <div class="idx-px"><span class="v num">${fmt(v)}</span>${chg(c,"c num")}${p!=null?`<span class="asof num">${sgn(p)}${fmt(p)} نقطة</span>`:""}
+          <span class="asof">كما في <span class="num">${i.as_of_riyadh?esc(i.as_of_riyadh):fmtR(asof)}</span> الرياض${asof?` <span class="num">(${fmtUtc(asof)} UTC)</span>`:""}</span>
+          ${u?`<a class="srclink" href="${esc(u)}" target="_blank" rel="noopener">${esc(i.source||"المصدر")} ↗</a>`:`<span class="srclink">${esc(i.source||"مصدر غير محدد")}</span>`}</div>
+      </div>${stale?`<div class="stale">⚠ البيانات أقدم من 24 ساعة${asof?"":" أو بلا طابع زمني"}</div>`:""}</div>`;}).join(""):`<div class="empty">لا مؤشرات في هذه المجموعة.</div>`}
+    </section>`;}).join("");
+}
+
+/* ===================== PRICE TREEMAP ===================== */
+function squarify(items,x,y,w,h){
+  const out=[];const total=items.reduce((a,i)=>a+i.w,0);if(!total||w<=0||h<=0)return out;
+  const scale=w*h/total;let row=[];
+  const worst=(r,len)=>{const s=r.reduce((a,i)=>a+i.a,0);let mx=0,mn=Infinity;r.forEach(i=>{mx=Math.max(mx,i.a);mn=Math.min(mn,i.a)});return Math.max(len*len*mx/(s*s),s*s/(len*len*mn));};
+  const layout=r=>{const s=r.reduce((a,i)=>a+i.a,0);
+    if(w<h){const rh=Math.min(h,s/w);let cx=x;r.forEach(i=>{const cw=i.a/rh;out.push({x:cx,y,w:cw,h:rh,it:i.it});cx+=cw;});y+=rh;h-=rh;}
+    else{const rw=Math.min(w,s/h);let cy=y;r.forEach(i=>{const ch=i.a/rw;out.push({x,y:cy,w:rw,h:ch,it:i.it});cy+=ch;});x+=rw;w-=rw;}};
+  for(const it of items){const a=it.w*scale;const len=Math.max(1,Math.min(w,h));
+    if(row.length&&worst(row,len)<worst([...row,{a}],len)){layout(row);row=[];}
+    row.push({a,it});}
+  if(row.length)layout(row);
+  return out;
+}
+let TM_STOCKS=[];
+function prepStocks(){
+  const list=arr(MARKET.stocks).map(s=>{
+    const price=num(s.price),prev=num(s.prev_close);let c=num(s.change_pct);
+    if(c==null&&price!=null&&prev)c=(price/prev-1)*100;
+    const cap=num(s.market_cap_sar);
+    return {...s,price,prev,c,cap,sector:s.sector_ar||"غير مصنّف",code:String(s.code||"?"),asof:parseD(s.as_of_utc)};
+  });
+  const anyCap=list.some(s=>s.cap>0);
+  list.forEach(s=>{s.w=(anyCap&&s.cap>0)?s.cap:(FALLBACK_W[s.code]||0.05)*(anyCap?1e9:1);});
+  const total=list.reduce((a,s)=>a+s.w,0);const floor=total*0.008;
+  list.forEach(s=>{s.w=Math.max(s.w,floor);});
+  return list;
+}
+function cellHtml(s,x,y,w,h){
+  const k=cellCls(s.c);const mn=Math.min(w,h);
+  const fs=Math.max(9,Math.min(15,mn/3.4));
+  const showName=w>=78&&h>=46&&s.name_ar,showPct=h>=30&&w>=44,showCode=h>=14&&w>=26;
+  const pos=x==null?"":`left:${x}px;top:${y}px;width:${Math.max(0,w)}px;height:${Math.max(0,h)}px;`;
+  return `<div class="cell ${k}" tabindex="0" data-i="${s._i}" role="img" aria-label="${esc(s.code)} ${esc(s.name_ar||"")} ${fmtPct(s.c)}" style="${pos}font-size:${fs}px">
+    ${showCode?`<span class="cd">${esc(s.code)}</span>`:""}${showName?`<span class="nm">${esc(s.name_ar)}</span>`:""}${showPct?`<span class="pc">${fmtPct(s.c)}</span>`:""}</div>`;
+}
+function renderTreemap(){
+  TM_STOCKS=prepStocks();TM_STOCKS.forEach((s,i)=>s._i=i);
+  const box=$("tm");
+  if(!TM_STOCKS.length){box.className="tm narrow";box.innerHTML=`<div class="tmgrid"><p class="empty">لا أسهم في ملف السوق.</p></div>`;$("movers").innerHTML="";$("tmfoot").textContent="";return;}
+  const bySec={};TM_STOCKS.forEach(s=>(bySec[s.sector]=bySec[s.sector]||[]).push(s));
+  /* readability floors: a stock gets at least 4% of its sector's area, a sector at least 2% of the map */
+  const secs=Object.entries(bySec).map(([name,list])=>{const t=list.reduce((a,s)=>a+s.w,0);list.forEach(s=>{s.w=Math.max(s.w,t*0.04);});return {name,list:list.sort((a,b)=>b.w-a.w),w:list.reduce((a,s)=>a+s.w,0)};}).sort((a,b)=>b.w-a.w);
+  const grand=secs.reduce((a,g)=>a+g.w,0);secs.forEach(g=>{g.w=Math.max(g.w,grand*0.02);});
+  const W=box.clientWidth||900;
+  if(W<640){ /* narrow: sorted tile grid grouped by sector */
+    box.className="tm narrow";
+    box.innerHTML=`<div class="tmgrid">${secs.map(g=>`<h4>${esc(g.name)} <span class="num">${g.list.length}</span></h4><div class="tiles">${g.list.slice().sort((a,b)=>(b.c??-99)-(a.c??-99)).map(s=>cellHtml(s,null,null,120,58)).join("")}</div>`).join("")}</div>`;
+  }else{
+    box.className="tm";const H=box.clientHeight||560;
+    const secRects=squarify(secs,0,0,W,H);let html="";
+    secRects.forEach(r=>{
+      const hh=(r.h>=44&&r.w>=56)?18:0;const pad=1;
+      const inner={x:r.x+pad,y:r.y+hh+pad,w:Math.max(0,r.w-2*pad),h:Math.max(0,r.h-hh-2*pad)};
+      html+=`<div class="sec" style="left:${W-r.x-r.w}px;top:${r.y}px;width:${r.w}px;height:${r.h}px">${hh?`<div class="sh" title="${esc(r.it.name)}">${esc(r.it.name)}</div>`:""}</div>`;
+      squarify(r.it.list,inner.x,inner.y,inner.w,inner.h).forEach(c=>{
+        html+=cellHtml(c.it,W-c.x-c.w,c.y,c.w,c.h);
+      });
+    });
+    box.innerHTML=html;
+  }
+  /* movers strip */
+  const withC=TM_STOCKS.filter(s=>s.c!=null);
+  const up=withC.slice().sort((a,b)=>b.c-a.c).slice(0,5),dn=withC.slice().sort((a,b)=>a.c-b.c).slice(0,5);
+  const con=s=>`<div class="con"><span><b>${esc(s.code)}</b> ${esc(s.name_ar||"")}<span class="w">${esc(s.sector)}</span></span><span class="p">${fmt(s.price)}<i class="${s.c>=0?"up":"down"}">${fmtPct(s.c)}</i></span></div>`;
+  $("movers").innerHTML=`<div class="mv g"><h4>أعلى 5 صاعدة</h4><div class="cons">${up.map(con).join("")||"—"}</div></div><div class="mv l"><h4>أدنى 5 هابطة</h4><div class="cons">${dn.map(con).join("")||"—"}</div></div>`;
+  const anyCap=TM_STOCKS.some(s=>s.cap>0);const latest=TM_STOCKS.map(s=>s.asof).filter(Boolean).sort((a,b)=>b-a)[0];const noC=TM_STOCKS.length-withC.length;
+  $("tmfoot").innerHTML=`${TM_STOCKS.length} سهماً في ${secs.length} قطاعاً · ${anyCap?"المساحة بحسب القيمة السوقية (مع حد أدنى 0.8% للقراءة)":"القيمة السوقية غير متاحة: المساحة بأوزان ثابتة تقريبية"}${latest?` · أحدث سعر <span class="num">${fmtR(latest)}</span> الرياض`:""}${noC?` · ${noC} بلا نسبة تغيّر (رمادي)`:""}.`;
+}
+/* tooltip for treemap cells */
+function tmTip(cell){const s=TM_STOCKS[+cell.dataset.i];if(!s)return "";
+  return `<b>${esc(s.code)} · ${esc(s.name_ar||"")}${s.name_en?` <span class="num">${esc(s.name_en)}</span>`:""}</b>
+  ${esc(s.sector)}<br>السعر <span class="num">${fmt(s.price)}</span> · الإغلاق السابق <span class="num">${fmt(s.prev)}</span> · التغيّر <span class="num">${fmtPct(s.c)}</span><br>
+  الحجم <span class="num">${s.volume!=null?fmt(num(s.volume),0):"—"}</span> · القيمة السوقية ${big(s.cap,"ريال")}<br>
+  كما في <span class="num">${fmtR(s.asof)}</span> الرياض · ${esc(s.source||"مصدر غير محدد")}`;}
+
+/* ===================== NEWS × SECTOR IMPACT ===================== */
+let IMPACT_COLS=[];
+function renderImpact(){
+  const items=arr(NEWS.items).map((n,i)=>({...n,_i:i,_d:parseD(n.published_utc)}));
+  const sectors=obj(NEWS.sectors);const tick=obj(NEWS.sector_tickers);
+  let keys=Object.keys(sectors);
+  const cols=items.filter(n=>(n.market==="sa"||n.market==="macro")&&Object.entries(obj(n.impact)).some(([k,v])=>k!=="why"&&num(v&&typeof v==="object"?v.score:v)))
+    .sort((a,b)=>(b._d?b._d.getTime():0)-(a._d?a._d.getTime():0)).slice(0,10);
+  IMPACT_COLS=cols;
+  if(!keys.length){keys=[...new Set(cols.flatMap(n=>Object.entries(obj(n.impact)).filter(([k,v])=>k!=="why"&&(typeof v==="number"||(v&&typeof v==="object"))).map(([k])=>k)))];keys.forEach(k=>sectors[k]=k);}
+  const hm=$("hm");
+  if(!cols.length||!keys.length){hm.innerHTML=`<tr><td class="empty" style="height:auto;background:transparent;text-align:right">لا أخبار ذات أثر مقدّر في هذا الملف.</td></tr>`;$("winners").innerHTML="";return;}
+  /* impact[k] may be a bare number or {score,why}; a string impact.why applies to the whole item */
+  const score=(n,k)=>{const v=obj(n.impact)[k];const s=num(v&&typeof v==="object"?v.score:v);return s==null?0:Math.max(-3,Math.min(3,Math.round(s)));};
+  const why=(n,k)=>{const v=obj(n.impact)[k];return (v&&typeof v==="object"&&v.why)||(typeof obj(n.impact).why==="string"?obj(n.impact).why:"")||"";};
+  const rows=keys.map(k=>({k,n:sectors[k]||k,t:tick[k]||"",tot:cols.reduce((a,c)=>a+score(c,k),0)})).sort((a,b)=>b.tot-a.tot);
+  const lbl=c=>trunc(c.title,28);
+  hm.innerHTML=`<thead><tr><th class="row">القطاع / الشركة</th>${cols.map(c=>`<th class="col" title="${esc(c.title)}">${esc(lbl(c))}<small>${esc(dayAr(c._d)||c.published_riyadh||"")}</small></th>`).join("")}<th class="col">المجموع</th></tr></thead>
+   <tbody>${rows.map((r,i)=>`<tr class="${i===0&&r.tot>0?"top":""}"><th class="row">${esc(r.n)}<small>${esc(r.t)}</small></th>
+    ${cols.map(c=>{const v=score(c,r.k);return `<td class="${cls(v)}" tabindex="0" data-tip="${esc(why(c,r.k)||"لا أثر مباشر")}" data-h="${esc(r.n)} × ${esc(lbl(c))}"><span>${v===0?"·":sgn(v)+v}</span></td>`}).join("")}
+    <td class="tot"><span class="${r.tot>0?"up":r.tot<0?"down":""}">${sgn(r.tot)}${r.tot}</span></td></tr>`).join("")}</tbody>`;
+  const best=rows[0],worst=rows[rows.length-1];
+  const bestCol=cols.map(c=>({c,s:keys.reduce((a,k)=>a+Math.max(0,score(c,k)),0)})).sort((a,b)=>b.s-a.s)[0];
+  const worstCol=cols.map(c=>({c,s:keys.reduce((a,k)=>a+Math.min(0,score(c,k)),0)})).sort((a,b)=>a.s-b.s)[0];
+  $("winners").innerHTML=`
+   <div class="win g"><div class="k">الأكثر استفادة من مجمل الأخبار</div><div class="v">${esc(best.n)} <span class="num">${sgn(best.tot)}${best.tot}</span></div><div>${esc(best.t)}</div></div>
+   <div class="win l"><div class="k">الأكثر تضرراً من مجمل الأخبار</div><div class="v">${esc(worst.n)} <span class="num">${sgn(worst.tot)}${worst.tot}</span></div><div>${esc(worst.t)}</div></div>
+   <div class="win g"><div class="k">الخبر الأكثر نفعاً للسوق</div><div class="v">${esc(lbl(bestCol.c))}</div><div>المستفيد الأكبر: ${esc(obj(bestCol.c.beneficiary).name||"—")}</div></div>
+   <div class="win l"><div class="k">الخبر الأكثر ضرراً للسوق</div><div class="v">${esc(lbl(worstCol.c))}</div><div>المتضرر الأكبر: ${esc(obj(worstCol.c.hurt).name||"—")}</div></div>`;
+}
+
+/* shared tooltip (impact table + treemap) */
+const tip=$("hmtip");
+function showTip(html,x,y){tip.innerHTML=html;tip.style.display="block";tip.style.left=Math.max(4,Math.min(window.innerWidth-336,x))+"px";tip.style.top=y+"px";}
+function tipFor(el){if(el.classList.contains("cell"))return tmTip(el);return `<b>${el.dataset.h}</b>${el.dataset.tip}`;}
+document.addEventListener("mouseover",e=>{const el=e.target.closest("td[data-tip],.cell");if(!el){if(!e.target.closest(".hmtip"))tip.style.display="none";return;}showTip(tipFor(el),e.clientX+12,e.clientY+14);});
+document.addEventListener("mousemove",e=>{if(tip.style.display!=="block")return;const el=e.target.closest("td[data-tip],.cell");if(!el){tip.style.display="none";return;}tip.style.left=Math.max(4,Math.min(window.innerWidth-336,e.clientX+12))+"px";tip.style.top=Math.min(window.innerHeight-tip.offsetHeight-8,e.clientY+14)+"px";});
+document.addEventListener("focusin",e=>{const el=e.target.closest("td[data-tip],.cell");if(!el)return;const r=el.getBoundingClientRect();showTip(tipFor(el),r.left,r.bottom+6);});
+document.addEventListener("focusout",()=>tip.style.display="none");
+
+/* ===================== FEED ===================== */
+const SIGTXT={pos:"إيجابي",neg:"سلبي",mix:"مختلط"};
+const MKTXT={sa:"سعودي",macro:"نفط وجيوسياسة",us:"أمريكي",other:"أخرى"};
+let filt="all";
+function pubLabel(n){
+  const d=parseD(n.published_utc);const p=["second","minute","day"].includes(n.precision)?n.precision:"day";
+  let t;if(d){const f=fmtR(d);t=p==="second"?f:p==="minute"?f.slice(0,16):f.slice(0,10);}else t=n.published_riyadh||"وقت غير معروف";
+  return {exact:p==="second",t,p};
+}
+function stockOf(code){return TM_STOCKS.find(s=>s.code===String(code));}
+function paras(s){return String(s).split(/\n{2,}|\r?\n/).filter(x=>x.trim()).map(x=>`<p>${esc(x)}</p>`).join("");}
+function renderFeed(){
+  const items=arr(NEWS.items).map((n,i)=>({...n,_i:i,_d:parseD(n.published_utc)})).sort((a,b)=>(b._d?b._d.getTime():0)-(a._d?a._d.getTime():0));
+  const q=$("q").value.trim().toLowerCase();
+  const hay=n=>[n.title,n.summary_ar,n.summary,n.analysis_ar,n.source,n.topic_ar,obj(n.beneficiary).name,obj(n.hurt).name,...arr(n.tickers).map(t=>(obj(t).code||"")+" "+(obj(t).name_ar||""))].join(" ").toLowerCase();
+  const list=items.filter(n=>(filt==="all"||n.market===filt||n.signal===filt)&&(!q||hay(n).includes(q)));
+  $("count").textContent=`${list.length} خبر من أصل ${items.length}`;
+  $("feed").innerHTML=list.length?list.map(n=>{
+    const sig=["pos","neg","mix"].includes(n.signal)?n.signal:"";const pl=pubLabel(n);const fd=parseD(n.fetched_at_utc);
+    const ben=obj(n.beneficiary),hurt=obj(n.hurt);const cf=Math.max(0,Math.min(3,Math.round(num(n.cf)||0)));
+    const links=arr(n.links).map(l=>obj(l)).filter(l=>url(l.url));if(!links.length&&url(n.link))links.push({url:n.link,label:n.source||"المصدر"});
+    const link=url(n.link)||(links[0]&&links[0].url);
+    const body=n.summary_ar?`<div class="body">${paras(n.summary_ar)}</div>`:n.summary?`<div class="body en">${paras(n.summary)}</div>`:`<div class="body" style="color:var(--ink-3)">لا ملخص متاح.</div>`;
+    const langb=!n.summary_ar&&n.summary?`<span class="langb">${esc((n.lang||"en").toUpperCase())}</span>`:"";
+    return `<article class="item ${sig}">
+     <div class="meta"><span class="src">${esc(n.source||"مصدر غير مسمّى")}</span>${n.topic_ar?`<span class="tag">${esc(n.topic_ar)}</span>`:""}<span class="tag">${esc(MKTXT[n.market]||MKTXT.other)}</span>${sig?`<span class="sig ${sig}">${SIGTXT[sig]}</span>`:""}
+       <span class="tm-badge ${pl.exact?"exact":"approx"}" title="${pl.exact?"وقت النشر كما ورد في المصدر بالثانية":pl.p==="minute"?"المصدر يعرض الدقيقة فقط":"المصدر يعرض اليوم فقط"}">${pl.exact?"🕐":"≈"} نُشر <span class="num">${esc(pl.t)}</span>${pl.p==="day"?"":" الرياض"}</span>
+       ${fd?`<span class="tm-badge" title="وقت استرجاع الخبر من المصدر">استُرجع <span class="num">${fmtUtc(fd).slice(11)} UTC</span></span>`:""}</div>
+     <h3 class="hl">${link?`<a href="${esc(link)}" target="_blank" rel="noopener">${esc(n.title||"(بلا عنوان)")}</a>`:esc(n.title||"(بلا عنوان)")}${langb}</h3>
+     ${(ben.name||hurt.name)?`<div class="topben">
+       <div class="tb g"><span class="k">المستفيد الأكبر</span><b>${esc(ben.name||"—")}</b>${ben.why?` — ${esc(ben.why)}`:""}</div>
+       <div class="tb l"><span class="k">المتضرر الأكبر</span><b>${esc(hurt.name||"—")}</b>${hurt.why?` — ${esc(hurt.why)}`:""}</div>
+     </div>`:""}
+     ${arr(n.tickers).length?`<div class="prices">${arr(n.tickers).map(t=>{t=obj(t);const s=stockOf(t.code);return `<div class="pr"><span class="l"><b>${esc(t.code||"?")}</b> ${esc(t.name_ar||(s&&s.name_ar)||"")}${s&&s.asof?`<small>كما في ${fmtR(s.asof).slice(0,16)}</small>`:""}</span><span class="r">${s?fmt(s.price):"—"}${s&&s.c!=null?`<i class="${s.c>=0?"up":"down"}">${fmtPct(s.c)}</i>`:""}</span></div>`}).join("")}</div>`:""}
+     <details><summary>${n.summary_ar?"الخبر كاملاً بالعربية":"الملخص"}${n.analysis_ar?" + التحليل":""}</summary>
+       ${body}${n.analysis_ar?`<div class="why">${esc(n.analysis_ar)}</div>`:""}
+     </details>
+     <div class="foot">
+       <span class="conf">قوة الإشارة <span class="bars">${[1,2,3].map(i=>`<i class="${i<=cf?"on":""}"></i>`).join("")}</span>${fd?` · استُرجع <span class="num">${fmtUtc(fd)} UTC</span>`:""}</span>
+       <span class="srcs">${links.map((l,i)=>`<a class="srcbtn ${i?"alt":""}" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label||"المصدر")} ↗</a>`).join("")}</span>
+     </div>
+    </article>`;}).join(""):`<p style="color:var(--ink-3)">لا توجد أخبار مطابقة.</p>`;
+}
+$("bar").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;filt=b.dataset.f;document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c===b));if(NEWS)renderFeed();});
+$("q").addEventListener("input",()=>{if(NEWS)renderFeed();});
+
+/* ===================== DATA QUALITY ===================== */
+function renderDQ(){
+  const rows=[];const row=(s,v,ok)=>rows.push(`<div><span class="s ${ok}">${esc(s)}</span><span class="t">${v}</span></div>`);
+  const modeOk={live:"ok",sample:"ok",partial:"lag",snapshot:"bad",static:"ok"}[MODE];
+  row("وضع التحميل",{live:"data/*.json حيّة",sample:"عينة sample/*.json",partial:"ملف واحد فقط، الآخر من اللقطة",snapshot:"لقطة مضمّنة: تعذر التحميل",static:"لقطة ثابتة من data/*.json"}[MODE],modeOk);
+  arr(MARKET.errors).forEach(e=>row(e.what||"خطأ",esc(e.detail||""),"bad"));
+  rows.push(`<h5>المؤشرات</h5>`);
+  arr(MARKET.indices).forEach(i=>{const d=parseD(i.as_of_utc);row(i.name_ar||i.code||"—",`${esc(i.source||"مصدر غير محدد")} · <span class="num">${fmtR(d)}</span>${i.is_closed===false?" · أثناء الجلسة":""}`,isStale(d)?"lag":"ok");});
+  const st=arr(MARKET.stocks);
+  if(st.length){rows.push(`<h5>الأسهم</h5>`);const bySrc={};st.forEach(s=>{const k=s.source||"مصدر غير محدد";(bySrc[k]=bySrc[k]||[]).push(parseD(s.as_of_utc));});
+    Object.entries(bySrc).forEach(([k,ds])=>{const valid=ds.filter(Boolean);const oldest=valid.slice().sort((a,b)=>a-b)[0],newest=valid.slice().sort((a,b)=>b-a)[0];const stale=!valid.length||isStale(oldest);
+      row(`${k} (${ds.length} سهم)`,valid.length?`<span class="num">${fmtR(newest).slice(0,16)}</span>${oldest&&newest&&oldest.getTime()!==newest.getTime()?` ← <span class="num">${fmtR(oldest).slice(0,16)}</span>`:""}`:"بلا طابع زمني",stale?"lag":"ok");});}
+  const it=arr(NEWS.items);
+  if(it.length){rows.push(`<h5>الأخبار</h5>`);const sec=it.filter(n=>n.precision==="second").length,min=it.filter(n=>n.precision==="minute").length;
+    row("أوقات النشر",`${sec} بالثانية · ${min} بالدقيقة · ${it.length-sec-min} باليوم`,sec?"ok":"lag");
+    const fds=it.map(n=>parseD(n.fetched_at_utc)).filter(Boolean);if(fds.length){const a=fds.sort((x,y)=>x-y);row("نافذة الاسترجاع",`<span class="num">${fmtUtc(a[0]).slice(11)}–${fmtUtc(a[a.length-1]).slice(11)} UTC</span>`,"ok");}
+    row("تقديرات الأثر في الخريطة","تحليل تحريري، ليست حركة سعر","lag");}
+  $("dq").innerHTML=rows.join("");
+}
+function renderPosts(){
+  const p=arr(NEWS.posts).map(obj).filter(x=>x.quote);
+  $("whpanel").hidden=!p.length;
+  $("posts").innerHTML=p.map(x=>`<div class="post"><div class="t">${esc(x.when||"")}</div><p class="q">${esc(x.quote)}</p>${x.effect?`<p class="eff">↳ ${esc(x.effect)}</p>`:""}</div>`).join("");
+}
+
+/* re-layout treemap on resize */
+let rz;window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(MARKET)renderTreemap();},150);});
+</script>
