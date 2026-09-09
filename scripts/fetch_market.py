@@ -2,11 +2,13 @@
 """Fetch Saudi + US market data (indices + large-cap stocks) into a single JSON file.
 
 Usage:
-    python scripts/fetch_market.py --out data/market.json                 # both markets
+    python scripts/fetch_market.py --out data/market.json                 # sa + us + cmd
     python scripts/fetch_market.py --out data/market.json --markets sa    # Saudi only
 
-Every index and stock record carries a "market" field ("sa" or "us") so the
-frontend can toggle between the two treemaps from one flat list.
+Every index and stock record carries a "market" field ("sa", "us" or "cmd") so
+the frontend can toggle between the two treemaps from one flat list.  The
+"cmd" group (commodities, FX, US 10y yield, dollar index, bitcoin) only has
+indices, no stocks, and every record carries a `unit` + `decimals` hint.
 
 Sources, in fallback order:
   1. Yahoo Finance quote endpoint (batched, best effort, needs a crumb)
@@ -110,8 +112,11 @@ NEW_YORK_TZ: tzinfo = _load_zone("America/New_York", _USEastern())
 MARKETS: dict[str, dict] = {
     "sa": {"tz": RIYADH_TZ, "tz_label": "Asia/Riyadh", "currency": "SAR", "mcap_field": "market_cap_sar"},
     "us": {"tz": NEW_YORK_TZ, "tz_label": "America/New_York", "currency": "USD", "mcap_field": "market_cap_usd"},
+    # Commodities / FX / rates: quoted in USD, timestamps shown in New York time.
+    "cmd": {"tz": NEW_YORK_TZ, "tz_label": "America/New_York", "currency": "USD", "mcap_field": "market_cap_usd"},
 }
-DEFAULT_MARKETS = ("sa", "us")
+DEFAULT_MARKETS = ("sa", "us", "cmd")
+STOCK_MARKETS = ("sa", "us")  # markets that have a constituents file
 TIMEOUT = 15
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -158,7 +163,8 @@ INDEX_DEFS = {
     "MT30": {
         "name_ar": "مؤشر إم تي 30",
         "name_en": "MSCI Tadawul 30",
-        "yahoo": None,  # not reliably on Yahoo
+        "yahoo": None,  # not reliably on Yahoo; the candidates below are probed
+        "yahoo_candidates": ("^MT30", "MT30.SR", "^TMT30"),
         "keywords": ("mt30", "إم تي 30", "ام تي 30", "mt 30"),
     },
     "NomuC": {
@@ -175,6 +181,35 @@ US_INDEX_DEFS = {
     "^DJI": {"name_ar": "داو جونز الصناعي", "name_en": "Dow Jones Industrial Average", "yahoo": "^DJI"},
     "^IXIC": {"name_ar": "ناسداك المركب", "name_en": "Nasdaq Composite", "yahoo": "^IXIC"},
 }
+
+# Commodities / FX / rates ("cmd" market): Yahoo chart only.  code == primary
+# Yahoo symbol; `yahoo_candidates` (optional) lists alternates tried in order.
+# `unit` is the Arabic display unit and `decimals` a formatting hint for the
+# frontend (the value itself is never rounded).  ^TNX is a yield: the value and
+# change_pts are already in percent / percentage points.
+CMD_INDEX_DEFS = {
+    "BZ=F": {"name_ar": "خام برنت", "name_en": "Brent Crude Oil", "yahoo": "BZ=F",
+             "unit": "دولار/برميل", "unit_en": "USD/bbl", "decimals": 2},
+    "CL=F": {"name_ar": "خام غرب تكساس", "name_en": "WTI Crude Oil", "yahoo": "CL=F",
+             "unit": "دولار/برميل", "unit_en": "USD/bbl", "decimals": 2},
+    "GC=F": {"name_ar": "الذهب", "name_en": "Gold", "yahoo": "GC=F",
+             "unit": "دولار/أونصة", "unit_en": "USD/oz", "decimals": 2},
+    "NG=F": {"name_ar": "الغاز الطبيعي", "name_en": "Natural Gas", "yahoo": "NG=F",
+             "unit": "دولار/مليون وحدة حرارية", "unit_en": "USD/MMBtu", "decimals": 3},
+    "SAR=X": {"name_ar": "الدولار/الريال", "name_en": "USD/SAR", "yahoo": "SAR=X",
+              "yahoo_candidates": ("SAR=X", "USDSAR=X"), "currency": "SAR",
+              "unit": "ريال", "unit_en": "SAR", "decimals": 4},
+    "EURUSD=X": {"name_ar": "اليورو/الدولار", "name_en": "EUR/USD", "yahoo": "EURUSD=X",
+                 "unit": "دولار", "unit_en": "USD", "decimals": 4},
+    "^TNX": {"name_ar": "عائد سندات الخزانة 10 سنوات", "name_en": "US 10-Year Treasury Yield", "yahoo": "^TNX",
+             "unit": "%", "unit_en": "%", "decimals": 3},
+    "DX-Y.NYB": {"name_ar": "مؤشر الدولار", "name_en": "US Dollar Index", "yahoo": "DX-Y.NYB",
+                 "unit": "نقطة", "unit_en": "pts", "decimals": 2},
+    "BTC-USD": {"name_ar": "بتكوين", "name_en": "Bitcoin", "yahoo": "BTC-USD",
+                "unit": "دولار", "unit_en": "USD", "decimals": 2},
+}
+
+INDEX_DEFS_BY_MARKET = {"sa": INDEX_DEFS, "us": US_INDEX_DEFS, "cmd": CMD_INDEX_DEFS}
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_CONSTITUENTS = os.path.join(_HERE, "constituents.json")
@@ -365,10 +400,17 @@ def parse_yahoo_chart(data: dict, now: Optional[datetime] = None, tz: tzinfo = R
     # Previous close: meta.previousClose (newer responses) > second-to-last daily
     # close when the last bar is today's > chartPreviousClose (close before the
     # 5d window; only right when the window has a single bar).
+    # "Today" is judged in the chart's own exchange offset (meta.gmtoffset):
+    # daily bars are aligned to the exchange's day, which may differ from the
+    # display zone (BTC-USD bars are 00:00 UTC = 20:00 New York the day before).
+    bar_tz: tzinfo = tz
+    gmtoffset = to_float(meta.get("gmtoffset"))
+    if gmtoffset is not None and abs(gmtoffset) <= 14 * 3600:
+        bar_tz = timezone(timedelta(seconds=int(gmtoffset)))
     prev = to_float(meta.get("previousClose"))
     if prev is None and len(series) >= 2:
         last_bar_day = epoch_to_dt(series[-1][0])
-        if last_bar_day and last_bar_day.astimezone(tz).date() == market_time.astimezone(tz).date():
+        if last_bar_day and last_bar_day.astimezone(bar_tz).date() == market_time.astimezone(bar_tz).date():
             prev = to_float(series[-2][1])
         else:
             prev = to_float(series[-1][1])
@@ -683,17 +725,20 @@ def load_constituents(path: str, market: str = "sa") -> list[dict]:
 
 
 def _index_record(code: str, market: str = "sa", **kw) -> dict:
-    defs = INDEX_DEFS if market == "sa" else US_INDEX_DEFS
+    defs = INDEX_DEFS_BY_MARKET[market]
     spec = MARKETS[market]
+    d = defs[code]
     rec = {
         "code": code,
         "market": market,
-        "name_ar": defs[code]["name_ar"],
-        "name_en": defs[code].get("name_en"),
-        "yahoo": defs[code].get("yahoo"),
-        "currency": spec["currency"],
-        "value": None, "change_pts": None, "change_pct": None,
+        "name_ar": d["name_ar"],
+        "name_en": d.get("name_en"),
+        "yahoo": d.get("yahoo"),
+        "currency": d.get("currency") or spec["currency"],
     }
+    if market == "cmd":
+        rec.update({"unit": d.get("unit"), "unit_en": d.get("unit_en"), "decimals": d.get("decimals", 2)})
+    rec.update({"value": None, "change_pts": None, "change_pct": None})
     rec.update(as_of_fields(None, market))
     rec.update({"session_date": None, "is_closed": None, "source": None, "source_url": None})
     rec.update(kw)
@@ -705,12 +750,53 @@ def _yahoo_index(code: str, symbol: str, market: str, now: datetime) -> dict:
     raw, url = fetch_yahoo_chart(symbol)
     p = parse_yahoo_chart(raw, now=now, tz=MARKETS[market]["tz"])
     rec = _index_record(
-        code, market, value=p["price"], change_pts=p["change_pts"], change_pct=p["change_pct"],
+        code, market, yahoo=symbol, value=p["price"], change_pts=p["change_pts"], change_pct=p["change_pct"],
         session_date=p["session_date"], is_closed=p["is_closed"], source="yahoo", source_url=url,
     )
     rec.update(as_of_fields(p["as_of"], market))
-    log.info("index %s via yahoo: %s (%s%%)", code, p["price"], p["change_pct"])
+    log.info("index %s via yahoo (%s): %s (%s%%)", code, symbol, p["price"], p["change_pct"])
     return rec
+
+
+def _yahoo_index_candidates(code: str, symbols: Iterable[str], market: str, now: datetime) -> dict:
+    """Try several Yahoo symbols for one index, in order; first that parses wins.
+
+    The winning symbol is recorded in the record's `yahoo` field and logged.
+    Raises FetchError (listing every candidate's failure) if none works.
+    """
+    failures = []
+    for symbol in symbols:
+        if not symbol:
+            continue
+        try:
+            rec = _yahoo_index(code, symbol, market, now)
+        except FetchError as exc:
+            failures.append(f"{symbol}: {exc}")
+            log.info("index %s: Yahoo symbol %s did not work (%s)", code, symbol, exc)
+            continue
+        log.info("index %s: Yahoo symbol %s works", code, symbol)
+        return rec
+    raise FetchError("; ".join(failures) or "no Yahoo symbol candidates")
+
+
+def _yahoo_symbols(spec: dict) -> list[str]:
+    """Ordered, de-duplicated Yahoo symbols to try for an index definition."""
+    return [s for s in dict.fromkeys((spec.get("yahoo"),) + tuple(spec.get("yahoo_candidates") or ())) if s]
+
+
+def fetch_cmd_indices(errors: list[dict], now: datetime, pause: float = 0.0) -> list[dict]:
+    """Commodities / FX / rates via Yahoo chart.  Missing ones are simply absent."""
+    out = []
+    items = list(CMD_INDEX_DEFS.items())
+    for i, (code, spec) in enumerate(items):
+        try:
+            out.append(_yahoo_index_candidates(code, _yahoo_symbols(spec), "cmd", now))
+        except FetchError as exc:
+            errors.append({"what": f"index:{code}:yahoo", "detail": str(exc)})
+            log.warning("index %s via yahoo failed: %s", code, exc)
+        if pause and i < len(items) - 1:
+            sleep(pause)
+    return out
 
 
 def fetch_us_indices(errors: list[dict], now: datetime) -> list[dict]:
@@ -729,15 +815,21 @@ def fetch_indices(errors: list[dict], now: datetime, use_stooq: bool = True) -> 
     """Saudi indices with the full Yahoo -> Saudi Exchange -> Stooq fallback chain."""
     indices: dict[str, dict] = {}
 
-    # 1. Yahoo
+    # 1. Yahoo.  A definite `yahoo` symbol failing is an error; the speculative
+    #    `yahoo_candidates` (MT30) are only probed and logged, because the Saudi
+    #    Exchange page is the real source for those and reports its own error.
     for code, spec in INDEX_DEFS.items():
-        if not spec["yahoo"]:
+        symbols = _yahoo_symbols(spec)
+        if not symbols:
             continue
         try:
-            indices[code] = _yahoo_index(code, spec["yahoo"], "sa", now)
+            indices[code] = _yahoo_index_candidates(code, symbols, "sa", now)
         except FetchError as exc:
-            errors.append({"what": f"index:{code}:yahoo", "detail": str(exc)})
-            log.warning("index %s via yahoo failed: %s", code, exc)
+            if spec.get("yahoo"):
+                errors.append({"what": f"index:{code}:yahoo", "detail": str(exc)})
+                log.warning("index %s via yahoo failed: %s", code, exc)
+            else:
+                log.info("index %s: no Yahoo symbol candidate works (%s); trying other sources", code, exc)
 
     # 2. Saudi Exchange (fills whatever Yahoo did not)
     missing = [c for c in INDEX_DEFS if c not in indices]
@@ -890,7 +982,7 @@ def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
     ap.add_argument("--constituents", default=DEFAULT_CONSTITUENTS, help="Saudi constituents.json path")
     ap.add_argument("--constituents-us", default=DEFAULT_CONSTITUENTS_US, help="US constituents_us.json path")
     ap.add_argument("--markets", type=parse_markets, default=list(DEFAULT_MARKETS),
-                    help="comma list of markets to fetch: sa,us (default both)")
+                    help="comma list of markets to fetch: sa,us,cmd (default all; cmd = commodities/FX, indices only)")
     ap.add_argument("--sleep", type=float, default=0.25, help="seconds between Yahoo chart symbols (rate-limit courtesy)")
     ap.add_argument("--no-quote", action="store_true", help="skip Yahoo quote endpoint (market cap)")
     ap.add_argument("--no-stooq", action="store_true", help="skip the Stooq fallback")
@@ -915,6 +1007,8 @@ def main(argv: Optional[list[str]] = None) -> int:
     constituents: list[dict] = []
     if not args.indices_only:
         for m in markets:
+            if m not in STOCK_MARKETS:
+                continue
             try:
                 constituents += load_constituents(paths[m], market=m)
             except (OSError, ValueError, KeyError) as exc:
@@ -926,6 +1020,12 @@ def main(argv: Optional[list[str]] = None) -> int:
         indices += fetch_indices(errors, now, use_stooq=not args.no_stooq)
     if "us" in markets:
         indices += fetch_us_indices(errors, now)
+    if "cmd" in markets:
+        cmd = fetch_cmd_indices(errors, now, pause=args.sleep)
+        indices += cmd
+        if not cmd:  # "cmd" is only advertised when at least one record exists
+            markets = [m for m in markets if m != "cmd"]
+            log.warning("no commodity/FX symbol fetched; 'cmd' dropped from markets")
     stocks = fetch_stocks(constituents, errors, now, pause=args.sleep, use_quote=not args.no_quote) if constituents else []
 
     n_idx = len(indices)
