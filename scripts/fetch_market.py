@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
-"""Fetch Saudi market data (indices + large-cap stocks) into a single JSON file.
+"""Fetch Saudi + US market data (indices + large-cap stocks) into a single JSON file.
 
 Usage:
-    python scripts/fetch_market.py --out data/market.json
+    python scripts/fetch_market.py --out data/market.json                 # both markets
+    python scripts/fetch_market.py --out data/market.json --markets sa    # Saudi only
+
+Every index and stock record carries a "market" field ("sa" or "us") so the
+frontend can toggle between the two treemaps from one flat list.
 
 Sources, in fallback order:
-  1. Yahoo Finance chart API  (query1 then query2)      -> indices + stocks
-     + Yahoo quote endpoint (best effort, needs a crumb) -> marketCap only
+  1. Yahoo Finance quote endpoint (batched, best effort, needs a crumb)
+                                                         -> stocks (price + marketCap)
+     Yahoo Finance chart API  (query1 then query2)      -> indices + any stock the
+                                                            quote endpoint missed
   2. Saudi Exchange (saudiexchange.sa) HTML/JSON         -> TASI / MT30 / NomuC
   3. Stooq CSV (optional last resort)                    -> TASI only
 
@@ -28,7 +34,7 @@ import os
 import re
 import sys
 import time
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta, timezone, tzinfo
 from html.parser import HTMLParser
 from typing import Any, Callable, Iterable, Optional
 
@@ -41,6 +47,71 @@ log = logging.getLogger("fetch_market")
 # --------------------------------------------------------------------------- #
 
 RIYADH_TZ = timezone(timedelta(hours=3), name="Asia/Riyadh")  # KSA has no DST
+
+
+class _USEastern(tzinfo):
+    """Fallback for America/New_York if the runner has no tz database.
+
+    Implements the post-2007 US DST rule (second Sunday of March 02:00 local ->
+    first Sunday of November 02:00 local).  Only used when zoneinfo cannot load
+    the real zone; the GitHub runner has tzdata so this is never hit there.
+    """
+
+    _STD, _DST = timedelta(hours=-5), timedelta(hours=-4)
+
+    @staticmethod
+    def _nth_sunday(year: int, month: int, n: int) -> datetime:
+        first = datetime(year, month, 1)
+        return first + timedelta(days=(6 - first.weekday()) % 7 + 7 * (n - 1))
+
+    def _is_dst(self, dt: datetime) -> bool:
+        """`dt` is a naive *local* wall time (ambiguous hour resolves to DST)."""
+        start = self._nth_sunday(dt.year, 3, 2).replace(hour=2)
+        end = self._nth_sunday(dt.year, 11, 1).replace(hour=2)
+        return start <= dt < end
+
+    def _is_dst_utc(self, naive_utc: datetime) -> bool:
+        """Exact rule on the UTC instant: DST starts 07:00 UTC (02:00 EST) and
+        ends 06:00 UTC (02:00 EDT)."""
+        start = self._nth_sunday(naive_utc.year, 3, 2).replace(hour=7)
+        end = self._nth_sunday(naive_utc.year, 11, 1).replace(hour=6)
+        return start <= naive_utc < end
+
+    def utcoffset(self, dt):
+        return self._DST if dt is not None and self._is_dst(dt.replace(tzinfo=None)) else self._STD
+
+    def dst(self, dt):
+        return timedelta(hours=1) if dt is not None and self._is_dst(dt.replace(tzinfo=None)) else timedelta(0)
+
+    def tzname(self, dt):
+        return "EDT" if dt is not None and self._is_dst(dt.replace(tzinfo=None)) else "EST"
+
+    def fromutc(self, dt):
+        # dt carries the UTC wall time with tzinfo=self (datetime.astimezone contract).
+        offset = self._DST if self._is_dst_utc(dt.replace(tzinfo=None)) else self._STD
+        return dt + offset
+
+    def __repr__(self):
+        return "America/New_York(fallback)"
+
+
+def _load_zone(name: str, fallback: tzinfo) -> tzinfo:
+    try:
+        from zoneinfo import ZoneInfo  # Python 3.9+
+        return ZoneInfo(name)
+    except Exception as exc:  # ZoneInfoNotFoundError, ImportError ...
+        log.warning("zoneinfo %s unavailable (%s); using built-in rule", name, exc)
+        return fallback
+
+
+NEW_YORK_TZ: tzinfo = _load_zone("America/New_York", _USEastern())
+
+# Per-market settings.  Index order is the canonical output order.
+MARKETS: dict[str, dict] = {
+    "sa": {"tz": RIYADH_TZ, "tz_label": "Asia/Riyadh", "currency": "SAR", "mcap_field": "market_cap_sar"},
+    "us": {"tz": NEW_YORK_TZ, "tz_label": "America/New_York", "currency": "USD", "mcap_field": "market_cap_usd"},
+}
+DEFAULT_MARKETS = ("sa", "us")
 TIMEOUT = 15
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -80,22 +151,34 @@ STOOQ_CANDIDATES = (
 INDEX_DEFS = {
     "TASI": {
         "name_ar": "المؤشر العام تاسي",
+        "name_en": "Tadawul All Share Index",
         "yahoo": "^TASI.SR",
         "keywords": ("تاسي", "tasi", "المؤشر العام", "all share"),
     },
     "MT30": {
         "name_ar": "مؤشر إم تي 30",
+        "name_en": "MSCI Tadawul 30",
         "yahoo": None,  # not reliably on Yahoo
         "keywords": ("mt30", "إم تي 30", "ام تي 30", "mt 30"),
     },
     "NomuC": {
         "name_ar": "مؤشر نمو الموازية",
+        "name_en": "Nomu Parallel Market Capped",
         "yahoo": None,
         "keywords": ("nomu", "نمو"),
     },
 }
 
-DEFAULT_CONSTITUENTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "constituents.json")
+# US indices: Yahoo chart only (no exchange-site fallback).  code == Yahoo symbol.
+US_INDEX_DEFS = {
+    "^GSPC": {"name_ar": "ستاندرد آند بورز 500", "name_en": "S&P 500", "yahoo": "^GSPC"},
+    "^DJI": {"name_ar": "داو جونز الصناعي", "name_en": "Dow Jones Industrial Average", "yahoo": "^DJI"},
+    "^IXIC": {"name_ar": "ناسداك المركب", "name_en": "Nasdaq Composite", "yahoo": "^IXIC"},
+}
+
+_HERE = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_CONSTITUENTS = os.path.join(_HERE, "constituents.json")
+DEFAULT_CONSTITUENTS_US = os.path.join(_HERE, "constituents_us.json")
 
 # Indirections so tests can monkeypatch without touching the network/clock.
 SESSION: requests.Session = requests.Session()
@@ -115,8 +198,25 @@ def iso_utc(dt: datetime) -> str:
     return dt.astimezone(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
+def fmt_local(dt: datetime, tz: tzinfo) -> str:
+    return dt.astimezone(tz).strftime("%Y-%m-%d %H:%M:%S")
+
+
 def fmt_riyadh(dt: datetime) -> str:
-    return dt.astimezone(RIYADH_TZ).strftime("%Y-%m-%d %H:%M:%S")
+    return fmt_local(dt, RIYADH_TZ)
+
+
+def as_of_fields(dt: Optional[datetime], market: str) -> dict:
+    """Timestamp fields for a record: as_of_utc + as_of_local + tz (+ as_of_riyadh for SA)."""
+    spec = MARKETS[market]
+    out = {
+        "as_of_utc": iso_utc(dt) if dt else None,
+        "as_of_local": fmt_local(dt, spec["tz"]) if dt else None,
+        "tz": spec["tz_label"],
+    }
+    if market == "sa":
+        out["as_of_riyadh"] = out["as_of_local"]
+    return out
 
 
 def epoch_to_dt(epoch: Any) -> Optional[datetime]:
@@ -232,8 +332,12 @@ def fetch_yahoo_chart(symbol: str) -> tuple[dict, str]:
     raise FetchError("; ".join(errors) or "no Yahoo host answered")
 
 
-def parse_yahoo_chart(data: dict, now: Optional[datetime] = None) -> dict:
-    """Normalise a Yahoo v8 chart response.  Pure function; raises FetchError."""
+def parse_yahoo_chart(data: dict, now: Optional[datetime] = None, tz: tzinfo = RIYADH_TZ) -> dict:
+    """Normalise a Yahoo v8 chart response.  Pure function; raises FetchError.
+
+    `tz` is the exchange's local zone: it decides which calendar day a bar
+    belongs to (session_date / "is the last bar today?").
+    """
     now = now or now_utc()
     try:
         result = data["chart"]["result"][0]
@@ -264,7 +368,7 @@ def parse_yahoo_chart(data: dict, now: Optional[datetime] = None) -> dict:
     prev = to_float(meta.get("previousClose"))
     if prev is None and len(series) >= 2:
         last_bar_day = epoch_to_dt(series[-1][0])
-        if last_bar_day and last_bar_day.astimezone(RIYADH_TZ).date() == market_time.astimezone(RIYADH_TZ).date():
+        if last_bar_day and last_bar_day.astimezone(tz).date() == market_time.astimezone(tz).date():
             prev = to_float(series[-2][1])
         else:
             prev = to_float(series[-1][1])
@@ -288,11 +392,46 @@ def parse_yahoo_chart(data: dict, now: Optional[datetime] = None) -> dict:
         "change_pct": pct_change(price, prev),
         "volume": int(volume) if volume is not None else None,
         "as_of": market_time,
-        "session_date": market_time.astimezone(RIYADH_TZ).strftime("%Y-%m-%d"),
+        "session_date": market_time.astimezone(tz).strftime("%Y-%m-%d"),
         "is_closed": is_closed,
         "currency": meta.get("currency"),
         "symbol": meta.get("symbol"),
     }
+
+
+def parse_yahoo_quote(q: dict, now: Optional[datetime] = None, tz: tzinfo = RIYADH_TZ) -> dict:
+    """Normalise one v7 quote object into the same shape as parse_yahoo_chart.
+
+    Raises FetchError when the quote has no regularMarketPrice (e.g. the
+    endpoint answered with a stub); callers then fall back to the chart API.
+    """
+    now = now or now_utc()
+    price = to_float(q.get("regularMarketPrice"))
+    if price is None:
+        raise FetchError("Yahoo quote has no regularMarketPrice")
+    prev = to_float(q.get("regularMarketPreviousClose"))
+    market_time = epoch_to_dt(q.get("regularMarketTime")) or now
+    volume = to_float(q.get("regularMarketVolume"))
+    state = q.get("marketState")
+    return {
+        "price": price,
+        "prev_close": prev,
+        "change_pts": round_or_none(price - prev if prev is not None else None),
+        "change_pct": pct_change(price, prev),
+        "volume": int(volume) if volume is not None else None,
+        "as_of": market_time,
+        "session_date": market_time.astimezone(tz).strftime("%Y-%m-%d"),
+        "is_closed": (state != "REGULAR") if isinstance(state, str) else None,
+        "currency": q.get("currency"),
+        "symbol": q.get("symbol"),
+        "market_cap": to_float(q.get("marketCap")),
+    }
+
+
+QUOTE_FIELDS = ",".join((
+    "regularMarketPrice", "regularMarketPreviousClose", "regularMarketTime",
+    "regularMarketVolume", "marketCap", "marketState", "currency",
+))
 
 
 def yahoo_get_crumb() -> Optional[str]:
@@ -321,7 +460,7 @@ def fetch_yahoo_quotes(symbols: Iterable[str]) -> dict[str, dict]:
     crumb = yahoo_get_crumb()
     for i in range(0, len(symbols), 50):
         batch = symbols[i:i + 50]
-        params = {"symbols": ",".join(batch), "fields": "regularMarketPrice,marketCap,regularMarketVolume"}
+        params = {"symbols": ",".join(batch), "fields": QUOTE_FIELDS}
         if crumb:
             params["crumb"] = crumb
         try:
@@ -525,7 +664,9 @@ def fetch_stooq_tasi() -> tuple[dict, str]:
 # Orchestration
 # --------------------------------------------------------------------------- #
 
-def load_constituents(path: str) -> list[dict]:
+def load_constituents(path: str, market: str = "sa") -> list[dict]:
+    """Load a constituents file.  Saudi codes default to `<code>.SR` on Yahoo,
+    US codes are already Yahoo symbols (AAPL, BRK-B ...)."""
     with open(path, encoding="utf-8") as fh:
         data = json.load(fh)
     items = data["constituents"] if isinstance(data, dict) else data
@@ -534,24 +675,58 @@ def load_constituents(path: str) -> list[dict]:
         if not c.get("code"):
             continue
         c = dict(c)
-        c.setdefault("yahoo", f"{c['code']}.SR")
+        c["code"] = str(c["code"])
+        c.setdefault("yahoo", f"{c['code']}.SR" if market == "sa" else c["code"])
+        c["market"] = market
         out.append(c)
     return out
 
 
-def _index_record(code: str, **kw) -> dict:
+def _index_record(code: str, market: str = "sa", **kw) -> dict:
+    defs = INDEX_DEFS if market == "sa" else US_INDEX_DEFS
+    spec = MARKETS[market]
     rec = {
         "code": code,
-        "name_ar": INDEX_DEFS[code]["name_ar"],
+        "market": market,
+        "name_ar": defs[code]["name_ar"],
+        "name_en": defs[code].get("name_en"),
+        "yahoo": defs[code].get("yahoo"),
+        "currency": spec["currency"],
         "value": None, "change_pts": None, "change_pct": None,
-        "as_of_utc": None, "as_of_riyadh": None, "session_date": None,
-        "is_closed": None, "source": None, "source_url": None,
     }
+    rec.update(as_of_fields(None, market))
+    rec.update({"session_date": None, "is_closed": None, "source": None, "source_url": None})
     rec.update(kw)
     return rec
 
 
+def _yahoo_index(code: str, symbol: str, market: str, now: datetime) -> dict:
+    """Fetch one index through the Yahoo chart API; raises FetchError."""
+    raw, url = fetch_yahoo_chart(symbol)
+    p = parse_yahoo_chart(raw, now=now, tz=MARKETS[market]["tz"])
+    rec = _index_record(
+        code, market, value=p["price"], change_pts=p["change_pts"], change_pct=p["change_pct"],
+        session_date=p["session_date"], is_closed=p["is_closed"], source="yahoo", source_url=url,
+    )
+    rec.update(as_of_fields(p["as_of"], market))
+    log.info("index %s via yahoo: %s (%s%%)", code, p["price"], p["change_pct"])
+    return rec
+
+
+def fetch_us_indices(errors: list[dict], now: datetime) -> list[dict]:
+    """S&P 500 / Dow / Nasdaq via Yahoo chart.  Missing ones are simply absent."""
+    out = []
+    for code, spec in US_INDEX_DEFS.items():
+        try:
+            out.append(_yahoo_index(code, spec["yahoo"], "us", now))
+        except FetchError as exc:
+            errors.append({"what": f"index:{code}:yahoo", "detail": str(exc)})
+            log.warning("index %s via yahoo failed: %s", code, exc)
+    return out
+
+
 def fetch_indices(errors: list[dict], now: datetime, use_stooq: bool = True) -> list[dict]:
+    """Saudi indices with the full Yahoo -> Saudi Exchange -> Stooq fallback chain."""
     indices: dict[str, dict] = {}
 
     # 1. Yahoo
@@ -559,15 +734,7 @@ def fetch_indices(errors: list[dict], now: datetime, use_stooq: bool = True) -> 
         if not spec["yahoo"]:
             continue
         try:
-            raw, url = fetch_yahoo_chart(spec["yahoo"])
-            p = parse_yahoo_chart(raw, now=now)
-            indices[code] = _index_record(
-                code, value=p["price"], change_pts=p["change_pts"], change_pct=p["change_pct"],
-                as_of_utc=iso_utc(p["as_of"]), as_of_riyadh=fmt_riyadh(p["as_of"]),
-                session_date=p["session_date"], is_closed=p["is_closed"],
-                source="yahoo", source_url=url,
-            )
-            log.info("index %s via yahoo: %s (%s%%)", code, p["price"], p["change_pct"])
+            indices[code] = _yahoo_index(code, spec["yahoo"], "sa", now)
         except FetchError as exc:
             errors.append({"what": f"index:{code}:yahoo", "detail": str(exc)})
             log.warning("index %s via yahoo failed: %s", code, exc)
@@ -581,11 +748,11 @@ def fetch_indices(errors: list[dict], now: datetime, use_stooq: bool = True) -> 
                 if code in found:
                     f = found[code]
                     indices[code] = _index_record(
-                        code, value=f["value"], change_pts=round_or_none(f.get("change_pts")),
+                        code, "sa", value=f["value"], change_pts=round_or_none(f.get("change_pts")),
                         change_pct=round_or_none(f.get("change_pct")),
-                        as_of_utc=iso_utc(now), as_of_riyadh=fmt_riyadh(now),
                         session_date=now.astimezone(RIYADH_TZ).strftime("%Y-%m-%d"),
                         is_closed=None, source="saudiexchange", source_url=url,
+                        **as_of_fields(now, "sa"),
                     )
                     log.info("index %s via saudiexchange: %s", code, f["value"])
             still = [c for c in missing if c not in indices]
@@ -601,9 +768,9 @@ def fetch_indices(errors: list[dict], now: datetime, use_stooq: bool = True) -> 
         try:
             p, url = fetch_stooq_tasi()
             indices["TASI"] = _index_record(
-                "TASI", value=p["value"], change_pts=p["change_pts"], change_pct=p["change_pct"],
-                as_of_utc=iso_utc(p["as_of"]), as_of_riyadh=fmt_riyadh(p["as_of"]),
+                "TASI", "sa", value=p["value"], change_pts=p["change_pts"], change_pct=p["change_pct"],
                 session_date=p["session_date"], is_closed=True, source="stooq", source_url=url,
+                **as_of_fields(p["as_of"], "sa"),
             )
             log.info("index TASI via stooq: %s", p["value"])
         except FetchError as exc:
@@ -614,49 +781,97 @@ def fetch_indices(errors: list[dict], now: datetime, use_stooq: bool = True) -> 
     return [indices[c] for c in INDEX_DEFS if c in indices]
 
 
-def fetch_stocks(constituents: list[dict], errors: list[dict], now: datetime,
-                 pause: float = 0.4, use_quote: bool = True) -> list[dict]:
-    stocks: list[dict] = []
-    for i, c in enumerate(constituents):
-        rec = {
-            "code": str(c["code"]), "yahoo": c["yahoo"],
-            "name_ar": c.get("name_ar"), "name_en": c.get("name_en"), "sector_ar": c.get("sector_ar"),
-            "price": None, "prev_close": None, "change_pct": None, "volume": None,
-            "market_cap_sar": None, "as_of_utc": None, "source": None, "source_url": None,
-        }
-        try:
-            raw, url = fetch_yahoo_chart(c["yahoo"])
-            p = parse_yahoo_chart(raw, now=now)
-            rec.update(price=p["price"], prev_close=p["prev_close"], change_pct=p["change_pct"],
-                       volume=p["volume"], as_of_utc=iso_utc(p["as_of"]), source="yahoo", source_url=url)
-        except FetchError as exc:
-            errors.append({"what": f"stock:{c['code']}:yahoo", "detail": str(exc)})
-            log.warning("stock %s failed: %s", c["code"], exc)
-        stocks.append(rec)
-        if pause and i < len(constituents) - 1:
-            sleep(pause)
+def _stock_record(c: dict) -> dict:
+    market = c.get("market", "sa")
+    spec = MARKETS[market]
+    rec = {
+        "code": str(c["code"]), "yahoo": c["yahoo"], "market": market,
+        "name_ar": c.get("name_ar"), "name_en": c.get("name_en"), "sector_ar": c.get("sector_ar"),
+        "currency": spec["currency"],
+        "price": None, "prev_close": None, "change_pct": None, "volume": None,
+        "market_cap": None, spec["mcap_field"]: None,
+    }
+    rec.update(as_of_fields(None, market))
+    rec.update({"is_closed": None, "source": None, "source_url": None})
+    return rec
 
+
+def _apply_parsed(rec: dict, p: dict, source: str, source_url: str) -> None:
+    rec.update(price=p["price"], prev_close=p["prev_close"], change_pct=p["change_pct"],
+               volume=p["volume"], is_closed=p["is_closed"], source=source, source_url=source_url)
+    rec.update(as_of_fields(p["as_of"], rec["market"]))
+    if p.get("market_cap") is not None:
+        rec["market_cap"] = p["market_cap"]
+        rec[MARKETS[rec["market"]]["mcap_field"]] = p["market_cap"]
+
+
+def fetch_stocks(constituents: list[dict], errors: list[dict], now: datetime,
+                 pause: float = 0.25, use_quote: bool = True) -> list[dict]:
+    """Stocks for any mix of markets (each constituent carries its `market`).
+
+    1. One batched Yahoo quote call (50 symbols/request) gives price + marketCap.
+    2. Anything the quote endpoint did not price falls back to the chart API,
+       one request per symbol with a small courtesy pause.
+    """
+    stocks = [_stock_record(c) for c in constituents]
+    quotes: dict[str, dict] = {}
     if use_quote and stocks:
         quotes = fetch_yahoo_quotes(s["yahoo"] for s in stocks)
-        for s in stocks:
-            q = quotes.get(s["yahoo"])
-            if q and q.get("marketCap") is not None:
-                s["market_cap_sar"] = to_float(q["marketCap"])
         if not quotes:
-            errors.append({"what": "stocks:yahoo_quote", "detail": "quote endpoint unavailable; market_cap_sar left null"})
+            errors.append({"what": "stocks:yahoo_quote",
+                           "detail": "quote endpoint unavailable; using chart per symbol, market_cap left null"})
+
+    pending = []
+    for rec in stocks:
+        q = quotes.get(rec["yahoo"])
+        if q is None:
+            pending.append(rec)
+            continue
+        try:
+            p = parse_yahoo_quote(q, now=now, tz=MARKETS[rec["market"]]["tz"])
+            _apply_parsed(rec, p, "yahoo_quote", YAHOO_QUOTE_URL)
+        except FetchError:
+            # stub quote (no price) -> still use its marketCap, price via chart
+            if q.get("marketCap") is not None:
+                rec["market_cap"] = rec[MARKETS[rec["market"]]["mcap_field"]] = to_float(q["marketCap"])
+            pending.append(rec)
+
+    for i, rec in enumerate(pending):
+        try:
+            raw, url = fetch_yahoo_chart(rec["yahoo"])
+            p = parse_yahoo_chart(raw, now=now, tz=MARKETS[rec["market"]]["tz"])
+            _apply_parsed(rec, p, "yahoo", url)
+        except FetchError as exc:
+            errors.append({"what": f"stock:{rec['code']}:yahoo", "detail": str(exc)})
+            log.warning("stock %s failed: %s", rec["code"], exc)
+        if pause and i < len(pending) - 1:
+            sleep(pause)
+
     ok = sum(1 for s in stocks if s["price"] is not None)
-    log.info("stocks: %d/%d fetched", ok, len(stocks))
+    log.info("stocks: %d/%d fetched (%d via quote, %d via chart)", ok, len(stocks),
+             len(stocks) - len(pending), len(pending))
     return stocks
 
 
-def build_payload(indices: list[dict], stocks: list[dict], errors: list[dict], now: datetime) -> dict:
+def build_payload(indices: list[dict], stocks: list[dict], errors: list[dict], now: datetime,
+                  markets: Iterable[str] = DEFAULT_MARKETS) -> dict:
     return {
         "generated_at_utc": iso_utc(now),
         "generated_at_riyadh": fmt_riyadh(now),
+        "generated_at_new_york": fmt_local(now, NEW_YORK_TZ),
+        "markets": list(markets),
         "indices": indices,
         "stocks": stocks,
         "errors": errors,
     }
+
+
+def parse_markets(value: str) -> list[str]:
+    markets = [m.strip().lower() for m in value.split(",") if m.strip()]
+    bad = [m for m in markets if m not in MARKETS]
+    if bad or not markets:
+        raise argparse.ArgumentTypeError(f"--markets must be a comma list of {'/'.join(MARKETS)}, got {value!r}")
+    return list(dict.fromkeys(markets))  # dedupe, keep order
 
 
 def write_json(path: str, payload: dict) -> None:
@@ -672,8 +887,11 @@ def write_json(path: str, payload: dict) -> None:
 def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--out", required=True, help="output JSON path, e.g. data/market.json")
-    ap.add_argument("--constituents", default=DEFAULT_CONSTITUENTS, help="constituents.json path")
-    ap.add_argument("--sleep", type=float, default=0.4, help="seconds between Yahoo symbols (rate-limit courtesy)")
+    ap.add_argument("--constituents", default=DEFAULT_CONSTITUENTS, help="Saudi constituents.json path")
+    ap.add_argument("--constituents-us", default=DEFAULT_CONSTITUENTS_US, help="US constituents_us.json path")
+    ap.add_argument("--markets", type=parse_markets, default=list(DEFAULT_MARKETS),
+                    help="comma list of markets to fetch: sa,us (default both)")
+    ap.add_argument("--sleep", type=float, default=0.25, help="seconds between Yahoo chart symbols (rate-limit courtesy)")
     ap.add_argument("--no-quote", action="store_true", help="skip Yahoo quote endpoint (market cap)")
     ap.add_argument("--no-stooq", action="store_true", help="skip the Stooq fallback")
     ap.add_argument("--indices-only", action="store_true", help="do not fetch stocks")
@@ -691,19 +909,28 @@ def main(argv: Optional[list[str]] = None) -> int:
     now = now_utc()
     errors: list[dict] = []
 
-    try:
-        constituents = [] if args.indices_only else load_constituents(args.constituents)
-    except (OSError, ValueError, KeyError) as exc:
-        errors.append({"what": "constituents", "detail": f"{args.constituents}: {exc}"})
-        log.error("could not load constituents: %s", exc)
-        constituents = []
+    markets = list(args.markets)
+    paths = {"sa": args.constituents, "us": args.constituents_us}
 
-    indices = fetch_indices(errors, now, use_stooq=not args.no_stooq)
+    constituents: list[dict] = []
+    if not args.indices_only:
+        for m in markets:
+            try:
+                constituents += load_constituents(paths[m], market=m)
+            except (OSError, ValueError, KeyError) as exc:
+                errors.append({"what": f"constituents:{m}", "detail": f"{paths[m]}: {exc}"})
+                log.error("could not load %s constituents: %s", m, exc)
+
+    indices: list[dict] = []
+    if "sa" in markets:
+        indices += fetch_indices(errors, now, use_stooq=not args.no_stooq)
+    if "us" in markets:
+        indices += fetch_us_indices(errors, now)
     stocks = fetch_stocks(constituents, errors, now, pause=args.sleep, use_quote=not args.no_quote) if constituents else []
 
     n_idx = len(indices)
     n_stk = sum(1 for s in stocks if s["price"] is not None)
-    payload = build_payload(indices, stocks, errors, now)
+    payload = build_payload(indices, stocks, errors, now, markets=markets)
 
     if n_idx == 0 and n_stk == 0:
         log.error("nothing fetched (%d errors); NOT overwriting %s", len(errors), args.out)
