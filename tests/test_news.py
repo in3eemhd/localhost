@@ -211,7 +211,7 @@ def test_rules_attack(analyzed):
 def test_rules_oil_english(analyzed):
     it = next(i for i in analyzed["items"] if i["title"].startswith("Oil prices rise"))
     assert it["lang"] == "en" and it["summary_ar"] == it["summary"]  # English kept when no LLM
-    assert it["market"] == "macro"
+    assert it["market"] == "sa"  # summary names Bahri (4030): a constituent mention is an explicit Saudi signal
     assert "oil_up" in it["rules"] and "attack" in it["rules"]
     assert it["impact"]["energy"] >= 2 and it["impact"]["transport"] <= -2
     assert any(t["code"] == "4030" for t in it["tickers"])  # Bahri
@@ -254,7 +254,8 @@ def test_constituents_loader_shapes(tmp_path):
                              {"code": "1120", "name_en": "Al Rajhi", "sector": "Banks"},
                              {"code": "bad"}], ensure_ascii=False), encoding="utf-8")
     rows = an.load_constituents(str(p))
-    assert [(r["code"], r["sector"]) for r in rows] == [("2222", "energy"), ("1120", "banks")]
+    assert [(r["code"], r["sector"]) for r in rows[:2]] == [("2222", "energy"), ("1120", "banks")]  # file rows first, "bad" skipped
+    assert rows[0]["name_ar"] == "أرامكو" and len(rows) > 2                                          # built-ins appended after
     p.write_text(json.dumps({"2010": {"name_ar": "سابك", "sector": "المواد الأساسية"}}, ensure_ascii=False), encoding="utf-8")
     rows = an.load_constituents(str(p))
     assert rows[0]["code"] == "2010" and rows[0]["sector"] == "petrochem"
@@ -549,3 +550,98 @@ def test_analyze_stats_relevance_and_summary_policy(raw):
     no_summary = dict(SPORTS, title="أرباح شركة سعودية ترتفع", summary="", lang="ar", relevance=1.0)
     it = _analyze_items([no_summary])["items"][0]
     assert it["summary_ar"] == "أرباح شركة سعودية ترتفع" and it["lang"] == "ar"
+
+
+# ---------------------------------------------------------------- future timestamps / explicit-Saudi market
+def _rss(items):
+    body = "".join(f"<item><title>{t}</title><link>https://x.sa/{i}</link><pubDate>{d}</pubDate></item>"
+                   for i, (t, d) in enumerate(items))
+    return f'<?xml version="1.0"?><rss version="2.0"><channel>{body}</channel></rss>'.encode()
+
+
+def test_future_times_riyadh_shift_then_clamp(tmp_path):
+    f = tmp_path / "future.xml"
+    f.write_bytes(_rss([
+        ("سوق الأسهم: خبر بتوقيت الرياض موسوم كـ UTC", "Wed, 09 Sep 2026 14:00:00 +0000"),   # now+2h -> -3h = 11:00Z
+        ("Stock market item far in the future", "Wed, 09 Sep 2026 20:30:00 GMT"),           # now+8.5h -> clamp
+        ("Stock market item slightly ahead", "Wed, 09 Sep 2026 12:03:00 GMT"),              # within 5 min tolerance
+        ("Stock market item dated tomorrow", "2026-09-10"),                                  # day precision, clamp
+    ]))
+    res = fn.run([{"name": "f", "url": str(f), "priority": 1}], now=NOW)
+    by = {i["title"]: i for i in res["items"]}
+    a = by["سوق الأسهم: خبر بتوقيت الرياض موسوم كـ UTC"]
+    assert a["published_utc"] == "2026-09-09T11:00:00Z" and a["published_riyadh"] == "2026-09-09 14:00:00"
+    assert a["time_adjusted"] == "riyadh_local" and a["precision"] == "second"
+    assert a["raw_published"] == "Wed, 09 Sep 2026 14:00:00 +0000"
+    b = by["Stock market item far in the future"]
+    assert b["published_utc"] == "2026-09-09T12:00:00Z" and b["time_adjusted"] == "clamped" and b["precision"] == "minute"
+    c = by["Stock market item slightly ahead"]
+    assert c["published_utc"] == "2026-09-09T12:03:00Z" and "time_adjusted" not in c
+    d = by["Stock market item dated tomorrow"]
+    assert d["published_utc"] == "2026-09-09T12:00:00Z" and d["time_adjusted"] == "clamped" and d["precision"] == "day"
+    assert all(i["published_utc"] <= "2026-09-09T12:05:00Z" for i in res["items"])
+    assert all("raw_published" in i for i in res["items"])
+
+
+def test_market_requires_explicit_saudi_signal():
+    base = dict(SPORTS, priority=1, source="أرقام", lang="ar")
+    china = dict(base, title="انتعاش نمو الصادرات الصينية مع اقتراب الفائض التجاري من 806 مليارات دولار", summary="")
+    ai = dict(base, title="ماذا لو فازت الصين بسباق الذكاء الاصطناعي؟",
+              summary="تخيّل أن دولة تنفق مئات المليارات من الدولارات لتطوير التكنولوجيا الأذكى في العالم")
+    ai_warn = dict(base, title="تحذيرات من خروج تكنولوجيا الذكاء الاصطناعي عن السيطرة", summary="قال باحث في مجال السلامة")
+    nomu = dict(base, title="إدراج شركة جديدة في سوق نمو الموازية", summary="")
+    generic = dict(base, title="ارتفاع أسعار الذهب عالمياً مع تراجع الدولار", summary="")
+    ticker = dict(base, title="سابك تعلن نتائجها المالية", summary="")
+    us = dict(base, title="Wall Street closes higher as Nasdaq rallies", summary="", lang="en")
+    res = _analyze_items([china, ai, ai_warn, nomu, generic, ticker, us])
+    by = {i["title"]: i for i in res["items"]}
+    assert by[china["title"]]["market"] == "macro"            # source is Saudi, text is not
+    assert by[nomu["title"]]["market"] == "sa"                 # نمو only as a market, with context
+    assert by[generic["title"]]["market"] == "macro"
+    assert by[ticker["title"]]["market"] == "sa"               # constituent name is an explicit signal
+    assert by[us["title"]]["market"] == "us"
+    # generic AI opinion pieces: market 'other' -> relevance penalised -> dropped
+    assert ai["title"] not in by and ai_warn["title"] not in by
+    assert res["stats"]["dropped_irrelevant"] == 2
+    assert "sa" not in [i["market"] for i in res["items"] if i["title"] in (china["title"], generic["title"])]
+
+
+def test_pure_oil_headline_is_macro_not_sa():
+    it = _analyze_items([dict(SPORTS, title="Oil prices rise as Brent tops $100 a barrel", summary="", relevance=1.0)])["items"][0]
+    assert it["market"] == "macro" and "oil_up" in it["rules"]
+
+
+def test_analyzer_fixes_future_times_in_old_raw_files():
+    old = dict(SPORTS, title="Saudi stocks: TASI closes higher", summary="", source="Argaam", link="https://argaam.com/1",
+               published_utc="2026-09-09T17:16:00Z",
+               published_riyadh="2026-09-09 20:16:00", fetched_at_utc="2026-09-09T14:24:55Z", precision="second")
+    it = _analyze_items([old])["items"][0]
+    assert it["published_utc"] == "2026-09-09T14:16:00Z" and it["published_riyadh"] == "2026-09-09 17:16:00"
+    assert it["time_adjusted"] == "riyadh_local" and it["precision"] == "second"
+
+
+def test_negative_context_and_gulf_macro():
+    base = dict(SPORTS, priority=1, source="الاقتصادية", link="https://aleqt.com/1", lang="ar")
+    ksa = dict(base, title="تكوين رأس المال الثابت في المملكة يقفز 5.2% خلال النصف الأول", summary="")
+    uk = dict(base, title="التضخم في المملكة المتحدة يتراجع إلى 3%", summary="")
+    gulf = dict(base, title="«جيفريز» تطلق مؤشر «GCC 30» لاقتناص فرص النمو في أسواق الخليج", summary="")
+    cement = dict(base, title="أسمنت الشمالية: تحليل متوسط سعر بيع الطن والهوامش والحصة السوقية بالربع الثاني", summary="")
+    by = {i["title"]: i for i in _analyze_items([ksa, uk, gulf, cement])["items"]}
+    assert by[ksa["title"]]["market"] == "sa"
+    assert by[uk["title"]]["market"] == "macro"        # "المملكة المتحدة" is excluded from the Saudi signal
+    assert by[gulf["title"]]["market"] == "macro"      # Gulf-region finance is macro, not dropped
+    assert by[cement["title"]]["market"] == "sa" and by[cement["title"]]["tickers"][0]["code"] == "3004"
+
+
+def test_constituents_file_merged_with_builtin_aliases(tmp_path):
+    p = tmp_path / "c.json"
+    p.write_text(json.dumps({"constituents": [
+        {"code": "1120", "name_ar": "مصرف الراجحي", "name_en": "Al Rajhi Bank", "sector_ar": "البنوك"},
+        {"code": "9999", "name_ar": "شركة وهمية", "name_en": "Fake Co", "sector_ar": "الطاقة"}]}, ensure_ascii=False), encoding="utf-8")
+    rows = an.load_constituents(str(p))
+    by = {r["code"]: r for r in rows}
+    assert by["1120"]["name_ar"] == "مصرف الراجحي" and "الراجحي" in by["1120"]["aliases"]   # file name kept, alias added
+    assert "2222" in by and "9999" in by                                                       # built-in rows appended
+    m = an.build_matcher(rows)
+    assert [t["code"] for t in m("الراجحي يوقع اتفاقية")] == ["1120"]
+    assert [t["code"] for t in m("أسمنت الشمالية تعلن نتائجها")] == ["3004"]

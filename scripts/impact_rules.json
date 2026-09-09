@@ -17,19 +17,23 @@
     "utilities": "المرافق"
   },
   "ambiguous_context": {
-    "_doc": "A keyword (rule or market keyword) containing one of these words as a whole word only counts if at least one context term also appears in the item text.",
+    "_doc": "A keyword (rule or market keyword) containing one of these words as a whole word only counts if at least one context term also appears in the item text. market=='sa' additionally requires an explicit Saudi signal (sa keyword or a constituent ticker); the source being Saudi is not enough. A value may be a list (any of these must appear) or {\"any\": [...], \"none\": [...]} (none of these may appear).",
     "brent": ["oil", "crude", "barrel", "barrels", "opec", "خام", "نفط", "برميل", "$", "dollar", "دولار", "price", "prices", "سعر"],
     "برنت": ["خام", "نفط", "برميل", "دولار", "سعر", "أوبك", "oil", "crude", "$"],
     "fed": ["rate", "rates", "interest", "fomc", "powell", "فائدة", "inflation", "basis points", "central bank", "الفيدرالي"],
     "كيان": ["سهم", "أسهم", "شركة", "الشركة", "2350", "تداول", "سابك", "بتروكيماويات"],
     "kayan": ["stock", "shares", "share", "company", "2350", "tadawul", "sabic", "petrochemical"],
     "علم": ["سهم", "أسهم", "شركة", "الشركة", "7203", "تداول", "التقنية", "رقمي"],
-    "elm": ["stock", "shares", "share", "company", "7203", "tadawul", "digital", "tech"]
+    "elm": ["stock", "shares", "share", "company", "7203", "tadawul", "digital", "tech"],
+    "نمو": ["سوق نمو", "السوق الموازية", "الموازية", "إدراج", "مدرجة", "انتقال", "تداول"],
+    "المملكة": {"none": ["المملكة المتحدة", "المملكة الأردنية", "مملكة البحرين", "المملكة المغربية", "المملكة البريطانية"]}
   },
   "market_keywords": {
-    "sa": ["تاسي", "تداول", "السوق السعودي", "السوق السعودية", "الأسهم السعودية", "أرامكو", "نمو", "هيئة السوق المالية", "الراجحي", "سابك", "الرياض", "جدة", "سعودي", "السعودية", "المملكة", "tadawul", "tasi", "saudi", "aramco", "riyadh", "cma", "nomu", "sabic", "pif", "sar ", "جازان", "أبها", "نجران", "الدمام", "الخبر", "الشرقية", "ينبع", "الجبيل", "مكة", "المدينة المنورة", "نيوم", "jazan", "jizan", "abha", "najran", "dammam", "khobar", "yanbu", "jubail", "jeddah", "neom", "makkah", "gcc", "خليجي", "الخليج"],
-    "us": ["wall street", "s&p 500", "s&p", "nasdaq", "dow jones", "federal reserve", "the fed", "fed ", "treasury", "وول ستريت", "ناسداك", "داو جونز", "الفيدرالي", "الاحتياطي الاتحادي", "الخزانة الأمريكية"],
-    "macro": ["oil", "brent", "wti", "opec", "crude", "gold", "inflation", "dollar", "recession", "tariff", "gdp", "نفط", "برنت", "أوبك", "الخام", "ذهب", "تضخم", "الدولار", "ركود", "رسوم جمركية", "الناتج المحلي", "غاز", "gas prices", "iran", "إيران", "هرمز", "hormuz", "houthi", "حوثي", "الحوثي"]
+    "sa": ["تاسي", "تداول", "السوق السعودي", "السوق السعودية", "الأسهم السعودية", "أرامكو", "نمو", "هيئة السوق المالية", "الراجحي", "سابك", "الرياض", "جدة", "سعودي", "السعودية", "tadawul", "tasi", "saudi", "aramco", "riyadh", "cma", "nomu", "sabic", "pif", "sar ", "جازان", "أبها", "نجران", "الدمام", "الشرقية", "ينبع", "الجبيل", "مكة", "المدينة المنورة", "نيوم", "jazan", "jizan", "abha", "najran", "dammam", "khobar", "yanbu", "jubail", "jeddah", "neom", "makkah", "سعودية", "السعوديه", "الشركات السعودية", "سوق الأسهم", "المؤشر العام", "نمو - السوق الموازية", "السوق الموازية", "saudi arabia", "ksa", "tadawul all share", "saudi exchange", "vision 2030", "رؤية 2030", "الرياض المالية", "ريال", "riyal", "sar", "المملكة", "بالمملكة"],
+    "us": ["wall street", "s&p 500", "s&p", "nasdaq", "dow jones", "federal reserve", "the fed", "fed ", "treasury", "وول ستريت", "ناسداك", "داو جونز", "الفيدرالي", "الاحتياطي الاتحادي", "الخزانة الأمريكية", "wall st", "s&p 500"],
+    "macro": ["oil", "brent", "wti", "opec", "crude", "gold", "inflation", "recession", "tariff", "gdp", "نفط", "برنت", "أوبك", "الخام", "ذهب", "تضخم", "ركود", "رسوم جمركية", "الناتج المحلي", "غاز", "gas prices", "iran", "إيران", "هرمز", "hormuz", "houthi", "حوثي", "الحوثي", "exports", "صادرات", "الصادرات", "trade surplus", "trade deficit", "الفائض التجاري", "العجز التجاري", "central bank", "البنك المركزي", "ecb", "boj", "imf", "صندوق النقد", "world bank", "البنك الدولي", "global economy", "الاقتصاد العالمي", "geopolit", "جيوسياسي", "war", "حرب", "commodities", "السلع", "copper", "النحاس", "aluminium", "aluminum", "الألمنيوم", "lng", "الغاز المسال", "shipping rates", "supply chain", "سلاسل الإمداد", "dollar index", "مؤشر الدولار", "exchange rate", "سعر الصرف", "currency", "العملات", "الين", "اليورو", "euro", "yen", "gcc", "gulf", "الخليج", "خليجي", "الخليجية", "خليجية"],
+    "macro_geo": ["china", "الصين", "الصينية", "الصيني", "europe", "أوروبا", "الأوروبي", "japan", "اليابان", "india", "الهند", "israel", "إسرائيل", "gaza", "غزة", "yemen", "اليمن", "ukraine", "أوكرانيا", "russia", "روسيا"],
+    "_doc": "sa = explicit Saudi signal (or a constituent ticker in text). us/macro = finance keywords. macro_geo = geography-only words: an item whose only signal is geography is 'other' (not macro) and gets its relevance penalised unless a strong (cf>=2) rule or ticker matches."
   },
   "rules": [
     {

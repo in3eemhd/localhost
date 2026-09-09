@@ -38,7 +38,7 @@ import re
 import sys
 import time
 import unicodedata
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Any
 
 try:
@@ -49,11 +49,12 @@ except ImportError:  # pragma: no cover
 log = logging.getLogger("analyze_news")
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-try:  # relevance gate lives in fetch_news.py (same directory)
-    from fetch_news import RELEVANCE_MIN, relevance_score
+try:  # relevance gate + time correction live in fetch_news.py (same directory)
+    from fetch_news import RELEVANCE_MIN, adjust_future_time, relevance_score
 except Exception:  # pragma: no cover
     RELEVANCE_MIN = 0.35
     relevance_score = None  # type: ignore
+    adjust_future_time = None  # type: ignore
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_RULES = os.path.join(HERE, "impact_rules.json")
@@ -106,6 +107,21 @@ BUILTIN_CONSTITUENTS: list[dict[str, Any]] = [
     {"code": "3030", "name_ar": "أسمنت السعودية", "name_en": "Saudi Cement", "sector": "cement", "aliases": ["saudi cement"]},
     {"code": "3060", "name_ar": "أسمنت ينبع", "name_en": "Yanbu Cement", "sector": "cement", "aliases": ["yanbu cement"]},
     {"code": "2090", "name_ar": "الجبس", "name_en": "National Gypsum", "sector": "cement", "aliases": ["الجبس الوطني", "national gypsum"]},
+    {"code": "3004", "name_ar": "أسمنت الشمالية", "name_en": "Northern Region Cement", "sector": "cement", "aliases": ["northern cement", "الشمالية للأسمنت"]},
+    {"code": "3080", "name_ar": "أسمنت الشرقية", "name_en": "Eastern Province Cement", "sector": "cement", "aliases": ["eastern cement"]},
+    {"code": "3050", "name_ar": "أسمنت الجنوبية", "name_en": "Southern Province Cement", "sector": "cement", "aliases": ["southern cement"]},
+    {"code": "3010", "name_ar": "أسمنت العربية", "name_en": "Arabian Cement", "sector": "cement", "aliases": ["arabian cement"]},
+    {"code": "3040", "name_ar": "أسمنت القصيم", "name_en": "Qassim Cement", "sector": "cement", "aliases": ["qassim cement"]},
+    {"code": "4001", "name_ar": "أسواق عبدالله العثيم", "name_en": "Abdullah Al Othaim Markets", "sector": "retail", "aliases": ["العثيم", "al othaim", "othaim"]},
+    {"code": "2223", "name_ar": "لوبريف", "name_en": "Luberef", "sector": "energy", "aliases": ["luberef"]},
+    {"code": "2030", "name_ar": "المصافي", "name_en": "Saudi Arabia Refineries", "sector": "energy", "aliases": ["sarco", "المصافي العربية"]},
+    {"code": "4142", "name_ar": "الرياض للكابلات", "name_en": "Riyadh Cables", "sector": "smallcaps", "aliases": ["riyadh cables"]},
+    {"code": "1182", "name_ar": "أملاك", "name_en": "Amlak International", "sector": "banks", "aliases": ["amlak"]},
+    {"code": "4292", "name_ar": "أرامكو لزيوت الأساس", "name_en": "Aramco Base Oil", "sector": "energy", "aliases": []},
+    {"code": "4700", "name_ar": "الرياض ريت", "name_en": "Riyad REIT", "sector": "realestate", "aliases": ["riyad reit"]},
+    {"code": "4071", "name_ar": "العربية للتعهدات", "name_en": "Arabian Contracting Services", "sector": "smallcaps", "aliases": ["العربية للإعلانات", "arabian contracting"]},
+    {"code": "2140", "name_ar": "أيان", "name_en": "Ayyan Investment", "sector": "smallcaps", "aliases": ["ayyan"]},
+    {"code": "9408", "name_ar": "القصيبي للخدمات", "name_en": "Gosaibi Services", "sector": "smallcaps", "aliases": ["gosaibi"]},
     {"code": "4013", "name_ar": "سليمان الحبيب", "name_en": "Dr. Sulaiman Al Habib", "sector": "health", "aliases": ["الحبيب الطبية", "al habib"]},
     {"code": "4002", "name_ar": "المواساة", "name_en": "Mouwasat", "sector": "health", "aliases": ["mouwasat"]},
     {"code": "4004", "name_ar": "دلة الصحية", "name_en": "Dallah Health", "sector": "health", "aliases": ["دلة", "dallah"]},
@@ -127,6 +143,7 @@ BUILTIN_CONSTITUENTS: list[dict[str, Any]] = [
 # constituents.json sector names (Arabic or English, from another agent) -> our keys
 SECTOR_NAME_MAP = [
     ("طاقة", "energy"), ("energy", "energy"), ("بنوك", "banks"), ("bank", "banks"),
+    ("الخدمات المالية", "banks"), ("financial", "banks"), ("تمويل", "banks"),
     ("أسمنت", "cement"), ("اسمنت", "cement"), ("cement", "cement"),
     ("بتروكيم", "petrochem"), ("مواد أساسية", "petrochem"), ("مواد اساسية", "petrochem"), ("أساسية", "petrochem"), ("basic material", "petrochem"),
     ("material", "petrochem"), ("petrochem", "petrochem"), ("chemical", "petrochem"),
@@ -186,18 +203,29 @@ def load_rules(path: str = DEFAULT_RULES) -> dict[str, Any]:
     for r in rules.get("rules", []):
         r["_kw"] = [norm(k) for k in r.get("keywords", []) if k]
         r["impact"] = {k: int(v) for k, v in (r.get("impact") or {}).items() if k in SECTOR_KEYS}
-    rules["_market_kw"] = {m: [norm(k) for k in kws] for m, kws in (rules.get("market_keywords") or {}).items()}
-    rules["_ambiguous"] = {norm(k): [norm(c) for c in ctx]
-                           for k, ctx in (rules.get("ambiguous_context") or {}).items()
-                           if not k.startswith("_") and isinstance(ctx, list)}
+    rules["_market_kw"] = {m: [norm(k) for k in kws] for m, kws in (rules.get("market_keywords") or {}).items()
+                           if isinstance(kws, list)}
+    amb: dict[str, dict[str, list[str]]] = {}
+    for k, ctx in (rules.get("ambiguous_context") or {}).items():
+        if k.startswith("_"):
+            continue
+        if isinstance(ctx, list):
+            ctx = {"any": ctx}
+        if isinstance(ctx, dict):
+            amb[norm(k)] = {"any": [norm(c) for c in ctx.get("any", [])],
+                            "none": [norm(c) for c in ctx.get("none", [])]}
+    rules["_ambiguous"] = amb
     return rules
 
 
-def keyword_ok(kw_norm: str, text_norm: str, ambiguous: dict[str, list[str]]) -> bool:
-    """A keyword hit counts unless it contains an ambiguous word whose context is absent."""
+def keyword_ok(kw_norm: str, text_norm: str, ambiguous: dict[str, dict[str, list[str]]]) -> bool:
+    """A keyword hit counts unless it contains an ambiguous word whose required
+    context ("any") is absent or whose excluding context ("none") is present."""
     for term, ctx in ambiguous.items():
         if re.search(r"(?<![\w])" + re.escape(term) + r"(?![\w])", kw_norm):
-            if not any(c in text_norm for c in ctx):
+            if ctx.get("any") and not any(c in text_norm for c in ctx["any"]):
+                return False
+            if any(c in text_norm for c in ctx.get("none", [])):
                 return False
     return True
 
@@ -277,7 +305,28 @@ def load_constituents(path: str | None = DEFAULT_CONSTITUENTS) -> list[dict[str,
     if not rows:
         log.warning("constituents.json had no usable rows; using built-in list")
         return [dict(c) for c in BUILTIN_CONSTITUENTS]
-    log.info("loaded %d constituents from %s", len(rows), path)
+    rows = merge_builtin(rows)
+    log.info("loaded %d constituents from %s (+ built-in aliases/rows)", len(rows), path)
+    return rows
+
+
+def merge_builtin(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Supplement file rows with the built-in list: aliases (short names such as
+    'الراجحي' for 'مصرف الراجحي') and sector fall-backs are added to matching
+    codes, and built-in companies missing from the file are appended. Names from
+    the file are never overridden."""
+    by_code = {r["code"]: r for r in rows}
+    for b in BUILTIN_CONSTITUENTS:
+        r = by_code.get(b["code"])
+        if r is None:
+            rows.append(dict(b))
+            by_code[b["code"]] = rows[-1]
+            continue
+        extra = [b["name_ar"], b["name_en"]] + list(b.get("aliases") or [])
+        have = {norm(a) for a in [r.get("name_ar", ""), r.get("name_en", "")] + list(r.get("aliases") or [])}
+        r["aliases"] = list(r.get("aliases") or []) + [a for a in extra if a and norm(a) not in have]
+        if not r.get("sector"):
+            r["sector"] = b.get("sector")
     return rows
 
 
@@ -333,7 +382,10 @@ def build_matcher(constituents: list[dict[str, Any]]):
 # ---------------------------------------------------------------------------
 # Rules-mode analysis
 # ---------------------------------------------------------------------------
-def classify_market(text_norm: str, item: dict[str, Any], rules: dict[str, Any]) -> str:
+def classify_market(text_norm: str, item: dict[str, Any], rules: dict[str, Any],
+                    has_ticker: bool = False) -> str:
+    """sa requires an explicit Saudi signal in the text (sa keyword or a listed
+    company); a Saudi *source* is not enough. Then us -> macro -> other."""
     mk = rules.get("_market_kw", {})
     padded = f" {text_norm} "
 
@@ -342,14 +394,12 @@ def classify_market(text_norm: str, item: dict[str, Any], rules: dict[str, Any])
     def hit(cls: str) -> bool:
         return any(k in padded and keyword_ok(k, padded, amb) for k in mk.get(cls, []))
 
-    if hit("sa"):
+    if has_ticker or hit("sa"):
         return "sa"
     if hit("us"):
         return "us"
     if hit("macro"):
         return "macro"
-    if int(item.get("priority", 3) or 3) == 1:
-        return "sa"
     return "other"
 
 
@@ -425,7 +475,7 @@ def analyze_rules(item: dict[str, Any], rules: dict[str, Any], matcher) -> dict[
     # unchanged and are flagged lang="en" for the UI.
     summary_src = (item.get("summary") or "").strip() or (item.get("title") or "")
     return {
-        "market": classify_market(tn, item, rules),
+        "market": classify_market(tn, item, rules, has_ticker=bool(tickers)),
         "signal": signal,
         "tickers": tickers,
         "summary_ar": summary_src,
@@ -651,6 +701,25 @@ def analyze_llm_batch(items: list[dict[str, Any]], constituents: list[dict[str, 
 # Orchestration
 # ---------------------------------------------------------------------------
 MARKET_ORDER = {"sa": 0, "macro": 1, "us": 2, "other": 3}
+RIYADH_TZ = timezone(timedelta(hours=3))
+
+
+def _fix_future_time(it: dict[str, Any]) -> None:
+    """Safety net for raw files produced before fetch_news learned to correct
+    mislabeled (Riyadh-local) or future publish times."""
+    if adjust_future_time is None or it.get("time_adjusted"):
+        return
+    try:
+        pub = datetime.strptime(it["published_utc"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+        now = datetime.strptime(it["fetched_at_utc"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    except (KeyError, ValueError, TypeError):
+        return
+    dt, precision, note = adjust_future_time(pub, now, it.get("precision", "second"))
+    if note:
+        it["published_utc"] = dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+        it["published_riyadh"] = dt.astimezone(RIYADH_TZ).strftime("%Y-%m-%d %H:%M:%S")
+        it["precision"] = precision
+        it["time_adjusted"] = note
 
 
 def rank_items(items: list[dict[str, Any]], max_items: int = 60, max_non_sa: int = 25) -> tuple[list[dict[str, Any]], int]:
@@ -686,6 +755,7 @@ def analyze(raw: dict[str, Any], rules: dict[str, Any], constituents: list[dict[
     for it in items:
         it = dict(it)
         it["id"] = it.get("id") or item_id(it)
+        _fix_future_time(it)
         if "relevance" not in it:
             it["relevance"] = (relevance_score(it.get("title", ""), it.get("summary", ""), it.get("source", ""),
                                                it.get("link", "")) if relevance_score else 1.0)
@@ -694,6 +764,17 @@ def analyze(raw: dict[str, Any], rules: dict[str, Any], constituents: list[dict[
             log.debug("dropped irrelevant (%.2f): %s", it["relevance"], it.get("title", "")[:80])
             continue
         it.update(analyze_rules(it, rules, matcher))
+        # Neither Saudi nor macro/US finance (generic tech/opinion pieces from
+        # Saudi outlets): penalise relevance so weak items fall below the gate.
+        if it["market"] == "other" and not it["tickers"]:
+            strong = any(int(r.get("cf", 1)) >= 2 for r in rules.get("rules", []) if r.get("id") in it["rules"])
+            if not strong:
+                it["relevance"] = round(it["relevance"] * 0.4, 2)
+                it["relevance_penalized"] = True
+                if it["relevance"] < min_relevance:
+                    dropped_relevance += 1
+                    log.debug("dropped off-topic 'other' (%.2f): %s", it["relevance"], it.get("title", "")[:80])
+                    continue
         enriched.append(it)
 
     llm_used = 0

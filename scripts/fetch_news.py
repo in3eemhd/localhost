@@ -19,7 +19,8 @@ Output schema (data/news_raw.json):
   "items": [
     {"title", "link", "source", "published_utc", "published_riyadh",
      "precision": "second"|"minute"|"day", "summary", "fetched_at_utc",
-     "lang": "ar"|"en", "priority": int, "relevance": 0..1}
+     "lang": "ar"|"en", "priority": int, "relevance": 0..1, "raw_published": str|null,
+     "time_adjusted"?: "riyadh_local"|"clamped"}
   ],
   "dropped": int, "stats": {raw, deduped, kept, dropped_irrelevant, dropped_old_or_undated, dropped_cap, duplicates}
   ]
@@ -228,6 +229,7 @@ FINANCE_TERMS = [
     "دولار", "مليار", "مليون", "عقد", "ترسيه", "استحواذ", "نتائج", "ايرادات", "بتروكيماويات", "تمويل",
     "قرض", "تصنيف", "الناتج المحلي", "صادرات", "عمله", "ذهب", "ارامكو", "هيئه السوق", "ساما", "حقوق اولويه",
     "راس المال", "مساهمين", "طرح", "غاز", "مصفاه", "مشتقات", "اسمنت", "تأمين", "تامين", "عقار", "عقاري",
+    "سابك", "معادن", "الراجحي", "اس تي سي", "الصادرات", "واردات", "ميزانيه", "عجز", "فائض", "تجاره", "تجاري",
     # English
     "stock", "stocks", "shares", "share price", "market", "markets", "index", "tadawul", "tasi", "earnings",
     "profit", "profits", "revenue", "revenues", "bank", "banks", "oil", "crude", "barrel", "barrels", "opec",
@@ -236,6 +238,7 @@ FINANCE_TERMS = [
     "billion", "million", "contract", "acquisition", "merger", "listing", "exchange", "aramco", "sabic", "pif",
     "treasury", "yields", "tariff", "tariffs", "central bank", "sama", "fomc", "cpi", "exports", "refinery",
     "petrochemical", "petrochemicals", "lng", "cement", "insurer", "insurance", "real estate", "reit",
+    "wall street", "wall st", "nasdaq", "s&p", "s&p 500", "dow jones", "وول ستريت", "ناسداك", "داو جونز",
     "brent", "برنت", "fed",  # ambiguous: count only with context (AMBIGUOUS_CONTEXT)
 ]
 OFFTOPIC_TERMS = [
@@ -256,12 +259,14 @@ AMBIGUOUS_CONTEXT = {
     "elm": ["stock", "shares", "share", "company", "7203", "tadawul", "digital", "tech"],
 }
 RELEVANCE_MIN = 0.35
+FUTURE_TOLERANCE = timedelta(minutes=5)  # beyond this a publish time is treated as mislabeled
 
 
 def _term_re(term: str) -> re.Pattern:
     t = re.escape(norm_text(term))
-    if re.search(r"[\u0600-\u06FF]", term):  # Arabic: allow ال / و / ب / ل prefixes
-        return re.compile(r"(?<![\w])(?:و|ب|ل|ال|وال|بال|لل)?" + t + r"(?![\w])")
+    if re.search(r"[\u0600-\u06FF]", term):  # Arabic: allow clitic prefixes and pronoun/plural suffixes
+        return re.compile(r"(?<![\w])(?:و|ب|ل|ك|ف|ال|وال|بال|فال|لل)?" + t
+                          + r"(?:ها|ه|هم|هن|هما|نا|كم|ك|ي|ات|ان|ين|ون|تها|ته|تهم|تنا|تي)?(?![\w])")
     return re.compile(r"(?<![\w])" + t + r"(?![\w])")
 
 
@@ -649,6 +654,21 @@ def fetch_bytes(url: str, timeout: float, retries: int = 1) -> bytes:
     return fetch_feed(url, timeout, retries)[0]
 
 
+def adjust_future_time(dt: datetime, now: datetime, precision: str) -> tuple[datetime, str, str | None]:
+    """Correct publish times that are ahead of `now` by more than FUTURE_TOLERANCE.
+
+    Returns (dt, precision, note). note is None (untouched), "riyadh_local"
+    (source labelled a Riyadh-local time as UTC: shifted back 3h) or "clamped"
+    (still in the future: clamped to `now`, precision downgraded to "minute").
+    """
+    if dt <= now + FUTURE_TOLERANCE:
+        return dt, precision, None
+    shifted = dt - timedelta(hours=3)
+    if shifted <= now + FUTURE_TOLERANCE:
+        return shifted, precision, "riyadh_local"
+    return now, ("minute" if precision == "second" else precision), "clamped"
+
+
 def build_items(entries: Iterable[dict[str, Any]], feed: dict[str, Any], now: datetime,
                 window_hours: float, min_relevance: float = RELEVANCE_MIN) -> tuple[list[dict[str, Any]], int, int]:
     """Returns (items, dropped_by_date, dropped_by_relevance)."""
@@ -664,8 +684,13 @@ def build_items(entries: Iterable[dict[str, Any]], feed: dict[str, Any], now: da
         if dt < cutoff:
             dropped += 1
             continue
-        if dt > now + timedelta(hours=6):  # clock-skewed feed; clamp to now
-            dt = now
+        # Future timestamps: some feeds label Riyadh-local times as UTC/GMT.
+        # First assume the source meant Riyadh local (UTC+3); if that is still
+        # in the future, clamp to fetch time and downgrade precision.
+        dt, precision, time_adjusted = adjust_future_time(dt, now, precision)
+        if time_adjusted:
+            log.debug("[%s] future time %s -> %s (%s): %s", feed["name"], e.get("date_raw"), fmt_utc(dt),
+                      time_adjusted, e["title"][:60])
         link = e.get("link") or ""
         if "news.google.com" in link:
             link = resolve_google_news_link(link)
@@ -675,7 +700,7 @@ def build_items(entries: Iterable[dict[str, Any]], feed: dict[str, Any], now: da
             irrelevant += 1
             log.debug("[%s] irrelevant (%.2f): %s", feed["name"], rel, e["title"][:80])
             continue
-        items.append({
+        item = {
             "title": e["title"],
             "link": link,
             "source": e.get("source") or feed["name"],
@@ -687,7 +712,11 @@ def build_items(entries: Iterable[dict[str, Any]], feed: dict[str, Any], now: da
             "lang": detect_lang(text_for_lang),
             "priority": int(feed.get("priority", 3)),
             "relevance": rel,
-        })
+            "raw_published": e.get("date_raw"),
+        }
+        if time_adjusted:
+            item["time_adjusted"] = time_adjusted
+        items.append(item)
     return items, dropped, irrelevant
 
 
