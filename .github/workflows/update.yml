@@ -1,0 +1,99 @@
+name: Update market data and deploy
+
+on:
+  schedule:
+    # Tadawul session Sun–Thu 10:00–15:00 Riyadh (07:00–12:00 UTC): every 15 min
+    - cron: "*/15 7-12 * * 0-4"
+    # Outside the session: every 2 hours for news and closing figures
+    - cron: "0 */2 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main, master, claude/brain-delegation-model-apyiiq]
+    paths: ["site/**", "scripts/**", ".github/workflows/update.yml"]
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Fetch market data
+        run: python scripts/fetch_market.py --out data/market.json
+
+      - name: Fetch news
+        run: python scripts/fetch_news.py --out data/news_raw.json
+
+      - name: Analyze news
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/analyze_news.py --in data/news_raw.json --out data/news.json --market data/market.json
+
+      - name: Show summary
+        run: |
+          python - <<'EOF'
+          import json
+          m=json.load(open("data/market.json")); n=json.load(open("data/news.json"))
+          print("generated:", m.get("generated_at_utc"))
+          for i in m.get("indices",[]): print("index", i.get("code"), i.get("value"), i.get("change_pct"), i.get("as_of_utc"), i.get("source"))
+          print("stocks with price:", sum(1 for s in m.get("stocks",[]) if s.get("price") is not None), "/", len(m.get("stocks",[])))
+          print("market errors:", len(m.get("errors",[])))
+          print("news items:", len(n.get("items",[])))
+          EOF
+
+      - name: Commit data
+        id: commit
+        run: |
+          git config user.name "marsad-bot"
+          git config user.email "marsad-bot@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "data: refresh $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
