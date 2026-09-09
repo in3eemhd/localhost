@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-"""Fetch RSS/Atom news feeds for the Saudi-market dashboard (Saudi-first priority).
+"""Fetch RSS/Atom news feeds for the Saudi + US market dashboard (Saudi-first priority).
 
 Usage:
-    python scripts/fetch_news.py --out data/news_raw.json [--hours 48] [--max 60]
-                                 [--feeds feeds.json] [--timeout 15]
+    python scripts/fetch_news.py --out data/news_raw.json [--hours 168] [--max 400]
+                                 [--feeds feeds.json] [--timeout 15] [--us-reserve 120]
+
+Feeds carry priority 1 (Saudi), 2 (Gulf) or 3 (global macro / US). US feeds are
+tagged market_hint="us" (copied onto their items) so the analyzer can classify
+generic English market headlines from CNBC/MarketWatch/... as US news.
 
 Only stdlib + `requests`. Every feed failure is logged and skipped; the script
 exits 0 if at least one feed was parsed successfully, 1 otherwise. The output
@@ -13,14 +17,14 @@ have a well-formed input.
 Output schema (data/news_raw.json):
 {
   "generated_at_utc": "YYYY-MM-DDTHH:MM:SSZ",
-  "window_hours": 48,
+  "window_hours": 168,
   "feeds": [{"name", "url", "priority", "ok", "count", "kept", "error",
              "effective_url"?, "notes"?}],   # notes: 403 retry / autodiscovery trail
   "items": [
     {"title", "link", "source", "published_utc", "published_riyadh",
      "precision": "second"|"minute"|"day", "summary", "fetched_at_utc",
      "lang": "ar"|"en", "priority": int, "relevance": 0..1, "raw_published": str|null,
-     "time_adjusted"?: "riyadh_local"|"clamped"}
+     "market_hint"?: "us", "time_adjusted"?: "riyadh_local"|"clamped"}
   ],
   "dropped": int, "stats": {raw, deduped, kept, dropped_irrelevant, dropped_old_or_undated, dropped_cap, duplicates}
   ]
@@ -72,6 +76,11 @@ def gnews(query: str, lang: str = "ar") -> str:
     return f"https://news.google.com/rss/search?q={quote_plus(query)}&{tail}"
 
 
+def us_feed(name: str, url: str, lang: str = "en") -> dict[str, Any]:
+    """US-market feed (priority 3, tagged market_hint="us" for the analyzer)."""
+    return {"name": name, "priority": 3, "lang": lang, "url": url, "market_hint": "us"}
+
+
 DEFAULT_FEEDS: list[dict[str, Any]] = [
     # --- Google News, scoped to Saudi sources that block/omit direct RSS ---
     # (Google News worked from GitHub Actions; these guarantee Saudi coverage)
@@ -119,8 +128,30 @@ DEFAULT_FEEDS: list[dict[str, Any]] = [
     # --- Global macro --------------------------------------------------
     {"name": "Google News – Oil/OPEC/Fed", "priority": 3, "lang": "en",
      "url": gnews("(Brent OR OPEC OR \"Federal Reserve\") when:2d", "en")},
-    {"name": "CNBC – Markets", "priority": 3, "lang": "en",
-     "url": "https://www.cnbc.com/id/10000664/device/rss/rss.html"},
+    # --- US market (direct RSS first; Google News site-scoped queries as fallback) --
+    us_feed("CNBC – Top News", "https://www.cnbc.com/id/100003114/device/rss/rss.html"),
+    us_feed("CNBC – Markets", "https://www.cnbc.com/id/10000664/device/rss/rss.html"),
+    us_feed("CNBC – Earnings", "https://www.cnbc.com/id/15839135/device/rss/rss.html"),
+    us_feed("MarketWatch – Top Stories", "https://feeds.content.dowjones.io/public/rss/mw_topstories"),
+    us_feed("MarketWatch – Market Pulse", "https://feeds.content.dowjones.io/public/rss/mw_marketpulse"),
+    us_feed("Yahoo Finance", "https://finance.yahoo.com/news/rssindex"),
+    us_feed("Yahoo Finance – Headlines", "https://feeds.finance.yahoo.com/rss/2.0/headline?s=^GSPC,^IXIC,^DJI&region=US&lang=en-US"),
+    us_feed("WSJ – Markets", "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"),
+    us_feed("Barron's – Markets", "https://feeds.content.dowjones.io/public/rss/RSSBarronsMarkets"),
+    us_feed("Seeking Alpha – Market News", "https://seekingalpha.com/market_currents.xml"),
+    us_feed("Investing.com – Stock Market News", "https://www.investing.com/rss/news_25.rss"),
+    us_feed("Federal Reserve – Press Releases", "https://www.federalreserve.gov/feeds/press_all.xml"),
+    us_feed("SEC – Press Releases", "https://www.sec.gov/news/pressreleases.rss"),
+    us_feed("Google News – Reuters Business", gnews("site:reuters.com business markets when:2d", "en")),
+    us_feed("Google News – Reuters Markets", gnews("site:reuters.com markets stocks when:2d", "en")),
+    us_feed("Google News – Bloomberg Markets", gnews("site:bloomberg.com markets when:2d", "en")),
+    us_feed("Google News – CNBC", gnews("site:cnbc.com stocks OR markets OR earnings when:2d", "en")),
+    us_feed("Google News – MarketWatch", gnews("site:marketwatch.com stocks OR markets when:2d", "en")),
+    us_feed("Google News – Wall Street", gnews("\"Wall Street\" stocks when:2d", "en")),
+    us_feed("Google News – S&P Nasdaq Dow", gnews("\"S&P 500\" OR Nasdaq OR \"Dow Jones\" when:2d", "en")),
+    us_feed("Google News – Fed rates", gnews("Fed rates OR FOMC OR \"Federal Reserve\" when:2d", "en")),
+    us_feed("Google News – Earnings", gnews("\"earnings report\" OR \"quarterly results\" stock when:2d", "en")),
+    us_feed("Google News – الأسهم الأمريكية", gnews("(وول ستريت OR ناسداك OR \"داو جونز\" OR الفيدرالي) when:2d"), "ar"),
 ]
 
 NS = {
@@ -239,6 +270,8 @@ FINANCE_TERMS = [
     "treasury", "yields", "tariff", "tariffs", "central bank", "sama", "fomc", "cpi", "exports", "refinery",
     "petrochemical", "petrochemicals", "lng", "cement", "insurer", "insurance", "real estate", "reit",
     "wall street", "wall st", "nasdaq", "s&p", "s&p 500", "dow jones", "وول ستريت", "ناسداك", "داو جونز",
+    "nyse", "dow", "futures", "rally", "rallies", "sell-off", "selloff", "buyback", "guidance", "wall street",
+    "semiconductor", "chipmaker", "payrolls", "jobs report", "sec", "الأسهم الأمريكية", "الأسواق الأمريكية",
     "brent", "برنت", "fed",  # ambiguous: count only with context (AMBIGUOUS_CONTEXT)
 ]
 OFFTOPIC_TERMS = [
@@ -257,6 +290,12 @@ AMBIGUOUS_CONTEXT = {
     "kayan": ["stock", "shares", "share", "company", "2350", "tadawul", "sabic", "petrochemical"],
     "علم": ["سهم", "اسهم", "شركه", "الشركه", "7203", "تداول", "التقنيه", "رقمي"],
     "elm": ["stock", "shares", "share", "company", "7203", "tadawul", "digital", "tech"],
+    # US-market words that are common outside finance
+    "sec": ["securities", "charges", "charged", "filing", "regulator", "exchange commission", "chair", "enforcement", "fraud"],
+    "rally": ["stock", "stocks", "shares", "market", "markets", "index", "nasdaq", "s&p", "dow", "wall street", "oil", "gold", "bond", "dollar"],
+    "rallies": ["stock", "stocks", "shares", "market", "markets", "index", "nasdaq", "s&p", "dow", "wall street", "oil", "gold", "bond", "dollar"],
+    "guidance": ["earnings", "revenue", "forecast", "quarter", "stock", "shares", "profit", "outlook", "sales"],
+    "dow": ["jones", "points", "stocks", "s&p", "nasdaq", "index", "futures", "wall street"],
 }
 RELEVANCE_MIN = 0.35
 FUTURE_TOLERANCE = timedelta(minutes=5)  # beyond this a publish time is treated as mislabeled
@@ -714,6 +753,8 @@ def build_items(entries: Iterable[dict[str, Any]], feed: dict[str, Any], now: da
             "relevance": rel,
             "raw_published": e.get("date_raw"),
         }
+        if feed.get("market_hint"):
+            item["market_hint"] = str(feed["market_hint"])
         if time_adjusted:
             item["time_adjusted"] = time_adjusted
         items.append(item)
@@ -742,12 +783,19 @@ def dedupe(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return out
 
 
-def run(feeds: list[dict[str, Any]], window_hours: float = 48, max_items: int = 60,
+DEFAULT_WINDOW_HOURS = 168  # 7-day rolling archive downstream
+DEFAULT_MAX_ITEMS = 400
+US_RESERVE = 120  # slots reserved for market_hint=="us" feeds when the cap binds
+
+
+def run(feeds: list[dict[str, Any]], window_hours: float = DEFAULT_WINDOW_HOURS, max_items: int = DEFAULT_MAX_ITEMS,
         timeout: float = 15, now: datetime | None = None, retries: int = 1,
-        budget: float = 300) -> dict[str, Any]:
+        budget: float = 300, us_reserve: int = US_RESERVE) -> dict[str, Any]:
     """Fetch every feed (Saudi-priority first). `budget` is a wall-clock cap in
     seconds after which remaining feeds are skipped (logged) so a broad outage
-    cannot stall the CI job."""
+    cannot stall the CI job. When the cap binds, up to `us_reserve` slots are
+    kept for US-market feeds (market_hint=="us") so Saudi feeds cannot crowd
+    them out entirely."""
     now = now or datetime.now(timezone.utc)
     feeds = sorted(feeds, key=lambda f: int(f.get("priority", 3)))
     all_items: list[dict[str, Any]] = []
@@ -793,8 +841,8 @@ def run(feeds: list[dict[str, Any]], window_hours: float = 48, max_items: int = 
     # Cap with a Saudi-first reservation: priority-1 feeds fill the cap before
     # regional/global ones; the surviving set is then ordered newest first.
     deduped.sort(key=lambda i: (i["priority"], -_ts(i["published_utc"])))
-    dropped_cap = max(0, len(deduped) - max_items)
-    final = deduped[:max_items]
+    final = apply_cap(deduped, max_items, us_reserve)
+    dropped_cap = len(deduped) - len(final)
     final.sort(key=lambda i: i["published_utc"], reverse=True)
     log.info("feeds ok=%d/%d  items raw=%d deduped=%d final=%d  dropped: irrelevant=%d old/undated=%d cap=%d",
              ok_count, len(feeds), len(all_items), len(deduped), len(final), dropped_relevance, dropped_date, dropped_cap)
@@ -810,6 +858,22 @@ def run(feeds: list[dict[str, Any]], window_hours: float = 48, max_items: int = 
         "feeds": report,
         "items": final,
     }
+
+
+def apply_cap(ordered: list[dict[str, Any]], max_items: int, us_reserve: int = US_RESERVE) -> list[dict[str, Any]]:
+    """Cap `ordered` (already priority-then-newest sorted) at `max_items`,
+    reserving up to `us_reserve` slots for market_hint=="us" items. Saudi/regional
+    items fill the remaining slots first; the returned list keeps input order."""
+    if len(ordered) <= max_items:
+        return list(ordered)
+    us = [i for i in ordered if i.get("market_hint") == "us"]
+    rest = [i for i in ordered if i.get("market_hint") != "us"]
+    us_slots = min(len(us), max(0, us_reserve), max_items)
+    rest_slots = max_items - us_slots
+    keep = rest[:rest_slots]
+    us_slots = max_items - len(keep)  # give back any unused Saudi slots
+    keep_ids = {id(i) for i in keep + us[:us_slots]}
+    return [i for i in ordered if id(i) in keep_ids]
 
 
 def _ts(published_utc: str) -> float:
@@ -835,8 +899,11 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--out", required=True, help="output JSON path")
     ap.add_argument("--feeds", help="JSON file with a list of {name,url,priority} (default: built-in list)")
-    ap.add_argument("--hours", type=float, default=48, help="keep items newer than N hours (48)")
-    ap.add_argument("--max", type=int, default=60, help="cap on items (60)")
+    ap.add_argument("--hours", type=float, default=DEFAULT_WINDOW_HOURS,
+                    help=f"keep items newer than N hours ({DEFAULT_WINDOW_HOURS} = 7 days, matches the archive)")
+    ap.add_argument("--max", type=int, default=DEFAULT_MAX_ITEMS, help=f"cap on items ({DEFAULT_MAX_ITEMS})")
+    ap.add_argument("--us-reserve", type=int, default=US_RESERVE,
+                    help=f"slots reserved for US-market feeds when the cap binds ({US_RESERVE})")
     ap.add_argument("--timeout", type=float, default=15, help="per-request timeout seconds")
     ap.add_argument("--retries", type=int, default=1, help="extra attempts per feed on failure (1)")
     ap.add_argument("--budget", type=float, default=300, help="total seconds before remaining feeds are skipped (300)")
@@ -848,7 +915,7 @@ def main(argv: list[str] | None = None) -> int:
 
     feeds = load_feeds(args.feeds)
     result = run(feeds, window_hours=args.hours, max_items=args.max, timeout=args.timeout,
-                 retries=args.retries, budget=args.budget)
+                 retries=args.retries, budget=args.budget, us_reserve=args.us_reserve)
 
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
     with open(args.out, "w", encoding="utf-8") as fh:
