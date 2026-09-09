@@ -1,6 +1,6 @@
 {
- "generated_at_utc": "2026-09-09T14:15:18Z",
- "source_generated_at_utc": "2026-09-09T14:14:31Z",
+ "generated_at_utc": "2026-09-09T14:17:54Z",
+ "source_generated_at_utc": "2026-09-09T14:17:36Z",
  "analysis_mode": "rules",
  "model": null,
  "sectors": {
@@ -21,6 +21,145 @@
  },
  "items": [
   {
+   "title": "‏ماذا لو فازت الصين بسباق الذكاء الاصطناعي؟",
+   "link": "https://www.argaam.com/ar/article/articledetail/id/1935306",
+   "source": "أرقام",
+   "published_utc": "2026-09-09T17:16:00Z",
+   "published_riyadh": "2026-09-09 20:16:00",
+   "precision": "second",
+   "summary": "تخيّل أن دولة تنفق مئات المليارات من الدولارات لتطوير التكنولوجيا الأذكى في العالم، ثم تخسر السباق أمام من قدمت ابتكارًا أقل ذكاءً لكنه أقل تكلفة، قد تبدو الفكرة كأنها مفارقة، لكنها ربما تكون القاعدة التي ستحدد الفائز في أكبر سباق تكنولوجي واقتصادي في هذا العقد. في وادي السيليكون، ظل السباق لسنوات يدور حول سؤال واحد: من يملك النموذج الأكثر ذكاءً؟، بينما كانت الصين تخوض السباق بطريقة مختلفة: كيف تجعل الذكاء الاصطناعي متاحًا، رخيصًا، وقابلًا للانتشار في كل مكان؟ معركة لن تحسم بالمليارات كان من المفترض أن يمنح المال الولايات المتحدة أفضلية يصعب اللحاق بها، فخلال 2025، تجاوز الاستثمار الخاص الأمري",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 1,
+   "id": "4996657b6c",
+   "market": "sa",
+   "signal": "pos",
+   "tickers": [],
+   "summary_ar": "تخيّل أن دولة تنفق مئات المليارات من الدولارات لتطوير التكنولوجيا الأذكى في العالم، ثم تخسر السباق أمام من قدمت ابتكارًا أقل ذكاءً لكنه أقل تكلفة، قد تبدو الفكرة كأنها مفارقة، لكنها ربما تكون القاعدة التي ستحدد الفائز في أكبر سباق تكنولوجي واقتصادي في هذا العقد. في وادي السيليكون، ظل السباق لسنوات يدور حول سؤال واحد: من يملك النموذج الأكثر ذكاءً؟، بينما كانت الصين تخوض السباق بطريقة مختلفة: كيف تجعل الذكاء الاصطناعي متاحًا، رخيصًا، وقابلًا للانتشار في كل مكان؟ معركة لن تحسم بالمليارات كان من المفترض أن يمنح المال الولايات المتحدة أفضلية يصعب اللحاق بها، فخلال 2025، تجاوز الاستثمار الخاص الأمري",
+   "beneficiary": {
+    "name": "التقنية",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 1,
+    "smallcaps": 0,
+    "telecom": 1,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات"
+   },
+   "cf": 1,
+   "rules": [
+    "tech_sector"
+   ],
+   "analysis": "rules"
+  },
+  {
+   "title": "‏تحذيرات من خروج تكنولوجيا الذكاء الاصطناعي عن السيطرة وتهديدها للبشرية",
+   "link": "https://www.argaam.com/ar/article/articledetail/id/1935196",
+   "source": "أرقام",
+   "published_utc": "2026-09-09T15:04:00Z",
+   "published_riyadh": "2026-09-09 18:04:00",
+   "precision": "second",
+   "summary": "قال \"إيفان هوبرينغر\"، الباحث في مجال السلامة البشرية لدى \"أنثروبيك\" إنه يقدّر بنسبة تتجاوز 10% احتمال تسبب الذكاء الاصطناعي في القضاء على جميع البشر خلال العقد المقبل. وجاء التصريح عبر حساب \"هوبرينغز\" على منصة \"إكس\" بعد ساعات من إعلان الباحث \"جاكوب كوكسون\" استقالته من \"أنثروبيك\"، موضحًا أن مختبرات الذكاء الاصطناعي تخاطر بحياة البشر من خلال التسابق نحو تطوير ذكاء فائق قادر على تحسين نفسه. وقال \"كوكسون\" إن شركتي \"أنثروبيك\" و\"أوبن إيه آي\" لا تتصرفان بمسؤولية، محذرًا من أن الأنظمة المستقبلية قد تتفوق على البشر وتكتسب نفوذًا وموارد بسرعة. وتشير فكرة \"التحسين الذاتي\" إلى قدرة أنظمة الذكاء الاصطناعي ",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 1,
+   "id": "61368be65b",
+   "market": "sa",
+   "signal": "pos",
+   "tickers": [],
+   "summary_ar": "قال \"إيفان هوبرينغر\"، الباحث في مجال السلامة البشرية لدى \"أنثروبيك\" إنه يقدّر بنسبة تتجاوز 10% احتمال تسبب الذكاء الاصطناعي في القضاء على جميع البشر خلال العقد المقبل. وجاء التصريح عبر حساب \"هوبرينغز\" على منصة \"إكس\" بعد ساعات من إعلان الباحث \"جاكوب كوكسون\" استقالته من \"أنثروبيك\"، موضحًا أن مختبرات الذكاء الاصطناعي تخاطر بحياة البشر من خلال التسابق نحو تطوير ذكاء فائق قادر على تحسين نفسه. وقال \"كوكسون\" إن شركتي \"أنثروبيك\" و\"أوبن إيه آي\" لا تتصرفان بمسؤولية، محذرًا من أن الأنظمة المستقبلية قد تتفوق على البشر وتكتسب نفوذًا وموارد بسرعة. وتشير فكرة \"التحسين الذاتي\" إلى قدرة أنظمة الذكاء الاصطناعي ",
+   "beneficiary": {
+    "name": "التقنية",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 1,
+    "smallcaps": 0,
+    "telecom": 1,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات"
+   },
+   "cf": 1,
+   "rules": [
+    "tech_sector"
+   ],
+   "analysis": "rules"
+  },
+  {
+   "title": "انتعاش نمو الصادرات الصينية مع اقتراب الفائض التجاري من 806 مليارات دولار - الاقتصادية",
+   "link": "https://news.google.com/rss/articles/CBMi5gRBVV95cUxNVWxvRkhWNXRlZmJ2QjlTdHVFWGVhNHFrLWdGbDB4d2VSOXRvaUtQMU1YZmFZcDk0RXBUQzVYXzctYU50cXduWWVBLVozV053d2dBcU9qOFN1REgxWHRROWVSSGtVbmNhNG5iMzBBdVVZVTVlMXVFNEJqcTVtVFd4S2tBNTFVOFNQbVAzRzBSR1k4S0pwTkkxTDZZTVpfeEE1VlBTbW1mVXp3RWJlRFRROHlOSDVwLTNDT3JpR2JEZDZYSnRqbGxPT2pVQUZHelBFVTkyU0NOZjAzeG9mOVIxRnFaMEJobWltb25IX3FuNlQ4SWd0MjFwYTk3QUVRRXk2ekpzQVF1dWFtYWVHZ05MVnZqa1hUdlBORUgwcWFZUjRRd0dDdnhaS1NMcWlqd0JacXhHSUoza09EeFRERFIwVlFOUGNwczhIQ3MtTXNxSk8yQjAxUElBSU85NjlwcXBJbWExUTd4cEtEYUZRRDcxRmlBcTdQSmtVeE9paXV1M2pjTGpVTFZGcjhpS2plNXI5bTNLRFVfRmdWLXMtclA1ZnpYdVJ5YU5uRGRTUXRRNml3QzdvcmNRN1BmN3BVWS1fN0F6U05vNHY2R09mSzczSzlSbmN1WTJCUVdLVmNtRmJMcFpxRldHX2ZKRDlkVVVxNkhqVDhlaDdOOU5ZNkxvT2RERXlxZFp0OWtiS2hhb0w5Y1JMa2lUOTFoWGY3S2FmcGxQRDB6ZEcwMk5SeHYwMS0xMFdhdHNaUUZTUThFY3JvcEw4aUNoN2EwLWRfT1BURmJrTmt0RjdJYjRaLUlIaU9RVXVHZw?oc=5",
+   "source": "الاقتصادية (عبر Google News – الاقتصادية)",
+   "published_utc": "2026-09-09T14:14:18Z",
+   "published_riyadh": "2026-09-09 17:14:18",
+   "precision": "second",
+   "summary": "انتعاش نمو الصادرات الصينية مع اقتراب الفائض التجاري من 806 مليارات دولار الاقتصادية",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 1,
+   "id": "c06cd740c5",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "انتعاش نمو الصادرات الصينية مع اقتراب الفائض التجاري من 806 مليارات دولار الاقتصادية",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules"
+  },
+  {
    "title": "Brent crude sails past $100 as Middle East war intensifies - Al-Monitor",
    "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQWFJUMHA4ejA3RndlYVJJLTUtWTFJbEhVdlZZNHdlcFV4SDJHaHBqZjdCQTF2czJReDVyOUxEQ1Y2WWgzbjNIeTYwcFN4c1hFTXRoNFVOc1ljZnpST2RRVU9NZkxESEJORGZlczVRZTBiMVpSUFhOYVl6dXQzY05sVUU3cEN2Z0hKaHZtYXBvMXRUQjRVZG9RcE9MWTBLQ2lG?oc=5",
    "source": "Al-Monitor (عبر Google News – Oil/OPEC/Fed)",
@@ -28,7 +167,7 @@
    "published_riyadh": "2026-09-09 17:06:10",
    "precision": "second",
    "summary": "Brent crude sails past $100 as Middle East war intensifies Al-Monitor",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "348ac84e80",
@@ -76,7 +215,7 @@
    "published_riyadh": "2026-09-09 17:05:41",
    "precision": "second",
    "summary": "Brent Crude Breaks $100 Threshold as US, Iran Trade Accusations Over Attacks lavocedinewyork.com",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "ac76f4954c",
@@ -124,7 +263,7 @@
    "published_riyadh": "2026-09-09 17:04:35",
    "precision": "second",
    "summary": "Brent Oil Hits $100 as US-Iran War Shows Little Sign of Abating Bloomberg.com",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "4da0827ee0",
@@ -164,6 +303,51 @@
    "analysis": "rules"
   },
   {
+   "title": "القصيبي للخدمات تعتزم توسيع أعمالها في السوق السعودية قبل الانتشار خارجيا - الاقتصادية",
+   "link": "https://news.google.com/rss/articles/CBMigAVBVV95cUxNazNvWFRDNnpDRGQyemt1RjI1UFM1UVpEeHk1MkZXNi1wMm9SenJmNlQzN05LUW9FVlJsR2JGcVdkWk9PVEhrZ213aHpEMkJpTmRySThaUnN4ZFpxbTd0bW1zVG9ET0dCdURsczlKWG9LUEhoVHNMcTVyUXY3ZmpQMHFhMTlDNllIOWRzUFNtdjJHQU1xa2JzcFFrTmxNSU1QMXFka3VleXpwODA3RnpDdUk5WjNjeXJESm9YTHVoWjBickx0UEpvbFRpeXhRNWg3TkNtY19DN3VuU2Q5Z3BpeFVQU3Vub0t3d1BTeW5KaTMwM2RfWl9xLUt2WDlwY2w0T1NVb3BVZWJJRjlUa2gybWpjTmVISE42aDlqMHpxYWpMRnZubWUweFdlSTI3emdBZW5PWTVFaWhPbm11cHVpcDF4WlIyMUpXR01wcGpBOXljeU1CeDhvMVVJdDFuSEJLTlprc3k4WkVUMVpZUUtQVm5MalJUaXpLS3A1Q3dYQ3dkYk81UlowWVJrTFB4YXdoX1preE9vUENmbWxkZ0ZPNTBVNlhoWVluYTRhdkdFMWlOTWFLS2xLODc5X3k3bmtfeGNlTDlRWlZJVEdiTExJRkZtZDVxTDFPT3hrVnJCdk8wZlIwMlljUnk0U0l4WEJBbkl0YlMyR1RxTnlzNko4RWJVQVNtMWkzcnRXVGVueTNic1o2S2tRTmRpbEt3QXd6YUF4OWxvX25LS1g3ZUdXOXRibkR4UmlBaVNrVTZJbnp4YndHRGQ5dXR5U0pFa3VONld2T3h3MTNxdUtiREtVU3pENWtVVDFHR3hWZXF0cUg5OEJvbFY5b1VISmNCdzkw?oc=5",
+   "source": "الاقتصادية (عبر Google News – الاقتصادية)",
+   "published_utc": "2026-09-09T14:03:55Z",
+   "published_riyadh": "2026-09-09 17:03:55",
+   "precision": "second",
+   "summary": "القصيبي للخدمات تعتزم توسيع أعمالها في السوق السعودية قبل الانتشار خارجيا الاقتصادية",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 1,
+   "id": "b3c8a2c73c",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "القصيبي للخدمات تعتزم توسيع أعمالها في السوق السعودية قبل الانتشار خارجيا الاقتصادية",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules"
+  },
+  {
    "title": "Watch Brent Hits $100, US Slaps Bans, New Tariffs on Canada, Trump to Speak at RNC - Bloomberg.com",
    "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQSzlsYWFJU0hFOVlYTWVMVzBBNWdkRWFwU0k4dk5OR3YyRERQdi10ZnR3SG5LZnA3c0NJLXA3dDZRRFVDVlcwODNXNzlkU2oxdGVKMnoyZkN3cUlHSUNjUExPZHpYT01UWXdrak1MNW9ocnIxQ2FXUW03QW5mR2pxZjFIcWpWMHky?oc=5",
    "source": "Bloomberg.com (عبر Google News – Oil/OPEC/Fed)",
@@ -171,7 +355,7 @@
    "published_riyadh": "2026-09-09 17:03:45",
    "precision": "second",
    "summary": "Watch Brent Hits $100, US Slaps Bans, New Tariffs on Canada, Trump to Speak at RNC Bloomberg.com",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "2a674a19d1",
@@ -212,6 +396,51 @@
    "analysis": "rules"
   },
   {
+   "title": "بقيمة مليار دولار.. مارلان سبيس الإماراتية تقود تحالف لتطوير بنية تحتية للذكاء الاصطناعي بالفضاء - CNBC عربية",
+   "link": "https://news.google.com/rss/articles/CBMi9gVBVV95cUxPWU5pZ2NXaFRPM1dWN01pdGhFU25vTjdJSjdTeDN3YjhMcnV4aXd1VTJVUW9MR1dGQlFtQXM3TE5XdHVKM1RwaE5jUEZyU3l2VGtSbEFXcHFRMXhjaXp1Q1VhRXlmNWo2MlBYQ2JVaVdGQjN6WEIyTm5wUFBmWmMtZkZkeEVfV0FNSXVqTEpJQkpmT1RHYTVvUWJTMFlTTno2eGRIUXpfQ25iTEh4a3RRQTRWa1JaeVFWUm0wcGlNSlJEdzV1VXYtX0g5VzVoa1pvY3NSdGRfN1VHem4tNjRDaHhnRlpkUHdrYndtOGNCRVlQOHVSalZpMjdlcTV6cm1Ma1NUZElTTXN4TEdaTGg3RnpnaUlMdXA0SzRySVY4V2RXRkJMSkZyX3lkZVdGLURVcllGSzV5NUxqbDd3c1hYYjVEcEU2U0JPc0RKZ1l0ZUVZR3pGSFFaN01WQUJsTTc4MjZSZS1NbkxYY2NpLUVNSkxoSDNFS1prYTR3R0JpSERFZFF4R1FFb2tPdGhwVmFHV1BsMnVrTnk3OXdzdGlqNEJaTVdxQ21uME8xcTY0NXdKWDVJX2h1LWdGU0dxMVBqZjhOTXhjV192QTJUSmozTUw0czRfOGJQUUZNQnhUeWJscGc3b0ZjbVFSUDQ0UGpwN0VyZ1owQl9JcFViUnd4bVFWc1BJSHhRMWdJYkFyS0hlTGdTc0lEMEd4dkJFM3NQQUo5NEFBYXhCcW5DQm5qNkF3bTlwZ3RHeERVV00yNzN6LWlucFFlRkdmQVlDeUJVVUk0VmlyTUpxbWpvaEVvTUwxaVFQX21KaXl2WXJVOVhiOEJWUkVoUEd6eXdLNXp5TkhDcFJLd2s1N3pFQllQa2pCdno3NG44d2pnVGIwWktPQWdFNUZLeDQ1b29zcTRnOU5ZalVYelo2SU50UVpyNGN4TlJJOVlUMVhqR0tTbGtVOVRFRjFyTmVrRmN2a0JIQXVuT0FVVVdnR1N6ek9kWllVMV9HQQ?oc=5",
+   "source": "CNBC عربية (عبر Google News – CNBC عربية)",
+   "published_utc": "2026-09-09T14:03:42Z",
+   "published_riyadh": "2026-09-09 17:03:42",
+   "precision": "second",
+   "summary": "بقيمة مليار دولار.. مارلان سبيس الإماراتية تقود تحالف لتطوير بنية تحتية للذكاء الاصطناعي بالفضاء CNBC عربية",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 2,
+   "id": "02914c5f6e",
+   "market": "other",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "بقيمة مليار دولار.. مارلان سبيس الإماراتية تقود تحالف لتطوير بنية تحتية للذكاء الاصطناعي بالفضاء CNBC عربية",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules"
+  },
+  {
    "title": "Brent Venables hopes elite nonconference games won’t go away - Yahoo Sports",
    "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNYWhlQ1BzQnl5SWxaT04zZDc0VFM3bzlQOHBkOFVna3ZNNEIzNTgtQnR4LTlaMVQ2SkE2aWV4NFI5dkpSWTlTc2VvQ3JSYzF5WEFQNzk0WDNsaFdQTVEtTlZ2ZkJBc3I0RE5YVURFVnVzakpZNk1NX0Ntc0g3ZG8yLVhDS1picXdUWTRhQTlNR2o1STQ?oc=5",
    "source": "Yahoo Sports (عبر Google News – Oil/OPEC/Fed)",
@@ -219,7 +448,7 @@
    "published_riyadh": "2026-09-09 17:01:21",
    "precision": "second",
    "summary": "Brent Venables hopes elite nonconference games won’t go away Yahoo Sports",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "f650a7bff4",
@@ -267,7 +496,7 @@
    "published_riyadh": "2026-09-09 17:01:00",
    "precision": "second",
    "summary": "Brent Venables hopes elite nonconference games won’t go away Sooners Wire",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "4d7675a99f",
@@ -307,53 +536,6 @@
    "analysis": "rules"
   },
   {
-   "title": "مؤشر سوق الأسهم السعودية يغلق منخفضًا عند مستوى 11015.72 نقطة - جريدة المدينة - جريدة المدينة",
-   "link": "https://news.google.com/rss/articles/CBMi8wNBVV95cUxNR0d3Qk02YTJvT05oMUpuN2czdzlwUmVGNXotc1lqWE84TEJwaGgtMml6eHJzdWJDUjZqajhXZlhXMm9obm1DWGxVLWx3SDU3aFltN0NIbnF4emJQVTR3UUR0cGZud3pJVWdyWDV6S0JsYzlqWlNVSmRMNm1Kd1E4YmU0YTVzXy1aanExXzlSeVB1by1iT1ZJTmpLZ2VQRElUY0FnMHJKTXYwVXNhOEZnSlBnbDlRbG1KN2V5SDJaV2p5ckZhZU0tbHNya3k0dHNWNWlsMWZfUEJNVE9hN0hBLWRXNFlnd3NtOVNvY3NfZ1dfM0g4cTZfT1dhV2xjX3o5N0VYbXNITC1RN1VLbTlhS1NMbmpqWlNSSWp2UjFSbFJvNUNuQlZaMUVOaVc0SlA4VUpDTFNodmMyOG8wc19MeHVWWWxxVW5CTXNzMVIyNERDSTB1NTVOX3JPNTQxTXhjdnNBVWp6NUtfZVVSSFZOVm55S0RzMk5wWFlMM0Y4Y0NkejVrUThmaC1IcjhmTDJLY1A1VUIxUmRPeEZzTmx6VWJtODVpUDlsNUcxYTI5T19ZUnFKR01rZzYtV2FqcFZQVXRkN2g0SjNkeG1qVTg4UHl1bHZ0ckdvSUpMSnNMQllWNS0zTlZBRW8xMDZHS2JYbDRN0gFXQVVfeXFMT2xRdkxhX3RtYXFMUU1sdm5halY3SHdkMHR3aUV6SjY4UmlrNlg3QkNTcWVua3V5MEZGbnJmTEpIb0RibUY0cGp6T09taEo2OFRCdURVNzVn?oc=5",
-   "source": "جريدة المدينة (عبر Google News – السوق السعودية)",
-   "published_utc": "2026-09-09T14:00:01Z",
-   "published_riyadh": "2026-09-09 17:00:01",
-   "precision": "second",
-   "summary": "مؤشر سوق الأسهم السعودية يغلق منخفضًا عند مستوى 11015.72 نقطة - جريدة المدينة جريدة المدينة",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "ar",
-   "priority": 1,
-   "id": "caf19e4408",
-   "market": "sa",
-   "signal": "neg",
-   "tickers": [],
-   "summary_ar": "مؤشر سوق الأسهم السعودية يغلق منخفضًا عند مستوى 11015.72 نقطة - جريدة المدينة جريدة المدينة",
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "الشركات الصغيرة",
-    "why": "أكبر أثر سلبي بحسب القواعد"
-   },
-   "impact": {
-    "energy": -1,
-    "banks": -1,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": -2,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "إغلاق سلبي للمؤشر يعكس ضغط بيع وتراجع شهية المخاطرة"
-   },
-   "cf": 2,
-   "rules": [
-    "market_down"
-   ],
-   "analysis": "rules"
-  },
-  {
    "title": "مؤشر الأسهم السعودية يتراجع 20 نقطة.. و«الراجحي» و«الأهلي» و«أرامكو» تتصدر نشاط التداول - صحيفة صراحة الالكترونية",
    "link": "https://news.google.com/rss/articles/CBMitgJBVV95cUxQd3htZWJWVEpscE1TZVlYVkxEOFllZmlvcE83WFlrNlNRZ25pWlR6X2JFLVBscFJEb1Btck1NQTBZeEFXN1o0ZzJZWmNGR3pZM1BGbmowYlc0WklHRTV2M3NRc0xBVnhxU1JXeFJudXQxNWFNVUNOdjYtRmU4dG1ISUlKclQxT3dQejRqUG5ndFhiYU1Na28yWHozN014NUZMWkxseFJDVG1DRlV2eTc0ZHRmand0bC1hZmdVbk43VFFEaTJscndOT1BjMDlXeHhhUGpNdW5saDJvZDZpSDczX2t1ZGc3dnF0VW9nQzJJSUk5VDlnWS1CbTh4c0dRS0RCNENLYk1XdGZkYjJlY240azRqQ0dkNDdYYldub04tSmMwZEtpQW8xN3I4WDVveXk2ZmNaRXFB?oc=5",
    "source": "صحيفة صراحة الالكترونية (عبر Google News – تداول/تاسي)",
@@ -361,7 +543,7 @@
    "published_riyadh": "2026-09-09 17:00:00",
    "precision": "second",
    "summary": "مؤشر الأسهم السعودية يتراجع 20 نقطة.. و«الراجحي» و«الأهلي» و«أرامكو» تتصدر نشاط التداول صحيفة صراحة الالكترونية",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "ar",
    "priority": 1,
    "id": "7fdd3414d7",
@@ -406,7 +588,7 @@
    "published_riyadh": "2026-09-09 17:00:00",
    "precision": "second",
    "summary": "Neighborly® Appoints Brent Korb as Chief Financial Officer PR Newswire",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "1c6265ad31",
@@ -446,6 +628,53 @@
    "analysis": "rules"
   },
   {
+   "title": "السعودية تقر إنشاء وعاء لتأمين أخطار الحرب للبضائع والسفن - الاقتصادية",
+   "link": "https://news.google.com/rss/articles/CBMijgRBVV95cUxOOEsyNW1taDBjQ1pOejRFTXVFOFJBb2ZnNTJwajltVkVQbGZ6RGE4d3praWdCb1BrUllOWGZDNjFCYUJKc0dSbmJBVDd3cmJGcFpHYlJRbDJ2M2VIeWVuTDdyZFczQjhfS0drZ01GWDlHNURyeW9yUUhCZUtfS252RXg2RUtrdVozc2pndVBvS3NSUW9rYTJYWndNWlJ6ZmdwYkZrTzZwTUdOYXk2cUdtSXFjQ2wyNkRWTnA2NnZ4b2VmQmMtbktsN0pFRkVENlNpbEZndnRxeFI5SEtKQ1gyQ3c5UTNmRGxwMDZySTFPUmloQTFWcDkxWF9OR2dYMUhRd2Y2cTBqS0QwTGUwcDR0bk9QMjlfcXUxaUpkM0FBMXNwc3pIcGV1dG1DbEo2b1lfTUFkV1FiRllwVFdrUGp3U0ZFODF6dGhzZHo4U05IWjFONURTSzBJc0dyYS1NRkthYkFrMlVBT2ZTU2lQbGxtWm5DSlNLd29seWtYS2FmWHJ3QUpmb2dTbksyc25YVlAtWDZ1alNUc3VnUHUwUy1fMUg0OVcxdnZxLXZfR1RTbmdzVUZyMGJrRUkxVW51QldkbFdkOXNleWtkSE5FLW5UczQ1LXplODZyMk9SdnVOWWduWEVtYXlmN0FPLTB6SHVNNDFOX3JwWjJ5N0dNaUM0b0NSRUVEblN5QkFnekNn?oc=5",
+   "source": "الاقتصادية (عبر Google News – الاقتصادية)",
+   "published_utc": "2026-09-09T13:58:29Z",
+   "published_riyadh": "2026-09-09 16:58:29",
+   "precision": "second",
+   "summary": "السعودية تقر إنشاء وعاء لتأمين أخطار الحرب للبضائع والسفن الاقتصادية",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 1,
+   "id": "afa17a7316",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "السعودية تقر إنشاء وعاء لتأمين أخطار الحرب للبضائع والسفن الاقتصادية",
+   "beneficiary": {
+    "name": "التأمين",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 1,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "خبر يخص قطاع التأمين"
+   },
+   "cf": 1,
+   "rules": [
+    "insurance_sector"
+   ],
+   "analysis": "rules"
+  },
+  {
    "title": "Brent has soared above $100, is this just the beginning? - FXStreet",
    "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNZFdldnBNcVJNbXdQSURiNHdXbjZIMi1qcXY5M1hFb1NJUUc5VmgtMFR6c0dnR3c0X3p2T2E1amE3Qmc1cVlZMjZQeTZlSm9VSWNMa0dDbEM4d2R2SlYtVmJ0MWVtT3pCaUx2eF94Y3dPQjNiam5ibHlDODZCaDNDaG94TWFmSm4zYm5vUVlxVVFOcFdIS1V4VThGeEdsSXREdlE?oc=5",
    "source": "FXStreet (عبر Google News – Oil/OPEC/Fed)",
@@ -453,7 +682,7 @@
    "published_riyadh": "2026-09-09 16:58:08",
    "precision": "second",
    "summary": "Brent has soared above $100, is this just the beginning? FXStreet",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "067bd908e3",
@@ -500,7 +729,7 @@
    "published_riyadh": "2026-09-09 16:56:17",
    "precision": "second",
    "summary": "Brent Oil at $100 for First Time Since July moomoo.com",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "b9610d197b",
@@ -547,7 +776,7 @@
    "published_riyadh": "2026-09-09 16:55:49",
    "precision": "second",
    "summary": "Oil pushes past $100 as wave of US-Iran attacks exposes dwindling safety net Yahoo Finance",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "4c8048595a",
@@ -590,14 +819,14 @@
   {
    "title": "Brent crude oil rises above $100 a barrel as Middle East conflict intensifies - Reuters",
    "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNcV81aHB4Z3dteWpsZGxOM01KRFFXZ3hhZlBUUlJUb3Y0QXVXaWpfSXJxRGx0R2Z2LXRrb25jYWJBTUNxc3llTFNVdmRoQzkxRjlLc0czRUxKczdyYU8temtJbXJRUXNOUGpuRkdXenNZTFVLX3ZhUkFQZ191cjV3amlwZ0RocHBoUHNZYzVfZy1pSlFNNGlma0NMMFVvRFIxSXNUOTRyYnNDWU1qc0JxWmpDRHMyTmVj?oc=5",
-   "source": "Reuters (عبر Google News – Oil/OPEC/Fed)",
+   "source": "Reuters (عبر Google News – Reuters Saudi)",
    "published_utc": "2026-09-09T13:54:20Z",
    "published_riyadh": "2026-09-09 16:54:20",
    "precision": "second",
    "summary": "Brent crude oil rises above $100 a barrel as Middle East conflict intensifies Reuters",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
-   "priority": 3,
+   "priority": 1,
    "id": "b0656f7d94",
    "market": "macro",
    "signal": "mix",
@@ -643,7 +872,7 @@
    "published_riyadh": "2026-09-09 16:54:03",
    "precision": "second",
    "summary": "الأسواق الخليجية تتباين في ختام التداولات اليوم صحيفة الوئام",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "ar",
    "priority": 1,
    "id": "06648f85fa",
@@ -681,6 +910,51 @@
    "analysis": "rules"
   },
   {
+   "title": "CATCOIN مقابل USD - الشرق بلومبرغ",
+   "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPMGROZ2IxZnhmRHNJR2hYR3BNVXhpNmg4SFJEQWFYTHBEQjlZdVJBMFdYZTNvTUxGTG4tWUtwX05reEVhUkhiVGNsekRfMDRFVjlyTno2YUJRdzhKOU56VlRMUHZKNG96b3J3RDRvMVp2WVpNM3F2NGJDSjJ4WmNMQnAybXRxZDBld21CV3JQQ1A4UGUxUHBEbzBBU3hYTmpZbmc?oc=5",
+   "source": "الشرق بلومبرغ (عبر Google News – الشرق بلومبرغ)",
+   "published_utc": "2026-09-09T13:53:03Z",
+   "published_riyadh": "2026-09-09 16:53:03",
+   "precision": "second",
+   "summary": "CATCOIN مقابل USD الشرق بلومبرغ",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 2,
+   "id": "f9f03d2017",
+   "market": "other",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "CATCOIN مقابل USD الشرق بلومبرغ",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules"
+  },
+  {
    "title": "الأسهم الأمريكية تتراجع مع تداول خام برنت فوق 100 دولار للبرميل - المتداول العربي",
    "link": "https://news.google.com/rss/articles/CBMiigRBVV95cUxPcXQ0VXZBRWtLQUlnYXdfTlBjbGM5bFRmejJnQnZLQ2Qyb182clk2U0l6ZDgwZjNXcXMzUFFaUi1yOHZ1SS1IUWNtUndDMTVheWxHMDlBRzBuLVpzdU9RcW8xMWZaOWpDd0E1RWM5R1VnX1JQMmgxWGZ6Y1J2UGY3YnZaZVl2djZ4ZXNRelpBem9RTWxSeENScldXc1BRR1dndXFYV25uQ3pWTmp4aXA1SFY2MEdSang3MmlLbmJJLWYtRW9JNS12enptSjIwWnFRZWlsbFh4RzNfTjlNcTNZMXpvUVczdExnWlJzVnd3VWEtUDY2c1lOWW1odGFMaWZRWmY3V0N1SlZreWpiUXFudG1jN0ZqT3BZSHczRU5VdGJMeUNfNVhOQy1pMHhuRy1BcTVZY1NfNzFmLTg4eC1MSTQ0UHA5MmNRY0kzTmVXVmFFM0U2bXB3eTVDMTFPLU83cTU5Q3lXbm5mRG5vTUMxRnRNamZPTFhUemJKZ3FpYlFyQ0xCU2o4eWdVTklVTDByaHFhNHNoNmNzdEtMcU9qSS02cGdaMTFZOHhsYzUtLXBHZXpoYUVrZkMxRVp5Ync3azhOUkFRdE1tajc4S1p4MVJ6aVExSlE4VkpkNjY2WjFzX1QwUm9TX05leVFxN2tkUENWMmUwb1ZUM1dsTkUweEt0T0daVVpXb0E?oc=5",
    "source": "المتداول العربي (عبر Google News – السوق السعودية)",
@@ -688,7 +962,7 @@
    "published_riyadh": "2026-09-09 16:52:36",
    "precision": "second",
    "summary": "الأسهم الأمريكية تتراجع مع تداول خام برنت فوق 100 دولار للبرميل المتداول العربي",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "ar",
    "priority": 1,
    "id": "25a0c3aae3",
@@ -728,6 +1002,53 @@
    "analysis": "rules"
   },
   {
+   "title": "Closing Bell: Saudi Arabia’s TASI slips 0.19% to close at 11,015 - Arab News",
+   "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNRUdjMmxHajRQR2REb2tqR3hnTFRlQVVNcXVCNnlqWkxnVnlRM2puTXFQYnJsY0NLcmpLMDViWVZRZ3FQZjBEU1hWMm43TVZYVEwyaEJ1ZXc1ZXgtR1F2a0s2dFJONjRTXzAwU1pwZXVQeGp5YS1fd1BXM2sycU0yTktnNU4yNGlvQnR0TS1qVmFLam13WF85djFiU1dPVG42UWdj?oc=5",
+   "source": "Arab News (عبر Google News – Arab News Business)",
+   "published_utc": "2026-09-09T13:52:32Z",
+   "published_riyadh": "2026-09-09 16:52:32",
+   "precision": "second",
+   "summary": "Closing Bell: Saudi Arabia’s TASI slips 0.19% to close at 11,015 Arab News",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "en",
+   "priority": 1,
+   "id": "f32b4a5ba4",
+   "market": "sa",
+   "signal": "neg",
+   "tickers": [],
+   "summary_ar": "Closing Bell: Saudi Arabia’s TASI slips 0.19% to close at 11,015 Arab News",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "الشركات الصغيرة",
+    "why": "أكبر أثر سلبي بحسب القواعد"
+   },
+   "impact": {
+    "energy": -1,
+    "banks": -1,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": -2,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "إغلاق سلبي للمؤشر يعكس ضغط بيع وتراجع شهية المخاطرة"
+   },
+   "cf": 2,
+   "rules": [
+    "market_down"
+   ],
+   "analysis": "rules"
+  },
+  {
    "title": "Brent Key blasts his Georgia Tech team ahead of Tennessee matchup - Rocky Top Talk",
    "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNZ0FIbFpCb1ItVEtVcXlwYmt4WXU4WWxXM2p3bEotbkp1cmJ6bk9sY2s3Wjcwa0Z3cWpvcW43MVM0cEhKam1ROVVBSXo0LU04LVNPUHAwZUFYREl2eFdJemxOVlczdU96a2NzT0steWRZeGNNWlJqVV8zV1lGa2pvMXZkRGpDWV9pWGVnVVNnMEVwUHlPRHduQnoxMGtXcTc1VVlBSjB2eGhOc3JjalBHb3duT1RaQ0xYc3hTbTludnBZSE9hSkZ3cVVjblJQSWs?oc=5",
    "source": "Rocky Top Talk (عبر Google News – Oil/OPEC/Fed)",
@@ -735,7 +1056,7 @@
    "published_riyadh": "2026-09-09 16:50:14",
    "precision": "second",
    "summary": "Brent Key blasts his Georgia Tech team ahead of Tennessee matchup Rocky Top Talk",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "16fd724bc9",
@@ -776,6 +1097,53 @@
    "analysis": "rules"
   },
   {
+   "title": "السعودية تقر وعاءً لتأمين أخطار الحرب على البضائع والسفن - الشرق بلومبرغ",
+   "link": "https://news.google.com/rss/articles/CBMi2wNBVV95cUxNS0ZLOGk2VnhNWnMyVEQwNUgyOFBlS2ZJVUFSOWxJcXRwNVBER2lSbm55Yms0TUFQVEtqbFpvRFZmQzNnZXZNenBZNmF3QkZELTdHX2pxcUZoeTFtVGY5WC0wa2lIQ0M3NlQyTmFXWTN5bWc1eEo1YXBuYTJDTC1IYnNwMEwzS2Z6cll4V3E3ekNYQ2xVNVNNYUZxNUY3SHA4anBmc2REdjlzNEZFYkZYRm8wQ0xEbEdmWU83ZHVLajQ2THU5R2dqUFNYR2dHV2NTMlBZdW5GazFHQlRyVGhKNzNLYWdEMldjcWNLZlExckhfWTlVVkRUWmpNNDhOR0VPVzRhaklyWHBCLVdEOUlVS3Y1WVpob3VWbkpzd2RhanZwaUhHdkhfVmdGeHZWM2dnZXZnc0VVWnZ5ZjRhR2xTaTZ5OHVzWW1xRXBqbzlWVHhTRlVVYVV3U2pCbENUc1BWZGJHR2Z3M2FFa0UtblhfTEMxVVYtV010SG14RmNFalZFMGw5dzZnQk84LVAySTRCaWc5LWdxUVRRMGlISmZkS05yMGhSTmdHWDNJWU5yVnVKbW9FUjZnUEszclJ2Rko5VDBjcXlSVWhaRm1ucHlTelEzczA0ZW5nVklN?oc=5",
+   "source": "الشرق بلومبرغ (عبر Google News – الشرق بلومبرغ)",
+   "published_utc": "2026-09-09T13:48:18Z",
+   "published_riyadh": "2026-09-09 16:48:18",
+   "precision": "second",
+   "summary": "السعودية تقر وعاءً لتأمين أخطار الحرب على البضائع والسفن الشرق بلومبرغ",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 2,
+   "id": "3a3688c6c5",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "السعودية تقر وعاءً لتأمين أخطار الحرب على البضائع والسفن الشرق بلومبرغ",
+   "beneficiary": {
+    "name": "التأمين",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 1,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "خبر يخص قطاع التأمين"
+   },
+   "cf": 1,
+   "rules": [
+    "insurance_sector"
+   ],
+   "analysis": "rules"
+  },
+  {
    "title": "الأسهم السعودية تتراجع.. و160 سهمًا ينخفض في ختام تداولات الأربعاء - المتداول العربي",
    "link": "https://news.google.com/rss/articles/CBMimARBVV95cUxNVjJyU05HdmZac3EwVmVDOVIzelI0MWJ1NG9oeTJ2Mk5rMzZ6SEFIYmdBX09rSlU3d01Qc2o3Z0lPbU1QankyVTFreW92WlFVekc2OTVWRnRlLWczLWx4ZHhmeWdHWnJ4RnhqaDNyRE1EMEo0cm1EUjFILWZrVVZBSWljaGVDanB4RWszaEVsbHBIZGIxMkRkYjBPLWRDWGRsTUpUY0V6TmQxaUNCaU9wZnF6NnJXLUdYaXpxOWhaVVZpYXBackxoNUw4LUNMY3E3Y1REMEZfXzVUM083TU40MUJib3J1cFpnN3llZEhyTWxLYWZ4eFQ5UlFrUDlMZ2FPaWxuNms4ZWVNbHRDVWE2OHZSUnBaRE5DWmZ0ZVJLOXNKMkE0S1lfRnMtMmFUZXVQQVhtQmVFaVZKSFlWNjM4dW9JZzR4R2JEc2RzS08xdHNjU3YwNmVTVUlqc1VFaDNhYjVqTVZhTVAzVlI1WVJDVUpnY0x3TVhWY3BCQU1jeDllMVNCVUhWSXdmZ0dHZUlNTktFV3JLQmRNV3pLOERMMTFIeHJjZDNTTXZ4bHJtYnIyMG8tX29NWnBPVXM0ZnA0ZGpDdzRBWnJSWER3Q3JFYnc5S2djT0lMeUNkYmRTM19MVktkeFVoUkttN0VmRnFXV3R4bzZxSG0xRkQ3bGhuUmV0eDNvbVZkZF9oOEZWeUZZaGVTcjlFNg?oc=5",
    "source": "المتداول العربي (عبر Google News – السوق السعودية)",
@@ -783,7 +1151,7 @@
    "published_riyadh": "2026-09-09 16:47:01",
    "precision": "second",
    "summary": "الأسهم السعودية تتراجع.. و160 سهمًا ينخفض في ختام تداولات الأربعاء المتداول العربي",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "ar",
    "priority": 1,
    "id": "57bdb28e59",
@@ -828,7 +1196,7 @@
    "published_riyadh": "2026-09-09 16:43:20",
    "precision": "second",
    "summary": "Dow falls 300 points as Brent crude oil hits $100 a barrel qz.com",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "1620b9566c",
@@ -868,6 +1236,53 @@
    "analysis": "rules"
   },
   {
+   "title": "تحذير صادم من داخل \"أنثروبيك\": خطر القضاء على البشر يتجاوز 10% بسبب الذكاء الاصطناعي - الاقتصادية",
+   "link": "https://news.google.com/rss/articles/CBMitwVBVV95cUxPZW9vR0N5RFNMY1dacTZXQ2ZBa1FERFZZdC1mTzFVanJLOWJsYkdMdGxvczFfNlQyemVrUGpHNGoyZFFsQURaVnBfMTZ1UWluVXNiLWRiN2FnMVFBSlBZMDFGWHBoZkRiYU8zdTQ5UmkxcTBqeTc2RnA3Uk13MkFsVkkzQmpWNUNXZnR3N3l0SUNYdzVfZ2lEdTZZbTVxQW1JUm9ZaW9WLXVNQnVJTUduRE4yRlJpMGEzUlJPcUxtVnI0QktJbWRXTnltcER2THppX0hBcldLZ1l6cnRXTV9obEgtTFVOZ2dyXzVVRi1IRHJFVnZPWWhMc2R5UWZMc2VNYlVoTGh3OHNxcXJkdlREa1daWDhOeVZIeHZwNFFRQUlxVDRkRzBWekhCWGxZbEZDdU1ubzBPdjdobEJHMTVITDZFOTVqVVlyRDJWUFBzc0V1NmlJT280ajhGbHV3cEVONTY1WU9rU29UcU1DWlgzQ0FYQ3J2WVd6ZC1pamVvOHF5UlZaTWl0X1lBcUZXb3JUNGRiWXVvVlNMRXNrVGFZVDF4MGVYeXc2VkdRN1RBYXFMME9tWmJPWjBIaTZZczg5Q00yTjdZMVI3OTMzSnVzSlNVaEhsQ3lsdk9xbGEwM3poeUF4czBIdmx3YXhIM2JhUzc2ZDg3S0pwN2RPVUxDTnpMNkZ1YXEyN3o0aHRtNWxkWDFIX0xCeW10MXU4aWFFcW9zRDl5YXV1Z0RfeEdOXzhDX1ZhTXFsTDNTckZqM1VDZnBTa2lSNEhJbXZBYVg1U1dNaFFPMU52NnJWYUJrZEZCV3A3M3NhdmpsMGQ2VEd4WlZjU043RVpFU05DWHZsUThKVmlHTXkyZEItOWhzVFNJTEJzcmRucGc0MmxaTEVWd0dvT21WQzRKRnl3TWxKNWdZY1hwbw?oc=5",
+   "source": "الاقتصادية (عبر Google News – الاقتصادية)",
+   "published_utc": "2026-09-09T13:40:07Z",
+   "published_riyadh": "2026-09-09 16:40:07",
+   "precision": "second",
+   "summary": "تحذير صادم من داخل \"أنثروبيك\": خطر القضاء على البشر يتجاوز 10% بسبب الذكاء الاصطناعي الاقتصادية",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 1,
+   "id": "f8a5d12b85",
+   "market": "sa",
+   "signal": "pos",
+   "tickers": [],
+   "summary_ar": "تحذير صادم من داخل \"أنثروبيك\": خطر القضاء على البشر يتجاوز 10% بسبب الذكاء الاصطناعي الاقتصادية",
+   "beneficiary": {
+    "name": "التقنية",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 1,
+    "smallcaps": 0,
+    "telecom": 1,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات"
+   },
+   "cf": 1,
+   "rules": [
+    "tech_sector"
+   ],
+   "analysis": "rules"
+  },
+  {
    "title": "«تاسي» يتراجع 20 نقطة ويغلق عند 11,015 نقطة - جريدة الرياض",
    "link": "https://news.google.com/rss/articles/CBMiR0FVX3lxTFBnVWRFV3hpNXprZTRaRTd3cW5yRWtwMkh5UVB2cjlKRlRmMXpTeVFfa3FBaTRLc3VmTXJHZC1MUEVDVW9GdFlV?oc=5",
    "source": "جريدة الرياض (عبر Google News – تداول/تاسي)",
@@ -875,7 +1290,7 @@
    "published_riyadh": "2026-09-09 16:39:58",
    "precision": "second",
    "summary": "«تاسي» يتراجع 20 نقطة ويغلق عند 11,015 نقطة جريدة الرياض",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "ar",
    "priority": 1,
    "id": "34d8db9bc6",
@@ -913,6 +1328,98 @@
    "analysis": "rules"
   },
   {
+   "title": "مجلس الوزراء يوافق على إنشاء الوعاء السعودي لتأمين أخطار الحرب للبضائع والسفن - معلومات مباشر",
+   "link": "https://news.google.com/rss/articles/CBMi8ARBVV95cUxOQWVHSlNzSzhtZTdNMEZVMVByc3hpRXk2R1lEd0kyWjFidzBJYThjbWE2YUR6dFVxZGk2N3ZoMjNISzhvVGVTdDltd25wUnpiOWVaUU54aHFZR2ZSbjdkREZ6WVpNaUpqTm9tNGNqUlltcFltNFh5Nzk1cVlPNkF3MjBJeTZtb3ZOaUVEUWZERDFDaU9Tc2NvTVE2Vi1vZUphNGc1ZVo0dmhLOGRZbVVmVnJzb1djTXJ0THA5dklWaW15QXhTQ0JfNllPLWNYSnQ3b2pzVDhYVnc0cnl6X185ZWxKdXk1TGRsR1BIMWtJaVZ2M2tmZXUtdG9rYUNZc1UzOEtfaTJlZlNfNGdRVmJzRHVqYWF1eTVPNzdRcU5fYm5VWXBCLXhmdHpyUTVMc2hxQTRzZnQ1NXIzbUtKa2FLeW12ZkU5WnJ4eERFdVA0WUE1QXM1VkdvWlNzYVpSUEpnWWU3dXNjaFVzQjBtbnZZTXpKY0M0dUdlUTF5SWNsM2pzdmVPTlR3anBaem9LaVA4NUlkYndmc3pUaTYtZ2VTMlFBRXNuUXIzelBUelBZcmc1MVJrbnN3NjdZaG83OU5yUzk4UWFLaXVhUXNidExMSmE3Y3JTU3dEWUg5YTQzYk9mV0xxNDNvX2NURGI0cHBoaTUtbWFUQmN6QVRCZ1FJZi1jd2trdGs0YlVoTXp5SVg3Uk4xWjZld2d4MVRmajZPTU1HeGpYZDFIS2lac0lPd09YOGphdy1NQy0yS2VBU0RMSFpTbU1JU3RmZmdqcTd6WjctS1BqVjFrSE55TVNxZVhUS3E1T2V1cFk1RndvaFE?oc=5",
+   "source": "معلومات مباشر (عبر Google News – مباشر السعودية)",
+   "published_utc": "2026-09-09T13:39:05Z",
+   "published_riyadh": "2026-09-09 16:39:05",
+   "precision": "second",
+   "summary": "مجلس الوزراء يوافق على إنشاء الوعاء السعودي لتأمين أخطار الحرب للبضائع والسفن معلومات مباشر",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 1,
+   "id": "4b328bbabd",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "مجلس الوزراء يوافق على إنشاء الوعاء السعودي لتأمين أخطار الحرب للبضائع والسفن معلومات مباشر",
+   "beneficiary": {
+    "name": "التأمين",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 1,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "خبر يخص قطاع التأمين"
+   },
+   "cf": 1,
+   "rules": [
+    "insurance_sector"
+   ],
+   "analysis": "rules"
+  },
+  {
+   "title": "بقيمة 1.9 مليار دولار.. تسوية طلاق قياسية في كوريا الجنوبية - الاقتصادية",
+   "link": "https://news.google.com/rss/articles/CBMi8gNBVV95cUxQRkFDUU1lM3JOLVBxYmhXVmFGYlIzV1djX3I5VmdlMUVfSENWVlhuNEhSZ1VxZFRTTHpWWDBmS3FMQVRFb3BnWW5WWFVPM2FaM1B4dkdEX0JSR0xmbE9pZ050Wk83VGR0dzJBSkNsLU5fZ2lfN0lXWk5pV3pIODFwSm1NQ0RnQWVvTGhSUUhlOUZXTFl0UjRISnlYNm1ZeXVTSnIyRGh5TUl2aERxQlNIZ2NxZDRPZ1J4YXJCaDc4aVBfa2ZoSmNMT0RNMWZWY3R2VFlkSURKWWNYWm9jckdUaHh2OGxFd2xhTFkwZkU0RElWYjRRSUVUanU3YXNjcnpJOEtCX1FoNjlYZllGQ2pHMXlqNzlQM1RHcExtYTl2el9ERmZkOGV3Y0lMeVp4T3lnTk9udlVXOVZCTXE1U0d2ek9oQmpsTV9PQThUeW5Mb2pQVEV5Q3A0RjFxeFBfUllfR2ZWZVl4Q09FcjVyQVNhdWRYVlhYQjRTWmJLZXAxdzdHMVZ0SC1NaExpZHhUbnVRV2JpVTFtT0I5ekRNZVZlZnBMVktZWHJfYm5meFpQajBaV29USjhUeTJEam1EX1Z1MWt6TlJoM05jQ2RUc0d6SlprOXQyWnI4TkNkazhodHZBb2pkM29sTG9VOENhSktEN1E?oc=5",
+   "source": "الاقتصادية (عبر Google News – الاقتصادية)",
+   "published_utc": "2026-09-09T13:37:45Z",
+   "published_riyadh": "2026-09-09 16:37:45",
+   "precision": "second",
+   "summary": "بقيمة 1.9 مليار دولار.. تسوية طلاق قياسية في كوريا الجنوبية الاقتصادية",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 1,
+   "id": "599f1a4efe",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "بقيمة 1.9 مليار دولار.. تسوية طلاق قياسية في كوريا الجنوبية الاقتصادية",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules"
+  },
+  {
    "title": "Brent Crude Oil Price Tops $100 as Morgan Stanley Rings the Alarm Bell - ExxonMobil Holdings (NYSE:XOM) - Benzinga",
    "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNemZpR1Q5THd1akFGUUdScTF6SEdyOVdNY3djZHl2WmhwWUk2c21xS0dPaFRoOTlrNng3akFJRFU1elJaZmlGOWlZVlZMQ1o0X3VRR01aR21BdUJLVE4zTVRGNDl6M2pLeUhPUGFDdURYYWRxano2VHdoUElQMEk2SlF4a2tkc3BqVHJURDQydWNrYTl3UGtFQ3AzUlRiWHpJdUtfZWhn?oc=5",
    "source": "Benzinga (عبر Google News – Oil/OPEC/Fed)",
@@ -920,7 +1427,7 @@
    "published_riyadh": "2026-09-09 16:36:54",
    "precision": "second",
    "summary": "Brent Crude Oil Price Tops $100 as Morgan Stanley Rings the Alarm Bell - ExxonMobil Holdings (NYSE:XOM) Benzinga",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "7bd0583d82",
@@ -960,6 +1467,100 @@
    "analysis": "rules"
   },
   {
+   "title": "السعودية تقر وعاء لتأمين أخطار الحرب للبضائع والسفن - الشرق بلومبرغ",
+   "link": "https://news.google.com/rss/articles/CBMi0gNBVV95cUxQV3QwalJHRWt1TEJEc01BakxFdmNVZzRUcUVKWnlINTNMYmpVTHRHYXVGelpUZHYwRFo4Q2F3RzNLXzA4dVBVNGlZOFFQOF9nS1ZpVzAyRmJfSHpBWmRMS2xUYWhzeldtQ2I1T05NRm80aU5tSXFpa3ZEV1RWdDdiNWtjeTNCWkVJNFJUTUtUaTg1ZUJZNjVESTlrc3dVYkctcGpfTXlJdmh1ZDF5LW5sVjF6ZTQwbko5eDBzbmMwRnJLdjRvTlZVbGNKdUpTUTMycjNPdjJrYVJxaVY1b1FrdEdGa0NzN1l4MVFhSnNlRkw1NXpTQVRnZlJqT3plMGpENGY5aTFMOEN4U3lQN3gxcWd2QUhVTEFlM0x1VU11UkY5SWxxMC1uNWFCZUVIZ1pyZzlZRTlBT3ZiRUxaeWJrdGdWZ0YxWG41VzM2eTI4RWFPU29PckpQeW5DSTdkTGs1XzRpbTdxSnFRTC1nU0tBVlJQLThlZXE2cEVpWU1QdHlKVnBvRjR6LW5BSzI0Q0hMYW9SS3o2T1lLblREcUR2b3BUTExhVUlrN2JoOTloYTV6dlNXZkEwcHpSR1NsZl96Vi1LM0J4M3k2Tk5NYUltc1dn?oc=5",
+   "source": "الشرق بلومبرغ (عبر Google News – الشرق بلومبرغ)",
+   "published_utc": "2026-09-09T13:35:38Z",
+   "published_riyadh": "2026-09-09 16:35:38",
+   "precision": "second",
+   "summary": "السعودية تقر وعاء لتأمين أخطار الحرب للبضائع والسفن الشرق بلومبرغ",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 2,
+   "id": "96897ba79b",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "السعودية تقر وعاء لتأمين أخطار الحرب للبضائع والسفن الشرق بلومبرغ",
+   "beneficiary": {
+    "name": "التأمين",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 1,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "خبر يخص قطاع التأمين"
+   },
+   "cf": 1,
+   "rules": [
+    "insurance_sector"
+   ],
+   "analysis": "rules"
+  },
+  {
+   "title": "سعر الذهب في مصر ينهي سلسلة الخسائر - العربية",
+   "link": "https://news.google.com/rss/articles/CBMi3gJBVV95cUxOTEI4N1VNZ0RRTktnTFlKUVp4UUE1a0t1bU9YZkFmbkx3d1RZWlBPZWxTYW5vVmJBWERKbkplWEJKWE91MzEwcVdLaDRqRGtaczZDUHpSZ3dlazVSd081eUR1cUhmX3FmWEI2UW4tNXkzak9jbXE4bU5wMlNoR2JXN1FTTE9lTVhSYlNUeFNpTTdrZ25UTHhwRDViWUs5RW9vd1UybUMwSnBLa2QtM0s3WGZ4ZjVVMEJlbjdXWFlhZExXb1k5OERSb0FDSnVEUS05ZmZpUksyeWdNcE9LSXdhWmVBTXFfN3FwcGtTc0xEVEo3YVVpTDZ4UDZ3bGMxakxvNW9XM1hWRU51X1RGVkQxbkstbzhGSXVwT1ZUeU5RZ2ZNWkl1ZURpZ1RFc2tOby1QRkNYZV9NQ2FGMHZfUzlIeWRLZjZ1SWpEa0Q1Ym5TSmFld0lJbE9pTnRXZDV2d9IB4wJBVV95cUxOcUw3MTBaUHN0VkJlVWVOSXA2cmhwbU83VWtTOXgyc25BM2tydThYSFl2bnloZk1sbTZkQ3ctelBvRVpndzVjNXR6dlV0MEhaY2hjV2hNTGFZZmYtZ3R3UFlNVTJfNkpRMmZwbjhVclVkNjdYT3h5eWFjaGwyclg4aThnbEtQRGh4bEpXdDluZVRDS1dtMndhWGxtZWdubm1KV2hMYk1RQU1FWXhTVGQ1RDZlVk0zV3AzeU83N2YzTmsxSUNEdWJFbWhRWnE2TzNKc3V6em5fdXl2ZHRpNHM0QVNmQ3phcENKVDVVdmVwRWMzRkpfOUFibnBrakhjSGllZ2xUeVlGclpfV0Vxam5UWktLYjloUUt1NDFLYWx3bTJVZE40YXd3b1pDdmFTNzlST2VLTDY1bHREbzNLTUZTUzg4SVNId1pCU0U1dmVFRWh3bm11VXZnczJqeVJmdlNCNGlV?oc=5",
+   "source": "العربية (عبر Google News – العربية أسواق)",
+   "published_utc": "2026-09-09T13:33:00Z",
+   "published_riyadh": "2026-09-09 16:33:00",
+   "precision": "second",
+   "summary": "سعر الذهب في مصر ينهي سلسلة الخسائر العربية",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 2,
+   "id": "f2966031fe",
+   "market": "macro",
+   "signal": "neg",
+   "tickers": [],
+   "summary_ar": "سعر الذهب في مصر ينهي سلسلة الخسائر العربية",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "نتائج سلبية تضغط على السهم"
+   },
+   "cf": 2,
+   "rules": [
+    "earnings_down"
+   ],
+   "analysis": "rules"
+  },
+  {
    "title": "Crude Extends Gains on Middle East Escalation - wsj.com",
    "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPejBxVFJDamd2bjlxby1vZmhhSXc3bERlOXJLTVdia2dYWUNpdEhNU2Zxdk9mTHV0RFpSY1lSNFFrYXQ3RDZ1QjVWSndZMHFBRERLeEktalp5eDFYRlEzME9ndjZDYzEzSFdCa0s0RGRsQ09wR3V3akg4ejFpaWFSQUwxUFBnSkpXZW1yLVdpZHFwejBFX2pTN1RwNTYzanpaTmhIUEduenY2bUs4Z0NsUlA3SmZxZ0ZYekRnRzkzVHVXUXdZZHc?oc=5",
    "source": "wsj.com (عبر Google News – Oil/OPEC/Fed)",
@@ -967,7 +1568,7 @@
    "published_riyadh": "2026-09-09 16:32:00",
    "precision": "second",
    "summary": "Crude Extends Gains on Middle East Escalation wsj.com",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "9323afd5aa",
@@ -1010,12 +1611,12 @@
   {
    "title": "السوق السعودي.. أسهم التأمين تسيطر على قائمة أعلى التراجعات بجلسة الأربعاء - معلومات مباشر",
    "link": "https://news.google.com/rss/articles/CBMizwRBVV95cUxPSGxKNzZOT09HVmI1UnBIeXhrY2FUUUR0dGhlVXVfZ3VTbWJaY0NYeHcwZ2dPclM5VWpKeVN4QklkXzd4aEdwc0xUV2s4YjRiRktMRkV6RnNlOGRqeUtBd2NfeDZsY1l0d2dTeEs2bjZDdHVsT3dyTFNHQWZoeXJHVkZpZWtuelBaZ0xfN0pZU0NTNElyc2ctdVFXejhZeU96WS12QlJ0aEVfNXRoc3dka04xRjFDMUE1ZWxYTWRJd1loV0dMU2Rjb1ZjQ0JCbzRxRk9hZUlBMmZlZkZSS3AyNzAxS2RJRlFSNkszSFpmRGlYMDhJRGtyMlpOeUJJYjh3SE9aakU4N0l4NUNIb1JsMFc3TXVqUDFOSTV3b1MxVFVDYnJ5WHUwNEN0bjhXQlJteVJCXzFvQkxpcnVHcG9vamFqOE1qSEZJMnh0V2x5bVhMQklDb2ZuckwxaTM1VWtiaHlzUVEwbUpBRGcwamEtYi14VzBhQm5BbWp6X2I3Z1I3bTM0NkFmN3hlVUozbW43c052T2FZZmNDMF9iNVdKWWhkaHY5ZkNEVUhuNzhicVFoRHMycW5OalhYcVZtWDRCa19vUDZJZF9tLTlhR19QbllYWDE3ZzJiZWp4MVdzbVZpVUpaR3NuajB2Rkd5QlA3S3VzT2YxYThtaHc4OVp4TWRLTUZnMVBPemR3YnJsN3RYMlN0dWxqZzMzRDRJa3ltdFVVTVAtQjMyOFdKQWtJdkFZSTVzSEg1QnpadnQyRFpwdWM5N09weTlCUklINlk?oc=5",
-   "source": "معلومات مباشر (عبر Google News – السوق السعودية)",
+   "source": "معلومات مباشر (عبر Google News – مباشر السعودية)",
    "published_utc": "2026-09-09T13:31:05Z",
    "published_riyadh": "2026-09-09 16:31:05",
    "precision": "second",
    "summary": "السوق السعودي.. أسهم التأمين تسيطر على قائمة أعلى التراجعات بجلسة الأربعاء معلومات مباشر",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "ar",
    "priority": 1,
    "id": "f5ec7b3f24",
@@ -1055,6 +1656,98 @@
    "analysis": "rules"
   },
   {
+   "title": "‏عندما ترتفع الأسعار ولا يهرب العملاء",
+   "link": "https://www.argaam.com/ar/article/articledetail/id/1935217",
+   "source": "أرقام",
+   "published_utc": "2026-09-09T13:31:00Z",
+   "published_riyadh": "2026-09-09 16:31:00",
+   "precision": "second",
+   "summary": "في عالم الاقتصاد والأسواق المالية، تسعى الشركات باستمرار لحماية حصصها السوقية وضمان استدامة ربحيتها، ولكن عندما تعصف أمواج التضخم بالأسواق وترتفع تكاليف الإنتاج، تنكشف هشاشة النماذج التجارية التقليدية. ولك أن تتخيّل أن يستيقظ الرئيس التنفيذي لشركة ما، فيقرر زيادة أسعار جميع منتجاتها بنسبة 20% دفعة واحدة، دون أن يخشى فقدان زبائنها لصالح المنافسين، أو تراجع إيراداتها الإجمالية. في هذه اللحظات الحاسمة، تتجلى الأهمية الاستراتيجية لمفهوم \"القوة التسعيرية\" (Pricing Power)، وهي القدرة التي اعتبرها الملياردير \"وارن بافت\" المعيار الأهم على الإطلاق لتقييم مدى نجاح أي مشروع تجاري وقدرته على الصمود طويل ا",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 1,
+   "id": "b4e7ce0da6",
+   "market": "macro",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "في عالم الاقتصاد والأسواق المالية، تسعى الشركات باستمرار لحماية حصصها السوقية وضمان استدامة ربحيتها، ولكن عندما تعصف أمواج التضخم بالأسواق وترتفع تكاليف الإنتاج، تنكشف هشاشة النماذج التجارية التقليدية. ولك أن تتخيّل أن يستيقظ الرئيس التنفيذي لشركة ما، فيقرر زيادة أسعار جميع منتجاتها بنسبة 20% دفعة واحدة، دون أن يخشى فقدان زبائنها لصالح المنافسين، أو تراجع إيراداتها الإجمالية. في هذه اللحظات الحاسمة، تتجلى الأهمية الاستراتيجية لمفهوم \"القوة التسعيرية\" (Pricing Power)، وهي القدرة التي اعتبرها الملياردير \"وارن بافت\" المعيار الأهم على الإطلاق لتقييم مدى نجاح أي مشروع تجاري وقدرته على الصمود طويل ا",
+   "beneficiary": {
+    "name": "البنوك",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "التجزئة",
+    "why": "أكبر أثر سلبي بحسب القواعد"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 1,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": -1,
+    "food": -1,
+    "utilities": 0,
+    "why": "التضخم يضغط على القوة الشرائية ويؤجل خفض الفائدة"
+   },
+   "cf": 1,
+   "rules": [
+    "inflation"
+   ],
+   "analysis": "rules"
+  },
+  {
+   "title": "\"باركليز\" يرفع مستهدفه لمؤشر \"S&P 500\" إلى 7950 نقطة بنهاية 2026 - العربية",
+   "link": "https://news.google.com/rss/articles/CBMirANBVV95cUxPLUoyc25WcFFFdy0tUU9wRUhfMjFRdXowRVZ0YWxRNjFfdHQtVVpoc3A5WG8wRFhPS09UNG9xYWtJV1JHa1p1ckg2WndNOVhpQXJDWVB2UndrV050c296UmFsa0xmbXE0N1ZkaVhocnk0S2FiX2tJanpIRHBDX1NSdEVLaDFJdXNNaDlncGxVUjlWb3dmdkVsWjAydUdCYmRGRGZQTnZwNlY0MS1hazdBaXJWLURfUm5Rb2xMZXRCRGZMLTZ1QlB6RFg3VXYzNUtxUF9LZ3E4eVpuNDM2TVZHTUF5bGJmRzQ1NExuVENpVlNYRFVEeGpyOU5vSERJZERfdzlycTNTRWZIZGN3d0lvTnJMVk9wbnBTT0dKSW9nVUl1RTBNaEp3WUEydC01YlN0SGh0VTM1aC1xRjRlajRnOWdhcG1BOVRSVFVnZV83QkY1emVBbWF3bVBReDJTaFlBSmpWb0tTRnJkWVVtbnVTcm1nYUJwVnk3NzdraUtBTTlhakhpektWaG5DWkdHanhOMDVlRjlpd19veThDU1lxTzBEVE1MX0FZRHpYd9IBsgNBVV95cUxPdVNZdGFrUk1nMHJCOG9JTU5laUZITEVoSk42UDktV0FzRmtUTEhPbFBRYkZuY2J2a1FUcjlLQms4ek1hZmpNVS1aRmtsbWZVcDJMaEJ2SG5iZFlUbE8weTM0bHpqX1pnd2JoVWo1SXpRRU5SYzFNQkpTTVV2MVRVdkdfSktSUnhrcFVpYkhBWU1yZ05uZlI5SzVJQnl3SGdWVk1YUWxHUE9VTzg3R1JZdkVOc0xSS0VTNkpyRUdHM3E5TFVsN3EwRV9zOVQ4N2ktM3JlMGJxbnp2LXVSM25QZ0N4eUZ3QnVONTdMd1NCbXk5NHVuWEJiWlFsSHZSOGtCOHZ3QlQycFlfSVAwM242UGF5U2xtek9XYXp2dXlnNUNHSkZ1TVpkRl94eldFUjh5SkJ0Zlh0Yk1wVkxWZENJZ0k1X2ZFN0hTZHp5VW4yRmc1Tkk5NzhjaFVBMHczWlU1ZFFNMUtJR2Q4aFN6N3VXQUs4czRpYk13b05WTmlWLTY4Rm92ZDFzM05kcW9kSGtjWW1BZHc5U1pjbk16LTNtdFVLTUdESGpObUtZbWprM1pKQQ?oc=5",
+   "source": "العربية (عبر Google News – العربية أسواق)",
+   "published_utc": "2026-09-09T13:31:00Z",
+   "published_riyadh": "2026-09-09 16:31:00",
+   "precision": "second",
+   "summary": "\"باركليز\" يرفع مستهدفه لمؤشر \"S&P 500\" إلى 7950 نقطة بنهاية 2026 العربية",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 2,
+   "id": "79ef9e94ec",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "\"باركليز\" يرفع مستهدفه لمؤشر \"S&P 500\" إلى 7950 نقطة بنهاية 2026 العربية",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules"
+  },
+  {
    "title": "مؤشر سوق الأسهم السعودية يغلق منخفضًا عند مستوى 11015.72 نقطة - عاجل",
    "link": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9kV2Y3R2FGQkgwX1Z1YmxUNjZsMlJENXBjOVlVRzl2MmphOHNDUFlZdmFCQ2x4WHFQTldoS21HVFhNV1dCY2JOcg?oc=5",
    "source": "عاجل (عبر Google News – السوق السعودية)",
@@ -1062,7 +1755,7 @@
    "published_riyadh": "2026-09-09 16:29:54",
    "precision": "second",
    "summary": "مؤشر سوق الأسهم السعودية يغلق منخفضًا عند مستوى 11015.72 نقطة عاجل",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "ar",
    "priority": 1,
    "id": "91f83b3ad4",
@@ -1109,7 +1802,7 @@
    "published_riyadh": "2026-09-09 16:29:11",
    "precision": "second",
    "summary": "Fed to hold rates steady in rest of 2026; rising number of analysts see at least one hike: Reuters poll Reuters",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "5d7269129e",
@@ -1147,6 +1840,51 @@
    "analysis": "rules"
   },
   {
+   "title": "«جيفريز» تطلق مؤشر «GCC 30» لاقتناص فرص النمو في أسواق الخليج - الاقتصادية",
+   "link": "https://news.google.com/rss/articles/CBMingNBVV95cUxQMEVDb0lsN0Y1U3FzdkRpbHBBbGtycFhIRkJ2U2pIU1AxR3YtckI0NTZvUDdfckxKQ3RYem1sY1dYQjlVTUh3NWpRUlUzRGlCNFNWQ1lNTWlvVUo5SEdSdFVpRmhnMU80SFZFbV9fblNSbUZtSlNlaHV0YVBTblNwdks5SERGMFlPbUh3Tno1SFhZcWFGZHRfYzFXMm9vNmpuakFGbEsxbS1SeXZ1ajZ0dGdBNWdxemZpMjdlOXFUTVlFbDVfREJFNC00MS1aTmJBSTNHR3hmUlZQaUhRUnlqSmZFWDEyZkJzeEloektJeF8zTXNmWnZ2MXMyN0Z1ajNpYVNOSFVMa3pFWllHektCSmNUUU5oekF6Ym1RWFR2cUZFZkluUjF6RGRRX0FaOU5vT28xYXUyd0wyN2Y1SHlvR2tyem1Cdl9EbGdhWWFPWWkwb3d5Mlh0MURuWjVlY1paZUNuOVlISm5uOEVtdTB1d1d1WFlCcDM2U0FwR2FxdGdxeHNTU2xEc0FNUWsxU1VqT25Gc2MtZ09renA0dmc?oc=5",
+   "source": "الاقتصادية (عبر Google News – الاقتصادية)",
+   "published_utc": "2026-09-09T13:27:43Z",
+   "published_riyadh": "2026-09-09 16:27:43",
+   "precision": "second",
+   "summary": "«جيفريز» تطلق مؤشر «GCC 30» لاقتناص فرص النمو في أسواق الخليج الاقتصادية",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 1,
+   "id": "95a61b0905",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "«جيفريز» تطلق مؤشر «GCC 30» لاقتناص فرص النمو في أسواق الخليج الاقتصادية",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules"
+  },
+  {
    "title": "تداول 9 آلاف طن بضائع بموانئ البحر الأحمر - جريدة البورصة",
    "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1yZHh1U0lTbnJjT0lRTVFtMWlUcklyaWp0Z2FYaWZ2NkpxeWxnVTEyUFBRQWVwSDJWS0l4NVFYQW9TeXBwbmxVeXY3d0FWa3pydFljaEhRWENoQTg?oc=5",
    "source": "جريدة البورصة (عبر Google News – تداول/تاسي)",
@@ -1154,7 +1892,7 @@
    "published_riyadh": "2026-09-09 16:25:45",
    "precision": "second",
    "summary": "تداول 9 آلاف طن بضائع بموانئ البحر الأحمر جريدة البورصة",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "ar",
    "priority": 1,
    "id": "94a45cd5e0",
@@ -1202,7 +1940,7 @@
    "published_riyadh": "2026-09-09 16:24:40",
    "precision": "second",
    "summary": "Saudi Arabia lifts alert in southern city a day after Houthi strikes Reuters",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 1,
    "id": "d18095a6eb",
@@ -1249,7 +1987,7 @@
    "published_riyadh": "2026-09-09 16:23:25",
    "precision": "second",
    "summary": "السوق السعودية تتراجع 0.2 % وسط انخفاض الأسهم القيادية الشرق الأوسط",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "ar",
    "priority": 1,
    "id": "f2e8f39be8",
@@ -1287,14 +2025,59 @@
    "analysis": "rules"
   },
   {
+   "title": "TASI Closes 0.2% Lower; Nomu Drops 0.2% - صحيفة مال",
+   "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1QNjNRcWhDdEh5cVhiYnd0c1duRW4zUVdWVTdaM2Rad1pyZWVGbWVoQW9zTGE1cHVFeVh1SHFWXzJrSjhTZVNVNlNXcG1SekpFekwxNlpnSDFJZkNZRWpxX2x1RERaM0k?oc=5",
+   "source": "صحيفة مال (عبر Google News – معال)",
+   "published_utc": "2026-09-09T13:23:08Z",
+   "published_riyadh": "2026-09-09 16:23:08",
+   "precision": "second",
+   "summary": "TASI Closes 0.2% Lower; Nomu Drops 0.2% صحيفة مال",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "en",
+   "priority": 1,
+   "id": "0cfe09e155",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "TASI Closes 0.2% Lower; Nomu Drops 0.2% صحيفة مال",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules"
+  },
+  {
    "title": "أرماح وبحر العرب والأسماك في صدارة مكاسب السوق السعودي عند الإغلاق - معلومات مباشر",
    "link": "https://news.google.com/rss/articles/CBMinwRBVV95cUxNb2N4ejM1WmtCaU51Y0hMcDYyVUNPNkRZMENxZ1hXc0Y2dEo2aEltZm1XWjdhT1ZQRURyV0xmeGV4V21SVHBDUkFqblZyS0tpcEp0eEhMZjVub0xfVFU5b3VIT1ZjaVpYRkdfSHZJanlObFI2bms0YXZSZmZoRzItSzV3a1Q0Z0djbjhzQlZzZ1FBOFp0YWdYSmYtT2c5T0M5MWVUc3FEZ01pa2dYLUhZT1V3UUk0ZzNzU0NPV2Y3RmEwMnFJWXlrZk03ejVJQTg2VlBHUkhfTVA0RnJwRlpVZjlvQW9DRHdqVWszWVhDOG40Y1pOVU1jaVF2Wk9rc1NzR2pDMzN4blBkNW5COFJfTGhBX0REN0RTRThMbzZpSzFBcTVwcTh4Si1HVDROVEQ5ZnhYdHJfdmd5MXFfQWkyU0hqVHhmdFc3MnIwbGZ5bGtwMGpFeEZPQUFPMGNDMlNkMnAyT0FRR1ducmhJaHVFTjNPTUtnZG5BdndXNmo2em9XOTFVX2RYZVhSZWF0T3ZlZndBTGhMS1NYT3pJMDRTbGJOanl3T3JPX2kzMkhiS1JVV1Bfb3RLM3dLb1JoLXB2VmxwRXpQV2FvLUlQUzZQcTlWa2RvWjMxM09yQl84c1RuYXV3RERNM3RBZDhOUml4bGR0TWx3dF9pYTFxcHB2cE5VNGN0SVdpV3BfWlJYYWotOVJ4eHdmcUp3MVBXYTg?oc=5",
-   "source": "معلومات مباشر (عبر Google News – السوق السعودية)",
+   "source": "معلومات مباشر (عبر Google News – مباشر السعودية)",
    "published_utc": "2026-09-09T13:22:08Z",
    "published_riyadh": "2026-09-09 16:22:08",
    "precision": "second",
    "summary": "أرماح وبحر العرب والأسماك في صدارة مكاسب السوق السعودي عند الإغلاق معلومات مباشر",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "ar",
    "priority": 1,
    "id": "fd05f7e79c",
@@ -1332,6 +2115,51 @@
    "analysis": "rules"
   },
   {
+   "title": "\"جروب فايف\": استقالة ياسر القاضي عضو مجلس الإدارة - صحيفة مال",
+   "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPMkFSRlRvN096c3JNRGxPZ2JPMXg5U0xvQlNSa0V5X0g3UVlxcVRDTkNzSUVtVy1SWWZfcXJpVEp0R2xvaEgtdmlZcl9nQ0MwTW1ZcHlpekRQOHlZTUhlekx0S1RvbzVUampHT2RscG9XdWVZNjNVeXBzRnNqU2lSNTF2MFJYMldPdTRTN09lMUVWUzMwRXV4SWNVeTkzdXVrRFhTSmZHdzJTSEh0eVVKUFBWWkxUWGs1OThYUTUyOXlUcmgxSGd2MHVLWGNzSVQ2ejZ6dnJDY3AzRzVQOHdNYm9tMA?oc=5",
+   "source": "صحيفة مال (عبر Google News – معال)",
+   "published_utc": "2026-09-09T13:21:53Z",
+   "published_riyadh": "2026-09-09 16:21:53",
+   "precision": "second",
+   "summary": "\"جروب فايف\": استقالة ياسر القاضي عضو مجلس الإدارة صحيفة مال",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 1,
+   "id": "f8dc0b5879",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "\"جروب فايف\": استقالة ياسر القاضي عضو مجلس الإدارة صحيفة مال",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules"
+  },
+  {
    "title": "Iran and US hit tankers in biggest wave of attacks on shipping since war began - Reuters",
    "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOZ2FPaUNRYjRBWnd2cmxkT044cmZYbENZYnhTWXAzUGxadUpEZ3N3aHpVSEtodVVsWUt6djBaeFhjUm5JOGVrNEE1SXlaUkxoSzBVaUpaWjZTdkdXZzItRTFOaGtMZWVtbEhpdUFSUWgwczNXa2VqZ3ktdzVhajBmYllFNVJIaUxnMDBLazE4S0VSTzZSbVFxMDZSUVY4aHIxVmhkcUpZeF85TzZYV2tqWkE5bVNWM29qWlE?oc=5",
    "source": "Reuters (عبر Google News – Reuters Saudi)",
@@ -1339,7 +2167,7 @@
    "published_riyadh": "2026-09-09 16:21:12",
    "precision": "second",
    "summary": "Iran and US hit tankers in biggest wave of attacks on shipping since war began Reuters",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 1,
    "id": "4fc26b1dcc",
@@ -1387,7 +2215,7 @@
    "published_riyadh": "2026-09-09 16:12:17",
    "precision": "second",
    "summary": "Brent Key's press conference quote about Josh Heupel goes viral and Vols fans are now feeling a certain way about Georgia Tech's head coach A to Z Sports",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "c25997e2b8",
@@ -1429,6 +2257,101 @@
    "analysis": "rules"
   },
   {
+   "title": "الشركات الأميركية تهرب من ديون الذكاء الاصطناعي إلى السندات الأوروبية - العربية",
+   "link": "https://news.google.com/rss/articles/CBMi2gRBVV95cUxOM3RzajhuczVlaDc5RHRLdzdpRmxhZXhsZzh0MDhUSl9UVHM5bUptRHZrSEdEci1Yd3JNMXpjNlBBcEZxbV93NjRNeThCc0hyMm10OVl4cnAzdngtRkxidGhLZkVHVWtVeGJudmFmclNuM3dEamZfTkg4OVZVTENhSXZxY3VVOGU5TnpRME5PaFRGQXdNNWxRNzlfakVxTWlaQzRfV1NiaDBOVTRwU1RCU2JZSU4tejlLUV83SlBMWUhvYWN2SHFnQ25DbzhEYVRqbkhzNEowOTF6Um1GZnU5RnFOU29xS3c4SXY4QTVmQVJoaGRHXzlWRXVyUkJFVWVMMnVpdjJIMERLMWthVVAxVDRRaVVSbEVpTGx2cF9qZ2x4QzhpcHJaYjhNc2QwTGtrd3J2cXBFZEI2VVB0ak83cXVFcmYya0psUUU2ODBXeENTREVXcUF0ZzF1SWg4Q0Y4dWNpdjZ4SmE5eXZhYlFVWmJ5ZmJmMHpMeFR4YWZZWjFCckF5NXUtaXlxTnZidWJFMVcyUTducElRZTdTLXNHX0FWYzF4RG1XTzYxcWIwTHBXZUVrY2lWelVrRmdYaFFGSU80eGxyRHNsNW54VWhwVDFjc1Y2am9YOVVVNU01MW1qNWZ3SzZqZm05cWJYTWw4THh5OGt4eVlzSHFHS2F6YWVHU0Y2UGZiQlhJOXMtZ0E4OWo1bDladGtTR25WdU1may12eWF1RDZrRDR0aEFiSmhrM2M2aWF0RVhfaXZDSG0wT0V5eWlOUG15V05Pcm1Nb0UxaFF6QUxLUdIB3wRBVV95cUxPRVRSSmZzOGpJNE82RmkyNFd6Q2xUY2VVR0JNT3ltU0gzcFdoMTlBRGFRZE84T2h1UXd0UVBsQzdFTmg4SWtwZlJJUHlISWJYRHQ5WmNlZmlQcFllbkxLU2VxQ2Z1QVRVbzloV245eGZKbXdDZU1PTEkya2tFRGVDYW90LS1YQkwwOTA0ZEhJbDF5Z1NtM0ZNa1p5emxlQURLMm1EbENYRjJwZnZiTkZBcFp5SThKRk9MbkFZUW01Q0h3RG9Ja3RXSl9zb1NkTDZibVhYZXN2S2pkUU9QWF81bTY1b2wtbGZlQjltMk1NVkpONnd5T2RRb0Z5ZmQ4Ym9iTWY0SUoxa09kSHFfcm9ybzItTlJpLW1BMDkzQXB0c2czXzBXRXRUZDF4eVVZNDFCcF9zR2NET0ZBMV9ITUY1el9DNWRlM04xb0o1aXp4Z251eFB5aG1CNjJEemdDeTBmcXZjYWVTRnFuWGNUVGhwNWFINWkza1Q1ZjZUalZWWC1hb05JazFTUFowbkVadWFuOVdnQmhBSzJVRkxLVk9tTkpGTHAzOFh5ZGREdXJ1SlIyMk1YVDl6LVdONHhaN09kdDBUX2g0MFBDRUFJTGlSaWp2WTJnZUp3cWEzdFZGWkdsRE5pRzZ3U2tPVTk2YVRuNFFRdHliOTluNFFJSWZMSVdVTy1Wc2JOVlhwcDNNSXAtNWxKQ183VDEzWTZwQ3dlSVYzcVhGbTZCYVNwb1hPdnBxN2NoMWFZMjZxYVRyR3l4YV9tMlJRTHpVSHhxZzg3My0wcmRmYnIxc0hDdWN3?oc=5",
+   "source": "العربية (عبر Google News – العربية أسواق)",
+   "published_utc": "2026-09-09T13:12:00Z",
+   "published_riyadh": "2026-09-09 16:12:00",
+   "precision": "second",
+   "summary": "الشركات الأميركية تهرب من ديون الذكاء الاصطناعي إلى السندات الأوروبية العربية",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 2,
+   "id": "71080c538e",
+   "market": "other",
+   "signal": "pos",
+   "tickers": [],
+   "summary_ar": "الشركات الأميركية تهرب من ديون الذكاء الاصطناعي إلى السندات الأوروبية العربية",
+   "beneficiary": {
+    "name": "البنوك",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 1,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 1,
+    "smallcaps": 0,
+    "telecom": 1,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "إصدارات الدين تعكس نشاط التمويل وتدعم دخل البنوك من الرسوم · الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات"
+   },
+   "cf": 1,
+   "rules": [
+    "sukuk_debt",
+    "tech_sector"
+   ],
+   "analysis": "rules"
+  },
+  {
+   "title": "اسمنت نجران - الاقتصادية",
+   "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQajQtOGVlSWFscURmdENmWVBFUjRFNXgzSHVXVkFacGttRkR4MGkxamNZRjJ4enduYkItZ3h6VWh4bnd0ZU1YZGt3WVFaZm5GZjRuQ1k4WnhVV1dqTUhrSjJpdHhOWXhIUndaclFJdmRzZ1FzbHlmUnRRSFJ5ZGl5RVp6TDdQMTJac3FEdE9QbmVVaFZMNWJqUWJsQzZCY2FP?oc=5",
+   "source": "الاقتصادية (عبر Google News – الاقتصادية)",
+   "published_utc": "2026-09-09T13:07:19Z",
+   "published_riyadh": "2026-09-09 16:07:19",
+   "precision": "second",
+   "summary": "اسمنت نجران الاقتصادية",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 1,
+   "id": "567f353a2d",
+   "market": "sa",
+   "signal": "pos",
+   "tickers": [],
+   "summary_ar": "اسمنت نجران الاقتصادية",
+   "beneficiary": {
+    "name": "العقار",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 1,
+    "cement": 1,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "المشاريع الكبرى والبنية التحتية تدعم الطلب على الأسمنت ومواد البناء"
+   },
+   "cf": 1,
+   "rules": [
+    "cement_sector"
+   ],
+   "analysis": "rules"
+  },
+  {
    "title": "Stock Market Today: Dow Jones, S&P 500, Nasdaq 100 Futures Fall, Brent Jumps Over $100 Amid Middle East T - Benzinga",
    "link": "https://news.google.com/rss/articles/CBMihwJBVV95cUxNMXNBc2FSZzRnalJlbUpLWWx1WWQ5TUpBbHVZVzRmWlh2WmZPTHFkd3NtV0h6LVd2eGZSc3dhZmhiZlhWcGdkZl9lUlZPQi1BS2VtRXFUT1VTei05by1jWWt1TTB1VUhrQ1lPSHhpZEZ0dy14RHI5dFZMVEY5WkZvbVJjMUt6cVRqQVl4cmplTTBwZnRjVlcwZVdNMnBvZTlRUmJRTlp3cEI5SEUwT21sUDdOLXRib2hwVGVtUU96Yjdrb1l5NDN4aVBMUUlLeGlLWEdUU0piY2ZjbmhIcEdjR2g2cTEtRnhjQWFQMGVDOEk2eTVHQUZRSDF6Z3cwWEtwYUZhaFhHMA?oc=5",
    "source": "Benzinga (عبر Google News – Oil/OPEC/Fed)",
@@ -1436,7 +2359,7 @@
    "published_riyadh": "2026-09-09 16:05:00",
    "precision": "second",
    "summary": "Stock Market Today: Dow Jones, S&P 500, Nasdaq 100 Futures Fall, Brent Jumps Over $100 Amid Middle East T Benzinga",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "0dfd8a66ae",
@@ -1477,6 +2400,53 @@
    "analysis": "rules"
   },
   {
+   "title": "الأنشطة النفطية تتراجع في السعودية بنحو 25% على أساس سنوي في الربع الثاني ونمو الأنشطة غير النفطية بنحو 1% - CNBC عربية",
+   "link": "https://news.google.com/rss/articles/CBMijwZBVV95cUxNNVdLTkRucXpmU1I2QmNMQ243V1o1bmZJYS0xNWpaaU9ibERPOGp2MjdiRUdqVC1uU05zZUtqcUdDOWNGb0JIMUlPZlktaXgwOTI4eVNxclEtWkFXZFcyZ2JoaWhvUENzZ2JPaHZ2VzR6V2h5MUE2bkE0NHBaM04xc0c2djNuRzJUR05hclpUMzJwX3hlckFFNFB4OWpxbDRsXzZSRW1jSDd1WnRjcFRyT1VJSzVYdUFyWUNMdFVTeUhOY0FFdGl1SFB1czNtSkpGWHQ2TlZFYjNhSWpRQ1R2Zlh5MkZuRHBmYzV0TTktVEZUTHB6Vktxc0VJc3QzWEdxR3NoM01teTlmd1hQbnRzMTJFTXdSYVQ5aFRkLTlIN3Z0bmIwTTI1VVBkX1Y2M0g2UEszRDlnLXNuMi1hMDg1U3h0MWp4VS1JZVdhOG1Wb05ZeUV5MlpibU5heGxHbHRnbkdpQ0pKbGt3NzkwT05qUjdHaDFmcHVWNkh2UFhqd3RmanoweVN2TWZ1aDJUZHNjS0g0QjBuaFBtODh1TndwZ0hRb09xMG1yY3pLeEg0aTVJVDNlN21vVWl5LVl6M1o4MEV4TTVic0M0cTFGeURYNW1EZzVwVGhqZUFuMGI5SFVhUDVsZEdobE1NbEVNemhMNHRLcjhYcnpKX2dTYXUweVduaG1feHlBckNyTll3amlhdFZWYU9VZzcxUmNyM3IxZDdFYzl2c1NwMDJTYWNHZUtldTk3a1FHRDZaQnppVUkwTkw5c0Zkd1g1cFRGbmxxTEVXckFXQU4wdlFpLVVoUjlMU3RpaElCcXFXSGVkaGI2dGhsME1yS08zc0p1NTNwemVaVEM0bGV1ejI4TTBUbVNqRzRLOWJGU290R0Z0SncyVm1sdllFX0JCb09NaE1TUVFuaGM4bjBqWnhYeElpT1ZWTTRNV3dOeWdVWWRlX0NuUmlVTEs4ZVpDRWFsRXl6Q2ZHVFJiaUNjM3A2MzRZSDBRZHQ4WDRqY1VuZXR1QzVVWTFDVDZlMkt1VjVHX00?oc=5",
+   "source": "CNBC عربية (عبر Google News – CNBC عربية)",
+   "published_utc": "2026-09-09T13:04:24Z",
+   "published_riyadh": "2026-09-09 16:04:24",
+   "precision": "second",
+   "summary": "الأنشطة النفطية تتراجع في السعودية بنحو 25% على أساس سنوي في الربع الثاني ونمو الأنشطة غير النفطية بنحو 1% CNBC عربية",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 2,
+   "id": "bca62e8854",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "الأنشطة النفطية تتراجع في السعودية بنحو 25% على أساس سنوي في الربع الثاني ونمو الأنشطة غير النفطية بنحو 1% CNBC عربية",
+   "beneficiary": {
+    "name": "الطاقة",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 1,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر"
+   },
+   "cf": 1,
+   "rules": [
+    "oil_generic"
+   ],
+   "analysis": "rules"
+  },
+  {
    "title": "تاسي: سهم لوبريف يسجل أعلى سعر منذ 52 أسبوعاً - ارقام",
    "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE53OVNBY3ZNaUVEV0RTOGNhZ081QXB6S3JvTXhuQ3VuZjkwVmg1MHA0T2pHV3lOcjByb19RRG4wZWpYM2szUy1PeGwtZzV2NGlvREpua3k0UHhVa3ozWHBUeVM4ekYza1FkU0E?oc=5",
    "source": "ارقام (عبر Google News – تداول/تاسي)",
@@ -1484,7 +2454,7 @@
    "published_riyadh": "2026-09-09 16:04:20",
    "precision": "second",
    "summary": "تاسي: سهم لوبريف يسجل أعلى سعر منذ 52 أسبوعاً ارقام",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "ar",
    "priority": 1,
    "id": "4b81d432a1",
@@ -1527,6 +2497,98 @@
    "analysis": "rules"
   },
   {
+   "title": "\"جروب فايف\" تعلن استقالة عضو بمجلس الإدارة لظروف خاصة - معلومات مباشر",
+   "link": "https://news.google.com/rss/articles/CBMitgNBVV95cUxQSW16UnNpNWlZV1p6d0c3RFoyZjNDUG9fX1ZadmJnNmZJTkpKZzJEdzh2UGEyVEZTQVdxeUxiOVViZHJIeWhCRC1ZYm03bWNLUE4xREVjZ3B4Zy13R00wTi1QVGNrWmV4c2FxY3JWMElOdzVuRndfZ1JWckNpeDFZRjVwQzZLd2xoN1NfaEN2N29nWHdkMjMtWXpLS0tta05oN1pmMWtLRFd0WG5LdWhBR1BQOTJuWHcxRmxYYng1NlZPRkF5ck1SZ3UxWlJqMmh6TWFIYWNzZjRiWGM2YUx1Q1ZESlV0S2xQcnpGS3J5eEE5VS1aU1FwSkJkY3BUY3pUSVJtc24yckQ1OG5ZUHptUkJZYjFBUmQ5VEhkMnItWFJEOVZjYTkyeVdYSVItZThEX3RYcnBYcXE1bzRWWGV4U0szcFhDblRXdmRGODRuYzgxdlFrSVZjcVB3bzRkZmhhb0RVbHBJQjRXaVFIQm5OLThOcWE3bVpQTUVEUUlHaS1VUHIyVFFObXJsQnhNMUUwNlJmbjNCN2pFV2JZZUptU0dlTXNrNUhPZXpKVDFxdVpQd1J1RFE?oc=5",
+   "source": "معلومات مباشر (عبر Google News – مباشر السعودية)",
+   "published_utc": "2026-09-09T13:04:13Z",
+   "published_riyadh": "2026-09-09 16:04:13",
+   "precision": "second",
+   "summary": "\"جروب فايف\" تعلن استقالة عضو بمجلس الإدارة لظروف خاصة معلومات مباشر",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 1,
+   "id": "5be891241a",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "\"جروب فايف\" تعلن استقالة عضو بمجلس الإدارة لظروف خاصة معلومات مباشر",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules"
+  },
+  {
+   "title": "أسمنت الشمالية: تحليل متوسط سعر بيع الطن والهوامش والحصة السوقية بالربع الثاني 2026 - ارقام",
+   "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1rUkNVOUc1WDF0cWt2MEJJTGxVQ1loOHd2bXg5QUpiQXBQdXlXbWczT3ZRdjA2THlyRVJzYV9aLWg1aWQ2NlFZcHV0Tl9pZy0tck1jWXdMeDZOaFdwXzJFTGdEdzNhc2VMLWc?oc=5",
+   "source": "ارقام (عبر Google News – أرقام)",
+   "published_utc": "2026-09-09T13:04:10Z",
+   "published_riyadh": "2026-09-09 16:04:10",
+   "precision": "second",
+   "summary": "أسمنت الشمالية: تحليل متوسط سعر بيع الطن والهوامش والحصة السوقية بالربع الثاني 2026 ارقام",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 1,
+   "id": "b2fe91d64e",
+   "market": "sa",
+   "signal": "pos",
+   "tickers": [],
+   "summary_ar": "أسمنت الشمالية: تحليل متوسط سعر بيع الطن والهوامش والحصة السوقية بالربع الثاني 2026 ارقام",
+   "beneficiary": {
+    "name": "العقار",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 1,
+    "cement": 1,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "المشاريع الكبرى والبنية التحتية تدعم الطلب على الأسمنت ومواد البناء"
+   },
+   "cf": 1,
+   "rules": [
+    "cement_sector"
+   ],
+   "analysis": "rules"
+  },
+  {
    "title": "Crown Prince receives princes, scholars and senior officials in Jeddah",
    "link": "https://saudigazette.com.sa/article/664435/saudi-arabia/crown-prince-receives-princes-scholars-and-senior-officials-in-jeddah",
    "source": "Saudi Gazette – Business",
@@ -1534,7 +2596,7 @@
    "published_riyadh": "2026-09-09 16:03:55",
    "precision": "second",
    "summary": "JEDDAH — Crown Prince and Prime Minister Mohammed bin Salman received several princes, scholars, senior officials, and a group of citizens who came to greet him at Al-Salam Palace in Jeddah on Tuesday.Those who attended the reception included Prince Mishaal bin Saud, Prince Mansour bin Saud, Prince Alwaleed bin Talal, Prince Abdulaziz bin Fahd, Deputy Emir of Makkah Prince Saud bin Mishaal, Governor of Jeddah Prince Saud bin Abdullah bin Jalawi, Minister of Sports Prince Abdulaziz bin Turki Al-Faisal, Minister of Interior Prince Abdulaziz bin Saud bin Naif, Minister of the National Guard Princ",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 1,
    "id": "d7f6f61031",
@@ -1575,6 +2637,53 @@
    "analysis": "rules"
   },
   {
+   "title": "تقرير: أوبر تسعى لجمع أكثر من 5 مليارات دولار من أول طرح لسندات مقومة باليورو - ارقام",
+   "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1BbmpjenRqNGFvVHpNdmsyMDB0VkF3NVR1RmdwTFVPLUNxajE2d2FERWxOeXQ0bjBCbGd4a2YwYlhUSkxYUGxQc3EtSXZUbzRIMWxrdHlFdjZQRmVFT2hVUVZvMTQ5Yk12Qmc?oc=5",
+   "source": "ارقام (عبر Google News – أرقام)",
+   "published_utc": "2026-09-09T13:01:24Z",
+   "published_riyadh": "2026-09-09 16:01:24",
+   "precision": "second",
+   "summary": "تقرير: أوبر تسعى لجمع أكثر من 5 مليارات دولار من أول طرح لسندات مقومة باليورو ارقام",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
+   "lang": "ar",
+   "priority": 1,
+   "id": "5af2d92e57",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "تقرير: أوبر تسعى لجمع أكثر من 5 مليارات دولار من أول طرح لسندات مقومة باليورو ارقام",
+   "beneficiary": {
+    "name": "البنوك",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 1,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "إصدارات الدين تعكس نشاط التمويل وتدعم دخل البنوك من الرسوم"
+   },
+   "cf": 1,
+   "rules": [
+    "sukuk_debt"
+   ],
+   "analysis": "rules"
+  },
+  {
    "title": "تراجع مستمر وحذر يسود الأسواق: مؤشر \"تاسي\" يهبط مجددا وسط اضطراب قطاع الطاقة - قناة نبأ الفضائية",
    "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5URUhwbGZxYnZVOEdseTVHMUI4M0xsSkxhbzZwbE9Ub1hQODViTnhyZFpfdzMxbGwyRzgzaWVoZmg3WVN6dnJBUWY0cw?oc=5",
    "source": "قناة نبأ الفضائية (عبر Google News – تداول/تاسي)",
@@ -1582,7 +2691,7 @@
    "published_riyadh": "2026-09-09 16:00:34",
    "precision": "second",
    "summary": "تراجع مستمر وحذر يسود الأسواق: مؤشر \"تاسي\" يهبط مجددا وسط اضطراب قطاع الطاقة قناة نبأ الفضائية",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "ar",
    "priority": 1,
    "id": "36054b3e56",
@@ -1627,7 +2736,7 @@
    "published_riyadh": "2026-09-09 15:55:58",
    "precision": "second",
    "summary": "Brent Crude Surpasses $100 Again; U.S. Stock Index Futures Decline; Foldable iPhone Makes Major Debut | Tonight's Highlights moomoo.com",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "en",
    "priority": 3,
    "id": "f9c250b7a6",
@@ -1668,299 +2777,21 @@
    "analysis": "rules"
   },
   {
-   "title": "مؤشر \"تاسي\" يغلق متراجعاً 0.19% وسط ضغوط من قطاعي السلع الرأسمالية والتأمين - معلومات مباشر",
-   "link": "https://news.google.com/rss/articles/CBMipgRBVV95cUxNMzhHNVI1LXY3TTVtb3JoRUMybmJ1RC1nTmtPU1Q3RlRycnNzYXkzeGUwS3pCZzdvUGduVkY2ZV9VRUxDajdXdm95bGxqaGotbmRQLVdVOC01M0w3Nm8yWTZpdUFha05WWC1idFlnZU81WEpvcFEtLVU2b3FUVGZ3d0ItQUVGUkdiR2hBTDlLUmNFZURpMnVETkFCaDBIcW5jZ014Q2FWbnNRc1pSb0xicmhDQU9KdmRReW5nalJHNnZ6MEdoN0FFSTNEVTFZMWxrdlRvazRqZjNxUXJZTTNHOVUyVkZfUjMyN0dsaEx5X3NEQUNJdERseC1Va1JIVVEtUFQ2U01lVmh1S0Y3YndXdWtISElITUJIUmRTaFZGZV9nZ2hVaHpYNDVaLU9KUnM1S01qQThCWFJHSjZ0V09QcWVWMjdtaEtqcHlSOTRpZTk4ekF3U25acWh3OE1jOWdRZGtKbE54YXNfb1cxRFFRbmpVME1sbWNza1RfSWRGYWl6QXhCOTJVbVRQX2NMMkIwUjFwU2RXMVpJMjZpbzVDR1FlcF9MLU1oVi00aXJia05zdXc0Ynh4RnVEZWU3d3lnM3RIal8zT1BrU2ppZVFHUmlNZHZrUHVIUnRtcGpieUF6NzNwY2JVYTNSdHFCdVozSzlkVW9vaWg5SE5leVRVZm5rNG1DME0xekhvNjRINUZmWXN1U0lkcUVkLXVURHhrQnNHc2N3?oc=5",
-   "source": "معلومات مباشر (عبر Google News – تداول/تاسي)",
-   "published_utc": "2026-09-09T12:54:37Z",
-   "published_riyadh": "2026-09-09 15:54:37",
+   "title": "التصعيد التجاري بين أميركا وكندا يهدد تنافسية منتجاتهما في الأسواق العالمية - العربية",
+   "link": "https://news.google.com/rss/articles/CBMihAVBVV95cUxNcjA3NTExY3pUWDNZQzNONENTR0V1UGFSRUR4SW4yZ1Vldk5fcHZrUzVfZmhFbXdEQUkxalk3OTQ5Rmt3UUxVVVVWb1BlTENqc25ZRS1RMF9zcUdQTlVpM1UtRFpqTjNHQzU1NXdNbmd0SkI0NjJUdkkzN0JTX2FGU1Fjbm1UQXQtTDN1SWtpWnJtVUJySm5XQzlUcEtmb1RjekcwSV9hOHZacUhsNW8wVkFGZWJXZXJIQ3gyVERPb2tzWEx3c05CS19Ja05zcWppc1hrcTRjN1JDeGVHTXJBZUd5TlVvcmJNZW1oTjlWaHBYTFhOZ3NISjgwMHY1Rjl6MkJoRGJiNTlsRFBhZkNWMWlzZnZPM3RLR1A5U1VHZ1VGR0NNcjhWYktidnZNYklVbWVMMmd6a3FHT0U2R3VRUkFpYWZuaE5xa0dibG53cHNlRFgyMm9YenFyUUw1QWd3aWRaMVZ4bW1MeERaWmNYQ2Z6MXpnVFVndzQ5SWdMT0VMTk41VnlxNXcxeTNMMUNDNE9tLUMtOXQ5c2pFLUllelJUVGNHei1zcFpxeks0VlA1SWdDU1MyVlpMZWI0SFdyaVNHMVN1bkRGcFl1MEdNTWNPaGdOaWVYc01veFFHT0gtdUphQWROWVB4VzFOdWVaVGtoMWxFX3JlalViQTVKdHhYTG90bHZ0elFoMk54NUI2aWo1TDA3UGZzYVlCYXVyOUhIWlVNVkp3YWVQaTcyTGpfSDV4Qm5GWEtSOUU2Z09JVWxGZHRxV1pfZG00RWhZZ0pOTXFOcjVDZG9ZdTZwOVE4c2YzaXQ1UURyamdWeTJNZnIwUDRkTFV5dHd2VmtiQXU2VtIBigVBVV95cUxONHRWbGdKMTBqU2N0Z0QzdEEtNVZiSlVJaUhiLTQyMU0tZHo3OTVhZTJjd0FHOEdsNV91V0hTdGlDVTJhUllobjE2RFRuRDUzUVY3RkxVa2U2YWN3clZDQ3MwQ1pmWTV3SEdtTEhtRTVBV0RkSGtJUENaby1jbFNmZ2NTYVNJRHFma0dodFRMWlJfc0xRMm9wd3ZBSGhfWkdqUEhMbGFIakdvT1B5TUhrZ0tBU1Z5a24tb1JPWkFsTXpiTXJsUDRWWHdSd000QUdiY2FuT1VWWGxlaThIZl9MQ3dva3ExTUlLOUNWWDNNd3Ewbmc0MUhhTjNjRHB0R3RIdk9JZ3N6YTA1bFJ3ZDlCejJkSm5VckVmUmJTWTZaZlNVbVpfaF84bkZ6QVJPY3ZoT2hkX1MzVGVLMHVONGdiZWt2VGFCcWRzTENnRFdpM0dwMjFZR3ljV1I4Um84THlHZHdzV0t5RnVlaXJ3WUdsd0VuWmc0dE1tLVJYMWk0ejhaRnNaX0E2Tndta1owc1lfb3RjQktxa2NHQ19Pd2ZYUWF2V1RQQndicnZsQ01Id3lxSnFLYjM2Sm9samE1ZmJ1LUlMTFR1cVpsWjQ1V3Z4cGVlMFlNTVRNeDFUOWtxZHc4eGVNaDFuRWlVYlpKNkpseGtoVUQ4VFhCeV9RUmxqUEt5WUdZMlF5Qy1SMlZFaW5yS2ZfTTBhRjFEM1RvWUkyeFVCc0l2QmhUaHp4VzhtWVpvTlFmNGZHZWZ4QjRzYzN4dnVHUkN2Sy1vLVQ4M0dWWjdPU3dITnk4LVUwZF9pa0lYdnFMRFhad2dMMzJLYkhMRzNfRy1LU2hKLUhPel9POHNZLTlzVDZGZw?oc=5",
+   "source": "العربية (عبر Google News – العربية أسواق)",
+   "published_utc": "2026-09-09T12:55:00Z",
+   "published_riyadh": "2026-09-09 15:55:00",
    "precision": "second",
-   "summary": "مؤشر \"تاسي\" يغلق متراجعاً 0.19% وسط ضغوط من قطاعي السلع الرأسمالية والتأمين معلومات مباشر",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
+   "summary": "التصعيد التجاري بين أميركا وكندا يهدد تنافسية منتجاتهما في الأسواق العالمية العربية",
+   "fetched_at_utc": "2026-09-09T14:17:36Z",
    "lang": "ar",
-   "priority": 1,
-   "id": "85636e9d15",
-   "market": "sa",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "مؤشر \"تاسي\" يغلق متراجعاً 0.19% وسط ضغوط من قطاعي السلع الرأسمالية والتأمين معلومات مباشر",
-   "beneficiary": {
-    "name": "التأمين",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 1,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص قطاع التأمين"
-   },
-   "cf": 1,
-   "rules": [
-    "insurance_sector"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "US Equity Futures Fall Pre-Bell as Brent Crude Surpasses $100 per Barrel - marketscreener.com",
-   "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOUU1Kemx4OGtlc0kyWWJ1Y0IzS1pWLW5jVTd6Q2ROM3kyV1BTSThOMXllUjBmSG9fRVRMWEwwVlljWEFienE5dTVOWmtVR2lJRzF0RmZjeGVPcUJQOGc4MHpGUnhiLVo5cXI4VXl4SDB1cXRfVGxkMzlvY09raDVHS3BrN0VrbVBDejg5ZFZ2VGZDM0xrOHIzdnJraXVNRXNVWXJPU2hqUU9tRVVfVFg4TXd2bW9GdGdscGNuX2J5RGRHQQ?oc=5",
-   "source": "marketscreener.com (عبر Google News – Oil/OPEC/Fed)",
-   "published_utc": "2026-09-09T12:50:46Z",
-   "published_riyadh": "2026-09-09 15:50:46",
-   "precision": "second",
-   "summary": "US Equity Futures Fall Pre-Bell as Brent Crude Surpasses $100 per Barrel marketscreener.com",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 3,
-   "id": "81964a2d43",
-   "market": "macro",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "US Equity Futures Fall Pre-Bell as Brent Crude Surpasses $100 per Barrel marketscreener.com",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر"
-   },
-   "cf": 1,
-   "rules": [
-    "oil_generic"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "Wall St set for lower open as oil hovers near $100 - Reuters",
-   "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNZExkRWJ1dThFMjNOZWdHdkJuSFd4UENUUko1cUI2aWJNMkQzb3FtYm5kNWUza3hVRVQ2Qlk0WjFGRnlGZWRhbzVMckNacFc4NDRXbzRqTmdyWWxTdVZoQ3pYNjY2Nm9pNHJRTUo0dlhkNkFzN2NSZ3BYR2Rqb1dfYkFjWHI1eW5USFlQd200RzI1cVVYY0VsdEZMbDdNQnZrLThZ?oc=5",
-   "source": "Reuters (عبر Google News – Reuters Saudi)",
-   "published_utc": "2026-09-09T12:49:59Z",
-   "published_riyadh": "2026-09-09 15:49:59",
-   "precision": "second",
-   "summary": "Wall St set for lower open as oil hovers near $100 Reuters",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 1,
-   "id": "138cc51943",
-   "market": "macro",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "Wall St set for lower open as oil hovers near $100 Reuters",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر"
-   },
-   "cf": 1,
-   "rules": [
-    "oil_generic"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "Brent Oil Breaks $100, but Dollar Breaks From the War’s Old Playbook - Action Forex",
-   "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQdVhtZHZqRHlPMXJFSDRJVXZnam1na3YtTDBaV0lfNlZRcHZKYkxoVmpXUjNQc0d2RTJlT2doTU9HekpQTTQ2UjRucnVHekQtZ25jSlJSTnFMZWN6WHFUa2p4NDYwQnVLdkh3bnMxWDQ1WDZVS1RrWmxfaGFiQW5XMmJBbm1Tb092REZqZThKZTdYSENKMXZWVzJiRUdZc09Hc2FHcy1zbTEyM3BCOUVFLXJHbjR5Q0hCVE42OFRqSVFuaXgzNUM5V1A1NDA?oc=5",
-   "source": "Action Forex (عبر Google News – Oil/OPEC/Fed)",
-   "published_utc": "2026-09-09T12:48:35Z",
-   "published_riyadh": "2026-09-09 15:48:35",
-   "precision": "second",
-   "summary": "Brent Oil Breaks $100, but Dollar Breaks From the War’s Old Playbook Action Forex",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 3,
-   "id": "57b8501b99",
-   "market": "macro",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "Brent Oil Breaks $100, but Dollar Breaks From the War’s Old Playbook Action Forex",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر"
-   },
-   "cf": 1,
-   "rules": [
-    "oil_generic"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "المزاد.. ارتفاع أسهم 119 شركة في \"تاسي\" وانخفاض 75 أخرى وتداول 13 مليون سهم بـ 353 مليون ريال - صحيفة مال",
-   "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPQWxwM3Q3M3dLdndCbURHN3ZreFV4MjlaNUU2RmhuR3ZYZUdvU1dLWUkwLTRlRW1qbFBYSmNHLWxOd29MSmJYc1B3NE13WS10YlZoWENVRHYxeHhIc1daajlsczVDZ2JLTXJQS0wzZWoydDl2NDdqUWpxaDdXT3EzTnN0RkVtcjNCWERZRlBPc0todFNrS3pvS2NpLVN0ZWFNVWFpVnUtR1lUVGQ1SElSRE54TWduVzlrMHJZbmh4UVF3eTZXQVJJcllUZUM?oc=5",
-   "source": "صحيفة مال (عبر Google News – تداول/تاسي)",
-   "published_utc": "2026-09-09T12:47:27Z",
-   "published_riyadh": "2026-09-09 15:47:27",
-   "precision": "second",
-   "summary": "المزاد.. ارتفاع أسهم 119 شركة في \"تاسي\" وانخفاض 75 أخرى وتداول 13 مليون سهم بـ 353 مليون ريال صحيفة مال",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "ar",
-   "priority": 1,
-   "id": "6186e85068",
-   "market": "sa",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "المزاد.. ارتفاع أسهم 119 شركة في \"تاسي\" وانخفاض 75 أخرى وتداول 13 مليون سهم بـ 353 مليون ريال صحيفة مال",
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
-   },
-   "cf": 1,
-   "rules": [],
-   "analysis": "rules"
-  },
-  {
-   "title": "بسيولة 3.9 مليار.. \"تاسي\" يغلق على انخفاض 0.2%.. و\"نمو\" يتراجع 0.2% - صحيفة مال",
-   "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPTV8zb2FOdGtUVmJjRDBsdnZPNFlNcEluMmFudk9iM1NySUV3Mk1GeVcyMXlybkJ1a2tybDhqb0s4eHNaempsOWRwXzNMblZaYXY2cFQ5dmtPREQ4X1RCTkNpMHM1cTVFUno3VWVjMERrcTYxNExLVUhIOG1IVFZLVWMwTTB6RW5WSUJrandiVndWbHpkeGZ4MWpEVmR6Ui1TbHVEMlAzVjlZQ0JzUjV3VThDaFU4d21Ed1lsbXotQ0ZTLTZseGdxTA?oc=5",
-   "source": "صحيفة مال (عبر Google News – تداول/تاسي)",
-   "published_utc": "2026-09-09T12:46:23Z",
-   "published_riyadh": "2026-09-09 15:46:23",
-   "precision": "second",
-   "summary": "بسيولة 3.9 مليار.. \"تاسي\" يغلق على انخفاض 0.2%.. و\"نمو\" يتراجع 0.2% صحيفة مال",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "ar",
-   "priority": 1,
-   "id": "1a565098bd",
-   "market": "sa",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "بسيولة 3.9 مليار.. \"تاسي\" يغلق على انخفاض 0.2%.. و\"نمو\" يتراجع 0.2% صحيفة مال",
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
-   },
-   "cf": 1,
-   "rules": [],
-   "analysis": "rules"
-  },
-  {
-   "title": "A Kentucky man with a meat allergy was craving a burger. So he got into ostrich farming - Boston Herald",
-   "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE52b0ZtcUw5QVcyS09aeXkxZlBsX0xwYnRfc1IzUFZ4Q0lqckFEZGI5WGxvdnAyUWFTUVd5NkhPMUcyYURIUVpic0V2TEU0eVY1b0NRMklEeHBha1VLNWJvalNWWWV2UlVpdGpkd1d6Z3k?oc=5",
-   "source": "Boston Herald (عبر Google News – Oil/OPEC/Fed)",
-   "published_utc": "2026-09-09T12:37:59Z",
-   "published_riyadh": "2026-09-09 15:37:59",
-   "precision": "second",
-   "summary": "A Kentucky man with a meat allergy was craving a burger. So he got into ostrich farming Boston Herald",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 3,
-   "id": "5108792d3b",
+   "priority": 2,
+   "id": "a3fea3dea5",
    "market": "other",
    "signal": "mix",
    "tickers": [],
-   "summary_ar": "A Kentucky man with a meat allergy was craving a burger. So he got into ostrich farming Boston Herald",
+   "summary_ar": "التصعيد التجاري بين أميركا وكندا يهدد تنافسية منتجاتهما في الأسواق العالمية العربية",
    "beneficiary": {
     "name": "—",
     "why": "لا يوجد مستفيد واضح"
@@ -1988,867 +2819,6 @@
    },
    "cf": 1,
    "rules": [],
-   "analysis": "rules"
-  },
-  {
-   "title": "Brent crude surpasses $100 a barrel as Iran, US escalate attacks - Al Jazeera",
-   "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxQY1o4VE5UNk5MRWQ3UFJkakZFdDFuNUw3Z00yNkFrdW5Na0luMm9oaUlDRkItVkRkZExuWGEzR3p5d2pUVVB5aEU2bHdRWDhwUUxFM29kNmp1MXRtaGpqMVJXN3VzbXFaMzFWdG1pbkxfRG02RzN4bnl0cTloRGhOdTJLaDVzZWZvRU9BdldmN0VTbV9xTXA0N2s2ZWVxd9IBowFBVV95cUxQc09RTEM3dmF6TUw4eDU4SjNNdUV6eWpRVUFGUmFUV3ZsSzFYeVJiNnM5RUdteEdjSDMzbm5TWDZfX1JUX1ZIa0RvSjEzbW9SQ2JWSm11czhSRnEyckZoWnhNZFkxakJJeURWU2g5NUJuLXVFVDBtczRGWWZXVnB1aWZ4RG1pNGVVbHZpeUF6SkhuY19oMll4Z1Fsem40MWJ2aGFJ?oc=5",
-   "source": "Al Jazeera (عبر Google News – Oil/OPEC/Fed)",
-   "published_utc": "2026-09-09T12:30:56Z",
-   "published_riyadh": "2026-09-09 15:30:56",
-   "precision": "second",
-   "summary": "Brent crude surpasses $100 a barrel as Iran, US escalate attacks Al Jazeera",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 3,
-   "id": "7b19d7b3f4",
-   "market": "macro",
-   "signal": "neg",
-   "tickers": [],
-   "summary_ar": "Brent crude surpasses $100 a barrel as Iran, US escalate attacks Al Jazeera",
-   "beneficiary": {
-    "name": "أرامكو (2222)",
-    "why": "علاوة المخاطر ترفع سعر البرميل أكثر مما يضر التوقف المؤقت"
-   },
-   "hurt": {
-    "name": "التأمين (التعاونية 8010، بوبا 8210) والبحري (4030)",
-    "why": "مطالبات حرائق ومنشآت وارتفاع مخاطر الملاحة"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": -1,
-    "petrochem": -1,
-    "insurance": -3,
-    "transport": -2,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": -1,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · مخاطر جيوسياسية: مطالبات التأمين والحرائق، وارتفاع أقساط الشحن، وخطر تشغيلي على منشآت الطاقة، مقابل علاوة سعر في النفط"
-   },
-   "cf": 3,
-   "rules": [
-    "oil_generic",
-    "attack"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "مؤشر سوق الأسهم السعودية يغلق منخفضا 0.2% اليوم الأربعاء - صحيفة اليوم السعودية",
-   "link": "https://news.google.com/rss/articles/CBMi2wRBVV95cUxOYUpDR3VlNHFzUU9MVUtILWxOOEtxM1lWRFlaQkRkS1UxYU5LM0piejE5ajR3eHI3OG9wTEN5MC11V2xETklnWDhMbUtKbnNLcTlRUTVhTVdtOU93SDR3LXBmWDRoUFdmX0FVOGFXcjhnSWp3R2hOSXVoX0xxdjNfTDNuV3RLdkc1SDNWZ25DQ0tTRWNjcU8ybUR4ZmZsSFJaYjdfb3hKblBIYy1qZmw5amtOT0J5LXdtbHF6TmwzTW5waHJKZVZseHVtdGxkX25wVFMxVi1PZEJtdFV3eEp1clBhd1RORllnQlFVa3QyY2t6b0tKMXNCb0tZWVpzMjF4T2ZhYjlMTTlMelBOcUw2TWdFSVhYcEsxUzRkdGMybzNkMzlLZDh4V0MtMEo2bUthUmxHTzY2cTM4R2RsXzdLd1FPSTlpWDlZVE5sV0NfR1FtdldzTVhLSDl0bW42WVFJbnlLd1JieTU2ME5NZzYzWDBUUzBfa3lIc0dwWWluZEVJMm1qTGNidkE3NzRqbUlFdElWYkh0dzVOODJud2FIeWwyZmVnTXJ2MWUtTnRyMGtpMHNUTVVWeXlnbC1qd2UwTWw2WFFHcXNEY0dKQjd2MkwtV1ZmOFppOFFzbktMbXZhWjI0MFhJM3hLVkpiWUlJaHAwTlVuN3NXSnJPTGdPMGdzSndGRTcwUkVWSkpHdUJLN1FJMGplbmxxZnNFVWtETGJBc3JOV215cDdKcTVSODlkTnNSTWY3aE40ajAtczR1Tl9FbWl0UWotS293cm5LUUhFbTZNakRFcGvSAVNBVV95cUxOaFVRMWpmeHRHSVJ1MkdSR3Y5UGVQQ2JzNElWb3NHdUFuU0JYeVdENkFSREZEcWVxRE9Nc3VhNzRiOFF3ZEJjcjZ4cGtWcVlSdDRtSQ?oc=5",
-   "source": "صحيفة اليوم السعودية (عبر Google News – تداول/تاسي)",
-   "published_utc": "2026-09-09T12:21:00Z",
-   "published_riyadh": "2026-09-09 15:21:00",
-   "precision": "second",
-   "summary": "مؤشر سوق الأسهم السعودية يغلق منخفضا 0.2% اليوم الأربعاء صحيفة اليوم السعودية",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "ar",
-   "priority": 1,
-   "id": "edafd57800",
-   "market": "sa",
-   "signal": "neg",
-   "tickers": [],
-   "summary_ar": "مؤشر سوق الأسهم السعودية يغلق منخفضا 0.2% اليوم الأربعاء صحيفة اليوم السعودية",
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "الشركات الصغيرة",
-    "why": "أكبر أثر سلبي بحسب القواعد"
-   },
-   "impact": {
-    "energy": -1,
-    "banks": -1,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": -2,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "إغلاق سلبي للمؤشر يعكس ضغط بيع وتراجع شهية المخاطرة"
-   },
-   "cf": 2,
-   "rules": [
-    "market_down"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "What Brent Key said about Georgia Tech bouncing back from Colorado loss, facing Faizon Brandon and Tennessee - 247Sports",
-   "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOek5uZXZNbm9pQXJUSFEzT1I1eG8tR0tGZ3FONmJIVWVYV3RxbDd0WVhkRWFtczUtSXcyY1ViMkxia01tdTY2VUNJWWxBSFNrVXNZaTJfSFpSbDVXQ0pkZGY2VlpMMEhlZHk1dzU1SVl2Nmx2R3Q1NWJORWFtOWhKT3R1UTdoWnNqbG5JVG9MTzAyeDJidnphaGN0eU1QQ0VadHFPT3BuQ1Q3Z0NuZmswMDZOWFdHOHpib1NlV2Ntc0FVa0h2TE43eWJjRk1LdHlGZHNIcUFwZHVyNm9Pdmh0UFRCYnRSUVU?oc=5",
-   "source": "247Sports (عبر Google News – Oil/OPEC/Fed)",
-   "published_utc": "2026-09-09T12:19:25Z",
-   "published_riyadh": "2026-09-09 15:19:25",
-   "precision": "second",
-   "summary": "What Brent Key said about Georgia Tech bouncing back from Colorado loss, facing Faizon Brandon and Tennessee 247Sports",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 3,
-   "id": "0d482b0ddd",
-   "market": "macro",
-   "signal": "pos",
-   "tickers": [],
-   "summary_ar": "What Brent Key said about Georgia Tech bouncing back from Colorado loss, facing Faizon Brandon and Tennessee 247Sports",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 1,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 1,
-    "smallcaps": 0,
-    "telecom": 1,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات · خبر يخص قطاع النقل واللوجستيات"
-   },
-   "cf": 1,
-   "rules": [
-    "oil_generic",
-    "tech_sector",
-    "transport_sector"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "عطاء السعودية تصعد بأرباحها إلى 97.34 مليون ريال في السنة المنتهية في يوليو 2026 - FxNewsToday.ae",
-   "link": "https://news.google.com/rss/articles/CBMi2ARBVV95cUxPXzdmLWxpY3NtUFBzTndjOXJvMmZHeklLdURFUUFJblV5ZlJmX3E1OWhfWTlzenZxY1g2Y0IyRXZ2eklYTE91QW9GSTJyZ3JHT3hNWHJsWUpkVTc3dmwwUWhYUUJyOFlyZnhWLXBNb3p1bHpQQXNRazhsYXpyaTRRa0t6YlVnUWpqcmNIeUpJNVpRWnh4ZjQxTk5EN29OTElWRGhvdHFqZVl6NWpZRDdheGMzQlNtaWpJNHAyNENvcDg1ZVNpMWRoVHNNUUhtbzFBb19vcmZwb0JYc2J6RlZlNi1VWURyM2JKZmh1QmN0TVA3bmIyU2wtWjlQNFhSX01pN1dySERZa1U5d1RVeFFBWWQzWW9UUXl1dmdPc1VQcWcxMDV4eXNpa1dDY0E2V0hKNGNwRGdVbTAzaXlxaUI1ZW9EUXRCMkxCWGdjdHpUZ25jYlg2cTVoNHZuTHJ0c3NYWWRJTGtqdDlOTl85eHhlMGZzTngwZVZ5bVRUVnNKWS1zenFFVTBzUGxLcWFsbnpjbDdhenZHUGVXM0tIV2dlekhHeGlnNWotZEpydlRaM1VGeWZkWS1BTDZINko0THVZTFRvZWJVcFZ5a0xIdGNwNGljQVJkWHJXMGd3a3ZpTndzNEpUSkxlbVBWd0RoMFQwTnRJWXFyaGlOQU9Pek92emJmQlhJdkt0dVc2SGxNajJpQTJIUjZEcVU0NkVyMmRDRTFqMkZFTmJfZ0VzaDl4RnBLeXh1YWh6dTQzS0lmcE9qR2o0NzBwNGw1R1hXNW9mSE1vekh2WDc?oc=5",
-   "source": "FxNewsToday.ae (عبر Google News – السوق السعودية)",
-   "published_utc": "2026-09-09T12:17:58Z",
-   "published_riyadh": "2026-09-09 15:17:58",
-   "precision": "second",
-   "summary": "عطاء السعودية تصعد بأرباحها إلى 97.34 مليون ريال في السنة المنتهية في يوليو 2026 FxNewsToday.ae",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "ar",
-   "priority": 1,
-   "id": "1ef0a88aac",
-   "market": "sa",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "عطاء السعودية تصعد بأرباحها إلى 97.34 مليون ريال في السنة المنتهية في يوليو 2026 FxNewsToday.ae",
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "إعلان نتائج مالية"
-   },
-   "cf": 1,
-   "rules": [
-    "earnings_generic"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "Crude Futures End Mixed With No End in Sight to U.S.-Iran Conflict - wsj.com",
-   "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQc21PRFBnRHZya0ZIdkxhSUtQS01nWDhKSTJSclNXVm5HemQ1cDZENXotZGZrbUpnbjRueU5nQ1FPQmJGZ2pmMWd4OEJQY3pUM19fMDN5MXFCTmlBYWdNbC1WQWNxQkE5emluNU82ZEJJV3g5UGJmYTIteGtpaTJOWFE1RUp5dDVPaWktb19HZ2F2YnNLTnotblV2ajBVZzJ5Y3Q2djQwOA?oc=5",
-   "source": "wsj.com (عبر Google News – Oil/OPEC/Fed)",
-   "published_utc": "2026-09-09T12:15:03Z",
-   "published_riyadh": "2026-09-09 15:15:03",
-   "precision": "second",
-   "summary": "Crude Futures End Mixed With No End in Sight to U.S.-Iran Conflict wsj.com",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 3,
-   "id": "78bb935698",
-   "market": "macro",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "Crude Futures End Mixed With No End in Sight to U.S.-Iran Conflict wsj.com",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر"
-   },
-   "cf": 1,
-   "rules": [
-    "oil_generic"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "Oil Hits $100 a Barrel as Turmoil Intensifies in Middle East - The New York Times",
-   "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNaHNCdG5udTk5WkFZT1g1Ml9kXy1zc1Myc0N0aVAtUHQwTlU3ZEVwZVE3X3oxb2YyWnZoaWhqZUN0T0JDbTVLaFlwRzc0a2ttYmJud3dSblgxN280UU9fNS1JaGlnb1VOT2EzblI1SmRGdk9OeFBBX3huYWZlSHlFV1ExdHo?oc=5",
-   "source": "The New York Times (عبر Google News – Oil/OPEC/Fed)",
-   "published_utc": "2026-09-09T12:15:01Z",
-   "published_riyadh": "2026-09-09 15:15:01",
-   "precision": "second",
-   "summary": "Oil Hits $100 a Barrel as Turmoil Intensifies in Middle East The New York Times",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 3,
-   "id": "d56a603305",
-   "market": "macro",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "Oil Hits $100 a Barrel as Turmoil Intensifies in Middle East The New York Times",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر"
-   },
-   "cf": 1,
-   "rules": [
-    "oil_generic"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "Dow Jones Futures Fall As Oil Prices Push Stocks Toward Breaking Point; Apple iPhone Event Due - Investor's Business Daily",
-   "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOdUJJVERoZVVNRDZqOWJjUE9nRmVHM3VQcmExWXNoQzVvZXp4TXhIZXpBRVFtVHNSSnZJZXNXWVpTMFZRZGJaQWFJMXdfYkR3Slk4NExIM2tKbUlrN1ZMZ3QzVnhLXzk2dUgxbGFpZS1xYUFxWHA0TUtySnpJek5yalc4SE5RUE5sZFVOY0xtcEJKYi1vN0Q4S0pzMDZnX3c4Tm1lcVhPdFNpU1BfUF9ieXF2ajV2R29NbWdVenBON1g?oc=5",
-   "source": "Investor's Business Daily (عبر Google News – Oil/OPEC/Fed)",
-   "published_utc": "2026-09-09T12:13:00Z",
-   "published_riyadh": "2026-09-09 15:13:00",
-   "precision": "second",
-   "summary": "Dow Jones Futures Fall As Oil Prices Push Stocks Toward Breaking Point; Apple iPhone Event Due Investor's Business Daily",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 3,
-   "id": "9bbac994bd",
-   "market": "us",
-   "signal": "pos",
-   "tickers": [],
-   "summary_ar": "Dow Jones Futures Fall As Oil Prices Push Stocks Toward Breaking Point; Apple iPhone Event Due Investor's Business Daily",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 1,
-    "smallcaps": 0,
-    "telecom": 1,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات"
-   },
-   "cf": 1,
-   "rules": [
-    "oil_generic",
-    "tech_sector"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "U.S. Stock Futures Slip, Treasurys Weaken After Oil Tops $100 - wsj.com",
-   "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNcjQ0dWVKb0Rhd2FmNDZkVHhSYTE0YjBSTlVVZF9selpEb2RFSFdBNG9tZ3B0dzZBVDhkeEtxOV9IRktISnFIMDN5bWU5QVBfY2FTTWFKMlNNWS1YZUR3VXlQWmVRTExncG93cmdEOXVRTmV3SnZGNWZwTjlvLVBlWm9GRndOTzRMRTdDaGlJZmJIODFEc3liVXQzdlVJUnRkM05YaVF5aVVFYjA?oc=5",
-   "source": "wsj.com (عبر Google News – Oil/OPEC/Fed)",
-   "published_utc": "2026-09-09T12:11:00Z",
-   "published_riyadh": "2026-09-09 15:11:00",
-   "precision": "second",
-   "summary": "U.S. Stock Futures Slip, Treasurys Weaken After Oil Tops $100 wsj.com",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 3,
-   "id": "ccfafd6c3f",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "U.S. Stock Futures Slip, Treasurys Weaken After Oil Tops $100 wsj.com",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر"
-   },
-   "cf": 1,
-   "rules": [
-    "oil_generic"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "Brent oil crosses $100 for first time in two months as Middle East conflict flares - Yahoo Finance",
-   "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNZkY0bkVQdUhxV0RhUVIyLUpnWTQ0MmpHQnFLTXF3c3BvdFFVZWZLR1dBOTFLMHdrRzBjVC1DZTBkSUdvQlE2dFJ4WVdsQWxsTXpqZVp5cnp4QmNlbDM1bjZQdVVxYkxtZV9TTkZGZ2lPc1p1YnFxdmx1eVBGSTJ2Y1dGRnJCbm5NelNoaW8xX2lrX0FKMEQ2WHhib3BlYUdXTVlKX2kwMUVEbmhPRmliaHRvY24xYTBuMWVYbnI0WWJCS3pXS2xnWVk2bjNpRUNsTGdzZW03X0tOc1RuQ1pUVV9BTlo?oc=5",
-   "source": "Yahoo Finance (عبر Google News – Oil/OPEC/Fed)",
-   "published_utc": "2026-09-09T12:10:35Z",
-   "published_riyadh": "2026-09-09 15:10:35",
-   "precision": "second",
-   "summary": "Brent oil crosses $100 for first time in two months as Middle East conflict flares Yahoo Finance",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 3,
-   "id": "49b1c024e1",
-   "market": "macro",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "Brent oil crosses $100 for first time in two months as Middle East conflict flares Yahoo Finance",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر"
-   },
-   "cf": 1,
-   "rules": [
-    "oil_generic"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "Brent crude hits $100 a barrel as Iran war escalates - Washington Times",
-   "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQc3lRSDh0MXBkVEYtdGQ0VFBSdm1LTlVlSEFhM2RMcERfUDdqelZBdWY3U3pxR2JuX3Y4NHQwbHc0R2tuT3pJWG1GQ0tiUmg3Mmw1ZkdlWGVTamhjRFBMV0NVSVBhaFhWOW1GTXVTQTZpcDA1aE1sdXFleG0yTDAyUFZ6RExvc0QyZVZtVHo5dDFsZlh6QUtNa1Q3TQ?oc=5",
-   "source": "Washington Times (عبر Google News – Oil/OPEC/Fed)",
-   "published_utc": "2026-09-09T12:08:29Z",
-   "published_riyadh": "2026-09-09 15:08:29",
-   "precision": "second",
-   "summary": "Brent crude hits $100 a barrel as Iran war escalates Washington Times",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 3,
-   "id": "0fdd42f888",
-   "market": "macro",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "Brent crude hits $100 a barrel as Iran war escalates Washington Times",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر"
-   },
-   "cf": 1,
-   "rules": [
-    "oil_generic"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "Riyadh becomes only Gulf city among world’s top 100 innovation clusters",
-   "link": "https://saudigazette.com.sa/article/664431/saudi-arabia/riyadh-becomes-only-gulf-city-among-worlds-top-100-innovation-clusters",
-   "source": "Saudi Gazette – Business",
-   "published_utc": "2026-09-09T12:07:56Z",
-   "published_riyadh": "2026-09-09 15:07:56",
-   "precision": "second",
-   "summary": "RIYADH — Riyadh has ranked among the world’s top 100 innovation clusters in the 2026 Global Innovation Index, becoming the only Gulf city to achieve the classification. The Saudi capital ranked 92nd globally, recording 419 venture capital deals in innovation and 162 international patent applications. The report identified King Saud University, Princess Nourah bint Abdulrahman University and Prince Sultan University as key contributors to Riyadh’s research output, while SABIC and Aramco were highlighted for their contributions to innovation. The ranking reflects the Kingdom’s growing research a",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 1,
-   "id": "6c16e5f2b6",
-   "market": "sa",
-   "signal": "mix",
-   "tickers": [
-    {
-     "code": "2010",
-     "name_ar": "سابك"
-    }
-   ],
-   "summary_ar": "RIYADH — Riyadh has ranked among the world’s top 100 innovation clusters in the 2026 Global Innovation Index, becoming the only Gulf city to achieve the classification. The Saudi capital ranked 92nd globally, recording 419 venture capital deals in innovation and 162 international patent applications. The report identified King Saud University, Princess Nourah bint Abdulrahman University and Prince Sultan University as key contributors to Riyadh’s research output, while SABIC and Aramco were highlighted for their contributions to innovation. The ranking reflects the Kingdom’s growing research a",
-   "beneficiary": {
-    "name": "البتروكيماويات",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 1,
-    "insurance": 0,
-    "transport": 1,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص قطاع البتروكيماويات · خبر يخص قطاع النقل واللوجستيات"
-   },
-   "cf": 2,
-   "rules": [
-    "petrochem_sector",
-    "transport_sector"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "Japanese yen rallies; dollar rattled by oil topping $100 - Reuters",
-   "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOSEotZFlXVDdDeG05cmdnOVhQN0xrYXBpeUhaNDg2ZkQxNkdEZ0k2aVp6ZThfRWMwaHk4TUVPcTh1NHJ2S2VmQk1hZWdqM1Y2cXpqeGwtdHgxN291b0F2OGc3SGZMV0F2RUktY2g3RE1uVzhLSXVQMWc1OE9hSXhjNmxSTktoY2o3Uy01SjRYUVg1NjUxVHRPMndmODlpWW5OdEpPaUFpQjd3MHhfcmIxWGpZWFFhRnBSeEtIRFdDTTI?oc=5",
-   "source": "Reuters (عبر Google News – Reuters Saudi)",
-   "published_utc": "2026-09-09T12:02:04Z",
-   "published_riyadh": "2026-09-09 15:02:04",
-   "precision": "second",
-   "summary": "Japanese yen rallies; dollar rattled by oil topping $100 Reuters",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 1,
-   "id": "c0940b7809",
-   "market": "macro",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "Japanese yen rallies; dollar rattled by oil topping $100 Reuters",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر"
-   },
-   "cf": 1,
-   "rules": [
-    "oil_generic"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "Oklahoma HC Brent Venables still holding Michigan in ‘high regard’ after ugly Week 1 - Maize n Brew",
-   "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPUkF3U0daR0ZISGhSRnpUUGp2ejZVLTExUHlTZmxiSnpFLVJDWFdweEswU19xRHN1T0stb0JqSnlmazFzSUVvYkR4VnNOVXZmc0NLdXc4UGNQUno1T2UxOEJHN0lQZ3lrc3BOZ2ZGQmdpVjJrNnJyNnE2OUJSc3N0LS1GN3VieG8yc0M1MGNEQ1UtZzZZeEZoOThvTGJ1YnBpdF9zLTUtTl8yMGgxdVFGTXFkVFhkUjY5am9Fc0E5alQ1aGM?oc=5",
-   "source": "Maize n Brew (عبر Google News – Oil/OPEC/Fed)",
-   "published_utc": "2026-09-09T12:00:00Z",
-   "published_riyadh": "2026-09-09 15:00:00",
-   "precision": "second",
-   "summary": "Oklahoma HC Brent Venables still holding Michigan in ‘high regard’ after ugly Week 1 Maize n Brew",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 3,
-   "id": "3ea5e503d8",
-   "market": "macro",
-   "signal": "pos",
-   "tickers": [],
-   "summary_ar": "Oklahoma HC Brent Venables still holding Michigan in ‘high regard’ after ugly Week 1 Maize n Brew",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 1,
-    "smallcaps": 0,
-    "telecom": 1,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات"
-   },
-   "cf": 1,
-   "rules": [
-    "oil_generic",
-    "tech_sector"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "Brent oil tops $100 on Mideast flare-up, fanning inflation fears - fox26medford.com",
-   "link": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxOSkxmZXI0cTlJRGpwc3BMS2FzVnJvMTZweFZBbmhOS0E4bU92RHVEZ1hXVkdKWm5MLUtIQkxQSXFaU1ljZWVWa3ZvTjhRMDlPYTZ6YWZ3VEpkUGFSRFE1UnE3QzdMdEo2VFYtUmxQQVNJcDNNTFVlMmJIa09JQXpZU19EbXZSZkZUODA4Q1VJekdrdHJqdF83V0gtZnZWTjNwMms1SlltMHQ1X2dFTnpTLS15MUs1SndmRVg1cFpfZFdXYXdVUUJMTTF3U3dNYWRoVGtZMHlDR2lyajNUbUtNYU45ZnZERnZBQzlj?oc=5",
-   "source": "fox26medford.com (عبر Google News – Oil/OPEC/Fed)",
-   "published_utc": "2026-09-09T11:54:28Z",
-   "published_riyadh": "2026-09-09 14:54:28",
-   "precision": "second",
-   "summary": "Brent oil tops $100 on Mideast flare-up, fanning inflation fears fox26medford.com",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 3,
-   "id": "810f6b708b",
-   "market": "macro",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "Brent oil tops $100 on Mideast flare-up, fanning inflation fears fox26medford.com",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "التجزئة",
-    "why": "أكبر أثر سلبي بحسب القواعد"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 1,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": -1,
-    "food": -1,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · التضخم يضغط على القوة الشرائية ويؤجل خفض الفائدة"
-   },
-   "cf": 1,
-   "rules": [
-    "oil_generic",
-    "inflation"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "Brent Hits $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears - wsj.com",
-   "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOb1U4eTNZZ0F0VlUwYkJ1clV6eWxWWnV3QzFiVjBwTzdNNkJhMGJZN3hjQ0hCY3cxbFlabEc2UTc2WUg1dFpSZV9zZ0VvNURCeGJER2lkbTd5UWE1VWNvaDN1NDdlclk5c1RXR3A0VnZzSHRZY21HdnVPWHlpck5zV29LVVlwQlVoSmdHMXF4V2Z3cTdnWllHb0F3R0pYX3Bnai0yLWN4MkZuMHV2aTIyT2VQV2JYeVA4bHRmMFFPMGdPRm8?oc=5",
-   "source": "wsj.com (عبر Google News – Oil/OPEC/Fed)",
-   "published_utc": "2026-09-09T11:49:00Z",
-   "published_riyadh": "2026-09-09 14:49:00",
-   "precision": "second",
-   "summary": "Brent Hits $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears wsj.com",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 3,
-   "id": "fa22deca44",
-   "market": "macro",
-   "signal": "neg",
-   "tickers": [],
-   "summary_ar": "Brent Hits $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears wsj.com",
-   "beneficiary": {
-    "name": "أرامكو (2222)",
-    "why": "علاوة المخاطر ترفع سعر البرميل أكثر مما يضر التوقف المؤقت"
-   },
-   "hurt": {
-    "name": "التأمين (التعاونية 8010، بوبا 8210) والبحري (4030)",
-    "why": "مطالبات حرائق ومنشآت وارتفاع مخاطر الملاحة"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": -1,
-    "petrochem": -1,
-    "insurance": -3,
-    "transport": -2,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": -1,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · مخاطر جيوسياسية: مطالبات التأمين والحرائق، وارتفاع أقساط الشحن، وخطر تشغيلي على منشآت الطاقة، مقابل علاوة سعر في النفط"
-   },
-   "cf": 3,
-   "rules": [
-    "oil_generic",
-    "attack"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "Brent: Supply stress drives cautious flows – BNY - FXStreet",
-   "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPeW5aZlE4dElPcGdRUzl5Zm9YUjFHekZoOTFINnIwbjRxd1NuaVo4YW1EWkZ2NU1mQ2cxem11d0Nva2FOVXNBVUUwVnBFNzJmRmlNVnpSWkVya3NxZW5aY1dkZ2dvbUhTbGdxVEZHSGtRbEJ2S2duWjRzb2tqZ1hWTl9lMHlpU0VOMW1USDhpMHctZw?oc=5",
-   "source": "FXStreet (عبر Google News – Oil/OPEC/Fed)",
-   "published_utc": "2026-09-09T11:47:42Z",
-   "published_riyadh": "2026-09-09 14:47:42",
-   "precision": "second",
-   "summary": "Brent: Supply stress drives cautious flows – BNY FXStreet",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 3,
-   "id": "a384acfdb8",
-   "market": "macro",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "Brent: Supply stress drives cautious flows – BNY FXStreet",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر"
-   },
-   "cf": 1,
-   "rules": [
-    "oil_generic"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "Brent crude rises above $100 a barrel as Middle East conflict intensifies By Reuters - Investing.com",
-   "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPRVpPaEY4V09JVXNvRS1FbzF4cWZMT1MtWkp5NmxLbFBaNE0zZlZJQUNTNTRtaGJWZnRJUENRTEFLbWIwRkJNWkRNVnh3dmVULXpPUmJuUmxNQ3gyVnZZVGUxdG5BSXpRX3QxS2ZVSVFuc3ozM1hOSTBRV0t1RWpzVktLS2Fzb1dwLV93NF90QU1pOXphXzRLb3g5SDYzZ0I1dnh6allOODlBUnh3dXhZYklodkRLeEFGdmJodE9qcm43ZzFU?oc=5",
-   "source": "Investing.com (عبر Google News – Oil/OPEC/Fed)",
-   "published_utc": "2026-09-09T11:45:27Z",
-   "published_riyadh": "2026-09-09 14:45:27",
-   "precision": "second",
-   "summary": "Brent crude rises above $100 a barrel as Middle East conflict intensifies By Reuters Investing.com",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 3,
-   "id": "e31ffebfba",
-   "market": "macro",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "Brent crude rises above $100 a barrel as Middle East conflict intensifies By Reuters Investing.com",
-   "beneficiary": {
-    "name": "أرامكو (2222)",
-    "why": "كل دولار إضافي في سعر البرميل يذهب مباشرة إلى إيراد التصدير والتوزيعات"
-   },
-   "hurt": {
-    "name": "البحري (4030) وشركات الطيران",
-    "why": "الوقود أكبر بند تكلفة والناقلات معرّضة للمخاطر"
-   },
-   "impact": {
-    "energy": 3,
-    "banks": 1,
-    "petrochem": -1,
-    "insurance": 0,
-    "transport": -2,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": -1,
-    "why": "ارتفاع النفط يرفع إيراد أرامكو والدخل الحكومي والسيولة، ويضغط على تكلفة الوقود واللقيم للنقل والبتروكيماويات · خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر"
-   },
-   "cf": 3,
-   "rules": [
-    "oil_up",
-    "oil_generic"
-   ],
-   "analysis": "rules"
-  },
-  {
-   "title": "Oil Market Daily: Brent Breaks $100 as the Gulf Off-Ramp Narrows - The Dark Side Of The Boom",
-   "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNVDJFY2Q4SDJqUWZpYlZhTW5lOXNwZEk5S0wzcGpKaW5kQ2xQZkd3NlAtYkNJTU9yUUozVVh5ZEZObFUzaXZfMjBsNk1mQ3hrOWVIZlpDTnVDdU1wU1VGQ09tUDVVd3MweWJ1c2NFSnRRT0JvMEdHbWRCckI4UWR1dDZVRQ?oc=5",
-   "source": "The Dark Side Of The Boom (عبر Google News – Oil/OPEC/Fed)",
-   "published_utc": "2026-09-09T11:44:45Z",
-   "published_riyadh": "2026-09-09 14:44:45",
-   "precision": "second",
-   "summary": "Oil Market Daily: Brent Breaks $100 as the Gulf Off-Ramp Narrows The Dark Side Of The Boom",
-   "fetched_at_utc": "2026-09-09T14:14:31Z",
-   "lang": "en",
-   "priority": 3,
-   "id": "6304070d72",
-   "market": "macro",
-   "signal": "pos",
-   "tickers": [],
-   "summary_ar": "Oil Market Daily: Brent Breaks $100 as the Gulf Off-Ramp Narrows The Dark Side Of The Boom",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 1,
-    "smallcaps": 0,
-    "telecom": 1,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات"
-   },
-   "cf": 1,
-   "rules": [
-    "oil_generic",
-    "tech_sector"
-   ],
    "analysis": "rules"
   }
  ]
