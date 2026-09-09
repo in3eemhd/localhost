@@ -29,15 +29,17 @@
     "المملكة": {"none": ["المملكة المتحدة", "المملكة الأردنية", "مملكة البحرين", "المملكة المغربية", "المملكة البريطانية"]}
   },
   "market_keywords": {
-    "sa": ["تاسي", "تداول", "السوق السعودي", "السوق السعودية", "الأسهم السعودية", "أرامكو", "نمو", "هيئة السوق المالية", "الراجحي", "سابك", "الرياض", "جدة", "سعودي", "السعودية", "tadawul", "tasi", "saudi", "aramco", "riyadh", "cma", "nomu", "sabic", "pif", "sar ", "جازان", "أبها", "نجران", "الدمام", "الشرقية", "ينبع", "الجبيل", "مكة", "المدينة المنورة", "نيوم", "jazan", "jizan", "abha", "najran", "dammam", "khobar", "yanbu", "jubail", "jeddah", "neom", "makkah", "سعودية", "السعوديه", "الشركات السعودية", "سوق الأسهم", "المؤشر العام", "نمو - السوق الموازية", "السوق الموازية", "saudi arabia", "ksa", "tadawul all share", "saudi exchange", "vision 2030", "رؤية 2030", "الرياض المالية", "ريال", "riyal", "sar", "المملكة", "بالمملكة"],
-    "us": ["wall street", "s&p 500", "s&p", "nasdaq", "dow jones", "federal reserve", "the fed", "fed ", "treasury", "وول ستريت", "ناسداك", "داو جونز", "الفيدرالي", "الاحتياطي الاتحادي", "الخزانة الأمريكية", "wall st", "s&p 500"],
+    "sa": ["تاسي", "تداول", "السوق السعودي", "السوق السعودية", "الأسهم السعودية", "أرامكو", "نمو", "هيئة السوق المالية", "الراجحي", "سابك", "الرياض", "جدة", "سعودي", "السعودية", "tadawul", "tasi", "saudi", "aramco", "riyadh", "cma", "nomu", "sabic", "pif", "sar ", "جازان", "أبها", "نجران", "الدمام", "الشرقية", "ينبع", "الجبيل", "مكة", "المدينة المنورة", "نيوم", "jazan", "jizan", "abha", "najran", "dammam", "khobar", "yanbu", "jubail", "jeddah", "neom", "makkah", "سعودية", "السعوديه", "الشركات السعودية", "سوق الأسهم", "المؤشر العام", "نمو - السوق الموازية", "السوق الموازية", "saudi arabia", "ksa", "tadawul all share", "saudi exchange", "vision 2030", "رؤية 2030", "الرياض المالية", "ريال", "riyal", "sar", "المملكة", "بالمملكة", "ساما", "sama"],
+    "us": ["wall street", "s&p 500", "s&p", "nasdaq", "dow jones", "federal reserve", "the fed", "fed ", "treasury", "وول ستريت", "ناسداك", "داو جونز", "الفيدرالي", "الاحتياطي الاتحادي", "الخزانة الأمريكية", "wall st", "nyse", "fomc", "powell", "the dow", "dow falls", "dow rises", "dow jumps", "dow drops", "dow gains", "dow futures", "dow closes", "dow slides", "dow tumbles", "dow climbs", "russell 2000", "nasdaq 100", "us stocks", "u.s. stocks", "us stock", "u.s. stock", "us equities", "us market", "u.s. market", "us economy", "u.s. economy", "magnificent seven", "big tech", "silicon valley", "sec charges", "securities and exchange commission", "treasury yields", "10-year yield", "الأسهم الأمريكية", "الأسواق الأمريكية", "السوق الأمريكية", "بورصة نيويورك", "الفيدرالي الأمريكي", "الاقتصاد الأمريكي", "وول ستريت", "باول", "عوائد الخزانة", "سندات الخزانة الأمريكية", "الأسهم الامريكية", "الاسهم الامريكية"],
+    "us_weak": ["stocks", "stock market", "shares", "earnings", "quarterly results", "index", "futures", "rally", "sell-off", "selloff", "buyback", "guidance", "ipo", "investors", "shareholders", "market cap", "chipmaker", "semiconductor", "jobs report", "payrolls", "unemployment", "retail sales", "consumer confidence", "gdp", "inflation", "cpi", "pce", "yields", "bonds", "الأسهم", "سهم", "أرباح", "المستثمرين"],
     "macro": ["oil", "brent", "wti", "opec", "crude", "gold", "inflation", "recession", "tariff", "gdp", "نفط", "برنت", "أوبك", "الخام", "ذهب", "تضخم", "ركود", "رسوم جمركية", "الناتج المحلي", "غاز", "gas prices", "iran", "إيران", "هرمز", "hormuz", "houthi", "حوثي", "الحوثي", "exports", "صادرات", "الصادرات", "trade surplus", "trade deficit", "الفائض التجاري", "العجز التجاري", "central bank", "البنك المركزي", "ecb", "boj", "imf", "صندوق النقد", "world bank", "البنك الدولي", "global economy", "الاقتصاد العالمي", "geopolit", "جيوسياسي", "war", "حرب", "commodities", "السلع", "copper", "النحاس", "aluminium", "aluminum", "الألمنيوم", "lng", "الغاز المسال", "shipping rates", "supply chain", "سلاسل الإمداد", "dollar index", "مؤشر الدولار", "exchange rate", "سعر الصرف", "currency", "العملات", "الين", "اليورو", "euro", "yen", "gcc", "gulf", "الخليج", "خليجي", "الخليجية", "خليجية"],
     "macro_geo": ["china", "الصين", "الصينية", "الصيني", "europe", "أوروبا", "الأوروبي", "japan", "اليابان", "india", "الهند", "israel", "إسرائيل", "gaza", "غزة", "yemen", "اليمن", "ukraine", "أوكرانيا", "russia", "روسيا"],
-    "_doc": "sa = explicit Saudi signal (or a constituent ticker in text). us/macro = finance keywords. macro_geo = geography-only words: an item whose only signal is geography is 'other' (not macro) and gets its relevance penalised unless a strong (cf>=2) rule or ticker matches."
+    "_doc": "sa = explicit Saudi signal (or a constituent ticker in text). us = explicit US signal (or a US constituent from constituents_us.json). us_weak = generic stock-market words that count as a US signal ONLY for items fetched from a US-market feed (market_hint=='us'). macro = finance keywords. macro_geo = geography-only words: an item whose only signal is geography is 'other' (not macro) and gets its relevance penalised unless a strong (cf>=2) rule or ticker matches. Rules may declare impact_market ('sa'|'us'|'both'): which market their sector scores describe; the item-level impact_market is derived from market + tickers + these declarations."
   },
   "rules": [
     {
       "id": "oil_up",
+      "impact_market": "both",
       "keywords": ["oil prices rise", "oil rises", "oil jumps", "oil surges", "oil climbs", "brent rises", "brent jumps", "brent tops", "brent above", "crude rises", "crude jumps", "ارتفاع النفط", "ارتفاع أسعار النفط", "النفط يرتفع", "برنت يرتفع", "برنت يتجاوز", "برنت يقفز", "صعود النفط", "قفز النفط", "النفط يقفز", "الخام يرتفع"],
       "signal": "mix",
       "cf": 3,
@@ -48,6 +50,7 @@
     },
     {
       "id": "oil_down",
+      "impact_market": "both",
       "keywords": ["oil falls", "oil drops", "oil slides", "oil slumps", "oil tumbles", "oil plunges", "brent falls", "brent drops", "brent slides", "crude falls", "crude drops", "تراجع النفط", "هبوط النفط", "انخفاض النفط", "تراجع أسعار النفط", "النفط يتراجع", "النفط يهبط", "برنت يتراجع", "برنت يهبط", "الخام يتراجع", "انخفاض أسعار النفط"],
       "signal": "neg",
       "cf": 3,
@@ -74,6 +77,7 @@
     },
     {
       "id": "fed_hike",
+      "impact_market": "both",
       "keywords": ["rate hike", "raises rates", "hikes rates", "raise interest", "higher for longer", "رفع الفائدة", "رفع أسعار الفائدة", "يرفع الفائدة", "زيادة الفائدة"],
       "signal": "mix",
       "cf": 3,
@@ -84,6 +88,7 @@
     },
     {
       "id": "fed_cut",
+      "impact_market": "both",
       "keywords": ["rate cut", "cuts rates", "cut interest", "lowers rates", "خفض الفائدة", "خفض أسعار الفائدة", "يخفض الفائدة", "تخفيض الفائدة", "تثبيت الفائدة"],
       "signal": "pos",
       "cf": 3,
@@ -94,6 +99,7 @@
     },
     {
       "id": "fed_generic",
+      "impact_market": "both",
       "keywords": ["federal reserve", "the fed", "fed", "fomc", "powell", "interest rate", "الفيدرالي", "الاحتياطي الفيدرالي", "الاحتياطي الاتحادي", "ساما", "سعر الفائدة", "الفائدة"],
       "signal": "mix",
       "cf": 1,
@@ -298,7 +304,7 @@
     },
     {
       "id": "transport_sector",
-      "keywords": ["airline", "airport", "shipping", "logistics", "port", "flynas", "saudia", "bahri", "طيران", "الطيران", "مطار", "الشحن", "الملاحة", "اللوجستية", "ميناء", "موانئ", "البحري", "ناس", "سال"],
+      "keywords": ["airline", "airport", "shipping", "logistics", " port ", "ports", "flynas", "saudia", "bahri", "طيران", "الطيران", "مطار", "الشحن", "الملاحة", "اللوجستية", "ميناء", "موانئ", "البحري", "ناس", "سال"],
       "signal": "mix",
       "cf": 1,
       "impact": {"transport": 1},
@@ -322,6 +328,7 @@
     },
     {
       "id": "tariff_trade_war",
+      "impact_market": "both",
       "keywords": ["tariff", "tariffs", "trade war", "رسوم جمركية", "الرسوم الجمركية", "حرب تجارية", "التعريفات الجمركية"],
       "signal": "neg",
       "cf": 2,
@@ -330,6 +337,7 @@
     },
     {
       "id": "inflation",
+      "impact_market": "both",
       "keywords": ["inflation", "cpi", "consumer prices", "التضخم", "تضخم", "مؤشر أسعار المستهلك", "أسعار المستهلك"],
       "signal": "mix",
       "cf": 1,
@@ -354,6 +362,7 @@
     },
     {
       "id": "credit_rating",
+      "impact_market": "both",
       "keywords": ["credit rating", "moody's", "fitch", "s&p global ratings", "upgrades", "upgrade", "downgrade", "downgrades", "تصنيف ائتماني", "التصنيف الائتماني", "موديز", "فيتش", "رفع التصنيف", "خفض التصنيف"],
       "signal": "mix",
       "cf": 2,
@@ -367,6 +376,153 @@
       "cf": 2,
       "impact": {"banks": 1, "energy": 1, "petrochem": 1, "telecom": 1},
       "why": "التدفقات الأجنبية تتركز في الأسهم القيادية ذات الوزن الكبير بالمؤشر"
+    },
+    {
+      "id": "us_market_up",
+      "impact_market": "us",
+      "keywords": ["wall street rises", "wall street rallies", "wall street gains", "wall street closes higher", "s&p 500 rises", "s&p 500 gains", "s&p 500 closes at record", "s&p 500 hits record", "nasdaq rises", "nasdaq rallies", "nasdaq gains", "nasdaq jumps", "dow rises", "dow jumps", "dow gains", "dow climbs", "stocks rally", "stock market rallies", "record high", "record close", "all-time high", "وول ستريت يرتفع", "ناسداك يرتفع", "داو جونز يرتفع", "الأسهم الأمريكية ترتفع", "مستوى قياسي جديد", "قمة قياسية"],
+      "signal": "pos",
+      "cf": 2,
+      "impact": {"tech": 1, "banks": 1, "retail": 1, "smallcaps": 1},
+      "why": "إغلاق إيجابي في وول ستريت يحسّن شهية المخاطرة عالمياً وينعكس على المؤشرات الآسيوية والخليجية في الجلسة التالية",
+      "beneficiary": {"name": "أسهم التقنية الكبرى (NVDA، MSFT، AAPL)", "why": "تقود المكاسب بحكم وزنها في المؤشرات"}
+    },
+    {
+      "id": "us_market_down",
+      "impact_market": "us",
+      "keywords": ["wall street falls", "wall street drops", "wall street slides", "wall street tumbles", "wall street closes lower", "s&p 500 falls", "s&p 500 drops", "s&p 500 slides", "nasdaq falls", "nasdaq drops", "nasdaq slides", "nasdaq tumbles", "dow falls", "dow drops", "dow slides", "dow tumbles", "dow sheds", "stocks tumble", "stocks slump", "stocks plunge", "stock market falls", "worst day", "وول ستريت يتراجع", "وول ستريت يهبط", "ناسداك يتراجع", "داو جونز يتراجع", "الأسهم الأمريكية تتراجع", "الأسهم الأمريكية تهبط", "موجة بيع في وول ستريت"],
+      "signal": "neg",
+      "cf": 2,
+      "impact": {"tech": -1, "banks": -1, "retail": -1, "smallcaps": -2},
+      "why": "تراجع وول ستريت يضعف شهية المخاطرة عالمياً ويضغط على الأسهم الصغيرة والقطاعات الدورية",
+      "hurt": {"name": "الأسهم الصغيرة وأسهم النمو", "why": "الأكثر حساسية لموجات البيع"}
+    },
+    {
+      "id": "us_tech_ai",
+      "impact_market": "us",
+      "keywords": ["openai", "chatgpt", "ai boom", "ai spending", "ai chips", "ai infrastructure", "generative ai", "gpu", "gpus", "hyperscaler", "hyperscalers", "capex on ai", "ai capex", "nvidia", "الذكاء الاصطناعي التوليدي", "رقائق الذكاء الاصطناعي", "إنفيديا", "أوبن إيه آي"],
+      "signal": "pos",
+      "cf": 2,
+      "impact": {"tech": 2, "telecom": 1, "utilities": 1},
+      "why": "الإنفاق على الذكاء الاصطناعي يدعم شركات الرقائق والسحابة ومراكز البيانات ومزودي الطاقة لها",
+      "beneficiary": {"name": "إنفيديا (NVDA) ومايكروسوفت (MSFT)", "why": "المستفيد الأول من الطلب على المعالجات والسحابة"}
+    },
+    {
+      "id": "us_semis",
+      "impact_market": "us",
+      "keywords": ["semiconductor", "semiconductors", "chipmaker", "chipmakers", "chip stocks", "chip maker", "tsmc", "foundry", "export controls on chips", "chip export", "أشباه الموصلات", "الرقائق", "شركات الرقائق", "صناعة الرقائق"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"tech": 1},
+      "why": "خبر يخص قطاع أشباه الموصلات الأمريكي"
+    },
+    {
+      "id": "us_bank_earnings",
+      "impact_market": "us",
+      "keywords": ["bank earnings", "jpmorgan", "goldman sachs", "morgan stanley", "bank of america", "wells fargo", "citigroup", "net interest income", "investment banking fees", "trading revenue", "جي بي مورغان", "غولدمان ساكس", "مورغان ستانلي", "بنك أوف أمريكا", "البنوك الأمريكية"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"banks": 1},
+      "why": "خبر يخص البنوك الأمريكية الكبرى"
+    },
+    {
+      "id": "us_energy",
+      "impact_market": "both",
+      "keywords": ["exxon", "chevron", "shale", "oil majors", "natural gas prices", "henry hub", "rig count", "us crude inventories", "eia report", "crude inventories", "إكسون", "شيفرون", "النفط الصخري", "مخزونات الخام الأمريكية", "مخزونات النفط"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"energy": 1},
+      "why": "خبر يخص قطاع الطاقة الأمريكي وينعكس على أسعار الخام العالمية"
+    },
+    {
+      "id": "us_health",
+      "impact_market": "us",
+      "keywords": ["fda approval", "fda approves", "fda rejects", "clinical trial", "drug trial", "phase 3", "medicare", "medicaid", "drug pricing", "weight-loss drug", "glp-1", "obesity drug", "eli lilly", "pfizer", "unitedhealth", "إيلاي ليلي", "أدوية إنقاص الوزن", "إدارة الغذاء والدواء"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"health": 1},
+      "why": "خبر يخص قطاع الرعاية الصحية والأدوية الأمريكي"
+    },
+    {
+      "id": "us_consumer",
+      "impact_market": "us",
+      "keywords": ["retail sales", "consumer confidence", "consumer sentiment", "holiday sales", "walmart", "costco", "amazon", "home depot", "mcdonald's", "starbucks", "nike", "consumer spending slows", "مبيعات التجزئة الأمريكية", "ثقة المستهلك", "وول مارت", "أمازون"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"retail": 1, "food": 1},
+      "why": "خبر يخص الإنفاق الاستهلاكي وشركات التجزئة الأمريكية"
+    },
+    {
+      "id": "us_industrial",
+      "impact_market": "us",
+      "keywords": ["industrial production", "manufacturing pmi", "ism manufacturing", "durable goods", "factory orders", "aerospace", "boeing", "caterpillar", "defense contract", "defense stocks", "airlines stocks", "الإنتاج الصناعي", "مؤشر مديري المشتريات", "بوينغ", "كاتربيلر", "أسهم الدفاع"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"transport": 1, "cement": 1},
+      "why": "خبر يخص القطاع الصناعي والطيران والدفاع الأمريكي"
+    },
+    {
+      "id": "us_jobs",
+      "impact_market": "both",
+      "keywords": ["jobs report", "nonfarm payrolls", "payrolls", "unemployment rate", "jobless claims", "labor market", "labour market", "تقرير الوظائف", "الوظائف غير الزراعية", "معدل البطالة", "طلبات إعانة البطالة", "سوق العمل الأمريكي"],
+      "signal": "mix",
+      "cf": 2,
+      "impact": {"banks": 1, "retail": 1},
+      "why": "بيانات الوظائف الأمريكية تحدد مسار الفيدرالي ومن ثم ساما بحكم ربط الريال بالدولار"
+    },
+    {
+      "id": "treasury_yields",
+      "impact_market": "both",
+      "keywords": ["treasury yields", "10-year yield", "10-year treasury", "bond yields", "yields climb", "yields rise", "yields jump", "yields fall", "عوائد السندات", "عوائد الخزانة", "عائد سندات الخزانة", "العائد على السندات"],
+      "signal": "mix",
+      "cf": 2,
+      "impact": {"banks": 1, "realestate": -1, "tech": -1, "smallcaps": -1},
+      "why": "ارتفاع عوائد الخزانة الأمريكية يرفع تكلفة التمويل ويضغط على أسهم النمو والعقار، ويحسن هامش البنوك"
+    },
+    {
+      "id": "guidance_raise",
+      "impact_market": "us",
+      "keywords": ["raises guidance", "raised guidance", "raises forecast", "raises outlook", "lifts forecast", "boosts outlook", "beats expectations", "tops estimates", "ترفع توقعاتها", "رفع التوقعات", "تتجاوز التوقعات", "تفوق التوقعات"],
+      "signal": "pos",
+      "cf": 2,
+      "impact": {},
+      "why": "رفع التوقعات المستقبلية يدعم السهم"
+    },
+    {
+      "id": "guidance_cut",
+      "impact_market": "us",
+      "keywords": ["cuts guidance", "cut guidance", "lowers guidance", "lowers forecast", "cuts forecast", "cuts outlook", "trims outlook", "weak outlook", "misses expectations", "تخفض توقعاتها", "خفض التوقعات", "دون التوقعات", "أقل من التوقعات"],
+      "signal": "neg",
+      "cf": 2,
+      "impact": {},
+      "why": "خفض التوقعات المستقبلية يضغط على السهم"
+    },
+    {
+      "id": "buyback",
+      "impact_market": "us",
+      "keywords": ["buyback", "buybacks", "share repurchase", "stock repurchase", "repurchase program", "إعادة شراء الأسهم", "إعادة شراء أسهم", "برنامج إعادة شراء"],
+      "signal": "pos",
+      "cf": 2,
+      "impact": {},
+      "why": "برامج إعادة شراء الأسهم تدعم السعر وربحية السهم"
+    },
+    {
+      "id": "layoffs",
+      "impact_market": "us",
+      "keywords": ["layoffs", "lays off", "job cuts", "cuts jobs", "cutting jobs", "slashes jobs", "تسريح", "تسريح موظفين", "تسريح العمال", "إلغاء وظائف"],
+      "signal": "mix",
+      "cf": 1,
+      "impact": {"retail": -1},
+      "why": "تسريح العمالة يخفض التكاليف لكنه يشير إلى ضعف الطلب ويضغط على الإنفاق الاستهلاكي"
+    },
+    {
+      "id": "sec_enforcement",
+      "impact_market": "us",
+      "keywords": ["sec charges", "sec sues", "sec fines", "sec settlement", "securities fraud", "insider trading", "doj probe", "antitrust", "ftc sues", "هيئة الأوراق المالية الأمريكية", "مكافحة الاحتكار", "تداول بناء على معلومات داخلية"],
+      "signal": "neg",
+      "cf": 2,
+      "impact": {"tech": -1, "banks": -1},
+      "why": "إجراءات تنظيمية أو قانونية أمريكية تضغط على الشركات المعنية"
     }
   ]
 }

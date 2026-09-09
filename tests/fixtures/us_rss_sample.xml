@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>CNBC Markets (sample)</title>
+    <link>https://www.cnbc.com/markets/</link>
+    <item>
+      <title>Nvidia shares jump 6% after earnings beat, data center revenue hits record</title>
+      <link>https://www.cnbc.com/2026/09/09/nvidia-earnings-q2.html?utm_source=rss</link>
+      <description><![CDATA[<p>NVDA rose in extended trading after the chipmaker posted revenue of $60 billion and raised guidance. Rival AMD also gained.</p>]]></description>
+      <pubDate>Wed, 09 Sep 2026 10:30:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dow falls 400 points as Treasury yields climb ahead of Fed decision</title>
+      <link>https://www.cnbc.com/2026/09/09/stock-market-today.html</link>
+      <description>Wall Street stocks fell on Wednesday with the S&amp;P 500 and Nasdaq lower as the 10-year yield rose above 4.5%.</description>
+      <pubDate>Wed, 09 Sep 2026 09:15:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Apple (AAPL) unveils new iPhone lineup; shares little changed</title>
+      <link>https://www.cnbc.com/2026/09/08/apple-event.html</link>
+      <description>Apple stock was flat after the event. Alphabet and Microsoft shares also traded near record highs.</description>
+      <pubDate>Tue, 08 Sep 2026 18:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Fed holds rates steady, signals one cut later this year</title>
+      <link>https://www.cnbc.com/2026/09/08/fed-decision.html</link>
+      <description>The Federal Reserve kept its benchmark interest rate unchanged; Powell said inflation remains above target.</description>
+      <pubDate>Tue, 08 Sep 2026 14:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Visa applications surge for Hajj season, travel agents say</title>
+      <link>https://www.cnbc.com/2026/09/07/travel-visa.html</link>
+      <description>Travel demand and airline bookings are up ahead of the pilgrimage season.</description>
+      <pubDate>Mon, 07 Sep 2026 08:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Wall Street week ahead: bank earnings and CPI inflation data in focus</title>
+      <link>https://www.cnbc.com/2026/09/06/week-ahead.html</link>
+      <description>JPMorgan and Goldman Sachs report quarterly results; investors watch the consumer price index.</description>
+      <pubDate>Sun, 06 Sep 2026 12:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Old US market story that must expire from the archive</title>
+      <link>https://www.cnbc.com/2026/08/20/old-stocks.html</link>
+      <description>Stocks rose on Wall Street three weeks ago.</description>
+      <pubDate>Thu, 20 Aug 2026 12:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

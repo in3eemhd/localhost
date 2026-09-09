@@ -159,7 +159,7 @@ def test_fetch_cli_exit_codes(tmp_path):
 def analyzed(raw):
     rules = an.load_rules()
     consts = an.load_constituents(path=None)  # force built-in list
-    return an.analyze(raw, rules, consts, market=None, api_key=None)
+    return an.analyze(raw, rules, consts, market=None, api_key=None, now=NOW)
 
 
 def test_rules_file_sectors():
@@ -186,14 +186,24 @@ def test_analyze_schema(analyzed):
         assert all(isinstance(it["impact"][k], int) and -3 <= it["impact"][k] <= 3 for k in an.SECTOR_KEYS)
         assert isinstance(it["impact"]["why"], str)
         for t in it["tickers"]:
-            assert set(t) == {"code", "name_ar"} and len(t["code"]) == 4
+            assert set(t) == {"code", "name_ar", "market"} and t["market"] in ("sa", "us")
+            assert len(t["code"]) == 4 if t["market"] == "sa" else t["code"].isupper()
         assert it["analysis"] == "rules" and "id" in it
+        assert it["impact_market"] in an.IMPACT_MARKETS
+        assert len(it["day_local"]) == 10 and isinstance(it["is_today"], bool)
+        assert it["age_hours"] is None or it["age_hours"] >= 0
+        assert it["first_seen_utc"] == "2026-09-09T12:00:00Z"
+    assert analyzed["today_riyadh"] == "2026-09-09"
+    assert [d["day_local"] for d in analyzed["days"]] == sorted(analyzed["stats"]["by_day"], reverse=True)
+    assert analyzed["days"][0]["label_ar"] == "الأربعاء 9 سبتمبر" and analyzed["days"][0]["is_today"]
+    assert "_archive" in analyzed and len(analyzed["_archive"]) == analyzed["stats"]["archive_total"]
 
 
 def test_rules_aramco_earnings(analyzed):
     it = next(i for i in analyzed["items"] if i["title"].startswith("أرامكو السعودية"))
     assert it["market"] == "sa" and it["signal"] == "pos" and it["lang"] == "ar"
-    assert {"code": "2222", "name_ar": "أرامكو السعودية"} in it["tickers"]
+    assert {"code": "2222", "name_ar": "أرامكو السعودية", "market": "sa"} in it["tickers"]
+    assert it["impact_market"] == "sa"
     assert "earnings_up" in it["rules"] and "dividend" in it["rules"]
     assert it["impact"]["energy"] >= 1
     assert it["cf"] == 3
@@ -234,8 +244,8 @@ def test_rules_contract_rajhi(analyzed):
 def test_rules_deterministic(raw):
     rules = an.load_rules()
     consts = an.load_constituents(path=None)
-    a = an.analyze(raw, rules, consts)
-    b = an.analyze(raw, rules, consts)
+    a = an.analyze(raw, rules, consts, now=NOW)
+    b = an.analyze(raw, rules, consts, now=NOW)
     strip = lambda d: {k: v for k, v in d.items() if k != "generated_at_utc"}  # noqa: E731
     assert json.dumps(strip(a), sort_keys=True, ensure_ascii=False) == json.dumps(strip(b), sort_keys=True, ensure_ascii=False)
 
@@ -269,9 +279,16 @@ def test_validate_llm_item():
             "summary_ar": "ملخص", "beneficiary": {"name": "أرامكو", "why": "سبب"}, "hurt": {"name": "—", "why": ""},
             "impact": {"energy": 5, "banks": -7, "why": "لأن"}, "cf": 9}
     out = an.validate_llm_item(good, known)
-    assert out["tickers"] == [{"code": "2222", "name_ar": "أرامكو"}]
+    assert out["tickers"] == [{"code": "2222", "name_ar": "أرامكو", "market": "sa"}]
     assert out["impact"]["energy"] == 3 and out["impact"]["banks"] == -3 and out["impact"]["retail"] == 0
     assert out["cf"] == 3 and out["lang"] == "ar" and out["analysis"] == "llm"
+    assert out["impact_market"] == "sa"  # derived when the model omits it
+    # US tickers: symbol validated against known_us (case-folded), unknown symbols dropped
+    us = an.validate_llm_item(dict(good, market="us", impact_market="both",
+                                   tickers=[{"code": "nvda", "name_ar": ""}, {"code": "ZZZZ", "name_ar": "x"}, {"code": "2222", "name_ar": ""}]),
+                              known, {"NVDA": "إنفيديا"})
+    assert us["tickers"] == [{"code": "2222", "name_ar": "أرامكو", "market": "sa"}, {"code": "NVDA", "name_ar": "إنفيديا", "market": "us"}]
+    assert us["impact_market"] == "both"
     assert an.validate_llm_item({"market": "moon", "signal": "pos"}, known) is None
     assert an.validate_llm_item({"market": "sa", "signal": "pos", "summary_ar": "", "impact": {}}, known) is None
     assert an.validate_llm_item("nope", known) is None
@@ -281,7 +298,7 @@ def test_llm_failure_falls_back_to_rules(raw, monkeypatch):
     def boom(*a, **k):
         raise RuntimeError("network down")
     monkeypatch.setattr(an, "_post_messages", boom)
-    res = an.analyze(raw, an.load_rules(), an.load_constituents(path=None), api_key="sk-test")
+    res = an.analyze(raw, an.load_rules(), an.load_constituents(path=None), api_key="sk-test", now=NOW)
     assert res["analysis_mode"] == "rules"
     assert all(i["analysis"] == "rules" for i in res["items"])
 
@@ -289,7 +306,7 @@ def test_llm_failure_falls_back_to_rules(raw, monkeypatch):
 def test_llm_success_merges(raw, monkeypatch):
     rules = an.load_rules()
     consts = an.load_constituents(path=None)
-    base = an.analyze(raw, rules, consts)
+    base = an.analyze(raw, rules, consts, now=NOW)
     target = base["items"][0]["id"]
     captured = {}
 
@@ -304,8 +321,13 @@ def test_llm_success_merges(raw, monkeypatch):
                 "content": [{"type": "text", "text": json.dumps(body, ensure_ascii=False)}]}
 
     monkeypatch.setattr(an, "_post_messages", fake_post)
-    res = an.analyze(raw, rules, consts, api_key="sk-test", batch_size=10)
+    res = an.analyze(raw, rules, consts, api_key="sk-test", batch_size=10, now=NOW,
+                     constituents_us=an.load_constituents_us())
     assert captured["payload"]["model"] == an.DEFAULT_MODEL
+    user_msg = captured["payload"]["messages"][0]["content"]
+    assert "NVDA=" in user_msg and "الشركات الأمريكية" in user_msg          # US list handed to the model
+    assert "summary_ar" in captured["payload"]["system"] and "impact_market" in captured["payload"]["system"]
+    assert captured["payload"]["output_config"]["format"]["schema"]["properties"]["results"]["items"]["required"].count("impact_market") == 1
     assert captured["payload"]["output_config"]["format"]["type"] == "json_schema"
     assert "thinking" not in captured["payload"]
     assert res["analysis_mode"] == "llm+rules"
@@ -321,13 +343,23 @@ def test_analyze_cli(raw, tmp_path):
     inp.write_text(json.dumps(raw, ensure_ascii=False), encoding="utf-8")
     out = tmp_path / "news.json"
     env = {k: v for k, v in os.environ.items() if k != "ANTHROPIC_API_KEY"}
-    r = subprocess.run([sys.executable, os.path.join(SCRIPTS, "analyze_news.py"), "--in", str(inp), "--out", str(out),
-                        "--market", str(tmp_path / "missing_market.json"), "--constituents", str(tmp_path / "none.json")],
-                       capture_output=True, text=True, env=env)
+    archive = tmp_path / "news_archive.json"
+    cmd = [sys.executable, os.path.join(SCRIPTS, "analyze_news.py"), "--in", str(inp), "--out", str(out),
+           "--market", str(tmp_path / "missing_market.json"), "--constituents", str(tmp_path / "none.json"),
+           "--archive", str(archive), "--now", "2026-09-09T12:00:00Z"]
+    r = subprocess.run(cmd, capture_output=True, text=True, env=env)
     assert r.returncode == 0, r.stderr
     data = json.loads(out.read_text(encoding="utf-8"))
     assert data["analysis_mode"] == "rules" and len(data["items"]) == len(raw["items"])
-    assert data["sectors"]["banks"] == "البنوك"
+    assert data["sectors"]["banks"] == "البنوك" and "_archive" not in data
+    arc = json.loads(archive.read_text(encoding="utf-8"))
+    assert arc["count"] == len(raw["items"]) == len(arc["items"]) and arc["days"] == 7
+    # second run: nothing new to analyze, archive stable, view identical
+    r = subprocess.run(cmd, capture_output=True, text=True, env=env)
+    assert r.returncode == 0, r.stderr
+    data2 = json.loads(out.read_text(encoding="utf-8"))
+    assert data2["stats"]["new_items"] == 0 and data2["stats"]["already_known"] == len(raw["items"])
+    assert [i["id"] for i in data2["items"]] == [i["id"] for i in data["items"]]
 
 
 # ---------------------------------------------------------------- fetch: http robustness (mocked)
@@ -434,6 +466,16 @@ def test_default_feed_list_shape():
     for site in ("argaam.com", "arabnews.com", "alarabiya.net", "saudiexchange.sa", "mubasher.info",
                  "aleqt.com", "maaal.com", "cnbcarabia.com"):
         assert any(f"site%3A{site}" in u for u in gn), site
+    us = [f for f in fn.DEFAULT_FEEDS if f.get("market_hint") == "us"]
+    assert len(us) >= 20 and all(f["priority"] == 3 for f in us)
+    us_urls = " ".join(f["url"] for f in us)
+    for host in ("cnbc.com", "dowjones.io", "finance.yahoo.com", "seekingalpha.com", "investing.com",
+                 "federalreserve.gov", "sec.gov"):
+        assert host in us_urls, host
+    for site in ("reuters.com", "bloomberg.com", "cnbc.com", "marketwatch.com"):
+        assert f"site%3A{site}" in us_urls, site
+    for q in ("Wall+Street", "S%26P+500", "Fed+rates", "earnings+report"):
+        assert q in us_urls, q
     # Saudi-first: every priority-1 feed comes before any priority-2/3 feed once sorted (stable)
     pr = [f["priority"] for f in sorted(fn.DEFAULT_FEEDS, key=lambda f: f["priority"])]
     assert pr == sorted(pr) and pr[0] == 1
@@ -492,7 +534,21 @@ def test_fetch_cap_reserves_saudi_first(tmp_path):
 
 
 def _analyze_items(items, **kw):
-    return an.analyze({"items": items}, an.load_rules(), an.load_constituents(path=None), **kw)
+    """Rules-mode analysis at NOW. Test items often share one link; ids are
+    link-based, so duplicate links get a distinct fragment to stay separate."""
+    seen, fixed = set(), []
+    for i, it in enumerate(items):
+        it = dict(it)
+        if it.get("link") in seen:
+            it["link"] = f"{it['link']}?n={i}"
+        seen.add(it.get("link"))
+        fixed.append(it)
+    kw.setdefault("now", NOW)
+    kw.setdefault("constituents_us", US_CONSTS)
+    return an.analyze({"items": fixed}, an.load_rules(), an.load_constituents(path=None), **kw)
+
+
+US_CONSTS = an.load_constituents_us()
 
 
 def test_ambiguous_brent_and_fed_keywords():
@@ -520,19 +576,52 @@ def test_ambiguous_ticker_aliases_need_company_context():
     assert [t["code"] for t in m("أرباح الأهلي ترتفع")] == ["1180"]
 
 
-def test_rank_items_saudi_first_and_non_sa_cap():
-    def mk(i, market, hour):
-        return {"id": f"{market}{i}", "market": market, "published_utc": f"2026-09-09T{hour:02d}:{i:02d}:00Z"}
-    items = [mk(i, "macro", 11) for i in range(30)] + [mk(i, "sa", 8) for i in range(10)] \
-        + [mk(i, "us", 10) for i in range(5)] + [mk(0, "other", 9)]
-    ranked, dropped = an.rank_items(items, max_items=60, max_non_sa=25)
-    markets = [i["market"] for i in ranked]
-    assert markets[:10] == ["sa"] * 10 and markets.count("sa") == 10
-    assert len(ranked) == 35 and dropped == 11 and markets[10:] == ["macro"] * 25
-    sa_stamps = [i["published_utc"] for i in ranked[:10]]
+def _mk(i, market, day, hour=8):
+    return {"id": f"{market}{day}{i}", "market": market, "published_utc": f"2026-09-{day:02d}T{hour:02d}:{i % 60:02d}:{i // 60:02d}Z"}
+
+
+def test_rank_items_today_first_then_market_order():
+    # today (Riyadh 2026-09-09 at NOW): sa newest-first, then us, macro, other; yesterday after, even if newer-looking
+    items = [_mk(i, "macro", 9, 11) for i in range(5)] + [_mk(i, "sa", 9, 8) for i in range(6)] \
+        + [_mk(i, "us", 9, 10) for i in range(4)] + [_mk(0, "other", 9, 9)] \
+        + [_mk(i, "us", 8, 12) for i in range(3)] + [_mk(i, "sa", 8, 6) for i in range(2)]
+    ranked, dropped = an.rank_items(items, now=NOW)
+    assert dropped == 0 and len(ranked) == len(items)
+    days = [i["day_local"] for i in ranked]
+    assert days == sorted(days, reverse=True) and days[:16] == ["2026-09-09"] * 16
+    assert [i["market"] for i in ranked[:16]] == ["sa"] * 6 + ["us"] * 4 + ["macro"] * 5 + ["other"]
+    assert [i["market"] for i in ranked[16:]] == ["sa"] * 2 + ["us"] * 3
+    sa_stamps = [i["published_utc"] for i in ranked[:6]]
     assert sa_stamps == sorted(sa_stamps, reverse=True)
-    ranked2, _ = an.rank_items([mk(i, "sa", 8) for i in range(70)], max_items=60)
-    assert len(ranked2) == 60
+    assert all(i["is_today"] for i in ranked[:16]) and not any(i["is_today"] for i in ranked[16:])
+    assert ranked[0]["age_hours"] == pytest.approx(4.0 - 5 / 60, abs=0.1)   # 08:05Z vs NOW 12:00Z
+    # a Riyadh date boundary: 22:30Z on the 8th is the 9th in Riyadh
+    late = {"id": "x", "market": "sa", "published_utc": "2026-09-08T22:30:00Z"}
+    r2, _ = an.rank_items([late], now=NOW)
+    assert r2[0]["day_local"] == "2026-09-09" and r2[0]["is_today"]
+
+
+def test_rank_items_caps_today_quota_and_per_day():
+    today = [_mk(i, "sa", 9) for i in range(50)] + [_mk(i, "us", 9) for i in range(50)] \
+        + [_mk(i, "macro", 9) for i in range(30)] + [_mk(i, "other", 9) for i in range(5)]
+    yesterday = [_mk(i, "sa", 8) for i in range(70)] + [_mk(i, "us", 8) for i in range(30)]
+    older = [_mk(i, m, d) for d in (7, 6, 5, 4, 3) for m in ("sa", "us") for i in range(40)]
+    ranked, dropped = an.rank_items(today + yesterday + older, now=NOW)
+    by_day = {}
+    for it in ranked:
+        by_day.setdefault(it["day_local"], []).append(it["market"])
+    t = by_day["2026-09-09"]
+    # reservations 40/40/20 honoured, then the 5 leftover slots (110 - 105) go to sa in market order
+    assert t.count("sa") == 45 and t.count("us") == 40 and t.count("macro") == 20 and t.count("other") == 5
+    assert t == ["sa"] * 45 + ["us"] * 40 + ["macro"] * 20 + ["other"] * 5 and len(t) == sum(an.TODAY_QUOTA.values())
+    y = by_day["2026-09-08"]
+    assert len(y) == 60 and y.count("us") == 20 and y.count("sa") == 40   # quota pass then fill in market order
+    assert len(ranked) == 300 == an.MAX_TOTAL and dropped == len(today + yesterday + older) - 300
+    assert all(len(v) <= 60 for d, v in by_day.items() if d != "2026-09-09")
+    assert list(by_day) == sorted(by_day, reverse=True)
+    # Saudi-only day still fills to the day cap through the second pass
+    r2, _ = an.rank_items([_mk(i, "sa", 8) for i in range(80)], now=NOW)
+    assert len(r2) == 60
 
 
 def test_analyze_stats_relevance_and_summary_policy(raw):
@@ -540,8 +629,9 @@ def test_analyze_stats_relevance_and_summary_policy(raw):
     assert res["dropped"] == 1 and res["stats"]["dropped_irrelevant"] == 1
     assert res["stats"]["kept"] == len(res["items"]) and set(res["stats"]["by_market"]) == set(an.MARKETS)
     assert all("relevance" in i and 0 <= i["relevance"] <= 1 for i in res["items"])
-    markets = [i["market"] for i in res["items"]]
-    assert markets == sorted(markets, key=lambda m: an.MARKET_ORDER[m])
+    for day in {i["day_local"] for i in res["items"]}:
+        markets = [i["market"] for i in res["items"] if i["day_local"] == day]
+        assert markets == sorted(markets, key=lambda m: an.MARKET_ORDER[m])
     for it in res["items"]:
         if it["lang"] == "ar":
             assert an.has_arabic(it["summary_ar"])
@@ -645,3 +735,184 @@ def test_constituents_file_merged_with_builtin_aliases(tmp_path):
     m = an.build_matcher(rows)
     assert [t["code"] for t in m("الراجحي يوقع اتفاقية")] == ["1120"]
     assert [t["code"] for t in m("أسمنت الشمالية تعلن نتائجها")] == ["3004"]
+
+
+# ---------------------------------------------------------------- US market: feeds, tickers, classification
+US_FEED = [{"name": "CNBC – Markets", "url": os.path.join(FIXTURES, "us_rss_sample.xml"), "priority": 3, "market_hint": "us"}]
+
+
+@pytest.fixture(scope="module")
+def us_raw():
+    return fn.run(US_FEED, now=NOW)  # default window = 168h
+
+
+def test_us_rss_fetch_window_and_hint(us_raw):
+    assert us_raw["window_hours"] == 168 and us_raw["feeds_ok"] == 1
+    titles = [i["title"] for i in us_raw["items"]]
+    assert "Old US market story that must expire from the archive" not in titles   # 20 Aug < NOW - 7d
+    assert "Visa applications surge for Hajj season, travel agents say" not in titles  # no finance term
+    assert titles[0].startswith("Nvidia shares jump") and len(titles) == 5
+    assert all(i["market_hint"] == "us" for i in us_raw["items"])
+    nv = us_raw["items"][0]
+    assert nv["link"] == "https://www.cnbc.com/2026/09/09/nvidia-earnings-q2.html?utm_source=rss"
+    assert "<p>" not in nv["summary"] and nv["lang"] == "en"
+
+
+def test_fetch_cap_reserves_us_slots():
+    sa = [{"priority": 1, "published_utc": f"2026-09-09T08:{i:02d}:00Z", "t": f"sa{i}"} for i in range(50)]
+    us = [{"priority": 3, "published_utc": f"2026-09-09T11:{i:02d}:00Z", "market_hint": "us", "t": f"us{i}"} for i in range(50)]
+    kept = fn.apply_cap(sa + us, 60, us_reserve=20)
+    assert len(kept) == 60 and sum(1 for i in kept if i.get("market_hint") == "us") == 20
+    assert [i["t"] for i in kept][:40] == [f"sa{i}" for i in range(40)]         # input order kept
+    assert fn.apply_cap(sa + us, 200, us_reserve=20) == sa + us                 # cap not binding
+    few_sa = fn.apply_cap(sa[:5] + us, 40, us_reserve=20)
+    assert len(few_sa) == 40 and sum(1 for i in few_sa if i.get("market_hint")) == 35    # unused Saudi slots go to US
+    few_us = fn.apply_cap(sa + us[:3], 40, us_reserve=20)
+    assert len(few_us) == 40 and sum(1 for i in few_us if not i.get("market_hint")) == 37  # unused US slots go back
+
+
+def test_us_ticker_matching():
+    m = an.build_us_matcher(US_CONSTS)
+    codes = lambda t: [x["code"] for x in m(t)]  # noqa: E731
+    assert codes("AAPL rises 2%") == ["AAPL"] and codes("aapl rises") == []            # symbols: uppercase only
+    assert codes("BRK-B hits a record") == ["BRK-B"] and codes("$TSLA and NASDAQ:MSFT") == ["MSFT", "TSLA"]
+    assert codes("META") == ["META"] and codes("Meta analysis of trials") == []          # META only uppercase
+    assert codes("Alphabet's earnings beat") == ["GOOGL"] and codes("Google unveils Gemini") == ["GOOGL"]
+    assert codes("$V gains") == ["V"] and codes("Caterpillar (CAT) results") == ["CAT"] and codes("NYSE: GE debuts") == ["GE"]
+    assert codes("3 PM update from MS Office") == [] and codes("the CAT is here") == []   # short/word-like symbols need markers
+    assert codes("Visa applications surge for Hajj") == [] and codes("Visa shares rise after earnings") == ["V"]
+    assert codes("apple pie recipe") == [] and codes("Apple stock climbs") == ["AAPL"]   # ordinary-word names need context
+    assert codes("Amazon rainforest fires") == [] and codes("Amazon shares fall") == ["AMZN"]
+    assert codes("Microsoft and Nvidia lead the rally") == ["MSFT", "NVDA"]
+    assert codes("إنفيديا تعلن نتائجها") == ["NVDA"] and codes("أرباح مايكروسوفت وأبل") == ["AAPL", "MSFT"]   # Arabic names
+    assert codes("جوجل تطلق نموذجاً جديداً") == ["GOOGL"] and codes("Morgan Stanley upgrades Tesla") == ["MS", "TSLA"]
+    assert m("Nvidia")[0] == {"code": "NVDA", "name_ar": "إنفيديا", "sector": "tech", "market": "us"}
+    assert an.build_us_matcher([])("NVDA") == []
+
+
+def test_us_constituents_loader():
+    rows = an.load_constituents_us()
+    by = {r["code"]: r for r in rows}
+    assert len(rows) >= 50 and by["NVDA"]["sector"] == "tech" and by["JPM"]["sector"] == "banks"
+    assert by["XOM"]["sector"] == "energy" and by["LLY"]["sector"] == "health" and by["WMT"]["sector"] == "retail"
+    assert by["GOOGL"]["sector"] == "telecom" and "جوجل" in by["GOOGL"]["aliases"]
+    assert an.load_constituents_us("/nonexistent.json") == []
+
+
+def test_us_classification_and_impact_market(us_raw):
+    res = an.analyze(us_raw, an.load_rules(), an.load_constituents(path=None), constituents_us=US_CONSTS, now=NOW)
+    by = {i["title"][:20]: i for i in res["items"]}
+    nv = by["Nvidia shares jump 6"]
+    assert nv["market"] == "us" and nv["impact_market"] == "us" and nv["signal"] == "pos"
+    assert [t["code"] for t in nv["tickers"]] == ["AMD", "NVDA"] and all(t["market"] == "us" for t in nv["tickers"])
+    assert {"us_tech_ai", "us_semis", "earnings_up", "guidance_raise"} <= set(nv["rules"]) and nv["impact"]["tech"] >= 2
+    assert nv["beneficiary"]["name"].startswith("إنفيديا") and "NVDA" in nv["beneficiary"]["name"]
+    dow = by["Dow falls 400 points"]
+    assert dow["market"] == "us" and dow["signal"] == "neg" and "us_market_down" in dow["rules"]
+    assert "treasury_yields" in dow["rules"] and dow["impact_market"] == "both"   # yields move Saudi rates too
+    assert dow["impact"]["tech"] < 0 and dow["impact"]["smallcaps"] < 0
+    fed = by["Fed holds rates stea"]
+    assert fed["market"] == "us" and fed["impact_market"] == "both" and "fed_generic" in fed["rules"]
+    assert "tech_sector" not in fed["rules"]   # " ai " keyword must not match inside "said"/"remains"
+    ap = by["Apple (AAPL) unveils"]
+    assert ap["market"] == "us" and [t["code"] for t in ap["tickers"]] == ["AAPL", "GOOGL", "MSFT"]
+    wk = by["Wall Street week ahe"]
+    assert wk["market"] == "us" and [t["code"] for t in wk["tickers"]] == ["GS", "JPM"]
+    assert "us_bank_earnings" in wk["rules"] and wk["impact"]["banks"] >= 1 and "transport_sector" not in wk["rules"]
+    assert res["stats"]["by_market"]["us"] == 5 and res["stats"]["by_market"]["sa"] == 0
+    assert [i["day_local"] for i in res["items"]] == ["2026-09-09", "2026-09-09", "2026-09-08", "2026-09-08", "2026-09-06"]
+
+
+def test_us_needs_explicit_signal_and_feed_hint():
+    base = dict(SPORTS, relevance=1.0, source="CNBC", link="https://www.cnbc.com/x")
+    generic_us_feed = dict(base, title="Stocks rally as earnings season kicks off", summary="", market_hint="us")
+    generic_no_hint = dict(base, title="Stocks rally as the earnings season begins", summary="", link="https://www.cnbc.com/y")
+    visa = dict(base, title="Visa applications surge for Hajj season", summary="Travel demand is up.", market_hint="us", link="https://www.cnbc.com/v", relevance=0.6)
+    mixed = dict(base, title="Aramco and Exxon sign LNG supply deal", summary="Saudi Aramco shares rose.", market_hint="us", link="https://www.cnbc.com/m")
+    ar_us = dict(base, title="الأسهم الأمريكية تتراجع مع صعود عوائد الخزانة", summary="", lang="ar", link="https://www.cnbc.com/a")
+    res = _analyze_items([generic_us_feed, generic_no_hint, visa, mixed, ar_us])
+    by = {i["id"]: i for i in res["items"]}
+    assert by[an.item_id(generic_us_feed)]["market"] == "us"        # US feed + stock-market words
+    assert by[an.item_id(generic_no_hint)]["market"] == "other"     # same text, no explicit US signal
+    assert an.item_id(visa) not in by                               # market "other", no ticker -> relevance penalised below the gate
+    mx = by[an.item_id(mixed)]
+    assert mx["market"] == "sa" and mx["impact_market"] == "both"   # Saudi first; US ticker widens the impact
+    assert [(t["code"], t["market"]) for t in mx["tickers"]] == [("2222", "sa"), ("XOM", "us")]
+    a = by[an.item_id(ar_us)]
+    assert a["market"] == "us" and a["signal"] == "neg" and "us_market_down" in a["rules"] and a["impact_market"] == "both"
+
+
+# ---------------------------------------------------------------- archive: merge / expire / ids
+def test_item_id_stable_on_link_not_title():
+    a = {"title": "Aramco Q2 profit", "link": "https://argaam.com/a/1?utm_source=rss"}
+    b = {"title": "Aramco Q2 profit (updated)", "link": "https://argaam.com/a/1/"}
+    assert an.item_id(a) == an.item_id(b) and len(an.item_id(a)) == 12
+    assert an.item_id({"title": "أرامكو: أرباح!", "link": ""}) == an.item_id({"title": "أرامكو أرباح"})
+    assert an.item_id(a) != an.item_id({"title": "Aramco Q2 profit", "link": "https://argaam.com/a/2"})
+
+
+def test_archive_merge_keeps_prior_analysis_and_expires(raw, monkeypatch):
+    rules, consts = an.load_rules(), an.load_constituents(path=None)
+    first = an.analyze(raw, rules, consts, now=NOW)
+    archive = first["_archive"]
+    assert len(archive) == len(raw["items"]) and all("impact_market" in i for i in archive)
+    # pretend an LLM analysed one archived item earlier; add an expired one and one from 6 days ago
+    aramco = next(i for i in archive if i["title"].startswith("أرامكو"))
+    aramco.update(summary_ar="ملخص من النموذج", analysis="llm")
+    expired = dict(aramco, id="old1", title="خبر قديم جداً عن سوق الأسهم", link="https://x.sa/old",
+                   published_utc="2026-08-30T10:00:00Z")
+    six_days = dict(aramco, id="six1", title="خبر عمره ستة أيام عن سوق الأسهم", link="https://x.sa/six",
+                    published_utc="2026-09-03T10:00:00Z", analysis="rules")
+    archive = archive + [expired, six_days]
+    calls = []
+    monkeypatch.setattr(an, "analyze_rules", lambda it, r, m, um=None: (calls.append(it["title"]), an.empty_impact()) and {
+        "market": "sa", "signal": "mix", "tickers": [], "summary_ar": it["title"], "lang": "ar",
+        "beneficiary": {"name": "—", "why": ""}, "hurt": {"name": "—", "why": ""}, "impact": an.empty_impact(),
+        "impact_market": "sa", "cf": 1, "rules": [], "analysis": "rules"})
+    new_item = dict(SPORTS, title="سابك توقع اتفاقية جديدة", link="https://x.sa/new", relevance=1.0,
+                    published_utc="2026-09-09T11:30:00Z")
+    same_title_new_link = dict(new_item, title=aramco["title"], link="https://other.sa/copy")
+    second = an.analyze({"items": raw["items"] + [new_item, same_title_new_link]}, rules, consts, archive=archive, now=NOW)
+    assert calls == ["سابك توقع اتفاقية جديدة"]                       # only the truly new item was analysed
+    st = second["stats"]
+    assert st["new_items"] == 1 and st["already_known"] == len(raw["items"]) + 1 and st["expired"] == 1
+    assert st["archive_total"] == len(raw["items"]) + 2
+    ids = {i["id"] for i in second["_archive"]}
+    assert "six1" in ids and "old1" not in ids
+    kept = next(i for i in second["_archive"] if i["id"] == aramco["id"])
+    assert kept["summary_ar"] == "ملخص من النموذج" and kept["analysis"] == "llm"   # prior analysis untouched
+    stamps = [i["published_utc"] for i in second["_archive"]]
+    assert stamps == sorted(stamps, reverse=True)                                    # archive: full, newest first
+    view_ids = [i["id"] for i in second["items"]]
+    assert view_ids[0] == an.item_id(new_item) and "six1" in view_ids               # today first, 6-day-old still in view
+    assert second["days"][-1]["day_local"] == "2026-09-03" and second["days"][-1]["label_ar"] == "الخميس 3 سبتمبر"
+    assert second["stats"]["by_day"]["2026-09-03"] == 1
+    # LLM cost: only new items reach the model
+    sent = []
+    monkeypatch.setattr(an, "analyze_llm_batch", lambda items, *a, **k: (sent.extend(i["title"] for i in items), {})[1])
+    an.analyze({"items": raw["items"] + [new_item]}, rules, consts, archive=second["_archive"], now=NOW, api_key="sk")
+    assert sent == []
+    an.analyze({"items": [dict(new_item, title="خبر آخر جديد", link="https://x.sa/n2")]}, rules, consts,
+               archive=second["_archive"], now=NOW, api_key="sk")
+    assert sent == ["خبر آخر جديد"]
+
+
+def test_load_archive_shapes(tmp_path):
+    p = tmp_path / "a.json"
+    good = {"id": "a1", "title": "t", "market": "sa", "published_utc": "2026-09-09T00:00:00Z", "link": "https://x/1"}
+    p.write_text(json.dumps({"items": [good, {"title": "no market"}, "junk"]}), encoding="utf-8")
+    assert [i["id"] for i in an.load_archive(str(p))] == ["a1"]
+    p.write_text(json.dumps([dict(good, id=None)]), encoding="utf-8")
+    assert an.load_archive(str(p))[0]["id"] == an.item_id(good)
+    p.write_text("{not json", encoding="utf-8")
+    assert an.load_archive(str(p)) == [] and an.load_archive(str(tmp_path / "missing.json")) == [] and an.load_archive("") == []
+    doc = an.archive_document({"generated_at_utc": "x", "days_window": 7, "_archive": [good]})
+    assert doc == {"generated_at_utc": "x", "days": 7, "count": 1, "items": [good]}
+
+
+def test_day_label_and_expiry_helpers():
+    assert an.day_label_ar("2026-09-09") == "الأربعاء 9 سبتمبر"
+    assert an.day_label_ar("2026-01-01") == "الخميس 1 يناير" and an.day_label_ar("bad") == "bad"
+    items = [{"published_utc": "2026-09-02T12:00:00Z"}, {"published_utc": "2026-09-02T11:59:59Z"}, {"published_utc": "?"}]
+    kept, n = an.expire_items(items, NOW, 7)
+    assert kept == items[:1] and n == 2

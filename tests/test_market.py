@@ -408,12 +408,210 @@ def test_stocks_prefer_batched_quote_then_chart_fallback_mixed_markets(monkeypat
     assert len(quote_calls) == 1 and set(quote_calls[0][1]["symbols"].split(",")) == {"2222.SR", "AAPL", "MSFT", "BRK-B"}
 
 
+def test_mt30_yahoo_candidates_loop_first_hit_wins_and_is_logged(monkeypatch, caplog):
+    """MT30 has no definite Yahoo symbol: the candidates are probed in order and
+    the first one that parses is used (its symbol lands in `yahoo`)."""
+    assert fm.INDEX_DEFS["MT30"]["yahoo"] is None
+    assert fm._yahoo_symbols(fm.INDEX_DEFS["MT30"]) == ["^MT30", "MT30.SR", "^TMT30"]
+    s = use_session(monkeypatch, {
+        "chart/%5ETASI.SR": FakeResponse(body=yahoo_fixture()),
+        "chart/%5EMT30": FakeResponse(404, text="nope"),
+        "chart/MT30.SR": FakeResponse(body=yahoo_fixture("MT30.SR", price=1480.22, closes=(1470.0, 1475.0, 1480.22))),
+        "indices-performance": FakeResponse(text=SAUDIEXCHANGE_HTML),
+    })
+    errors = []
+    with caplog.at_level("INFO", logger="fetch_market"):
+        idx = fm.fetch_indices(errors, NOW)
+    by = {i["code"]: i for i in idx}
+    assert [i["code"] for i in idx] == ["TASI", "MT30", "NomuC"]
+    assert by["MT30"]["source"] == "yahoo" and by["MT30"]["yahoo"] == "MT30.SR" and by["MT30"]["value"] == 1480.22
+    assert by["MT30"]["change_pts"] == pytest.approx(5.22) and "unit" not in by["MT30"]
+    assert by["NomuC"]["source"] == "saudiexchange"  # only the still-missing one came from the exchange page
+    assert errors == []
+    tried = [c[0].rsplit("/", 1)[1] for c in s.calls if "/v8/finance/chart/" in c[0]]
+    assert "%5ETMT30" not in tried and tried.index("%5EMT30") < tried.index("MT30.SR")
+    assert "Yahoo symbol MT30.SR works" in caplog.text and "Yahoo symbol ^MT30 did not work" in caplog.text
+
+
+def test_mt30_yahoo_candidates_all_fail_is_soft(monkeypatch, caplog):
+    """No candidate works (the live situation today): no error is recorded for the
+    probe, MT30 comes from Saudi Exchange, and every candidate was tried once per host."""
+    s = use_session(monkeypatch, {
+        "chart/%5ETASI.SR": FakeResponse(body=yahoo_fixture()),
+        "indices-performance": FakeResponse(text=SAUDIEXCHANGE_HTML),
+    })
+    errors = []
+    with caplog.at_level("INFO", logger="fetch_market"):
+        idx = fm.fetch_indices(errors, NOW)
+    by = {i["code"]: i for i in idx}
+    assert by["MT30"]["source"] == "saudiexchange" and by["MT30"]["yahoo"] is None
+    assert errors == []
+    tried = [c[0].rsplit("/", 1)[1] for c in s.calls if "/v8/finance/chart/" in c[0]]
+    assert tried.count("%5EMT30") == 2 and tried.count("MT30.SR") == 2 and tried.count("%5ETMT30") == 2
+    assert "no Yahoo symbol candidate works" in caplog.text
+    # and when the exchange page is down too, MT30 is simply absent (never fabricated)
+    use_session(monkeypatch, {"chart/%5ETASI.SR": FakeResponse(body=yahoo_fixture())})
+    errors = []
+    assert [i["code"] for i in fm.fetch_indices(errors, NOW, use_stooq=False)] == ["TASI"]
+    assert [e["what"] for e in errors] == ["index:saudiexchange"]
+
+
+def test_yahoo_index_candidates_raises_with_every_failure():
+    with pytest.raises(fm.FetchError) as ei:
+        fm._yahoo_index_candidates("MT30", ("^MT30", None, "MT30.SR"), "sa", NOW)
+    assert "^MT30:" in str(ei.value) and "MT30.SR:" in str(ei.value)
+    with pytest.raises(fm.FetchError, match="no Yahoo symbol candidates"):
+        fm._yahoo_index_candidates("MT30", (), "sa", NOW)
+
+
 def test_stocks_quote_endpoint_failure_is_soft(monkeypatch):
     use_session(monkeypatch, {"chart/2222.SR": FakeResponse(body=yahoo_fixture("2222.SR", price=27.5))})
     errors = []
     stocks = fm.fetch_stocks([{"code": "2222", "yahoo": "2222.SR"}], errors, NOW, pause=0)
     assert stocks[0]["price"] == 27.5 and stocks[0]["market_cap_sar"] is None
     assert [e["what"] for e in errors] == ["stocks:yahoo_quote"]
+
+
+# --------------------------------------------------------------------------- #
+# Commodities / FX ("cmd" group)
+# --------------------------------------------------------------------------- #
+
+# Shape of a live Yahoo futures chart response (BZ=F on 2026-09-09): no
+# meta.previousClose, a chartPreviousClose, a near-24h NY "regular" period.
+CMD_SESSION_START = int(datetime(2025, 6, 1, 22, 0, tzinfo=timezone.utc).timestamp())   # Sun 18:00 EDT
+CMD_SESSION_END = int(datetime(2025, 6, 2, 21, 59, tzinfo=timezone.utc).timestamp())    # Mon 17:59 EDT
+
+
+def cmd_fixture(symbol="BZ=F", price=101.45, closes=(95.52, 96.1, 98.0, 99.9, 101.45), currency="USD",
+                market_time=MARKET_TIME, exchange_tz="America/New_York", trading_period=True):
+    fx = yahoo_fixture(symbol, price=price, closes=closes, trading_period=False, volume=None)
+    r = fx["chart"]["result"][0]
+    r["meta"].update(currency=currency, exchangeName="NYM", instrumentType="FUTURE", regularMarketTime=market_time,
+                     chartPreviousClose=closes[0], exchangeTimezoneName=exchange_tz, priceHint=2)
+    r["timestamp"] = [US_SESSION_START - (len(closes) - 1 - i) * DAY for i in range(len(closes))]
+    if trading_period:
+        r["meta"]["currentTradingPeriod"] = {"regular": {"start": CMD_SESSION_START, "end": CMD_SESSION_END, "gmtoffset": -14400}}
+    return fx
+
+
+CMD_INDEX_KEYS = {"code", "market", "name_ar", "name_en", "yahoo", "currency", "unit", "unit_en", "decimals", "value",
+                  "change_pts", "change_pct", "as_of_utc", "as_of_local", "tz", "session_date", "is_closed",
+                  "source", "source_url"}
+
+
+def test_cmd_defs_are_sane():
+    assert list(fm.CMD_INDEX_DEFS) == ["BZ=F", "CL=F", "GC=F", "NG=F", "SAR=X", "EURUSD=X", "^TNX", "DX-Y.NYB", "BTC-USD"]
+    for code, d in fm.CMD_INDEX_DEFS.items():
+        assert d["yahoo"] == code and d["name_ar"] and d["name_en"] and d["unit"] and d["unit_en"]
+        assert isinstance(d["decimals"], int) and d["decimals"] in (2, 3, 4)
+    assert fm.CMD_INDEX_DEFS["SAR=X"]["decimals"] == 4 and fm.CMD_INDEX_DEFS["SAR=X"]["unit"] == "ريال"
+    assert fm.CMD_INDEX_DEFS["^TNX"]["unit"] == "%" and fm.CMD_INDEX_DEFS["GC=F"]["unit"] == "دولار/أونصة"
+    assert fm.CMD_INDEX_DEFS["BZ=F"]["unit"] == fm.CMD_INDEX_DEFS["CL=F"]["unit"] == "دولار/برميل"
+    assert fm._yahoo_symbols(fm.CMD_INDEX_DEFS["SAR=X"]) == ["SAR=X", "USDSAR=X"]
+    assert fm._yahoo_symbols(fm.CMD_INDEX_DEFS["BZ=F"]) == ["BZ=F"]
+    assert fm.MARKETS["cmd"]["tz_label"] == "America/New_York" and fm.MARKETS["cmd"]["currency"] == "USD"
+    assert fm.DEFAULT_MARKETS == ("sa", "us", "cmd") and fm.STOCK_MARKETS == ("sa", "us")
+
+
+def test_cmd_indices_parse_unit_decimals_and_session(monkeypatch):
+    s = use_session(monkeypatch, {
+        "chart/BZ%3DF": FakeResponse(body=cmd_fixture()),
+        "chart/GC%3DF": FakeResponse(body=cmd_fixture("GC=F", price=4451.9, closes=(4400.0, 4420.0, 4470.0, 4491.7, 4451.9))),
+        "chart/%5ETNX": FakeResponse(body=cmd_fixture("^TNX", price=4.837, closes=(4.70, 4.75, 4.80, 4.796, 4.837),
+                                                      exchange_tz="America/Chicago")),
+        "chart/BTC-USD": FakeResponse(body=cmd_fixture("BTC-USD", price=78444.3, closes=(80000.0, 79823.87, 78444.3),
+                                                       exchange_tz="UTC")),
+    })
+    errors = []
+    out = fm.fetch_cmd_indices(errors, NOW, pause=0.1)
+    by = {i["code"]: i for i in out}
+    assert [i["code"] for i in out] == ["BZ=F", "GC=F", "^TNX", "BTC-USD"]  # canonical order, missing ones absent
+    assert all(set(i) == CMD_INDEX_KEYS for i in out)
+
+    brent = by["BZ=F"]
+    assert brent["market"] == "cmd" and brent["name_ar"] == "خام برنت" and brent["name_en"] == "Brent Crude Oil"
+    assert brent["yahoo"] == "BZ=F" and brent["currency"] == "USD" and brent["source"] == "yahoo"
+    assert brent["unit"] == "دولار/برميل" and brent["unit_en"] == "USD/bbl" and brent["decimals"] == 2
+    assert brent["value"] == 101.45 and brent["change_pts"] == pytest.approx(1.55)  # prev = second-to-last bar (today)
+    assert brent["change_pct"] == pytest.approx(1.55 / 99.9 * 100, abs=1e-4)
+    assert brent["tz"] == "America/New_York" and brent["as_of_utc"] == "2025-06-02T11:58:40Z"
+    assert brent["as_of_local"] == "2025-06-02 07:58:40" and "as_of_riyadh" not in brent
+    assert brent["session_date"] == "2025-06-02" and brent["is_closed"] is False  # NOW inside the NY futures session
+    assert "chart/BZ%3DF" in brent["source_url"]
+
+    gold = by["GC=F"]
+    assert gold["unit"] == "دولار/أونصة" and gold["value"] == 4451.9 and gold["change_pts"] == pytest.approx(-39.8)
+
+    tnx = by["^TNX"]  # a yield: value and change_pts already in percent / percentage points
+    assert tnx["unit"] == "%" and tnx["decimals"] == 3 and tnx["value"] == 4.837
+    assert tnx["change_pts"] == pytest.approx(0.041) and tnx["change_pct"] == pytest.approx(0.041 / 4.796 * 100, abs=1e-4)
+    assert tnx["tz"] == "America/New_York"  # timestamps are shown in NY regardless of Yahoo's exchange zone
+
+    btc = by["BTC-USD"]
+    assert btc["name_ar"] == "بتكوين" and btc["unit"] == "دولار" and btc["decimals"] == 2 and btc["value"] == 78444.3
+
+    failed = sorted(e["what"] for e in errors)
+    assert failed == sorted(f"index:{c}:yahoo" for c in ("CL=F", "NG=F", "SAR=X", "EURUSD=X", "DX-Y.NYB"))
+    assert all(e["detail"] for e in errors)
+    # the SAR fallback symbol was tried after SAR=X; no Saudi/US source touched
+    tried = [c[0].rsplit("/", 1)[1] for c in s.calls if "/v8/finance/chart/" in c[0]]
+    assert tried.index("SAR%3DX") < tried.index("USDSAR%3DX")
+    assert not any("saudiexchange" in c[0] or "stooq" in c[0] or "v7/finance/quote" in c[0] for c in s.calls)
+
+
+def test_cmd_sar_falls_back_to_usdsar_symbol_and_keeps_sar_currency(monkeypatch, caplog):
+    use_session(monkeypatch, {
+        "chart/SAR%3DX": FakeResponse(body={"chart": {"result": None, "error": {"code": "Not Found", "description": "No data found"}}}),
+        "chart/USDSAR%3DX": FakeResponse(body=cmd_fixture("USDSAR=X", price=3.7548, closes=(3.6848, 3.75, 3.751, 3.7502, 3.7548),
+                                                        currency="SAR", exchange_tz="Europe/London")),
+    })
+    errors = []
+    with caplog.at_level("INFO", logger="fetch_market"):
+        out = fm.fetch_cmd_indices(errors, NOW, pause=0)
+    assert [i["code"] for i in out] == ["SAR=X"]
+    sar = out[0]
+    assert sar["code"] == "SAR=X" and sar["yahoo"] == "USDSAR=X" and sar["name_ar"] == "الدولار/الريال"
+    assert sar["currency"] == "SAR" and sar["unit"] == "ريال" and sar["decimals"] == 4
+    assert sar["value"] == 3.7548 and sar["change_pts"] == pytest.approx(0.0046)
+    assert "Yahoo symbol USDSAR=X works" in caplog.text and "SAR=X did not work" in caplog.text
+    assert "index:SAR=X:yahoo" not in {e["what"] for e in errors}
+
+
+def test_cmd_prev_close_uses_exchange_offset_for_bar_day():
+    """Live BTC-USD shape: daily bars stamped 00:00 UTC, meta.gmtoffset = 0, display tz = New York.
+    The last bar (today in UTC, 'yesterday 20:00' in NY) is the live one whose close == price,
+    so prev must be the bar before it, not the live bar (which gave a bogus 0.00% change)."""
+    now = datetime(2026, 9, 9, 19, 6, tzinfo=timezone.utc)
+    ny = fm.MARKETS["cmd"]["tz"]
+    fx = cmd_fixture("BTC-USD", price=78380.27, closes=(79823.87, 80350.05, 79115.85, 78438.58, 78380.27),
+                     market_time=int(now.timestamp()) - 30, exchange_tz="UTC", trading_period=False)
+    r = fx["chart"]["result"][0]
+    r["timestamp"] = [int(datetime(2026, 9, 5 + i, 0, 0, tzinfo=timezone.utc).timestamp()) for i in range(5)]
+    r["meta"]["gmtoffset"] = 0
+    p = fm.parse_yahoo_chart(fx, now=now, tz=ny)
+    assert p["prev_close"] == 78438.58 and p["change_pts"] == pytest.approx(-58.31)
+    assert p["session_date"] == "2026-09-09"  # session_date still in the display zone
+    # without gmtoffset the display zone is used (unchanged SA/US behaviour): NY says the last bar is yesterday's
+    del r["meta"]["gmtoffset"]
+    assert fm.parse_yahoo_chart(fx, now=now, tz=ny)["prev_close"] == 78380.27
+    # an absurd offset is ignored
+    r["meta"]["gmtoffset"] = 99 * 3600
+    assert fm.parse_yahoo_chart(fx, now=now, tz=ny)["prev_close"] == 78380.27
+
+
+def test_cmd_is_closed_outside_session_and_all_fail(monkeypatch):
+    fx = cmd_fixture(market_time=CMD_SESSION_END - 60)
+    use_session(monkeypatch, {"chart/BZ%3DF": FakeResponse(body=fx)})
+    after = datetime(2025, 6, 2, 23, 0, tzinfo=timezone.utc)
+    out = fm.fetch_cmd_indices([], after, pause=0)
+    assert out[0]["is_closed"] is True and out[0]["session_date"] == "2025-06-02"
+    # no trading period -> closed (never guessed open); nothing fetched -> empty list + one error per symbol
+    use_session(monkeypatch, {"chart/BZ%3DF": FakeResponse(body=cmd_fixture(trading_period=False))})
+    assert fm.fetch_cmd_indices([], NOW, pause=0)[0]["is_closed"] is True
+    use_session(monkeypatch, {})
+    errors = []
+    assert fm.fetch_cmd_indices(errors, NOW, pause=0) == []
+    assert len(errors) == len(fm.CMD_INDEX_DEFS) and all(e["what"].endswith(":yahoo") for e in errors)
 
 
 # --------------------------------------------------------------------------- #
@@ -479,10 +677,11 @@ def test_main_both_markets_default(monkeypatch, tmp_path):
     rc = fm.main(["--out", str(out), "--no-quote", "--sleep", "0"])
     assert rc == 0
     data = json.loads(out.read_text(encoding="utf-8"))
+    # every "cmd" symbol 404'd -> "cmd" is dropped from `markets` (only advertised when something was fetched)
     assert data["markets"] == ["sa", "us"]
     # SA indices first, then US ones; ^IXIC 404'd so it is absent (never fabricated)
     assert [i["code"] for i in data["indices"]] == ["TASI", "MT30", "NomuC", "^GSPC", "^DJI"]
-    assert {"index:^IXIC:yahoo"} <= {e["what"] for e in data["errors"]}
+    assert {"index:^IXIC:yahoo", "index:BZ=F:yahoo", "index:BTC-USD:yahoo"} <= {e["what"] for e in data["errors"]}
     spx = next(i for i in data["indices"] if i["code"] == "^GSPC")
     assert set(spx) == US_INDEX_KEYS and spx["market"] == "us" and spx["currency"] == "USD"
     assert spx["name_ar"] == "ستاندرد آند بورز 500" and spx["value"] == 6000.5
@@ -512,10 +711,59 @@ def test_main_markets_us_only(monkeypatch, tmp_path):
     assert not any("TASI" in c[0] or "saudiexchange" in c[0] or "stooq" in c[0] for c in s.calls)
 
 
+def test_main_default_run_includes_cmd_group(monkeypatch, tmp_path):
+    use_session(monkeypatch, {
+        "chart/%5ETASI.SR": FakeResponse(body=yahoo_fixture()),
+        "chart/%5EGSPC": FakeResponse(body=us_fixture("^GSPC", price=6000.5)),
+        "chart/BZ%3DF": FakeResponse(body=cmd_fixture()),
+        "chart/SAR%3DX": FakeResponse(body=cmd_fixture("SAR=X", price=3.7548, closes=(3.6848, 3.75, 3.751, 3.7502, 3.7548),
+                                                     currency="SAR", exchange_tz="Europe/London")),
+        "chart/2222.SR": FakeResponse(body=yahoo_fixture("2222.SR", price=27.5)),
+    })
+    out = tmp_path / "market.json"
+    rc = fm.main(["--out", str(out), "--no-quote", "--no-stooq", "--sleep", "0"])
+    assert rc == 0
+    data = json.loads(out.read_text(encoding="utf-8"))
+    assert set(data) == PAYLOAD_KEYS
+    assert data["markets"] == ["sa", "us", "cmd"]
+    assert [i["code"] for i in data["indices"]] == ["TASI", "^GSPC", "BZ=F", "SAR=X"]  # SA, US, then cmd
+    brent, sar = data["indices"][2], data["indices"][3]
+    assert set(brent) == CMD_INDEX_KEYS and brent["market"] == "cmd" and brent["currency"] == "USD"
+    assert brent["unit"] == "دولار/برميل" and brent["decimals"] == 2 and brent["value"] == 101.45
+    assert brent["tz"] == "America/New_York" and brent["as_of_local"] == "2025-06-02 07:58:40"
+    assert sar["market"] == "cmd" and sar["currency"] == "SAR" and sar["unit"] == "ريال" and sar["decimals"] == 4
+    # SA/US index records are untouched by the new fields
+    assert set(data["indices"][0]) == SA_INDEX_KEYS and set(data["indices"][1]) == US_INDEX_KEYS
+    # cmd has no stocks and no constituents file
+    assert {s["market"] for s in data["stocks"]} == {"sa", "us"}
+    assert not any(e["what"] == "constituents:cmd" for e in data["errors"])
+    assert {"index:CL=F:yahoo", "index:GC=F:yahoo"} <= {e["what"] for e in data["errors"]}
+    assert not any(e["what"] == "index:SAR=X:yahoo" for e in data["errors"])
+
+
+def test_main_markets_cmd_only(monkeypatch, tmp_path):
+    s = use_session(monkeypatch, {"chart/GC%3DF": FakeResponse(body=cmd_fixture("GC=F", price=4451.9))})
+    out = tmp_path / "market.json"
+    rc = fm.main(["--out", str(out), "--markets", "cmd", "--sleep", "0"])
+    assert rc == 0
+    data = json.loads(out.read_text(encoding="utf-8"))
+    assert data["markets"] == ["cmd"] and data["stocks"] == []
+    assert [i["code"] for i in data["indices"]] == ["GC=F"] and data["indices"][0]["name_ar"] == "الذهب"
+    assert {e["what"] for e in data["errors"]} == {f"index:{c}:yahoo" for c in fm.CMD_INDEX_DEFS if c != "GC=F"}
+    assert not any("TASI" in c[0] or "saudiexchange" in c[0] or "stooq" in c[0] or "%5EGSPC" in c[0]
+                   or "v7/finance/quote" in c[0] for c in s.calls)
+    # nothing fetched at all -> exit 1, file untouched (same semantics as the other markets)
+    use_session(monkeypatch, {})
+    assert fm.main(["--out", str(out), "--markets", "cmd", "--sleep", "0"]) == 1
+    assert json.loads(out.read_text(encoding="utf-8")) == data
+
+
 def test_markets_flag_rejects_unknown():
     with pytest.raises(SystemExit):
         fm.parse_args(["--out", "x.json", "--markets", "sa,jp"])
     assert fm.parse_markets("us, sa,us") == ["us", "sa"]
+    assert fm.parse_markets("cmd,sa") == ["cmd", "sa"]
+    assert fm.parse_args(["--out", "x.json"]).markets == ["sa", "us", "cmd"]
 
 
 def test_main_us_constituents_missing_is_soft(monkeypatch, tmp_path):
