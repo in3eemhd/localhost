@@ -141,7 +141,7 @@ table.hm{border-collapse:separate;border-spacing:2px;min-width:760px;width:100%;
 .cell{position:absolute;overflow:hidden;border:1px solid var(--surface);border-radius:3px;padding:2px 4px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:default;line-height:1.15;color:var(--ink);background:var(--hm0)}
 .cell .cd{font-family:"IBM Plex Mono",monospace;font-weight:600;letter-spacing:.01em;white-space:nowrap}
 .cell .nm{font-size:10.5px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;direction:rtl}
-.cell .pc{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.cell .pc{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap;direction:ltr;unicode-bidi:isolate}
 .cell.p1{background:var(--hp1)} .cell.p2{background:var(--hp2)} .cell.p3{background:var(--hp3)}
 .cell.n1{background:var(--hn1)} .cell.n2{background:var(--hn2)} .cell.n3{background:var(--hn3)}
 .cell.p3,.cell.n3{color:#fff} .cell.p3 .nm,.cell.n3 .nm{color:rgba(255,255,255,.85)}
@@ -153,6 +153,8 @@ table.hm{border-collapse:separate;border-spacing:2px;min-width:760px;width:100%;
 .tmgrid h4:first-child{margin-top:0}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:4px}
 .tiles .cell{position:static;height:58px;border-radius:6px}
+.tmsw{margin-bottom:12px}
+.tmsw .lbl{font-size:12px;color:var(--ink-3)}
 .movers{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media (max-width:700px){.movers{grid-template-columns:1fr}}
 .mv{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--surface-2)}
@@ -277,6 +279,11 @@ details[open] summary::before{transform:rotate(-90deg)}
     <p id="tmnote">كل مربع سهم، مجمّع داخل قطاعه. المساحة تعكس القيمة السوقية، واللون نسبة التغيّر: أخضر صعود وأحمر هبوط، والرقم مكتوب داخل كل مربع. مرّر الفأرة لقراءة السعر والإغلاق السابق والحجم والمصدر.</p>
     <div class="legend"><span class="num">−3%</span><i style="background:var(--hn3)"></i><i style="background:var(--hn2)"></i><i style="background:var(--hn1)"></i><i style="background:var(--hm0)"></i><i style="background:var(--hp1)"></i><i style="background:var(--hp2)"></i><i style="background:var(--hp3)"></i><span class="num">+3%</span></div>
   </div>
+  <div class="bar tmsw" id="tmsw" role="group" aria-label="اختيار السوق" hidden>
+    <span class="lbl">السوق:</span>
+    <button type="button" class="chip" data-m="sa" aria-pressed="true">السوق السعودي</button>
+    <button type="button" class="chip" data-m="us" aria-pressed="false">السوق الأمريكي</button>
+  </div>
   <div class="tm" id="tm"></div>
   <div class="movers" id="movers"></div>
   <p class="hmfoot" id="tmfoot"></p>
@@ -362,6 +369,16 @@ const arr=v=>Array.isArray(v)?v:[];
 const obj=v=>(v&&typeof v==="object"&&!Array.isArray(v))?v:{};
 const cellCls=c=>{if(c==null)return "z";const a=Math.abs(c);if(a<0.5)return "z";const k=a<1.5?1:a<3?2:3;return (c>0?"p":"n")+k};
 const cls=v=>v===0?"":(v>0?"p":"n")+Math.min(3,Math.abs(v));
+/* markets: a row without `market` is Saudi (backward compatible); anything other than "us" is treated as "sa" */
+const MKT_NAMES={sa:"السوق السعودي",us:"السوق الأمريكي"};
+const MKT_ZONE={sa:"الرياض",us:"نيويورك"};
+const mktOf=s=>String(obj(s).market||"sa").trim().toLowerCase()==="us"?"us":"sa";
+const CUR_AR={SAR:"ريال",USD:"دولار"};
+const curAr=c=>{const k=String(c||"").trim().toUpperCase();return CUR_AR[k]||k;};
+const fmtNY=d=>{if(!d)return "—";try{const p={};new Intl.DateTimeFormat("en-US",{timeZone:"America/New_York",hourCycle:"h23",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit"}).formatToParts(d).forEach(x=>p[x.type]=x.value);return `${p.year}-${p.month}-${p.day} ${p.hour}:${p.minute}:${p.second}`;}catch(e){return fmtUtc(d)+" UTC";}};
+/* local "as of" for a prepared stock: New York for us, Riyadh for sa; prefers the backend's string when given */
+const localOf=s=>s.mkt==="us"?{t:s.as_of_local||fmtNY(s.asof),z:MKT_ZONE.us}:{t:s.as_of_local||s.as_of_riyadh||fmtR(s.asof),z:MKT_ZONE.sa};
+const fmtLocal=(d,m)=>m==="us"?fmtNY(d):fmtR(d);
 
 /* ===================== LOADER ===================== */
 const QS=new URLSearchParams(location.search);
@@ -449,7 +466,7 @@ function renderIndices(){
         <div><div class="idx-nm">${esc(i.name_ar||i.code||"—")}<small class="num">${esc(i.code||"")}${i.session_date?" · "+esc(i.session_date):""}</small></div>
           <span class="wtype ${live?"w-live":"w-closed"}">${live?"أثناء الجلسة":"إغلاق"}</span></div>
         <div class="idx-px"><span class="v num">${fmt(v)}</span>${chg(c,"c num")}${p!=null?`<span class="asof num">${sgn(p)}${fmt(p)} نقطة</span>`:""}
-          <span class="asof">كما في <span class="num">${i.as_of_riyadh?esc(i.as_of_riyadh):fmtR(asof)}</span> الرياض${asof?` <span class="num">(${fmtUtc(asof)} UTC)</span>`:""}</span>
+          <span class="asof">كما في <span class="num">${i.as_of_riyadh?esc(i.as_of_riyadh):fmtR(asof)}</span> الرياض${asof?` <span class="num">(${fmtUtc(asof)} UTC)</span>`:""}${!isSa(i)&&i.as_of_local?` · <span class="num">${esc(i.as_of_local)}</span> نيويورك`:""}</span>
           ${u?`<a class="srclink" href="${esc(u)}" target="_blank" rel="noopener">${esc(i.source||"المصدر")} ↗</a>`:`<span class="srclink">${esc(i.source||"مصدر غير محدد")}</span>`}</div>
       </div>${stale?`<div class="stale">⚠ البيانات أقدم من 24 ساعة${asof?"":" أو بلا طابع زمني"}</div>`:""}</div>`;}).join(""):`<div class="empty">لا مؤشرات في هذه المجموعة.</div>`}
     </section>`;}).join("");
@@ -470,18 +487,31 @@ function squarify(items,x,y,w,h){
   return out;
 }
 let TM_STOCKS=[];
+/* selected treemap market, remembered per browser (default "sa") */
+const LS_MKT="marsad.tm_market";
+let TM_MARKET="sa";try{const v=localStorage.getItem(LS_MKT);if(v==="us"||v==="sa")TM_MARKET=v;}catch(e){/* storage unavailable: keep default */}
+function setMarket(m){if(m!=="sa"&&m!=="us"||m===TM_MARKET)return;TM_MARKET=m;try{localStorage.setItem(LS_MKT,m);}catch(e){}if(MARKET)renderTreemap();}
+/* all stocks of all markets, normalised (TM_STOCKS keeps every market so the feed can price US tickers too) */
 function prepStocks(){
-  const list=arr(MARKET.stocks).map(s=>{
+  return arr(MARKET.stocks).map(obj).map(s=>{
     const price=num(s.price),prev=num(s.prev_close);let c=num(s.change_pct);
     if(c==null&&price!=null&&prev)c=(price/prev-1)*100;
-    const cap=num(s.market_cap_sar);
-    return {...s,price,prev,c,cap,sector:s.sector_ar||"غير مصنّف",code:String(s.code||"?"),asof:parseD(s.as_of_utc)};
+    const mkt=mktOf(s);
+    /* sizing: market_cap_usd, then market_cap_sar, then generic market_cap; else fallback weights */
+    const usd=num(s.market_cap_usd),sar=num(s.market_cap_sar),gen=num(s.market_cap);
+    const cap=usd!=null?usd:sar!=null?sar:gen;
+    const cur=(typeof s.currency==="string"&&s.currency.trim())?s.currency.trim():(mkt==="us"?"USD":"SAR");
+    const capCur=usd!=null?"USD":sar!=null?"SAR":cur;
+    return {...s,price,prev,c,cap,cur,capCur,mkt,sector:s.sector_ar||"غير مصنّف",code:String(s.code||"?"),asof:parseD(s.as_of_utc)};
   });
+}
+/* area weights for one market's list; returns whether any real market cap was available */
+function weigh(list){
   const anyCap=list.some(s=>s.cap>0);
   list.forEach(s=>{s.w=(anyCap&&s.cap>0)?s.cap:(FALLBACK_W[s.code]||0.05)*(anyCap?1e9:1);});
   const total=list.reduce((a,s)=>a+s.w,0);const floor=total*0.008;
   list.forEach(s=>{s.w=Math.max(s.w,floor);});
-  return list;
+  return anyCap;
 }
 function cellHtml(s,x,y,w,h){
   const k=cellCls(s.c);const mn=Math.min(w,h);
@@ -494,8 +524,15 @@ function cellHtml(s,x,y,w,h){
 function renderTreemap(){
   TM_STOCKS=prepStocks();TM_STOCKS.forEach((s,i)=>s._i=i);
   const box=$("tm");
-  if(!TM_STOCKS.length){box.className="tm narrow";box.innerHTML=`<div class="tmgrid"><p class="empty">لا أسهم في ملف السوق.</p></div>`;$("movers").innerHTML="";$("tmfoot").textContent="";return;}
-  const bySec={};TM_STOCKS.forEach(s=>(bySec[s.sector]=bySec[s.sector]||[]).push(s));
+  /* market switch: shown only when the data carries more than one market; fall back to whatever market exists */
+  const have=["sa","us"].filter(m=>TM_STOCKS.some(s=>s.mkt===m));
+  if(have.length&&!have.includes(TM_MARKET))TM_MARKET=have[0];
+  const sw=$("tmsw");sw.hidden=have.length<2;
+  sw.querySelectorAll(".chip").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.m===TM_MARKET)));
+  const list=TM_STOCKS.filter(s=>s.mkt===TM_MARKET);
+  if(!list.length){box.className="tm narrow";box.innerHTML=`<div class="tmgrid"><p class="empty">لا أسهم في ملف السوق.</p></div>`;$("movers").innerHTML="";$("tmfoot").textContent="";return;}
+  const anyCap=weigh(list);
+  const bySec={};list.forEach(s=>(bySec[s.sector]=bySec[s.sector]||[]).push(s));
   /* readability floors: a stock gets at least 4% of its sector's area, a sector at least 2% of the map */
   const secs=Object.entries(bySec).map(([name,list])=>{const t=list.reduce((a,s)=>a+s.w,0);list.forEach(s=>{s.w=Math.max(s.w,t*0.04);});return {name,list:list.sort((a,b)=>b.w-a.w),w:list.reduce((a,s)=>a+s.w,0)};}).sort((a,b)=>b.w-a.w);
   const grand=secs.reduce((a,g)=>a+g.w,0);secs.forEach(g=>{g.w=Math.max(g.w,grand*0.02);});
@@ -516,20 +553,24 @@ function renderTreemap(){
     });
     box.innerHTML=html;
   }
-  /* movers strip */
-  const withC=TM_STOCKS.filter(s=>s.c!=null);
+  /* movers strip (selected market only) */
+  const withC=list.filter(s=>s.c!=null);
   const up=withC.slice().sort((a,b)=>b.c-a.c).slice(0,5),dn=withC.slice().sort((a,b)=>a.c-b.c).slice(0,5);
   const con=s=>`<div class="con"><span><b>${esc(s.code)}</b> ${esc(s.name_ar||"")}<span class="w">${esc(s.sector)}</span></span><span class="p">${fmt(s.price)}<i class="${s.c>=0?"up":"down"}">${fmtPct(s.c)}</i></span></div>`;
-  $("movers").innerHTML=`<div class="mv g"><h4>أعلى 5 صاعدة</h4><div class="cons">${up.map(con).join("")||"—"}</div></div><div class="mv l"><h4>أدنى 5 هابطة</h4><div class="cons">${dn.map(con).join("")||"—"}</div></div>`;
-  const anyCap=TM_STOCKS.some(s=>s.cap>0);const latest=TM_STOCKS.map(s=>s.asof).filter(Boolean).sort((a,b)=>b-a)[0];const noC=TM_STOCKS.length-withC.length;
-  $("tmfoot").innerHTML=`${TM_STOCKS.length} سهماً في ${secs.length} قطاعاً · ${anyCap?"المساحة بحسب القيمة السوقية (مع حد أدنى 0.8% للقراءة)":"القيمة السوقية غير متاحة: المساحة بأوزان ثابتة تقريبية"}${latest?` · أحدث سعر <span class="num">${fmtR(latest)}</span> الرياض`:""}${noC?` · ${noC} بلا نسبة تغيّر (رمادي)`:""}.`;
+  $("movers").innerHTML=`<div class="mv g"><h4>أعلى 5 صاعدة · ${MKT_NAMES[TM_MARKET]}</h4><div class="cons">${up.map(con).join("")||"—"}</div></div><div class="mv l"><h4>أدنى 5 هابطة · ${MKT_NAMES[TM_MARKET]}</h4><div class="cons">${dn.map(con).join("")||"—"}</div></div>`;
+  const latest=list.map(s=>s.asof).filter(Boolean).sort((a,b)=>b-a)[0];const noC=list.length-withC.length;
+  const curs=[...new Set(list.filter(s=>s.cap>0).map(s=>curAr(s.capCur)))].filter(Boolean);
+  $("tmfoot").innerHTML=`${MKT_NAMES[TM_MARKET]}: ${list.length} سهماً في ${secs.length} قطاعاً · ${anyCap?`المساحة بحسب القيمة السوقية${curs.length?` بال${curs.join(" وال")}`:""} (مع حد أدنى 0.8% للقراءة)`:"القيمة السوقية غير متاحة: المساحة بأوزان ثابتة تقريبية"}${latest?` · أحدث سعر <span class="num">${fmtLocal(latest,TM_MARKET)}</span> ${MKT_ZONE[TM_MARKET]}`:""}${noC?` · ${noC} بلا نسبة تغيّر (رمادي)`:""}.`;
 }
 /* tooltip for treemap cells */
-function tmTip(cell){const s=TM_STOCKS[+cell.dataset.i];if(!s)return "";
+function tmTip(cell){const s=TM_STOCKS[+cell.dataset.i];if(!s)return "";const loc=localOf(s);
   return `<b>${esc(s.code)} · ${esc(s.name_ar||"")}${s.name_en?` <span class="num">${esc(s.name_en)}</span>`:""}</b>
-  ${esc(s.sector)}<br>السعر <span class="num">${fmt(s.price)}</span> · الإغلاق السابق <span class="num">${fmt(s.prev)}</span> · التغيّر <span class="num">${fmtPct(s.c)}</span><br>
-  الحجم <span class="num">${s.volume!=null?fmt(num(s.volume),0):"—"}</span> · القيمة السوقية ${big(s.cap,"ريال")}<br>
-  كما في <span class="num">${fmtR(s.asof)}</span> الرياض · ${esc(s.source||"مصدر غير محدد")}`;}
+  ${esc(s.sector)} · ${MKT_NAMES[s.mkt]}<br>السعر <span class="num">${fmt(s.price)}</span> ${esc(curAr(s.cur))} · الإغلاق السابق <span class="num">${fmt(s.prev)}</span> · التغيّر <span class="num">${fmtPct(s.c)}</span><br>
+  الحجم <span class="num">${s.volume!=null?fmt(num(s.volume),0):"—"}</span> · القيمة السوقية ${esc(big(s.cap,curAr(s.capCur)))}<br>
+  كما في <span class="num">${esc(loc.t)}</span> ${loc.z}${s.asof?` <span class="num">(${fmtUtc(s.asof)} UTC)</span>`:""} · ${esc(s.source||"مصدر غير محدد")}`;}
+/* market switch: click, plus arrow keys between the chips (RTL: → is the previous chip) */
+$("tmsw").addEventListener("click",e=>{const b=e.target.closest(".chip");if(b&&b.dataset.m)setMarket(b.dataset.m);});
+$("tmsw").addEventListener("keydown",e=>{if(e.key!=="ArrowLeft"&&e.key!=="ArrowRight")return;const bs=[...$("tmsw").querySelectorAll(".chip")];const i=bs.indexOf(document.activeElement);if(i<0)return;e.preventDefault();const n=bs[(i+(e.key==="ArrowRight"?-1:1)+bs.length)%bs.length];n.focus();setMarket(n.dataset.m);});
 
 /* ===================== NEWS × SECTOR IMPACT ===================== */
 let IMPACT_COLS=[];
@@ -614,7 +655,7 @@ function renderFeed(){
      </div>
     </article>`;}).join(""):`<p style="color:var(--ink-3)">لا توجد أخبار مطابقة.</p>`;
 }
-$("bar").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;filt=b.dataset.f;document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c===b));if(NEWS)renderFeed();});
+$("bar").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;filt=b.dataset.f;document.querySelectorAll("#bar .chip").forEach(c=>c.setAttribute("aria-pressed",c===b));if(NEWS)renderFeed();});
 $("q").addEventListener("input",()=>{if(NEWS)renderFeed();});
 
 /* ===================== DATA QUALITY ===================== */
