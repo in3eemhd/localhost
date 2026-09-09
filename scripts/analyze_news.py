@@ -22,8 +22,9 @@ Output schema (data/news.json):
       "tickers": [{"code","name_ar"}], "summary_ar", "lang": "ar"|"en",
       "beneficiary": {"name","why"}, "hurt": {"name","why"},
       "impact": {<14 sector keys>: int -3..3, "why": str}, "cf": 1..3,
-      "rules": [rule ids], "analysis": "llm"|"rules"
-  }]
+      "rules": [rule ids], "analysis": "llm"|"rules", "relevance": 0..1
+  }],   # ordered: market=="sa" first (newest first), then macro, us, other; non-Saudi capped at 25, total 60
+  "dropped": int, "stats": {input, kept, dropped_irrelevant, dropped_cap, by_market, llm_items, fetch_dropped}
 }
 """
 from __future__ import annotations
@@ -46,6 +47,13 @@ except ImportError:  # pragma: no cover
     requests = None  # type: ignore
 
 log = logging.getLogger("analyze_news")
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+try:  # relevance gate lives in fetch_news.py (same directory)
+    from fetch_news import RELEVANCE_MIN, relevance_score
+except Exception:  # pragma: no cover
+    RELEVANCE_MIN = 0.35
+    relevance_score = None  # type: ignore
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_RULES = os.path.join(HERE, "impact_rules.json")
@@ -179,7 +187,27 @@ def load_rules(path: str = DEFAULT_RULES) -> dict[str, Any]:
         r["_kw"] = [norm(k) for k in r.get("keywords", []) if k]
         r["impact"] = {k: int(v) for k, v in (r.get("impact") or {}).items() if k in SECTOR_KEYS}
     rules["_market_kw"] = {m: [norm(k) for k in kws] for m, kws in (rules.get("market_keywords") or {}).items()}
+    rules["_ambiguous"] = {norm(k): [norm(c) for c in ctx]
+                           for k, ctx in (rules.get("ambiguous_context") or {}).items()
+                           if not k.startswith("_") and isinstance(ctx, list)}
     return rules
+
+
+def keyword_ok(kw_norm: str, text_norm: str, ambiguous: dict[str, list[str]]) -> bool:
+    """A keyword hit counts unless it contains an ambiguous word whose context is absent."""
+    for term, ctx in ambiguous.items():
+        if re.search(r"(?<![\w])" + re.escape(term) + r"(?![\w])", kw_norm):
+            if not any(c in text_norm for c in ctx):
+                return False
+    return True
+
+
+COMPANY_CONTEXT = [norm(c) for c in ("سهم", "أسهم", "شركة", "الشركة", "تداول", "تاسي", "stock", "shares", "share",
+                                     "company", "tadawul", "tasi", "listed", "المدرجة", "أرباح", "profit", "earnings")]
+# Aliases that are common words / other entities (football clubs, cities...): need company context or the code.
+AMBIGUOUS_ALIASES = {norm(a) for a in ("كيان", "kayan", "علم", "elm", "الأول", "البلاد", "الأهلي", "زين", "zain",
+                                        "سال", "ذيب", "دلة", "الجبس", "بنان", "الخريف", "المواساة", "ناس",
+                                        "الكهرباء", "الفرنسي", "الإنماء", "جرير")}
 
 
 def map_sector(name: str | None) -> str | None:
@@ -273,10 +301,12 @@ def build_matcher(constituents: list[dict[str, Any]]):
                 continue
             # Arabic definite article: allow "ال" + "و/ب/ل" prefixes before the name.
             pat = r"(?<![\w])(?:و|ب|ل|ال|وال|بال)?" + re.escape(key) + r"(?![\w])"
-            patterns.append((re.compile(pat), c))
+            ambiguous = bool(c.get("ambiguous")) or key in AMBIGUOUS_ALIASES or re.sub(r"^ال", "", key) in AMBIGUOUS_ALIASES
+            patterns.append((re.compile(pat), c, ambiguous))
 
     def match(text: str) -> list[dict[str, Any]]:
         t = norm(text)
+        has_ctx = any(re.search(r"(?<![\w])(?:و|ب|ل|ال|وال|بال)?" + re.escape(c) + r"(?![\w])", t) for c in COMPANY_CONTEXT)
         found: dict[str, dict[str, Any]] = {}
         # explicit codes: (2222), 2222.SE, "2222:" or bare code not looking like a year
         for m in re.finditer(r"(?<![\d.])(\d{4})(?:\.s[er])?(?![\d])", t):
@@ -287,8 +317,10 @@ def build_matcher(constituents: list[dict[str, Any]]):
             explicit = (start > 0 and t[start - 1] in "(#:") or (end < len(t) and t[end] in ")") or m.group(0) != code
             if explicit or not (1990 <= int(code) <= 2100):
                 found[code] = by_code[code]
-        for pat, c in patterns:
+        for pat, c, ambiguous in patterns:
             if c["code"] in found:
+                continue
+            if ambiguous and not (has_ctx or c["code"] in t):
                 continue
             if pat.search(t):
                 found[c["code"]] = c
@@ -305,8 +337,10 @@ def classify_market(text_norm: str, item: dict[str, Any], rules: dict[str, Any])
     mk = rules.get("_market_kw", {})
     padded = f" {text_norm} "
 
+    amb = rules.get("_ambiguous", {})
+
     def hit(cls: str) -> bool:
-        return any(k in padded for k in mk.get(cls, []))
+        return any(k in padded and keyword_ok(k, padded, amb) for k in mk.get(cls, []))
 
     if hit("sa"):
         return "sa"
@@ -329,7 +363,9 @@ def analyze_rules(item: dict[str, Any], rules: dict[str, Any], matcher) -> dict[
     text = f"{item.get('title', '')} . {item.get('summary', '')}"
     tn = norm(text)
     padded = f" {tn} "
-    matched = [r for r in rules.get("rules", []) if any(k in padded for k in r["_kw"])]
+    amb = rules.get("_ambiguous", {})
+    matched = [r for r in rules.get("rules", [])
+               if any(k in padded and keyword_ok(k, padded, amb) for k in r["_kw"])]
     tickers_full = matcher(text)
     tickers = [{"code": t["code"], "name_ar": t["name_ar"]} for t in tickers_full]
 
@@ -384,7 +420,10 @@ def analyze_rules(item: dict[str, Any], rules: dict[str, Any], matcher) -> dict[
     cf = max(1, min(3, cf))
 
     lang = detect_lang(f"{item.get('title', '')} {item.get('summary', '')}")
-    summary_src = item.get("summary") or item.get("title") or ""
+    # Rules mode never machine-translates: Arabic sources keep their Arabic
+    # summary (title if the feed had none); English items keep the English text
+    # unchanged and are flagged lang="en" for the UI.
+    summary_src = (item.get("summary") or "").strip() or (item.get("title") or "")
     return {
         "market": classify_market(tn, item, rules),
         "signal": signal,
@@ -611,18 +650,49 @@ def analyze_llm_batch(items: list[dict[str, Any]], constituents: list[dict[str, 
 # ---------------------------------------------------------------------------
 # Orchestration
 # ---------------------------------------------------------------------------
+MARKET_ORDER = {"sa": 0, "macro": 1, "us": 2, "other": 3}
+
+
+def rank_items(items: list[dict[str, Any]], max_items: int = 60, max_non_sa: int = 25) -> tuple[list[dict[str, Any]], int]:
+    """Saudi-first ordering: market=="sa" (newest first), then macro, us, other
+    (each newest first). Non-Saudi items are capped at `max_non_sa`, the whole
+    list at `max_items`. Returns (ranked, dropped_by_cap)."""
+    ordered = sorted(items, key=lambda i: i.get("published_utc") or "", reverse=True)
+    ordered.sort(key=lambda i: MARKET_ORDER.get(i.get("market"), 3))
+    out: list[dict[str, Any]] = []
+    non_sa = 0
+    for it in ordered:
+        if len(out) >= max_items:
+            break
+        if it.get("market") != "sa":
+            if non_sa >= max_non_sa:
+                continue
+            non_sa += 1
+        out.append(it)
+    return out, len(items) - len(out)
+
+
 def analyze(raw: dict[str, Any], rules: dict[str, Any], constituents: list[dict[str, Any]],
             market: dict[str, Any] | None = None, api_key: str | None = None,
             model: str = DEFAULT_MODEL, batch_size: int = 10,
-            use_fallbacks: bool = True) -> dict[str, Any]:
+            use_fallbacks: bool = True, max_items: int = 60, max_non_sa: int = 25,
+            min_relevance: float = RELEVANCE_MIN) -> dict[str, Any]:
     items = raw.get("items") if isinstance(raw, dict) else raw
     items = list(items or [])
     matcher = build_matcher(constituents)
 
     enriched: list[dict[str, Any]] = []
+    dropped_relevance = 0
     for it in items:
         it = dict(it)
         it["id"] = it.get("id") or item_id(it)
+        if "relevance" not in it:
+            it["relevance"] = (relevance_score(it.get("title", ""), it.get("summary", ""), it.get("source", ""),
+                                               it.get("link", "")) if relevance_score else 1.0)
+        if it["relevance"] < min_relevance:
+            dropped_relevance += 1
+            log.debug("dropped irrelevant (%.2f): %s", it["relevance"], it.get("title", "")[:80])
+            continue
         it.update(analyze_rules(it, rules, matcher))
         enriched.append(it)
 
@@ -646,14 +716,21 @@ def analyze(raw: dict[str, Any], rules: dict[str, Any], constituents: list[dict[
                     llm_used += 1
     mode = "rules" if not api_key else ("llm" if llm_used == len(enriched) and enriched else
                                         "llm+rules" if llm_used else "rules")
-    log.info("analysis mode=%s items=%d llm=%d", mode, len(enriched), llm_used)
+    ranked, dropped_cap = rank_items(enriched, max_items=max_items, max_non_sa=max_non_sa)
+    by_market = {m: sum(1 for i in ranked if i["market"] == m) for m in MARKETS}
+    log.info("analysis mode=%s in=%d kept=%d llm=%d dropped: irrelevant=%d cap=%d  by_market=%s",
+             mode, len(items), len(ranked), llm_used, dropped_relevance, dropped_cap, by_market)
     return {
         "generated_at_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "source_generated_at_utc": raw.get("generated_at_utc") if isinstance(raw, dict) else None,
         "analysis_mode": mode,
         "model": model if api_key else None,
+        "dropped": dropped_relevance + dropped_cap,
+        "stats": {"input": len(items), "kept": len(ranked), "dropped_irrelevant": dropped_relevance,
+                  "dropped_cap": dropped_cap, "by_market": by_market, "llm_items": llm_used,
+                  "fetch_dropped": raw.get("dropped") if isinstance(raw, dict) else None},
         "sectors": {k: rules["sectors"][k] for k in SECTOR_KEYS},
-        "items": enriched,
+        "items": ranked,
     }
 
 
@@ -678,6 +755,9 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--constituents", default=DEFAULT_CONSTITUENTS)
     ap.add_argument("--no-llm", action="store_true", help="force rules mode even if ANTHROPIC_API_KEY is set")
     ap.add_argument("--batch", type=int, default=10)
+    ap.add_argument("--max", type=int, default=60, help="total item cap (60)")
+    ap.add_argument("--max-non-sa", type=int, default=25, help="cap on non-Saudi (macro/us/other) items (25)")
+    ap.add_argument("--min-relevance", type=float, default=RELEVANCE_MIN, help="drop items below this relevance (0.35)")
     ap.add_argument("--model", default=os.environ.get("ANTHROPIC_MODEL", DEFAULT_MODEL))
     ap.add_argument("-v", "--verbose", action="store_true")
     args = ap.parse_args(argv)
@@ -696,7 +776,8 @@ def main(argv: list[str] | None = None) -> int:
     use_fallbacks = os.environ.get("NEWS_LLM_FALLBACKS", "1") not in ("0", "false", "no")
 
     result = analyze(raw, rules, constituents, market=market, api_key=api_key, model=args.model,
-                     batch_size=args.batch, use_fallbacks=use_fallbacks)
+                     batch_size=args.batch, use_fallbacks=use_fallbacks, max_items=args.max,
+                     max_non_sa=args.max_non_sa, min_relevance=args.min_relevance)
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
     with open(args.out, "w", encoding="utf-8") as fh:
         json.dump(result, fh, ensure_ascii=False, indent=1)

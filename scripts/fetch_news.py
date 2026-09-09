@@ -19,7 +19,9 @@ Output schema (data/news_raw.json):
   "items": [
     {"title", "link", "source", "published_utc", "published_riyadh",
      "precision": "second"|"minute"|"day", "summary", "fetched_at_utc",
-     "lang": "ar"|"en", "priority": int}
+     "lang": "ar"|"en", "priority": int, "relevance": 0..1}
+  ],
+  "dropped": int, "stats": {raw, deduped, kept, dropped_irrelevant, dropped_old_or_undated, dropped_cap, duplicates}
   ]
 }
 """
@@ -205,6 +207,102 @@ def detect_lang(text: str) -> str:
     arabic = len(re.findall(r"[؀-ۿ]", text or ""))
     latin = len(re.findall(r"[A-Za-z]", text or ""))
     return "ar" if arabic >= latin and arabic > 0 else "en"
+
+
+# ---------------------------------------------------------------------------
+# Relevance gate (finance/market terms; off-topic sections penalised)
+# ---------------------------------------------------------------------------
+def norm_text(text: str) -> str:
+    """Lowercase + NFKC + strip Arabic diacritics + fold hamza/ta-marbuta (keeps punctuation)."""
+    t = unicodedata.normalize("NFKC", text or "").lower()
+    t = _ARABIC_DIACRITICS.sub("", t)
+    t = t.replace("أ", "ا").replace("إ", "ا").replace("آ", "ا").replace("ة", "ه").replace("ى", "ي")
+    return re.sub(r"\s+", " ", t).strip()
+
+
+FINANCE_TERMS = [
+    # Arabic
+    "سوق", "اسواق", "اسهم", "سهم", "تداول", "تاسي", "مؤشر", "بورصه", "ارباح", "ربح", "شركه", "شركات",
+    "بنك", "بنوك", "مصرف", "مصارف", "نفط", "خام", "برميل", "اوبك", "الفيدرالي", "فائده", "سندات", "صكوك",
+    "اكتتاب", "ادراج", "توزيعات", "استثمار", "استثمارات", "صندوق", "اقتصاد", "اقتصادي", "تضخم", "ريال",
+    "دولار", "مليار", "مليون", "عقد", "ترسيه", "استحواذ", "نتائج", "ايرادات", "بتروكيماويات", "تمويل",
+    "قرض", "تصنيف", "الناتج المحلي", "صادرات", "عمله", "ذهب", "ارامكو", "هيئه السوق", "ساما", "حقوق اولويه",
+    "راس المال", "مساهمين", "طرح", "غاز", "مصفاه", "مشتقات", "اسمنت", "تأمين", "تامين", "عقار", "عقاري",
+    # English
+    "stock", "stocks", "shares", "share price", "market", "markets", "index", "tadawul", "tasi", "earnings",
+    "profit", "profits", "revenue", "revenues", "bank", "banks", "oil", "crude", "barrel", "barrels", "opec",
+    "rates", "rate cut", "rate hike", "interest rate", "bond", "bonds", "sukuk", "ipo", "dividend", "dividends",
+    "investor", "investors", "investment", "fund", "economy", "economic", "inflation", "gdp", "riyal", "dollar",
+    "billion", "million", "contract", "acquisition", "merger", "listing", "exchange", "aramco", "sabic", "pif",
+    "treasury", "yields", "tariff", "tariffs", "central bank", "sama", "fomc", "cpi", "exports", "refinery",
+    "petrochemical", "petrochemicals", "lng", "cement", "insurer", "insurance", "real estate", "reit",
+    "brent", "برنت", "fed",  # ambiguous: count only with context (AMBIGUOUS_CONTEXT)
+]
+OFFTOPIC_TERMS = [
+    "sport", "sports", "football", "soccer", "nba", "nfl", "mlb", "nhl", "cricket", "tennis", "golf", "f1",
+    "formula 1", "entertainment", "celebrity", "celebrities", "movie", "movies", "film", "music", "recipe",
+    "recipes", "gaming", "video game", "video games", "esports", "fashion", "horoscope", "lifestyle",
+    "رياضه", "رياضي", "رياضيه", "كره القدم", "دوري روشن", "مباراه", "فنان", "فنانه", "مشاهير", "طبخ", "وصفه",
+    "العاب", "مسلسل", "سينما", "ازياء", "نجوم الفن",
+]
+# Ambiguous words that count only with a nearby context term.
+AMBIGUOUS_CONTEXT = {
+    "brent": ["oil", "crude", "barrel", "barrels", "opec", "خام", "نفط", "برميل", "$", "dollar", "دولار", "price", "prices", "سعر"],
+    "برنت": ["خام", "نفط", "برميل", "دولار", "سعر", "اوبك", "oil", "crude", "$"],
+    "fed": ["rate", "rates", "interest", "fomc", "powell", "فائده", "inflation", "basis points", "central bank", "الفيدرالي"],
+    "كيان": ["سهم", "اسهم", "شركه", "الشركه", "2350", "تداول", "سابك", "بتروكيماويات"],
+    "kayan": ["stock", "shares", "share", "company", "2350", "tadawul", "sabic", "petrochemical"],
+    "علم": ["سهم", "اسهم", "شركه", "الشركه", "7203", "تداول", "التقنيه", "رقمي"],
+    "elm": ["stock", "shares", "share", "company", "7203", "tadawul", "digital", "tech"],
+}
+RELEVANCE_MIN = 0.35
+
+
+def _term_re(term: str) -> re.Pattern:
+    t = re.escape(norm_text(term))
+    if re.search(r"[\u0600-\u06FF]", term):  # Arabic: allow ال / و / ب / ل prefixes
+        return re.compile(r"(?<![\w])(?:و|ب|ل|ال|وال|بال|لل)?" + t + r"(?![\w])")
+    return re.compile(r"(?<![\w])" + t + r"(?![\w])")
+
+
+_FINANCE_RE = [(t, _term_re(t)) for t in FINANCE_TERMS]
+_OFFTOPIC_RE = [(t, _term_re(t)) for t in OFFTOPIC_TERMS]
+_OFFTOPIC_PATH_RE = re.compile(r"/(sport|sports|entertainment|celebrity|lifestyle|recipes?|gaming|games|fashion|"
+                               r"music|movies?|film|رياضه|رياضة|فن|منوعات)(/|$|\?)", re.I)
+
+
+def ambiguous_ok(term: str, text_norm: str) -> bool:
+    """True when `term` is not ambiguous, or its required context is present in the text."""
+    ctx = AMBIGUOUS_CONTEXT.get(norm_text(term))
+    if ctx is None:
+        return True
+    return any(norm_text(c) in text_norm for c in ctx)
+
+
+def relevance_score(title: str, summary: str = "", source: str = "", link: str = "") -> float:
+    """0..1 finance/market relevance. 0 = no finance term at all.
+
+    base = 0.4 for the first finance term, +0.15 per extra distinct term (max 3),
+    +0.15 if a term is in the title; x0.25 if an off-topic marker is found in the
+    title/summary, source name, or URL path (sports, entertainment, recipes...).
+    Deterministic; used as a gate with RELEVANCE_MIN.
+    """
+    tn = norm_text(title)
+    full = norm_text(f"{title} . {summary}")
+    hits = [t for t, rx in _FINANCE_RE if rx.search(full) and ambiguous_ok(t, full)]
+    if not hits:
+        return 0.0
+    score = 0.4 + 0.15 * min(len(hits) - 1, 3)
+    if any(rx.search(tn) for t, rx in _FINANCE_RE if t in hits):
+        score += 0.15
+    score = min(1.0, score)
+    src = norm_text(source)
+    path = urlparse(link or "").path
+    offtopic = (any(rx.search(full) or rx.search(src) for _, rx in _OFFTOPIC_RE)
+                or bool(_OFFTOPIC_PATH_RE.search(path)))
+    if offtopic:
+        score *= 0.25
+    return round(score, 2)
 
 
 # ---------------------------------------------------------------------------
@@ -552,10 +650,11 @@ def fetch_bytes(url: str, timeout: float, retries: int = 1) -> bytes:
 
 
 def build_items(entries: Iterable[dict[str, Any]], feed: dict[str, Any], now: datetime,
-                window_hours: float) -> tuple[list[dict[str, Any]], int]:
+                window_hours: float, min_relevance: float = RELEVANCE_MIN) -> tuple[list[dict[str, Any]], int, int]:
+    """Returns (items, dropped_by_date, dropped_by_relevance)."""
     cutoff = now - timedelta(hours=window_hours)
     fetched_at = fmt_utc(now)
-    items, dropped = [], 0
+    items, dropped, irrelevant = [], 0, 0
     for e in entries:
         dt, precision = parse_date(e.get("date_raw"))
         if dt is None:
@@ -571,6 +670,11 @@ def build_items(entries: Iterable[dict[str, Any]], feed: dict[str, Any], now: da
         if "news.google.com" in link:
             link = resolve_google_news_link(link)
         text_for_lang = f"{e['title']} {e.get('summary', '')}"
+        rel = relevance_score(e["title"], e.get("summary", ""), e.get("source") or feed["name"], link)
+        if rel < min_relevance:
+            irrelevant += 1
+            log.debug("[%s] irrelevant (%.2f): %s", feed["name"], rel, e["title"][:80])
+            continue
         items.append({
             "title": e["title"],
             "link": link,
@@ -582,8 +686,9 @@ def build_items(entries: Iterable[dict[str, Any]], feed: dict[str, Any], now: da
             "fetched_at_utc": fetched_at,
             "lang": detect_lang(text_for_lang),
             "priority": int(feed.get("priority", 3)),
+            "relevance": rel,
         })
-    return items, dropped
+    return items, dropped, irrelevant
 
 
 def dedupe(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -619,6 +724,7 @@ def run(feeds: list[dict[str, Any]], window_hours: float = 48, max_items: int = 
     all_items: list[dict[str, Any]] = []
     report = []
     ok_count = 0
+    dropped_relevance = dropped_date = 0
     started = time.monotonic()
     for feed in feeds:
         name, url = feed["name"], feed["url"]
@@ -633,15 +739,18 @@ def run(feeds: list[dict[str, Any]], window_hours: float = 48, max_items: int = 
         try:
             raw, effective = fetch_feed(url, timeout=timeout, retries=retries, notes=notes)
             entries = parse_feed(raw, name)
-            items, dropped = build_items(entries, feed, now, window_hours)
-            entry.update(ok=True, count=len(entries), kept=len(items))
+            items, dropped, irrelevant = build_items(entries, feed, now, window_hours)
+            dropped_relevance += irrelevant
+            dropped_date += dropped
+            entry.update(ok=True, count=len(entries), kept=len(items), dropped_irrelevant=irrelevant)
             if effective != url:
                 entry["effective_url"] = effective
             if notes:
                 entry["notes"] = notes
             ok_count += 1
             all_items.extend(items)
-            log.info("OK   %-40s entries=%d kept=%d dropped=%d", name, len(entries), len(items), dropped)
+            log.info("OK   %-40s entries=%d kept=%d old/undated=%d irrelevant=%d",
+                     name, len(entries), len(items), dropped, irrelevant)
         except Exception as exc:  # noqa: BLE001
             entry["error"] = f"{type(exc).__name__}: {exc}"[:300]
             if notes:
@@ -652,18 +761,33 @@ def run(feeds: list[dict[str, Any]], window_hours: float = 48, max_items: int = 
     # Sort by priority first so dedupe keeps the Saudi-source copy, then newest.
     all_items.sort(key=lambda i: i["priority"])
     deduped = dedupe(all_items)
-    deduped.sort(key=lambda i: i["published_utc"], reverse=True)
-    deduped = deduped[:max_items]
-    log.info("feeds ok=%d/%d  items raw=%d deduped=%d final=%d",
-             ok_count, len(feeds), len(all_items), len(dedupe(all_items)), len(deduped))
+    # Cap with a Saudi-first reservation: priority-1 feeds fill the cap before
+    # regional/global ones; the surviving set is then ordered newest first.
+    deduped.sort(key=lambda i: (i["priority"], -_ts(i["published_utc"])))
+    dropped_cap = max(0, len(deduped) - max_items)
+    final = deduped[:max_items]
+    final.sort(key=lambda i: i["published_utc"], reverse=True)
+    log.info("feeds ok=%d/%d  items raw=%d deduped=%d final=%d  dropped: irrelevant=%d old/undated=%d cap=%d",
+             ok_count, len(feeds), len(all_items), len(deduped), len(final), dropped_relevance, dropped_date, dropped_cap)
     return {
         "generated_at_utc": fmt_utc(now),
         "window_hours": window_hours,
         "feeds_ok": ok_count,
         "feeds_total": len(feeds),
+        "dropped": dropped_relevance + dropped_date + dropped_cap,
+        "stats": {"raw": len(all_items), "deduped": len(deduped), "kept": len(final),
+                  "dropped_irrelevant": dropped_relevance, "dropped_old_or_undated": dropped_date,
+                  "dropped_cap": dropped_cap, "duplicates": len(all_items) - len(deduped)},
         "feeds": report,
-        "items": deduped,
+        "items": final,
     }
+
+
+def _ts(published_utc: str) -> float:
+    try:
+        return datetime.strptime(published_utc, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc).timestamp()
+    except ValueError:
+        return 0.0
 
 
 def load_feeds(path: str | None) -> list[dict[str, Any]]:

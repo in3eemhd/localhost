@@ -436,3 +436,116 @@ def test_default_feed_list_shape():
     # Saudi-first: every priority-1 feed comes before any priority-2/3 feed once sorted (stable)
     pr = [f["priority"] for f in sorted(fn.DEFAULT_FEEDS, key=lambda f: f["priority"])]
     assert pr == sorted(pr) and pr[0] == 1
+
+
+# ---------------------------------------------------------------- relevance gate / ambiguity / ranking
+SPORTS = {"title": "Brent Venables hopes elite nonconference games won't go away - Yahoo Sports",
+          "summary": "", "source": "Yahoo Sports (عبر Google News)", "link": "https://sports.yahoo.com/x",
+          "published_utc": "2026-09-09T09:00:00Z", "published_riyadh": "2026-09-09 12:00:00", "precision": "second",
+          "fetched_at_utc": "2026-09-09T12:00:00Z", "lang": "en", "priority": 3}
+
+
+def test_relevance_scores():
+    assert fn.relevance_score(SPORTS["title"], "", SPORTS["source"], SPORTS["link"]) == 0.0
+    assert fn.relevance_score("Brent tops $100 a barrel", "") >= 0.4          # brent + context counts
+    assert fn.relevance_score("Fed up with traffic in Riyadh", "") == 0.0      # fed without rate context
+    assert fn.relevance_score("Fed holds rates steady", "") >= 0.4
+    assert fn.relevance_score("أرامكو تعلن أرباحها", "") >= 0.4
+    ar_sport = fn.relevance_score("الهلال يفوز بالدوري", "أسهم اللاعبين ترتفع في سوق الانتقالات", "رياضة")
+    assert ar_sport < fn.RELEVANCE_MIN
+    # off-topic URL section penalises even with a finance word
+    assert fn.relevance_score("Best stock of the season", "", "", "https://x.com/sports/football/1") < fn.RELEVANCE_MIN
+    assert fn.relevance_score("Best stock of the season", "", "", "https://x.com/business/1") >= fn.RELEVANCE_MIN
+    assert 0.0 <= fn.relevance_score("Saudi stocks, banks and oil: TASI index rises 1%", "earnings, dividend") <= 1.0
+
+
+def test_fetch_gate_drops_offtopic_and_reports(raw, tmp_path):
+    xml = (b'<?xml version="1.0"?><rss version="2.0"><channel>'
+           b"<item><title>Brent Venables hopes elite nonconference games won't go away - Yahoo Sports</title>"
+           b"<link>https://sports.yahoo.com/a</link><pubDate>Wed, 09 Sep 2026 10:00:00 GMT</pubDate></item>"
+           b"<item><title>Brent crude tops $100 a barrel</title><link>https://r.com/b</link>"
+           b"<pubDate>Wed, 09 Sep 2026 10:00:00 GMT</pubDate></item></channel></rss>")
+    f = tmp_path / "f.xml"
+    f.write_bytes(xml)
+    res = fn.run([{"name": "gn", "url": str(f), "priority": 3}], now=NOW)
+    assert [i["title"] for i in res["items"]] == ["Brent crude tops $100 a barrel"]
+    assert res["feeds"][0]["dropped_irrelevant"] == 1
+    assert res["dropped"] == 1 and res["stats"]["dropped_irrelevant"] == 1
+    assert all(0 <= i["relevance"] <= 1 for i in raw["items"]) and "stats" in raw and "dropped" in raw
+
+
+def test_fetch_cap_reserves_saudi_first(tmp_path):
+    def rss(n, host, hour):
+        items = "".join(f"<item><title>{host} market news {i}</title><link>https://{host}/{i}</link>"
+                        f"<pubDate>Wed, 09 Sep 2026 {hour:02d}:{i:02d}:00 GMT</pubDate></item>" for i in range(n))
+        return f'<?xml version="1.0"?><rss version="2.0"><channel>{items}</channel></rss>'.encode()
+    sa, gl = tmp_path / "sa.xml", tmp_path / "gl.xml"
+    sa.write_bytes(rss(5, "argaam.com", 8))   # older but Saudi
+    gl.write_bytes(rss(5, "cnbc.com", 11))    # newer but global
+    res = fn.run([{"name": "sa", "url": str(sa), "priority": 1}, {"name": "gl", "url": str(gl), "priority": 3}],
+                 max_items=6, now=NOW)
+    srcs = [i["source"] for i in res["items"]]
+    assert srcs.count("sa") == 5 and srcs.count("gl") == 1 and res["stats"]["dropped_cap"] == 4
+    stamps = [i["published_utc"] for i in res["items"]]
+    assert stamps == sorted(stamps, reverse=True)  # still newest-first in the output
+
+
+def _analyze_items(items, **kw):
+    return an.analyze({"items": items}, an.load_rules(), an.load_constituents(path=None), **kw)
+
+
+def test_ambiguous_brent_and_fed_keywords():
+    sports = dict(SPORTS, relevance=1.0)  # bypass the gate to test the rules themselves
+    fed = dict(SPORTS, title="Fed up with Riyadh traffic, commuters demand a metro market", relevance=1.0)
+    res = _analyze_items([sports, fed])
+    s, f = sorted(res["items"], key=lambda i: i["title"])
+    assert s["title"].startswith("Brent") and s["impact"]["energy"] == 0
+    assert not any(r.startswith("oil") for r in s["rules"]) and s["market"] != "macro"
+    assert f["title"].startswith("Fed") and f["market"] != "us" and not any(r.startswith("fed") for r in f["rules"])
+    # with context the same words count
+    real = dict(SPORTS, title="Brent tops $100 a barrel; Fed seen holding rates", relevance=1.0)
+    r = _analyze_items([real])["items"][0]
+    assert "oil_up" in r["rules"] and "fed_generic" in r["rules"] and r["impact"]["energy"] >= 2
+
+
+def test_ambiguous_ticker_aliases_need_company_context():
+    m = an.build_matcher(an.BUILTIN_CONSTITUENTS)
+    assert m("كيان سياسي جديد في المنطقة") == []
+    assert [t["code"] for t in m("سهم كيان السعودية يرتفع 3%")] == ["2350"]
+    assert [t["code"] for t in m("كيان (2350) تعلن نتائجها")] == ["2350"]
+    assert m("علم النفس وأثره على الطلاب") == []
+    assert [t["code"] for t in m("شركة علم توقع عقداً")] == ["7203"]
+    assert m("الأهلي يفوز على الهلال") == []
+    assert [t["code"] for t in m("أرباح الأهلي ترتفع")] == ["1180"]
+
+
+def test_rank_items_saudi_first_and_non_sa_cap():
+    def mk(i, market, hour):
+        return {"id": f"{market}{i}", "market": market, "published_utc": f"2026-09-09T{hour:02d}:{i:02d}:00Z"}
+    items = [mk(i, "macro", 11) for i in range(30)] + [mk(i, "sa", 8) for i in range(10)] \
+        + [mk(i, "us", 10) for i in range(5)] + [mk(0, "other", 9)]
+    ranked, dropped = an.rank_items(items, max_items=60, max_non_sa=25)
+    markets = [i["market"] for i in ranked]
+    assert markets[:10] == ["sa"] * 10 and markets.count("sa") == 10
+    assert len(ranked) == 35 and dropped == 11 and markets[10:] == ["macro"] * 25
+    sa_stamps = [i["published_utc"] for i in ranked[:10]]
+    assert sa_stamps == sorted(sa_stamps, reverse=True)
+    ranked2, _ = an.rank_items([mk(i, "sa", 8) for i in range(70)], max_items=60)
+    assert len(ranked2) == 60
+
+
+def test_analyze_stats_relevance_and_summary_policy(raw):
+    res = _analyze_items(raw["items"] + [SPORTS])
+    assert res["dropped"] == 1 and res["stats"]["dropped_irrelevant"] == 1
+    assert res["stats"]["kept"] == len(res["items"]) and set(res["stats"]["by_market"]) == set(an.MARKETS)
+    assert all("relevance" in i and 0 <= i["relevance"] <= 1 for i in res["items"])
+    markets = [i["market"] for i in res["items"]]
+    assert markets == sorted(markets, key=lambda m: an.MARKET_ORDER[m])
+    for it in res["items"]:
+        if it["lang"] == "ar":
+            assert an.has_arabic(it["summary_ar"])
+        else:
+            assert it["summary_ar"] == (it["summary"] or it["title"])
+    no_summary = dict(SPORTS, title="أرباح شركة سعودية ترتفع", summary="", lang="ar", relevance=1.0)
+    it = _analyze_items([no_summary])["items"][0]
+    assert it["summary_ar"] == "أرباح شركة سعودية ترتفع" and it["lang"] == "ar"

@@ -16,6 +16,16 @@
     "food": "الأغذية",
     "utilities": "المرافق"
   },
+  "ambiguous_context": {
+    "_doc": "A keyword (rule or market keyword) containing one of these words as a whole word only counts if at least one context term also appears in the item text.",
+    "brent": ["oil", "crude", "barrel", "barrels", "opec", "خام", "نفط", "برميل", "$", "dollar", "دولار", "price", "prices", "سعر"],
+    "برنت": ["خام", "نفط", "برميل", "دولار", "سعر", "أوبك", "oil", "crude", "$"],
+    "fed": ["rate", "rates", "interest", "fomc", "powell", "فائدة", "inflation", "basis points", "central bank", "الفيدرالي"],
+    "كيان": ["سهم", "أسهم", "شركة", "الشركة", "2350", "تداول", "سابك", "بتروكيماويات"],
+    "kayan": ["stock", "shares", "share", "company", "2350", "tadawul", "sabic", "petrochemical"],
+    "علم": ["سهم", "أسهم", "شركة", "الشركة", "7203", "تداول", "التقنية", "رقمي"],
+    "elm": ["stock", "shares", "share", "company", "7203", "tadawul", "digital", "tech"]
+  },
   "market_keywords": {
     "sa": ["تاسي", "تداول", "السوق السعودي", "السوق السعودية", "الأسهم السعودية", "أرامكو", "نمو", "هيئة السوق المالية", "الراجحي", "سابك", "الرياض", "جدة", "سعودي", "السعودية", "المملكة", "tadawul", "tasi", "saudi", "aramco", "riyadh", "cma", "nomu", "sabic", "pif", "sar ", "جازان", "أبها", "نجران", "الدمام", "الخبر", "الشرقية", "ينبع", "الجبيل", "مكة", "المدينة المنورة", "نيوم", "jazan", "jizan", "abha", "najran", "dammam", "khobar", "yanbu", "jubail", "jeddah", "neom", "makkah", "gcc", "خليجي", "الخليج"],
     "us": ["wall street", "s&p 500", "s&p", "nasdaq", "dow jones", "federal reserve", "the fed", "fed ", "treasury", "وول ستريت", "ناسداك", "داو جونز", "الفيدرالي", "الاحتياطي الاتحادي", "الخزانة الأمريكية"],
@@ -80,7 +90,7 @@
     },
     {
       "id": "fed_generic",
-      "keywords": ["federal reserve", "the fed", "fomc", "interest rate", "الفيدرالي", "الاحتياطي الفيدرالي", "الاحتياطي الاتحادي", "ساما", "سعر الفائدة", "الفائدة"],
+      "keywords": ["federal reserve", "the fed", "fed", "fomc", "powell", "interest rate", "الفيدرالي", "الاحتياطي الفيدرالي", "الاحتياطي الاتحادي", "ساما", "سعر الفائدة", "الفائدة"],
       "signal": "mix",
       "cf": 1,
       "impact": {"banks": 1, "realestate": -1},
