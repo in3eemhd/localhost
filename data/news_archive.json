@@ -1,7 +1,7 @@
 {
- "generated_at_utc": "2026-09-10T06:05:37Z",
+ "generated_at_utc": "2026-09-10T06:09:37Z",
  "days": 7,
- "count": 648,
+ "count": 660,
  "items": [
   {
    "title": "BitFuFu (NASDAQ:FUFU) Stock Price Down 3% - Here's Why - MarketBeat",
@@ -53,7 +53,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.0,
+   "age_hours": 0.1,
    "is_today": true
   },
   {
@@ -106,7 +106,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.0,
+   "age_hours": 0.1,
    "is_today": true
   },
   {
@@ -159,7 +159,67 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.0,
+   "age_hours": 0.1,
+   "is_today": true
+  },
+  {
+   "title": "\"سابك للمغذيات\" ترسي عقد أعمال 3 مصانع مقابل 3.46 مليار دولار - الاقتصادية",
+   "link": "https://news.google.com/rss/articles/CBMi7gNBVV95cUxNQjhkV29BM2VaYmlSRVpkbmVBVUM2RnhYRmNyTm5pWWcwdVZkdlR4UzVCT18wcFF1WHlkNnlCMWdlbUMwWlVhczhXM1dNcXdJanZ6ODdWbnVrSVJWVEN5dktRVEV3VWlWOTYwMllCc0hINTJKcjc1dmwwVERpcXMyTHNjX0FXaHpULVhfY01idGlWRzVVQmd4Z1RwbzBmbTh6S0ZlLXVJMlY5cVNlTWIwRE9EMXNnaFAxUkU4R09wTGVXXzdPNW9iLVVZOE1ieHE2RF9KZE91S1ZreThCR1htNHZydXlVRlppWGxiQ095NlN3dXc2SlAtMmVQRDRyOTlXLUR2VkJnNmJJOXhNUS1nUkJQQTY5VkVDN1pjNG1IbGt2TXJjY1RxajZVVGhrR0JKU0JlVDd0UmJaallVS000T0x4LVJoaUVZeHZRRkJEcXdSVHZGaWhhMWNZN01YNWZZUHBhS3NBWUlaSWN1T3lTcEZDMWRNSTNhV3JWR2FVZlJ1YlJCdTMwYUZncjBOOGhXWVA1NXp1ODlkU0Rqc1E0RHZvU2s4eDZyTlZWMXU2dEJsV0QyS2gwLXZtckR2WmVJc3ZodkltNndVYnRBRW82WXZxUG9kTGxodXNtcktud2RtMkxkb3RtXzBpOU9fUQ?oc=5",
+   "source": "الاقتصادية (عبر Google News – الاقتصادية)",
+   "published_utc": "2026-09-10T06:03:46Z",
+   "published_riyadh": "2026-09-10 09:03:46",
+   "precision": "second",
+   "summary": "\"سابك للمغذيات\" ترسي عقد أعمال 3 مصانع مقابل 3.46 مليار دولار الاقتصادية",
+   "fetched_at_utc": "2026-09-10T06:09:07Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 1.0,
+   "raw_published": "Thu, 10 Sep 2026 06:03:46 GMT",
+   "id": "ec6da2a4580b",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [
+    {
+     "code": "2010",
+     "name_ar": "سابك",
+     "market": "sa"
+    }
+   ],
+   "summary_ar": "\"سابك للمغذيات\" ترسي عقد أعمال 3 مصانع مقابل 3.46 مليار دولار الاقتصادية",
+   "beneficiary": {
+    "name": "البتروكيماويات",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 1,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "خبر يخص قطاع البتروكيماويات"
+   },
+   "impact_market": "sa",
+   "cf": 2,
+   "rules": [
+    "petrochem_sector"
+   ],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:09:37Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.1,
    "is_today": true
   },
   {
@@ -212,7 +272,112 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.0,
+   "age_hours": 0.1,
+   "is_today": true
+  },
+  {
+   "title": "Stock Market: Will S&P 500 Open Up or Down Today? - Benzinga",
+   "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPTXlGbXlkVVZ4bDVIMzdaSUQ2cE1mTDFNMklPT1Q1aVNhdEd6RFpibURYdjc1RThiOE5paXRlU3NKZzBvVEQwZDhNX0Y4VHdzM0lUTnNJMVlncDcxN1FJYjRiTmU0YUtHUzVGam1hQVh6X2t1cV9VMGpwcXoyNTRrOWp5bHFGN05GRFpVQ09Ib1BUdHRhdFJwLWNIQmpwQV9GaUlTVnlxNkRpaDY4TkJwTHdYU1U0UUk?oc=5",
+   "source": "Benzinga (عبر Google News – S&P Nasdaq Dow)",
+   "published_utc": "2026-09-10T06:02:33Z",
+   "published_riyadh": "2026-09-10 09:02:33",
+   "precision": "second",
+   "summary": "Stock Market: Will S&P 500 Open Up or Down Today? Benzinga",
+   "fetched_at_utc": "2026-09-10T06:09:07Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 1.0,
+   "raw_published": "Thu, 10 Sep 2026 06:02:33 GMT",
+   "market_hint": "us",
+   "id": "1cf09b043ac6",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "Stock Market: Will S&P 500 Open Up or Down Today? Benzinga",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:09:37Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.1,
+   "is_today": true
+  },
+  {
+   "title": "\"تداول\" تعلن إعادة تعليق سهم \"جبسكو\" حتى إعلان القوائم المالية - معلومات مباشر",
+   "link": "https://news.google.com/rss/articles/CBMi5wNBVV95cUxNQTF3QktnUTE3SlJkTG9PV2tQSldDQVh1NmR0YWtTQUttSFlocnhJZ2FFeEI3TWd2RndMcHhQNWFxQ3g2Vm5TT2V5YnltTFdWUWhBQ2huQzZfWmVsQmhGRThqVGpjRXd6Z3J4SlgxSTJpRlJUTGt0M3FMa0hvcXMzcUhMNEZCSmpGTXdDd1hCRkZ2QjJMVTBMRWFDNlZtakw4Y1d2Rmh6Zjc1UGVYNnJwak9oWjhPdW9HTHpVcGY5Tk53MlhmRFZyZnJyRGRSeEVQU2RjeHNLY1EwcWEyNEpublQ5b2FHX3UxNUxkT2JVaVdGVTYwZW9jMjAtUVVMYUcwc3hEdUZQal9WRktnQ1BsT3EtZzF4WkhNem5ubkZUX3pOWDgyNHRzRldTQlFMZmt5c3V4bEVKQ0hxS1dISkt0SGRHNHN4U0NZUHZKZHpFZFpFWDRBYmJVWHN1dkFrOVVEZ1FQaHgwMTJxYlU1dy04TEhfU29FM1E5V1JoV2hFdjFuX0xOSVZORW9HRzNNLWs1WFdFcDlQVTFOWUtBY2N3Z0xrdXJwMEFSaWtkTm9FWGtOdXZfajI3Z2x1MlY5SmxsZ0ZLZm94anE4M1lBV3hWWHN3Mk5Lc1hGTkR3RlRRN2xDQTFXc0tr?oc=5",
+   "source": "معلومات مباشر (عبر Google News – مباشر السعودية)",
+   "published_utc": "2026-09-10T05:59:50Z",
+   "published_riyadh": "2026-09-10 08:59:50",
+   "precision": "second",
+   "summary": "\"تداول\" تعلن إعادة تعليق سهم \"جبسكو\" حتى إعلان القوائم المالية معلومات مباشر",
+   "fetched_at_utc": "2026-09-10T06:09:07Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 0.7,
+   "raw_published": "Thu, 10 Sep 2026 05:59:50 GMT",
+   "id": "508bd410dff8",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "\"تداول\" تعلن إعادة تعليق سهم \"جبسكو\" حتى إعلان القوائم المالية معلومات مباشر",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "sa",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:09:37Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.2,
    "is_today": true
   },
   {
@@ -272,7 +437,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.1,
+   "age_hours": 0.2,
    "is_today": true
   },
   {
@@ -328,7 +493,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.1,
+   "age_hours": 0.2,
    "is_today": true
   },
   {
@@ -384,7 +549,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.1,
+   "age_hours": 0.2,
    "is_today": true
   },
   {
@@ -440,7 +605,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.3,
+   "age_hours": 0.4,
    "is_today": true
   },
   {
@@ -493,7 +658,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.3,
+   "age_hours": 0.4,
    "is_today": true
   },
   {
@@ -546,7 +711,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.3,
+   "age_hours": 0.4,
    "is_today": true
   },
   {
@@ -712,7 +877,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.4,
+   "age_hours": 0.5,
    "is_today": true
   },
   {
@@ -768,7 +933,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.5,
+   "age_hours": 0.6,
    "is_today": true
   },
   {
@@ -878,7 +1043,62 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.7,
+   "age_hours": 0.8,
+   "is_today": true
+  },
+  {
+   "title": "lululemon athletica (NASDAQ:LULU) Sets New 52-Week Low on Analyst Downgrade - MarketBeat",
+   "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOaTNqR0VOMHZUQjByNE1iVnAyS0ZEYlNDc1hKUDI2aEtYUlJVTlBJMTU3UEJCTUx6VUZEU280cW51Z1NRdE9tOGY4U0szaElaV1dNU3MxZk5ZTm0tWlJaeDNHZlBEUHoyUzM5bEVQNFN1S2FvamhrU3pPbEZjZ0I0S3M3QUlrNzJZOVRkb2dNbDhYeUJiSGZYTG5kdXdHLWNDT0hFbWJUcmJxUW1iQ21XaDlRbVNpQVhrMFdSNk1ZTVpyYjFMQ3RqTWhSV09XQQ?oc=5",
+   "source": "MarketBeat (عبر Google News – S&P Nasdaq Dow)",
+   "published_utc": "2026-09-10T05:23:27Z",
+   "published_riyadh": "2026-09-10 08:23:27",
+   "precision": "second",
+   "summary": "lululemon athletica (NASDAQ:LULU) Sets New 52-Week Low on Analyst Downgrade MarketBeat",
+   "fetched_at_utc": "2026-09-10T06:09:07Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.55,
+   "raw_published": "Thu, 10 Sep 2026 05:23:27 GMT",
+   "market_hint": "us",
+   "id": "2aaab7c3f0fc",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "lululemon athletica (NASDAQ:LULU) Sets New 52-Week Low on Analyst Downgrade MarketBeat",
+   "beneficiary": {
+    "name": "البنوك",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 1,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "تغير التصنيف الائتماني ينعكس على تكلفة التمويل السيادي والمصرفي"
+   },
+   "impact_market": "both",
+   "cf": 2,
+   "rules": [
+    "credit_rating"
+   ],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:09:37Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.8,
    "is_today": true
   },
   {
@@ -934,7 +1154,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.7,
+   "age_hours": 0.8,
    "is_today": true
   },
   {
@@ -987,7 +1207,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.7,
+   "age_hours": 0.8,
    "is_today": true
   },
   {
@@ -1098,7 +1318,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.1,
+   "age_hours": 1.2,
    "is_today": true
   },
   {
@@ -1153,7 +1373,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.1,
+   "age_hours": 1.2,
    "is_today": true
   },
   {
@@ -1206,7 +1426,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.1,
+   "age_hours": 1.2,
    "is_today": true
   },
   {
@@ -1262,7 +1482,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.2,
+   "age_hours": 1.3,
    "is_today": true
   },
   {
@@ -1318,7 +1538,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.2,
+   "age_hours": 1.3,
    "is_today": true
   },
   {
@@ -1539,7 +1759,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.8,
+   "age_hours": 1.9,
    "is_today": true
   },
   {
@@ -1594,7 +1814,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.8,
+   "age_hours": 1.9,
    "is_today": true
   },
   {
@@ -1650,7 +1870,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.8,
+   "age_hours": 1.9,
    "is_today": true
   },
   {
@@ -1706,7 +1926,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.9,
+   "age_hours": 2.0,
    "is_today": true
   },
   {
@@ -1759,7 +1979,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 2.0,
+   "age_hours": 2.1,
    "is_today": true
   },
   {
@@ -1814,7 +2034,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 2.1,
+   "age_hours": 2.2,
    "is_today": true
   },
   {
@@ -1867,7 +2087,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 2.2,
+   "age_hours": 2.3,
    "is_today": true
   },
   {
@@ -1925,7 +2145,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 2.6,
+   "age_hours": 2.7,
    "is_today": true
   },
   {
@@ -2089,7 +2309,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.1,
+   "age_hours": 3.2,
    "is_today": true
   },
   {
@@ -2145,7 +2365,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.1,
+   "age_hours": 3.2,
    "is_today": true
   },
   {
@@ -2198,7 +2418,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.1,
+   "age_hours": 3.2,
    "is_today": true
   },
   {
@@ -2254,7 +2474,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.1,
+   "age_hours": 3.2,
    "is_today": true
   },
   {
@@ -2307,7 +2527,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.3,
+   "age_hours": 3.4,
    "is_today": true
   },
   {
@@ -2415,7 +2635,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.6,
+   "age_hours": 3.7,
    "is_today": true
   },
   {
@@ -2470,7 +2690,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.6,
+   "age_hours": 3.7,
    "is_today": true
   },
   {
@@ -2531,7 +2751,68 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.6,
+   "age_hours": 3.7,
+   "is_today": true
+  },
+  {
+   "title": "Dow, S&P 500 Futures Climb, Nasdaq Futures Slip Ahead Of Key Inflation Data Releases: AAPL, SKHY, PSKY, CHWY Stocks In Focus - Yahoo Finance",
+   "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPLXk3dm45dHc4QllZU1FoOUZteFQwZFJyRVVVZHVZOTlVaXkxal9LLUpQbElrV2pNb0RBSlZHbFFsdE1hUjQ4QVZTZkgzUG13TjdVd01lMUh6QnROOUdyQlRPRmpoX080Qmxic09nYUpEb3I1VGliWXpKck5HdnI2WHFCN1JwYk9yNVE0OVJoNnZJdw?oc=5",
+   "source": "Yahoo Finance (عبر Google News – S&P Nasdaq Dow)",
+   "published_utc": "2026-09-10T02:27:00Z",
+   "published_riyadh": "2026-09-10 05:27:00",
+   "precision": "second",
+   "summary": "Dow, S&P 500 Futures Climb, Nasdaq Futures Slip Ahead Of Key Inflation Data Releases: AAPL, SKHY, PSKY, CHWY Stocks In Focus Yahoo Finance",
+   "fetched_at_utc": "2026-09-10T06:09:07Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 1.0,
+   "raw_published": "Thu, 10 Sep 2026 02:27:00 GMT",
+   "market_hint": "us",
+   "id": "2e7a1ffcc590",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [
+    {
+     "code": "AAPL",
+     "name_ar": "أبل",
+     "market": "us"
+    }
+   ],
+   "summary_ar": "Dow, S&P 500 Futures Climb, Nasdaq Futures Slip Ahead Of Key Inflation Data Releases: AAPL, SKHY, PSKY, CHWY Stocks In Focus Yahoo Finance",
+   "beneficiary": {
+    "name": "البنوك",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "التجزئة",
+    "why": "أكبر أثر سلبي بحسب القواعد"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 1,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": -1,
+    "food": -1,
+    "utilities": 0,
+    "why": "التضخم يضغط على القوة الشرائية ويؤجل خفض الفائدة"
+   },
+   "impact_market": "both",
+   "cf": 2,
+   "rules": [
+    "inflation"
+   ],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:09:37Z",
+   "day_local": "2026-09-10",
+   "age_hours": 3.7,
    "is_today": true
   },
   {
@@ -2586,7 +2867,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.7,
+   "age_hours": 3.8,
    "is_today": true
   },
   {
@@ -2750,7 +3031,59 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.0,
+   "age_hours": 4.1,
+   "is_today": true
+  },
+  {
+   "title": "ميلاف العالمية: نمو زيارات مبادرة \"السعودية .. آفاق بلا حدود\" في لندن 361% - الاقتصادية",
+   "link": "https://news.google.com/rss/articles/CBMitgRBVV95cUxNLUlrd2t2YTdyUF93NkxjaklPOG5WRVdlNTFDX3gyYU1rWGZSWnV2T1BYRE5TeGhUdUFWM1pJUmwxOUNIX3RTVjJuczBpT2NBOTVBOHlXVTczamw2RW5DOFNqMlJiMUV5SzJfdHkwOWxoQU5TeHFJRDFoU21sVk56ZmQ0VlEyQm1WZ1ExYjV3eG15cUJ0S0FNV3AtMWJCR0FBc1ZzdU85SV9hUkFNWkhDY2xFTnUwYnVQbXJmSVdwYWV4WmFzMHRXTjBVdXFEUGt0c0EyV04xSHlweU5kNGJKS3pMOEl5SHZuVFRMTjRMVmFvNXdIb2hEd2g5RUxBZXJUM28zbExwZjZKRllkQjFMX0NrY0swY3VKeEJLb3VBUDNOZE5LOGlVdDR5VmlSSGhyY0l2bjh0NkZHTDRaWnZwR1JtbEpLWEdOVXRQaEttblBjZUw5NG9aUmNBVGZ1Mkc0OHdzeWNjak5aUjhIbzlXWG9JdEx5X1JRbkNRLXlCQWQ0bnpTeWp6cWhyazlrcTduZDVGOHlzbV8wSmFIQVFLck8wdkJrbEJ0Ti1NQ1BMWElka1JsMjh3RTdITV91N1NSckg5NWhFWXJHdVluU1JjWF81YTg5VFJ1S1JMYnQ3U25ZSWE5QVBhVFcwNkhwRW9fTG8ydVdMTFFBeGJLeVZmYnBsX21DdWZYOGh1U1JhMHJoSXFfXzZScThfdE1TeUN2eGdieE1Yek1PbkNmaWVoV2hkX0Q3UQ?oc=5",
+   "source": "الاقتصادية (عبر Google News – الاقتصادية)",
+   "published_utc": "2026-09-10T02:06:15Z",
+   "published_riyadh": "2026-09-10 05:06:15",
+   "precision": "second",
+   "summary": "ميلاف العالمية: نمو زيارات مبادرة \"السعودية .. آفاق بلا حدود\" في لندن 361% الاقتصادية",
+   "fetched_at_utc": "2026-09-10T06:09:07Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 0.55,
+   "raw_published": "Thu, 10 Sep 2026 02:06:15 GMT",
+   "id": "b2dfe86c3efa",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "ميلاف العالمية: نمو زيارات مبادرة \"السعودية .. آفاق بلا حدود\" في لندن 361% الاقتصادية",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "sa",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:09:37Z",
+   "day_local": "2026-09-10",
+   "age_hours": 4.1,
    "is_today": true
   },
   {
@@ -2802,7 +3135,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.0,
+   "age_hours": 4.1,
    "is_today": true
   },
   {
@@ -2856,7 +3189,59 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.0,
+   "age_hours": 4.1,
+   "is_today": true
+  },
+  {
+   "title": "هيئة السوق المالية: محافظ الافراد الاستثمارية في سوق الاسهم تتجاوز الـ 10 مليون محفظة .. وعدد النساء المستثمرات يتخطى 1.46 مليون سيدة كأعلى مستوى على الاطلاق - صحيفة مال",
+   "link": "https://news.google.com/rss/articles/CBMikwJBVV95cUxORkhmV3VnUTB2YlMxeFNGN1o0WVgwYy11eXBCQVdkRXZwejcxNS02OVlISzVLWHJsMUVRcWNia29ZOElISy0wZGpDZ1l2VnlHYUFyVnI3NkczSDV0REhfVDE2NU1PZ0dndDc3LWJMZGdNUFB2cDJkbDlEQ1k5cGJ6Sm5yZ1RxTy1vWXRhMXVRYmRRWXoyQjdpaGVJa2NpZDVyMURRUXdPei1kREFkbC0yY09sVGdTRW94SC00Nk9BRmRlbTAxOWtUSTFVTnpLSTNtQnRLVDRjdndqQzhEbm54eXdFUFhXZy1JckU1dDVZU2JxbmV6Ym10MDJjUjRDU0dzOWpBWWtWLWRYd3YzREdReGtjMA?oc=5",
+   "source": "صحيفة مال (عبر Google News – معال)",
+   "published_utc": "2026-09-10T01:56:29Z",
+   "published_riyadh": "2026-09-10 04:56:29",
+   "precision": "second",
+   "summary": "هيئة السوق المالية: محافظ الافراد الاستثمارية في سوق الاسهم تتجاوز الـ 10 مليون محفظة .. وعدد النساء المستثمرات يتخطى 1.46 مليون سيدة كأعلى مستوى على الاطلاق صحيفة مال",
+   "fetched_at_utc": "2026-09-10T06:09:07Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 1.0,
+   "raw_published": "Thu, 10 Sep 2026 01:56:29 GMT",
+   "id": "7fedf4e95933",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "هيئة السوق المالية: محافظ الافراد الاستثمارية في سوق الاسهم تتجاوز الـ 10 مليون محفظة .. وعدد النساء المستثمرات يتخطى 1.46 مليون سيدة كأعلى مستوى على الاطلاق صحيفة مال",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "sa",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:09:37Z",
+   "day_local": "2026-09-10",
+   "age_hours": 4.2,
    "is_today": true
   },
   {
@@ -2912,7 +3297,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.2,
+   "age_hours": 4.3,
    "is_today": true
   },
   {
@@ -2967,7 +3352,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.5,
+   "age_hours": 4.6,
    "is_today": true
   },
   {
@@ -3022,7 +3407,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.6,
+   "age_hours": 4.7,
    "is_today": true
   },
   {
@@ -3077,7 +3462,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.7,
+   "age_hours": 4.8,
    "is_today": true
   },
   {
@@ -3135,7 +3520,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.7,
+   "age_hours": 4.8,
    "is_today": true
   },
   {
@@ -3191,7 +3576,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.8,
+   "age_hours": 4.9,
    "is_today": true
   },
   {
@@ -3247,7 +3632,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.1,
+   "age_hours": 5.2,
    "is_today": true
   },
   {
@@ -3413,7 +3798,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.2,
+   "age_hours": 5.3,
    "is_today": true
   },
   {
@@ -3576,7 +3961,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.5,
+   "age_hours": 5.6,
    "is_today": true
   },
   {
@@ -3632,7 +4017,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.6,
+   "age_hours": 5.7,
    "is_today": true
   },
   {
@@ -3795,7 +4180,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.8,
+   "age_hours": 5.9,
    "is_today": true
   },
   {
@@ -3906,7 +4291,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.9,
+   "age_hours": 6.0,
    "is_today": true
   },
   {
@@ -3962,7 +4347,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.9,
+   "age_hours": 6.0,
    "is_today": true
   },
   {
@@ -4015,7 +4400,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.0,
+   "age_hours": 6.1,
    "is_today": true
   },
   {
@@ -4070,7 +4455,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.0,
+   "age_hours": 6.1,
    "is_today": true
   },
   {
@@ -4125,7 +4510,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.1,
+   "age_hours": 6.2,
    "is_today": true
   },
   {
@@ -4180,7 +4565,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.1,
+   "age_hours": 6.2,
    "is_today": true
   },
   {
@@ -4235,7 +4620,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.1,
+   "age_hours": 6.2,
    "is_today": true
   },
   {
@@ -4345,7 +4730,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.2,
+   "age_hours": 6.3,
    "is_today": true
   },
   {
@@ -4401,7 +4786,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.3,
+   "age_hours": 6.4,
    "is_today": true
   },
   {
@@ -4456,7 +4841,62 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.3,
+   "age_hours": 6.4,
+   "is_today": true
+  },
+  {
+   "title": "مخاطر خفية في وول ستريت: لماذا يقلق المحللون من هدوء الاسواق قبل الانتخابات - شبكة تواصل الإخبارية",
+   "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5vNHJ4SlB1aG9BWm4ySFRKU01fQUdNbnNjRUphT3Z5WTkyR0lMc1dRSjRmcFpsbUI4MkM0REw1aVAwdzhKdDF4c2o4UFBNQnpQbUUw?oc=5",
+   "source": "شبكة تواصل الإخبارية (عبر Google News – الأسهم الأمريكية)",
+   "published_utc": "2026-09-09T23:44:48Z",
+   "published_riyadh": "2026-09-10 02:44:48",
+   "precision": "second",
+   "summary": "مخاطر خفية في وول ستريت: لماذا يقلق المحللون من هدوء الاسواق قبل الانتخابات شبكة تواصل الإخبارية",
+   "fetched_at_utc": "2026-09-10T06:09:07Z",
+   "lang": "ar",
+   "priority": 3,
+   "relevance": 0.7,
+   "raw_published": "Wed, 09 Sep 2026 23:44:48 GMT",
+   "market_hint": "us",
+   "id": "2737cae5166c",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "مخاطر خفية في وول ستريت: لماذا يقلق المحللون من هدوء الاسواق قبل الانتخابات شبكة تواصل الإخبارية",
+   "beneficiary": {
+    "name": "العقار",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 1,
+    "cement": 1,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "خبر يخص القطاع العقاري وسلسلة البناء"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [
+    "realestate_sector"
+   ],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:09:37Z",
+   "day_local": "2026-09-10",
+   "age_hours": 6.4,
    "is_today": true
   },
   {
@@ -4564,7 +5004,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.4,
+   "age_hours": 6.5,
    "is_today": true
   },
   {
@@ -4674,7 +5114,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.5,
+   "age_hours": 6.6,
    "is_today": true
   },
   {
@@ -4729,7 +5169,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.5,
+   "age_hours": 6.6,
    "is_today": true
   },
   {
@@ -4782,7 +5222,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.6,
+   "age_hours": 6.7,
    "is_today": true
   },
   {
@@ -4835,7 +5275,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.6,
+   "age_hours": 6.7,
    "is_today": true
   },
   {
@@ -4890,7 +5330,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.6,
+   "age_hours": 6.7,
    "is_today": true
   },
   {
@@ -5000,7 +5440,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.7,
+   "age_hours": 6.8,
    "is_today": true
   },
   {
@@ -5053,7 +5493,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.7,
+   "age_hours": 6.8,
    "is_today": true
   },
   {
@@ -5283,7 +5723,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.8,
+   "age_hours": 6.9,
    "is_today": true
   },
   {
@@ -5336,7 +5776,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.0,
+   "age_hours": 7.1,
    "is_today": true
   },
   {
@@ -5396,7 +5836,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.0,
+   "age_hours": 7.1,
    "is_today": true
   },
   {
@@ -5449,7 +5889,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.2,
+   "age_hours": 7.3,
    "is_today": true
   },
   {
@@ -5511,7 +5951,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.2,
+   "age_hours": 7.3,
    "is_today": true
   },
   {
@@ -5566,7 +6006,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.2,
+   "age_hours": 7.3,
    "is_today": true
   },
   {
@@ -5624,7 +6064,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.2,
+   "age_hours": 7.3,
    "is_today": true
   },
   {
@@ -5681,7 +6121,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.2,
+   "age_hours": 7.3,
    "is_today": true
   },
   {
@@ -5793,7 +6233,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.4,
+   "age_hours": 7.5,
    "is_today": true
   },
   {
@@ -5848,7 +6288,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.4,
+   "age_hours": 7.5,
    "is_today": true
   },
   {
@@ -5903,7 +6343,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.5,
+   "age_hours": 7.6,
    "is_today": true
   },
   {
@@ -5958,7 +6398,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.6,
+   "age_hours": 7.7,
    "is_today": true
   },
   {
@@ -6013,7 +6453,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.6,
+   "age_hours": 7.7,
    "is_today": true
   },
   {
@@ -6069,7 +6509,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.6,
+   "age_hours": 7.7,
    "is_today": true
   },
   {
@@ -6175,7 +6615,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.7,
+   "age_hours": 7.8,
    "is_today": true
   },
   {
@@ -6230,7 +6670,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.7,
+   "age_hours": 7.8,
    "is_today": true
   },
   {
@@ -6286,7 +6726,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.7,
+   "age_hours": 7.8,
    "is_today": true
   },
   {
@@ -6451,7 +6891,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.8,
+   "age_hours": 7.9,
    "is_today": true
   },
   {
@@ -6508,7 +6948,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.8,
+   "age_hours": 7.9,
    "is_today": true
   },
   {
@@ -6561,7 +7001,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.8,
+   "age_hours": 7.9,
    "is_today": true
   },
   {
@@ -6614,7 +7054,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.8,
+   "age_hours": 7.9,
    "is_today": true
   },
   {
@@ -6667,7 +7107,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.8,
+   "age_hours": 7.9,
    "is_today": true
   },
   {
@@ -6728,7 +7168,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.8,
+   "age_hours": 7.9,
    "is_today": true
   },
   {
@@ -6839,7 +7279,59 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.9,
+   "age_hours": 8.0,
+   "is_today": true
+  },
+  {
+   "title": "خلال فترة المزاد .. ارتفاع اسهم 101 شركة في \"تاسي\" وانخفاض 54 شركة اخرى .. وتداول 7.8 مليون سهم بـ 427 مليون على سعر الاغلاق - صحيفة مال",
+   "link": "https://news.google.com/rss/articles/CBMiigJBVV95cUxNdHFURW1WOTRqVklYRk5rWHBlYmlORmU2Yk9iOFV1T0ZTWkhQZXYzN0hrcjNsdFNzdzlOamxteDg1M1hlWVF3cjF0SzlfOFNrejhxc1VqVjc3UjVMMS1HR0ZFX1ZJOEJqRzZzdG5nLVd4WlM3UWV4Z3ZTb09sWnBDRUVkTmF4eDU4dmwzZDFHcEJhMWhXbm92dTNsaWhpbzhheVFKc01oend3dThpMFZ2NzFEM3lINXNyUGlKVUxLcHlmbWRBMktlbnhrWnVzdl9pV2hIeXRIM1dCTFI5cmNFZ3hvcXRoRU5BODZDa0hZRjZzY3RQcmNOUTNJM1pFOGdSa21sanlFTzV6dw?oc=5",
+   "source": "صحيفة مال (عبر Google News – السوق السعودية)",
+   "published_utc": "2026-09-09T22:08:19Z",
+   "published_riyadh": "2026-09-10 01:08:19",
+   "precision": "second",
+   "summary": "خلال فترة المزاد .. ارتفاع اسهم 101 شركة في \"تاسي\" وانخفاض 54 شركة اخرى .. وتداول 7.8 مليون سهم بـ 427 مليون على سعر الاغلاق صحيفة مال",
+   "fetched_at_utc": "2026-09-10T06:09:07Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 1.0,
+   "raw_published": "Wed, 09 Sep 2026 22:08:19 GMT",
+   "id": "8133b998991f",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "خلال فترة المزاد .. ارتفاع اسهم 101 شركة في \"تاسي\" وانخفاض 54 شركة اخرى .. وتداول 7.8 مليون سهم بـ 427 مليون على سعر الاغلاق صحيفة مال",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "sa",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:09:37Z",
+   "day_local": "2026-09-10",
+   "age_hours": 8.0,
    "is_today": true
   },
   {
@@ -7085,7 +7577,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.0,
+   "age_hours": 8.1,
    "is_today": true
   },
   {
@@ -7144,7 +7636,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.0,
+   "age_hours": 8.1,
    "is_today": true
   },
   {
@@ -7198,7 +7690,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.0,
+   "age_hours": 8.1,
    "is_today": true
   },
   {
@@ -7254,7 +7746,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.0,
+   "age_hours": 8.1,
    "is_today": true
   },
   {
@@ -7307,7 +7799,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.0,
+   "age_hours": 8.1,
    "is_today": true
   },
   {
@@ -7363,7 +7855,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.0,
+   "age_hours": 8.1,
    "is_today": true
   },
   {
@@ -7497,7 +7989,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.1,
+   "age_hours": 8.2,
    "is_today": true
   },
   {
@@ -7554,7 +8046,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.1,
+   "age_hours": 8.2,
    "is_today": true
   },
   {
@@ -7607,7 +8099,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.1,
+   "age_hours": 8.2,
    "is_today": true
   },
   {
@@ -7664,7 +8156,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.1,
+   "age_hours": 8.2,
    "is_today": true
   },
   {
@@ -8020,7 +8512,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.3,
+   "age_hours": 8.4,
    "is_today": true
   },
   {
@@ -8073,7 +8565,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.3,
+   "age_hours": 8.4,
    "is_today": true
   },
   {
@@ -8134,7 +8626,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.3,
+   "age_hours": 8.4,
    "is_today": true
   },
   {
@@ -8299,7 +8791,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.4,
+   "age_hours": 8.5,
    "is_today": true
   },
   {
@@ -8352,7 +8844,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.4,
+   "age_hours": 8.5,
    "is_today": true
   },
   {
@@ -8407,7 +8899,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.5,
+   "age_hours": 8.6,
    "is_today": true
   },
   {
@@ -8460,7 +8952,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.5,
+   "age_hours": 8.6,
    "is_today": true
   },
   {
@@ -8515,7 +9007,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.6,
+   "age_hours": 8.7,
    "is_today": true
   },
   {
@@ -8568,7 +9060,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.6,
+   "age_hours": 8.7,
    "is_today": true
   },
   {
@@ -8680,7 +9172,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.7,
+   "age_hours": 8.8,
    "is_today": true
   },
   {
@@ -8733,7 +9225,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.7,
+   "age_hours": 8.8,
    "is_today": true
   },
   {
@@ -8786,7 +9278,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.7,
+   "age_hours": 8.8,
    "is_today": true
   },
   {
@@ -8951,7 +9443,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.8,
+   "age_hours": 8.9,
    "is_today": true
   },
   {
@@ -9006,7 +9498,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.8,
+   "age_hours": 8.9,
    "is_today": true
   },
   {
@@ -9235,7 +9727,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.9,
+   "age_hours": 9.0,
    "is_today": true
   },
   {
@@ -9399,7 +9891,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-10",
-   "age_hours": 9.0,
+   "age_hours": 9.1,
    "is_today": true
   },
   {
@@ -9451,7 +9943,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 9.0,
+   "age_hours": 9.1,
    "is_today": true
   },
   {
@@ -9509,7 +10001,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 9.0,
+   "age_hours": 9.1,
    "is_today": true
   },
   {
@@ -9565,7 +10057,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-10",
-   "age_hours": 9.0,
+   "age_hours": 9.1,
    "is_today": true
   },
   {
@@ -9673,7 +10165,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-10",
-   "age_hours": 9.1,
+   "age_hours": 9.2,
    "is_today": true
   },
   {
@@ -9728,7 +10220,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 9.1,
+   "age_hours": 9.2,
    "is_today": true
   },
   {
@@ -9784,7 +10276,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.1,
+   "age_hours": 9.2,
    "is_today": false
   },
   {
@@ -9837,7 +10329,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.1,
+   "age_hours": 9.2,
    "is_today": false
   },
   {
@@ -9949,7 +10441,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.2,
+   "age_hours": 9.3,
    "is_today": false
   },
   {
@@ -10002,7 +10494,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.2,
+   "age_hours": 9.3,
    "is_today": false
   },
   {
@@ -10057,7 +10549,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.2,
+   "age_hours": 9.3,
    "is_today": false
   },
   {
@@ -10112,7 +10604,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.2,
+   "age_hours": 9.3,
    "is_today": false
   },
   {
@@ -10165,7 +10657,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.3,
+   "age_hours": 9.4,
    "is_today": false
   },
   {
@@ -10218,7 +10710,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.3,
+   "age_hours": 9.4,
    "is_today": false
   },
   {
@@ -10270,7 +10762,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.3,
+   "age_hours": 9.4,
    "is_today": false
   },
   {
@@ -10322,7 +10814,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.3,
+   "age_hours": 9.4,
    "is_today": false
   },
   {
@@ -10375,7 +10867,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.3,
+   "age_hours": 9.4,
    "is_today": false
   },
   {
@@ -10430,7 +10922,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.3,
+   "age_hours": 9.4,
    "is_today": false
   },
   {
@@ -10485,7 +10977,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.3,
+   "age_hours": 9.4,
    "is_today": false
   },
   {
@@ -10538,7 +11030,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.3,
+   "age_hours": 9.4,
    "is_today": false
   },
   {
@@ -10591,7 +11083,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.3,
+   "age_hours": 9.4,
    "is_today": false
   },
   {
@@ -10647,7 +11139,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.3,
+   "age_hours": 9.4,
    "is_today": false
   },
   {
@@ -10700,7 +11192,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.3,
+   "age_hours": 9.4,
    "is_today": false
   },
   {
@@ -10969,7 +11461,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.4,
+   "age_hours": 9.5,
    "is_today": false
   },
   {
@@ -11140,7 +11632,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.5,
+   "age_hours": 9.6,
    "is_today": false
   },
   {
@@ -11193,7 +11685,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.5,
+   "age_hours": 9.6,
    "is_today": false
   },
   {
@@ -11254,7 +11746,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.5,
+   "age_hours": 9.6,
    "is_today": false
   },
   {
@@ -11366,7 +11858,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.6,
+   "age_hours": 9.7,
    "is_today": false
   },
   {
@@ -11421,7 +11913,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.6,
+   "age_hours": 9.7,
    "is_today": false
   },
   {
@@ -11474,7 +11966,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.6,
+   "age_hours": 9.7,
    "is_today": false
   },
   {
@@ -11529,7 +12021,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.6,
+   "age_hours": 9.7,
    "is_today": false
   },
   {
@@ -11582,7 +12074,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.7,
+   "age_hours": 9.8,
    "is_today": false
   },
   {
@@ -11636,7 +12128,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.8,
+   "age_hours": 9.9,
    "is_today": false
   },
   {
@@ -11692,7 +12184,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.8,
+   "age_hours": 9.9,
    "is_today": false
   },
   {
@@ -11748,7 +12240,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.8,
+   "age_hours": 9.9,
    "is_today": false
   },
   {
@@ -11803,7 +12295,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.8,
+   "age_hours": 9.9,
    "is_today": false
   },
   {
@@ -11971,7 +12463,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.9,
+   "age_hours": 10.0,
    "is_today": false
   },
   {
@@ -12026,7 +12518,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.9,
+   "age_hours": 10.0,
    "is_today": false
   },
   {
@@ -12081,7 +12573,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.0,
+   "age_hours": 10.1,
    "is_today": false
   },
   {
@@ -12137,7 +12629,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.0,
+   "age_hours": 10.1,
    "is_today": false
   },
   {
@@ -12194,7 +12686,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.0,
+   "age_hours": 10.1,
    "is_today": false
   },
   {
@@ -12251,7 +12743,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.0,
+   "age_hours": 10.1,
    "is_today": false
   },
   {
@@ -12307,7 +12799,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.0,
+   "age_hours": 10.1,
    "is_today": false
   },
   {
@@ -12418,7 +12910,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.1,
+   "age_hours": 10.2,
    "is_today": false
   },
   {
@@ -12579,7 +13071,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.2,
+   "age_hours": 10.3,
    "is_today": false
   },
   {
@@ -12685,7 +13177,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.3,
+   "age_hours": 10.4,
    "is_today": false
   },
   {
@@ -12738,7 +13230,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.3,
+   "age_hours": 10.4,
    "is_today": false
   },
   {
@@ -12797,7 +13289,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.3,
+   "age_hours": 10.4,
    "is_today": false
   },
   {
@@ -12850,7 +13342,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.3,
+   "age_hours": 10.4,
    "is_today": false
   },
   {
@@ -12965,7 +13457,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.4,
+   "age_hours": 10.5,
    "is_today": false
   },
   {
@@ -13020,7 +13512,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.4,
+   "age_hours": 10.5,
    "is_today": false
   },
   {
@@ -13072,7 +13564,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.4,
+   "age_hours": 10.5,
    "is_today": false
   },
   {
@@ -13182,7 +13674,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.5,
+   "age_hours": 10.6,
    "is_today": false
   },
   {
@@ -13237,7 +13729,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.5,
+   "age_hours": 10.6,
    "is_today": false
   },
   {
@@ -13292,7 +13784,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.5,
+   "age_hours": 10.6,
    "is_today": false
   },
   {
@@ -13355,6 +13847,58 @@
    "is_today": false
   },
   {
+   "title": "خلال فترة المزاد .. ارتفاع اسهم 57 شركة في \"تاسي\" وتراجع 72 اخرى .. وتداول 4.8 مليون سهم بـ 240 مليون على سعر الاغلاق - صحيفة مال",
+   "link": "https://news.google.com/rss/articles/CBMixgJBVV95cUxNaElERnhfNTA0aWw4UlJyUXpPbkpWWDVLQm5YNkU4emQtNGl5d3poNFI4R0hJMzM4WDllY0t2RVBHNmZDT3VRaENzNm93eTNXR1RIdS05emFCR2M0Y09RTmRFX241XzVfSzVjTHVLS29yWWEzWS1iWmUxZ1RZQzhtRnBMQmR3bzJtMEI5bjZaRGU0X1E2N1RfaTVDUGJYWnBNQUtKNkJSVlFicVhrdWloeld0RHdaQ0E1SVFVU1EzbEVaZWZNZ1lIME05S3VMZEwtamVtY3RTS0QwRnhPQmxidzZFalVUeVFGMUpjRkpCQjVpODhZVzRRTTNUcl9aVVpYQUJ0QUgzTWhjUVpuY0FscEhTZ242dU1yM0Jua2doV0QyQ3lvMlBid1dmOTROeU9LenBGNmpIY3NZT0FiMXBDRjgydkpHdw?oc=5",
+   "source": "صحيفة مال (عبر Google News – السوق السعودية)",
+   "published_utc": "2026-09-09T19:25:53Z",
+   "published_riyadh": "2026-09-09 22:25:53",
+   "precision": "second",
+   "summary": "خلال فترة المزاد .. ارتفاع اسهم 57 شركة في \"تاسي\" وتراجع 72 اخرى .. وتداول 4.8 مليون سهم بـ 240 مليون على سعر الاغلاق صحيفة مال",
+   "fetched_at_utc": "2026-09-10T06:09:07Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 1.0,
+   "raw_published": "Wed, 09 Sep 2026 19:25:53 GMT",
+   "id": "dea54424c1f7",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "خلال فترة المزاد .. ارتفاع اسهم 57 شركة في \"تاسي\" وتراجع 72 اخرى .. وتداول 4.8 مليون سهم بـ 240 مليون على سعر الاغلاق صحيفة مال",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "sa",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:09:37Z",
+   "day_local": "2026-09-09",
+   "age_hours": 10.7,
+   "is_today": false
+  },
+  {
    "title": "Why Comcast Stock Is One of the Worst Performers in the S&P 500 Today - Barron's",
    "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxONWFvcHdST0ZMb3VLTWRqcE1jMzFjSHFPYkdHXzBXODFxRFBTTjZCZjVDVjgwUlhPOXAtOWYtMl9RQWFZZjFJSm13emlhTkRZQW9tWFZlS0F4YWxzaGJaVUxZeVR1dWIyWjVNRWdqX1NBci1sQjdYWXRjS1FiOGxkNHVSX0gzSlROdDhOazZvOA?oc=5",
    "source": "Barron's (عبر Google News – S&P Nasdaq Dow)",
@@ -13404,7 +13948,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.7,
+   "age_hours": 10.8,
    "is_today": false
   },
   {
@@ -13464,7 +14008,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.7,
+   "age_hours": 10.8,
    "is_today": false
   },
   {
@@ -13628,7 +14172,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.8,
+   "age_hours": 10.9,
    "is_today": false
   },
   {
@@ -13683,7 +14227,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.8,
+   "age_hours": 10.9,
    "is_today": false
   },
   {
@@ -13738,7 +14282,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.9,
+   "age_hours": 11.0,
    "is_today": false
   },
   {
@@ -13903,7 +14447,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.0,
+   "age_hours": 11.1,
    "is_today": false
   },
   {
@@ -13966,7 +14510,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.0,
+   "age_hours": 11.1,
    "is_today": false
   },
   {
@@ -14021,7 +14565,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.0,
+   "age_hours": 11.1,
    "is_today": false
   },
   {
@@ -14074,7 +14618,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.0,
+   "age_hours": 11.1,
    "is_today": false
   },
   {
@@ -14129,7 +14673,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.0,
+   "age_hours": 11.1,
    "is_today": false
   },
   {
@@ -14290,7 +14834,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.1,
+   "age_hours": 11.2,
    "is_today": false
   },
   {
@@ -14345,7 +14889,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.1,
+   "age_hours": 11.2,
    "is_today": false
   },
   {
@@ -14401,7 +14945,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.1,
+   "age_hours": 11.2,
    "is_today": false
   },
   {
@@ -14461,7 +15005,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.1,
+   "age_hours": 11.2,
    "is_today": false
   },
   {
@@ -14570,7 +15114,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.2,
+   "age_hours": 11.3,
    "is_today": false
   },
   {
@@ -14623,7 +15167,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.2,
+   "age_hours": 11.3,
    "is_today": false
   },
   {
@@ -14676,7 +15220,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.2,
+   "age_hours": 11.3,
    "is_today": false
   },
   {
@@ -14738,7 +15282,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.2,
+   "age_hours": 11.3,
    "is_today": false
   },
   {
@@ -14794,7 +15338,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.2,
+   "age_hours": 11.3,
    "is_today": false
   },
   {
@@ -14849,7 +15393,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.3,
+   "age_hours": 11.4,
    "is_today": false
   },
   {
@@ -14902,7 +15446,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.3,
+   "age_hours": 11.4,
    "is_today": false
   },
   {
@@ -14957,7 +15501,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.4,
+   "age_hours": 11.5,
    "is_today": false
   },
   {
@@ -15014,7 +15558,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.4,
+   "age_hours": 11.5,
    "is_today": false
   },
   {
@@ -15066,7 +15610,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.4,
+   "age_hours": 11.5,
    "is_today": false
   },
   {
@@ -15121,7 +15665,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.4,
+   "age_hours": 11.5,
    "is_today": false
   },
   {
@@ -15182,7 +15726,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.5,
+   "age_hours": 11.6,
    "is_today": false
   },
   {
@@ -15235,7 +15779,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.5,
+   "age_hours": 11.6,
    "is_today": false
   },
   {
@@ -15288,7 +15832,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.5,
+   "age_hours": 11.6,
    "is_today": false
   },
   {
@@ -15348,7 +15892,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.5,
+   "age_hours": 11.6,
    "is_today": false
   },
   {
@@ -15403,7 +15947,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.5,
+   "age_hours": 11.6,
    "is_today": false
   },
   {
@@ -15457,7 +16001,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.6,
+   "age_hours": 11.7,
    "is_today": false
   },
   {
@@ -15512,7 +16056,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.6,
+   "age_hours": 11.7,
    "is_today": false
   },
   {
@@ -15573,7 +16117,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.6,
+   "age_hours": 11.7,
    "is_today": false
   },
   {
@@ -15745,7 +16289,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.7,
+   "age_hours": 11.8,
    "is_today": false
   },
   {
@@ -15799,7 +16343,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.7,
+   "age_hours": 11.8,
    "is_today": false
   },
   {
@@ -15854,7 +16398,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.7,
+   "age_hours": 11.8,
    "is_today": false
   },
   {
@@ -15909,7 +16453,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.8,
+   "age_hours": 11.9,
    "is_today": false
   },
   {
@@ -16240,7 +16784,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.9,
+   "age_hours": 12.0,
    "is_today": false
   },
   {
@@ -16298,7 +16842,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.9,
+   "age_hours": 12.0,
    "is_today": false
   },
   {
@@ -16354,7 +16898,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.9,
+   "age_hours": 12.0,
    "is_today": false
   },
   {
@@ -16412,7 +16956,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.9,
+   "age_hours": 12.0,
    "is_today": false
   },
   {
@@ -16468,7 +17012,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.9,
+   "age_hours": 12.0,
    "is_today": false
   },
   {
@@ -16627,7 +17171,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.0,
+   "age_hours": 12.1,
    "is_today": false
   },
   {
@@ -16682,7 +17226,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.0,
+   "age_hours": 12.1,
    "is_today": false
   },
   {
@@ -16735,7 +17279,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.0,
+   "age_hours": 12.1,
    "is_today": false
   },
   {
@@ -16788,7 +17332,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.0,
+   "age_hours": 12.1,
    "is_today": false
   },
   {
@@ -16841,7 +17385,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.0,
+   "age_hours": 12.1,
    "is_today": false
   },
   {
@@ -16959,7 +17503,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.1,
+   "age_hours": 12.2,
    "is_today": false
   },
   {
@@ -17014,7 +17558,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.1,
+   "age_hours": 12.2,
    "is_today": false
   },
   {
@@ -17067,7 +17611,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.1,
+   "age_hours": 12.2,
    "is_today": false
   },
   {
@@ -17128,7 +17672,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.1,
+   "age_hours": 12.2,
    "is_today": false
   },
   {
@@ -17296,7 +17840,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.3,
+   "age_hours": 12.4,
    "is_today": false
   },
   {
@@ -17350,7 +17894,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.3,
+   "age_hours": 12.4,
    "is_today": false
   },
   {
@@ -17405,7 +17949,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.3,
+   "age_hours": 12.4,
    "is_today": false
   },
   {
@@ -17459,7 +18003,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.3,
+   "age_hours": 12.4,
    "is_today": false
   },
   {
@@ -17514,7 +18058,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.3,
+   "age_hours": 12.4,
    "is_today": false
   },
   {
@@ -17569,7 +18113,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.3,
+   "age_hours": 12.4,
    "is_today": false
   },
   {
@@ -17622,7 +18166,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.3,
+   "age_hours": 12.4,
    "is_today": false
   },
   {
@@ -17679,7 +18223,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.3,
+   "age_hours": 12.4,
    "is_today": false
   },
   {
@@ -17731,7 +18275,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.3,
+   "age_hours": 12.4,
    "is_today": false
   },
   {
@@ -17837,7 +18381,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.4,
+   "age_hours": 12.5,
    "is_today": false
   },
   {
@@ -17898,7 +18442,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.4,
+   "age_hours": 12.5,
    "is_today": false
   },
   {
@@ -17953,7 +18497,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.4,
+   "age_hours": 12.5,
    "is_today": false
   },
   {
@@ -18058,7 +18602,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.5,
+   "age_hours": 12.6,
    "is_today": false
   },
   {
@@ -18113,7 +18657,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.5,
+   "age_hours": 12.6,
    "is_today": false
   },
   {
@@ -18168,7 +18712,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.5,
+   "age_hours": 12.6,
    "is_today": false
   },
   {
@@ -18225,7 +18769,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.5,
+   "age_hours": 12.6,
    "is_today": false
   },
   {
@@ -18331,7 +18875,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.7,
+   "age_hours": 12.8,
    "is_today": false
   },
   {
@@ -18383,7 +18927,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.7,
+   "age_hours": 12.8,
    "is_today": false
   },
   {
@@ -18488,7 +19032,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.9,
+   "age_hours": 13.0,
    "is_today": false
   },
   {
@@ -18548,7 +19092,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.9,
+   "age_hours": 13.0,
    "is_today": false
   },
   {
@@ -18603,7 +19147,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.0,
+   "age_hours": 13.1,
    "is_today": false
   },
   {
@@ -18655,7 +19199,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.0,
+   "age_hours": 13.1,
    "is_today": false
   },
   {
@@ -18710,7 +19254,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.1,
+   "age_hours": 13.2,
    "is_today": false
   },
   {
@@ -18765,7 +19309,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.1,
+   "age_hours": 13.2,
    "is_today": false
   },
   {
@@ -18819,7 +19363,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.1,
+   "age_hours": 13.2,
    "is_today": false
   },
   {
@@ -18871,7 +19415,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.1,
+   "age_hours": 13.2,
    "is_today": false
   },
   {
@@ -18931,7 +19475,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.1,
+   "age_hours": 13.2,
    "is_today": false
   },
   {
@@ -19039,7 +19583,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.4,
+   "age_hours": 13.5,
    "is_today": false
   },
   {
@@ -19091,7 +19635,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.4,
+   "age_hours": 13.5,
    "is_today": false
   },
   {
@@ -19143,7 +19687,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.4,
+   "age_hours": 13.5,
    "is_today": false
   },
   {
@@ -19252,7 +19796,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.5,
+   "age_hours": 13.6,
    "is_today": false
   },
   {
@@ -19308,7 +19852,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.5,
+   "age_hours": 13.6,
    "is_today": false
   },
   {
@@ -19361,7 +19905,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.5,
+   "age_hours": 13.6,
    "is_today": false
   },
   {
@@ -19414,7 +19958,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.5,
+   "age_hours": 13.6,
    "is_today": false
   },
   {
@@ -19469,7 +20013,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.5,
+   "age_hours": 13.6,
    "is_today": false
   },
   {
@@ -19688,7 +20232,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.6,
+   "age_hours": 13.7,
    "is_today": false
   },
   {
@@ -19744,7 +20288,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.6,
+   "age_hours": 13.7,
    "is_today": false
   },
   {
@@ -20192,7 +20736,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.8,
+   "age_hours": 13.9,
    "is_today": false
   },
   {
@@ -20247,7 +20791,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.8,
+   "age_hours": 13.9,
    "is_today": false
   },
   {
@@ -20305,7 +20849,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.8,
+   "age_hours": 13.9,
    "is_today": false
   },
   {
@@ -20363,7 +20907,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.8,
+   "age_hours": 13.9,
    "is_today": false
   },
   {
@@ -20425,7 +20969,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.8,
+   "age_hours": 13.9,
    "is_today": false
   },
   {
@@ -20538,7 +21082,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.9,
+   "age_hours": 14.0,
    "is_today": false
   },
   {
@@ -20593,7 +21137,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.9,
+   "age_hours": 14.0,
    "is_today": false
   },
   {
@@ -20649,7 +21193,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.9,
+   "age_hours": 14.0,
    "is_today": false
   },
   {
@@ -20704,7 +21248,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.9,
+   "age_hours": 14.0,
    "is_today": false
   },
   {
@@ -20757,7 +21301,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.0,
+   "age_hours": 14.1,
    "is_today": false
   },
   {
@@ -20810,7 +21354,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.0,
+   "age_hours": 14.1,
    "is_today": false
   },
   {
@@ -20866,7 +21410,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.0,
+   "age_hours": 14.1,
    "is_today": false
   },
   {
@@ -20922,6 +21466,112 @@
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
    "age_hours": 14.1,
+   "is_today": false
+  },
+  {
+   "title": "الرياض كابيتال تحدّث مستهدفاتها لأسهم سعودية.. ولومي الأعلى صعوداً بين المرشحين - dalielsaudi.com",
+   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9SYVd6NmMzMVdYSVNrWjA5TDNqMDRjQXpieEFqQS1fVzhPaTNOVmxTcGM0akMwQXNwZDdLbnVDZ21NUmR4c3pTYUh6YndLcWZp?oc=5",
+   "source": "dalielsaudi.com (عبر Google News – السوق السعودية)",
+   "published_utc": "2026-09-09T15:59:00Z",
+   "published_riyadh": "2026-09-09 18:59:00",
+   "precision": "second",
+   "summary": "الرياض كابيتال تحدّث مستهدفاتها لأسهم سعودية.. ولومي الأعلى صعوداً بين المرشحين dalielsaudi.com",
+   "fetched_at_utc": "2026-09-10T06:09:07Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 0.55,
+   "raw_published": "Wed, 09 Sep 2026 15:59:00 GMT",
+   "id": "3d4bbeb5e928",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "الرياض كابيتال تحدّث مستهدفاتها لأسهم سعودية.. ولومي الأعلى صعوداً بين المرشحين dalielsaudi.com",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "sa",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:09:37Z",
+   "day_local": "2026-09-09",
+   "age_hours": 14.2,
+   "is_today": false
+  },
+  {
+   "title": "بيانات ضعيفة لانتاج ومبيعات وصادرات شركات الأسمنت خلال أول شهرين من العام 2022 .. 42% تراجعا للصادرات - صحيفة مال",
+   "link": "https://news.google.com/rss/articles/CBMimwJBVV95cUxOTkhPWTZFSklzRnlaOWg2d29kN1J4WEl6M2ZpVVI2MzhlNzRqY0VaczE2djN1X0hzNFREblQ0S2ZEeXJtTHQ1UjlBRXAwbi1tamVxbGozZlJnbXp6Y1BBZ0JZY0lhc2w5eFVjR0VjMTZEM3phWV9uV3hvenRmRE05bW9mR1NTTDR6LWZlbDZYaU82V0R0TVhHOVRPb2dSbmZFYmkya05PaVVTSl9iQVBqRmIxUWFGTzVnZ3pGa1AwWHNxZy1wYlFlTlJqek9KWHdaNC0tUVQ1YkdSUUYxTlprLXRrTnNfTVhQVmtLNUx1QnYteHBwT0VhcmtFaDIwUmtRNnRHNjRrTW5zSG5XMDhaX0dDV0E2LXFIWjcw?oc=5",
+   "source": "صحيفة مال (عبر Google News – معال)",
+   "published_utc": "2026-09-09T15:58:58Z",
+   "published_riyadh": "2026-09-09 18:58:58",
+   "precision": "second",
+   "summary": "بيانات ضعيفة لانتاج ومبيعات وصادرات شركات الأسمنت خلال أول شهرين من العام 2022 .. 42% تراجعا للصادرات صحيفة مال",
+   "fetched_at_utc": "2026-09-10T06:09:07Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 0.85,
+   "raw_published": "Wed, 09 Sep 2026 15:58:58 GMT",
+   "id": "5c5e74d6d67d",
+   "market": "macro",
+   "signal": "pos",
+   "tickers": [],
+   "summary_ar": "بيانات ضعيفة لانتاج ومبيعات وصادرات شركات الأسمنت خلال أول شهرين من العام 2022 .. 42% تراجعا للصادرات صحيفة مال",
+   "beneficiary": {
+    "name": "العقار",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 1,
+    "cement": 1,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "المشاريع الكبرى والبنية التحتية تدعم الطلب على الأسمنت ومواد البناء"
+   },
+   "impact_market": "both",
+   "cf": 1,
+   "rules": [
+    "cement_sector"
+   ],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:09:37Z",
+   "day_local": "2026-09-09",
+   "age_hours": 14.2,
    "is_today": false
   },
   {
@@ -21102,7 +21752,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.2,
+   "age_hours": 14.3,
    "is_today": false
   },
   {
@@ -21157,7 +21807,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.2,
+   "age_hours": 14.3,
    "is_today": false
   },
   {
@@ -21210,7 +21860,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.2,
+   "age_hours": 14.3,
    "is_today": false
   },
   {
@@ -21265,7 +21915,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.2,
+   "age_hours": 14.3,
    "is_today": false
   },
   {
@@ -21318,7 +21968,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.3,
+   "age_hours": 14.4,
    "is_today": false
   },
   {
@@ -21596,7 +22246,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.4,
+   "age_hours": 14.5,
    "is_today": false
   },
   {
@@ -21652,7 +22302,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.4,
+   "age_hours": 14.5,
    "is_today": false
   },
   {
@@ -21714,7 +22364,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.4,
+   "age_hours": 14.5,
    "is_today": false
   },
   {
@@ -21770,7 +22420,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.4,
+   "age_hours": 14.5,
    "is_today": false
   },
   {
@@ -21934,7 +22584,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.5,
+   "age_hours": 14.6,
    "is_today": false
   },
   {
@@ -21991,7 +22641,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.5,
+   "age_hours": 14.6,
    "is_today": false
   },
   {
@@ -22060,7 +22710,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.5,
+   "age_hours": 14.6,
    "is_today": false
   },
   {
@@ -22335,7 +22985,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.7,
+   "age_hours": 14.8,
    "is_today": false
   },
   {
@@ -22391,7 +23041,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.7,
+   "age_hours": 14.8,
    "is_today": false
   },
   {
@@ -22554,7 +23204,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.8,
+   "age_hours": 14.9,
    "is_today": false
   },
   {
@@ -22608,7 +23258,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.8,
+   "age_hours": 14.9,
    "is_today": false
   },
   {
@@ -22660,7 +23310,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.0,
+   "age_hours": 15.1,
    "is_today": false
   },
   {
@@ -22770,7 +23420,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.1,
+   "age_hours": 15.2,
    "is_today": false
   },
   {
@@ -22824,7 +23474,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.1,
+   "age_hours": 15.2,
    "is_today": false
   },
   {
@@ -22878,7 +23528,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.1,
+   "age_hours": 15.2,
    "is_today": false
   },
   {
@@ -22930,7 +23580,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.1,
+   "age_hours": 15.2,
    "is_today": false
   },
   {
@@ -23036,7 +23686,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.2,
+   "age_hours": 15.3,
    "is_today": false
   },
   {
@@ -23090,7 +23740,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.3,
+   "age_hours": 15.4,
    "is_today": false
   },
   {
@@ -23145,7 +23795,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.3,
+   "age_hours": 15.4,
    "is_today": false
   },
   {
@@ -23311,7 +23961,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.4,
+   "age_hours": 15.5,
    "is_today": false
   },
   {
@@ -23365,7 +24015,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.4,
+   "age_hours": 15.5,
    "is_today": false
   },
   {
@@ -23417,7 +24067,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.4,
+   "age_hours": 15.5,
    "is_today": false
   },
   {
@@ -23469,7 +24119,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.5,
+   "age_hours": 15.6,
    "is_today": false
   },
   {
@@ -23521,7 +24171,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.5,
+   "age_hours": 15.6,
    "is_today": false
   },
   {
@@ -23573,7 +24223,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.6,
+   "age_hours": 15.7,
    "is_today": false
   },
   {
@@ -23625,7 +24275,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.6,
+   "age_hours": 15.7,
    "is_today": false
   },
   {
@@ -23677,7 +24327,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.7,
+   "age_hours": 15.8,
    "is_today": false
   },
   {
@@ -23729,7 +24379,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.7,
+   "age_hours": 15.8,
    "is_today": false
   },
   {
@@ -23783,7 +24433,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 15.9,
+   "age_hours": 16.0,
    "is_today": false
   },
   {
@@ -23837,7 +24487,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.0,
+   "age_hours": 16.1,
    "is_today": false
   },
   {
@@ -23889,7 +24539,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.0,
+   "age_hours": 16.1,
    "is_today": false
   },
   {
@@ -23947,7 +24597,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.0,
+   "age_hours": 16.1,
    "is_today": false
   },
   {
@@ -23999,7 +24649,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.1,
+   "age_hours": 16.2,
    "is_today": false
   },
   {
@@ -24067,7 +24717,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.1,
+   "age_hours": 16.2,
    "is_today": false
   },
   {
@@ -24119,7 +24769,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.1,
+   "age_hours": 16.2,
    "is_today": false
   },
   {
@@ -24173,7 +24823,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.1,
+   "age_hours": 16.2,
    "is_today": false
   },
   {
@@ -24334,7 +24984,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.2,
+   "age_hours": 16.3,
    "is_today": false
   },
   {
@@ -24389,7 +25039,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.2,
+   "age_hours": 16.3,
    "is_today": false
   },
   {
@@ -24443,7 +25093,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.2,
+   "age_hours": 16.3,
    "is_today": false
   },
   {
@@ -24551,7 +25201,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.3,
+   "age_hours": 16.4,
    "is_today": false
   },
   {
@@ -24603,7 +25253,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.3,
+   "age_hours": 16.4,
    "is_today": false
   },
   {
@@ -24711,7 +25361,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.4,
+   "age_hours": 16.5,
    "is_today": false
   },
   {
@@ -24765,7 +25415,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.4,
+   "age_hours": 16.5,
    "is_today": false
   },
   {
@@ -25033,7 +25683,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.6,
+   "age_hours": 16.7,
    "is_today": false
   },
   {
@@ -25085,7 +25735,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.6,
+   "age_hours": 16.7,
    "is_today": false
   },
   {
@@ -25137,7 +25787,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.6,
+   "age_hours": 16.7,
    "is_today": false
   },
   {
@@ -25244,7 +25894,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.7,
+   "age_hours": 16.8,
    "is_today": false
   },
   {
@@ -25296,7 +25946,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.7,
+   "age_hours": 16.8,
    "is_today": false
   },
   {
@@ -25348,7 +25998,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.7,
+   "age_hours": 16.8,
    "is_today": false
   },
   {
@@ -25400,7 +26050,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.7,
+   "age_hours": 16.8,
    "is_today": false
   },
   {
@@ -25565,7 +26215,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.8,
+   "age_hours": 16.9,
    "is_today": false
   },
   {
@@ -25621,7 +26271,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 16.9,
+   "age_hours": 17.0,
    "is_today": false
   },
   {
@@ -25850,7 +26500,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 17.0,
+   "age_hours": 17.1,
    "is_today": false
   },
   {
@@ -25902,7 +26552,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 17.0,
+   "age_hours": 17.1,
    "is_today": false
   },
   {
@@ -25954,7 +26604,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 17.0,
+   "age_hours": 17.1,
    "is_today": false
   },
   {
@@ -26014,7 +26664,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 17.0,
+   "age_hours": 17.1,
    "is_today": false
   },
   {
@@ -26175,7 +26825,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 17.1,
+   "age_hours": 17.2,
    "is_today": false
   },
   {
@@ -26281,7 +26931,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 17.2,
+   "age_hours": 17.3,
    "is_today": false
   },
   {
@@ -26333,7 +26983,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 17.2,
+   "age_hours": 17.3,
    "is_today": false
   },
   {
@@ -26388,7 +27038,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 17.4,
+   "age_hours": 17.5,
    "is_today": false
   },
   {
@@ -26548,7 +27198,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 17.7,
+   "age_hours": 17.8,
    "is_today": false
   },
   {
@@ -26602,7 +27252,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 17.8,
+   "age_hours": 17.9,
    "is_today": false
   },
   {
@@ -26762,7 +27412,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 17.9,
+   "age_hours": 18.0,
    "is_today": false
   },
   {
@@ -26991,7 +27641,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-09",
-   "age_hours": 18.1,
+   "age_hours": 18.2,
    "is_today": false
   },
   {
@@ -27045,7 +27695,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 18.1,
+   "age_hours": 18.2,
    "is_today": false
   },
   {
@@ -27099,7 +27749,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 18.4,
+   "age_hours": 18.5,
    "is_today": false
   },
   {
@@ -27153,7 +27803,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 18.4,
+   "age_hours": 18.5,
    "is_today": false
   },
   {
@@ -27320,7 +27970,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 19.1,
+   "age_hours": 19.2,
    "is_today": false
   },
   {
@@ -27426,7 +28076,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 19.2,
+   "age_hours": 19.3,
    "is_today": false
   },
   {
@@ -27481,7 +28131,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 19.2,
+   "age_hours": 19.3,
    "is_today": false
   },
   {
@@ -27533,7 +28183,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 19.2,
+   "age_hours": 19.3,
    "is_today": false
   },
   {
@@ -27585,7 +28235,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 19.5,
+   "age_hours": 19.6,
    "is_today": false
   },
   {
@@ -27691,7 +28341,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 19.9,
+   "age_hours": 20.0,
    "is_today": false
   },
   {
@@ -27743,7 +28393,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 20.0,
+   "age_hours": 20.1,
    "is_today": false
   },
   {
@@ -27796,7 +28446,7 @@
    "relevance_penalized": true,
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 20.3,
+   "age_hours": 20.4,
    "is_today": false
   },
   {
@@ -27848,7 +28498,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-09",
-   "age_hours": 20.4,
+   "age_hours": 20.5,
    "is_today": false
   },
   {
@@ -27900,7 +28550,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 20.9,
+   "age_hours": 21.0,
    "is_today": false
   },
   {
@@ -27961,7 +28611,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 21.0,
+   "age_hours": 21.1,
    "is_today": false
   },
   {
@@ -28015,7 +28665,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 21.0,
+   "age_hours": 21.1,
    "is_today": false
   },
   {
@@ -28127,7 +28777,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 21.2,
+   "age_hours": 21.3,
    "is_today": false
   },
   {
@@ -28181,7 +28831,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 21.4,
+   "age_hours": 21.5,
    "is_today": false
   },
   {
@@ -28236,7 +28886,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 21.4,
+   "age_hours": 21.5,
    "is_today": false
   },
   {
@@ -28288,7 +28938,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 21.4,
+   "age_hours": 21.5,
    "is_today": false
   },
   {
@@ -28348,7 +28998,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 21.4,
+   "age_hours": 21.5,
    "is_today": false
   },
   {
@@ -28404,7 +29054,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 21.4,
+   "age_hours": 21.5,
    "is_today": false
   },
   {
@@ -28464,7 +29114,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 21.4,
+   "age_hours": 21.5,
    "is_today": false
   },
   {
@@ -28518,7 +29168,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 21.5,
+   "age_hours": 21.6,
    "is_today": false
   },
   {
@@ -28731,7 +29381,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 22.3,
+   "age_hours": 22.4,
    "is_today": false
   },
   {
@@ -28787,7 +29437,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 22.5,
+   "age_hours": 22.6,
    "is_today": false
   },
   {
@@ -28839,7 +29489,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 22.5,
+   "age_hours": 22.6,
    "is_today": false
   },
   {
@@ -28943,7 +29593,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 22.8,
+   "age_hours": 22.9,
    "is_today": false
   },
   {
@@ -29103,7 +29753,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 23.0,
+   "age_hours": 23.1,
    "is_today": false
   },
   {
@@ -29212,7 +29862,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 23.5,
+   "age_hours": 23.6,
    "is_today": false
   },
   {
@@ -29327,7 +29977,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 23.7,
+   "age_hours": 23.8,
    "is_today": false
   },
   {
@@ -29436,7 +30086,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 24.0,
+   "age_hours": 24.1,
    "is_today": false
   },
   {
@@ -29546,7 +30196,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 24.1,
+   "age_hours": 24.2,
    "is_today": false
   },
   {
@@ -29598,7 +30248,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 24.1,
+   "age_hours": 24.2,
    "is_today": false
   },
   {
@@ -29650,7 +30300,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 24.2,
+   "age_hours": 24.3,
    "is_today": false
   },
   {
@@ -29704,7 +30354,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 24.2,
+   "age_hours": 24.3,
    "is_today": false
   },
   {
@@ -29818,7 +30468,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 24.3,
+   "age_hours": 24.4,
    "is_today": false
   },
   {
@@ -29872,7 +30522,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 24.3,
+   "age_hours": 24.4,
    "is_today": false
   },
   {
@@ -29926,7 +30576,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 24.6,
+   "age_hours": 24.7,
    "is_today": false
   },
   {
@@ -29980,7 +30630,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 24.6,
+   "age_hours": 24.7,
    "is_today": false
   },
   {
@@ -30142,7 +30792,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 25.4,
+   "age_hours": 25.5,
    "is_today": false
   },
   {
@@ -30306,7 +30956,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 25.8,
+   "age_hours": 25.9,
    "is_today": false
   },
   {
@@ -30360,7 +31010,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 25.9,
+   "age_hours": 26.0,
    "is_today": false
   },
   {
@@ -30466,7 +31116,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 27.2,
+   "age_hours": 27.3,
    "is_today": false
   },
   {
@@ -30520,7 +31170,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 27.6,
+   "age_hours": 27.7,
    "is_today": false
   },
   {
@@ -30572,7 +31222,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 28.0,
+   "age_hours": 28.1,
    "is_today": false
   },
   {
@@ -30626,7 +31276,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 28.1,
+   "age_hours": 28.2,
    "is_today": false
   },
   {
@@ -30680,7 +31330,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 28.2,
+   "age_hours": 28.3,
    "is_today": false
   },
   {
@@ -30794,7 +31444,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 29.4,
+   "age_hours": 29.5,
    "is_today": false
   },
   {
@@ -30848,7 +31498,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 29.7,
+   "age_hours": 29.8,
    "is_today": false
   },
   {
@@ -31009,7 +31659,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 31.0,
+   "age_hours": 31.1,
    "is_today": false
   },
   {
@@ -31069,7 +31719,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 31.3,
+   "age_hours": 31.4,
    "is_today": false
   },
   {
@@ -31124,7 +31774,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 31.5,
+   "age_hours": 31.6,
    "is_today": false
   },
   {
@@ -31182,7 +31832,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 32.2,
+   "age_hours": 32.3,
    "is_today": false
   },
   {
@@ -31237,7 +31887,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 32.4,
+   "age_hours": 32.5,
    "is_today": false
   },
   {
@@ -31289,7 +31939,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 32.5,
+   "age_hours": 32.6,
    "is_today": false
   },
   {
@@ -31349,7 +31999,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 32.6,
+   "age_hours": 32.7,
    "is_today": false
   },
   {
@@ -31401,7 +32051,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 32.6,
+   "age_hours": 32.7,
    "is_today": false
   },
   {
@@ -31453,7 +32103,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 32.6,
+   "age_hours": 32.7,
    "is_today": false
   },
   {
@@ -31507,7 +32157,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-09",
-   "age_hours": 32.7,
+   "age_hours": 32.8,
    "is_today": false
   },
   {
@@ -31561,7 +32211,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 32.8,
+   "age_hours": 32.9,
    "is_today": false
   },
   {
@@ -31613,7 +32263,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 33.3,
+   "age_hours": 33.4,
    "is_today": false
   },
   {
@@ -31728,7 +32378,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 33.6,
+   "age_hours": 33.7,
    "is_today": false
   },
   {
@@ -31783,7 +32433,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 33.7,
+   "age_hours": 33.8,
    "is_today": false
   },
   {
@@ -31835,7 +32485,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 33.8,
+   "age_hours": 33.9,
    "is_today": false
   },
   {
@@ -31946,7 +32596,7 @@
    "relevance_penalized": true,
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 34.7,
+   "age_hours": 34.8,
    "is_today": false
   },
   {
@@ -32050,7 +32700,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 34.9,
+   "age_hours": 35.0,
    "is_today": false
   },
   {
@@ -32156,7 +32806,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.0,
+   "age_hours": 35.1,
    "is_today": false
   },
   {
@@ -32210,7 +32860,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.2,
+   "age_hours": 35.3,
    "is_today": false
   },
   {
@@ -32320,7 +32970,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.5,
+   "age_hours": 35.6,
    "is_today": false
   },
   {
@@ -32380,7 +33030,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.5,
+   "age_hours": 35.6,
    "is_today": false
   },
   {
@@ -32432,7 +33082,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.6,
+   "age_hours": 35.7,
    "is_today": false
   },
   {
@@ -32487,7 +33137,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.8,
+   "age_hours": 35.9,
    "is_today": false
   },
   {
@@ -32539,7 +33189,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.9,
+   "age_hours": 36.0,
    "is_today": false
   },
   {
@@ -32593,7 +33243,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 36.0,
+   "age_hours": 36.1,
    "is_today": false
   },
   {
@@ -32706,7 +33356,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 36.4,
+   "age_hours": 36.5,
    "is_today": false
   },
   {
@@ -32876,7 +33526,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 36.7,
+   "age_hours": 36.8,
    "is_today": false
   },
   {
@@ -32937,7 +33587,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-08",
-   "age_hours": 36.7,
+   "age_hours": 36.8,
    "is_today": false
   },
   {
@@ -32991,7 +33641,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 36.9,
+   "age_hours": 37.0,
    "is_today": false
   },
   {
@@ -33046,7 +33696,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 36.9,
+   "age_hours": 37.0,
    "is_today": false
   },
   {
@@ -33104,7 +33754,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 36.9,
+   "age_hours": 37.0,
    "is_today": false
   },
   {
@@ -33158,7 +33808,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.0,
+   "age_hours": 37.1,
    "is_today": false
   },
   {
@@ -33212,7 +33862,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.1,
+   "age_hours": 37.2,
    "is_today": false
   },
   {
@@ -33266,7 +33916,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.3,
+   "age_hours": 37.4,
    "is_today": false
   },
   {
@@ -33374,7 +34024,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.5,
+   "age_hours": 37.6,
    "is_today": false
   },
   {
@@ -33429,7 +34079,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.5,
+   "age_hours": 37.6,
    "is_today": false
   },
   {
@@ -33481,7 +34131,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.5,
+   "age_hours": 37.6,
    "is_today": false
   },
   {
@@ -33587,7 +34237,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.8,
+   "age_hours": 37.9,
    "is_today": false
   },
   {
@@ -33703,7 +34353,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.9,
+   "age_hours": 38.0,
    "is_today": false
   },
   {
@@ -33757,7 +34407,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.3,
+   "age_hours": 38.4,
    "is_today": false
   },
   {
@@ -33815,7 +34465,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.3,
+   "age_hours": 38.4,
    "is_today": false
   },
   {
@@ -33869,7 +34519,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.5,
+   "age_hours": 38.6,
    "is_today": false
   },
   {
@@ -33921,7 +34571,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.5,
+   "age_hours": 38.6,
    "is_today": false
   },
   {
@@ -33975,7 +34625,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.6,
+   "age_hours": 38.7,
    "is_today": false
   },
   {
@@ -34029,7 +34679,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.6,
+   "age_hours": 38.7,
    "is_today": false
   },
   {
@@ -34133,7 +34783,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.7,
+   "age_hours": 38.8,
    "is_today": false
   },
   {
@@ -34187,7 +34837,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.7,
+   "age_hours": 38.8,
    "is_today": false
   },
   {
@@ -34239,7 +34889,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.8,
+   "age_hours": 38.9,
    "is_today": false
   },
   {
@@ -34351,7 +35001,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.0,
+   "age_hours": 39.1,
    "is_today": false
   },
   {
@@ -34566,7 +35216,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.5,
+   "age_hours": 39.6,
    "is_today": false
   },
   {
@@ -34674,7 +35324,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.6,
+   "age_hours": 39.7,
    "is_today": false
   },
   {
@@ -34726,7 +35376,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.6,
+   "age_hours": 39.7,
    "is_today": false
   },
   {
@@ -34780,7 +35430,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.7,
+   "age_hours": 39.8,
    "is_today": false
   },
   {
@@ -34990,7 +35640,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.0,
+   "age_hours": 40.1,
    "is_today": false
   },
   {
@@ -35042,7 +35692,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.1,
+   "age_hours": 40.2,
    "is_today": false
   },
   {
@@ -35096,7 +35746,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.1,
+   "age_hours": 40.2,
    "is_today": false
   },
   {
@@ -35148,7 +35798,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.2,
+   "age_hours": 40.3,
    "is_today": false
   },
   {
@@ -35202,7 +35852,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.2,
+   "age_hours": 40.3,
    "is_today": false
   },
   {
@@ -35256,7 +35906,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.2,
+   "age_hours": 40.3,
    "is_today": false
   },
   {
@@ -35310,7 +35960,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.3,
+   "age_hours": 40.4,
    "is_today": false
   },
   {
@@ -35362,7 +36012,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.3,
+   "age_hours": 40.4,
    "is_today": false
   },
   {
@@ -35576,7 +36226,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.7,
+   "age_hours": 40.8,
    "is_today": false
   },
   {
@@ -35628,7 +36278,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.7,
+   "age_hours": 40.8,
    "is_today": false
   }
  ]
