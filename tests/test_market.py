@@ -638,7 +638,7 @@ def test_main_writes_schema_and_exits_0(monkeypatch, tmp_path):
     })
     out = tmp_path / "data" / "market.json"
     rc = fm.main(["--out", str(out), "--constituents", fm.DEFAULT_CONSTITUENTS, "--markets", "sa",
-                  "--no-quote", "--sleep", "0"])
+                  "--no-quote", "--sleep", "0", "--exchange-fallback"])
     assert rc == 0 and out.exists()
     data = json.loads(out.read_text(encoding="utf-8"))
     assert set(data) == PAYLOAD_KEYS
@@ -674,7 +674,7 @@ def test_main_both_markets_default(monkeypatch, tmp_path):
         "indices-performance": FakeResponse(text=SAUDIEXCHANGE_HTML),
     })
     out = tmp_path / "market.json"
-    rc = fm.main(["--out", str(out), "--no-quote", "--sleep", "0"])
+    rc = fm.main(["--out", str(out), "--no-quote", "--sleep", "0", "--exchange-fallback"])
     assert rc == 0
     data = json.loads(out.read_text(encoding="utf-8"))
     # every "cmd" symbol 404'd -> "cmd" is dropped from `markets` (only advertised when something was fetched)
@@ -794,6 +794,17 @@ def test_main_missing_constituents_still_writes_indices(monkeypatch, tmp_path):
     assert rc == 0
     data = json.loads(out.read_text(encoding="utf-8"))
     assert data["stocks"] == [] and data["indices"][0]["code"] == "TASI"
+    # Saudi Exchange fallback is opt-in now, so no dead-URL error is recorded by default
+    assert {e["what"] for e in data["errors"]} == {"constituents:sa"}
+
+
+def test_main_exchange_fallback_is_opt_in(monkeypatch, tmp_path):
+    use_session(monkeypatch, {"chart/%5ETASI.SR": FakeResponse(body=yahoo_fixture())})
+    out = tmp_path / "market.json"
+    rc = fm.main(["--out", str(out), "--constituents", str(tmp_path / "nope.json"), "--no-stooq",
+                  "--markets", "sa", "--exchange-fallback"])
+    assert rc == 0
+    data = json.loads(out.read_text(encoding="utf-8"))
     assert {e["what"] for e in data["errors"]} == {"constituents:sa", "index:saudiexchange"}
 
 

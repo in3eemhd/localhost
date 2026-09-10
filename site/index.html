@@ -494,6 +494,15 @@ const dateAr=(s,withYear)=>{const p=ymd(s);return p?`${DAYS[p.dow]} ${p.d} ${MON
 const STALE_MS=24*3600e3;
 const isStale=d=>!d||(Date.now()-d.getTime())>STALE_MS;
 const trunc=(s,n)=>{s=String(s||"").trim();return s.length>n?s.slice(0,n).replace(/[\s،,.:؛]+$/,"")+"…":s};
+/* human-readable error text: known keys get an Arabic sentence, URLs are stripped from the rest */
+const ERR_AR={
+  "index:saudiexchange":"مؤشرا MT30 ونمو غير متاحين: موقع تداول يحجب الجلب الآلي",
+  "stocks:yahoo_quote":"القيمة السوقية لبعض الأسهم غير متاحة من Yahoo في هذا التشغيل",
+  "constituents:sa":"قائمة الشركات السعودية لم تُقرأ","constituents:us":"قائمة الشركات الأمريكية لم تُقرأ"
+};
+const errText=e=>{const w=String(e&&e.what||"");if(ERR_AR[w])return ERR_AR[w];
+  const m=w.match(/^index:([^:]+)/);const d=String(e&&e.detail||"").replace(/https?:\/\/\S+/g,"").replace(/\s{2,}/g," ").trim();
+  return (m?`مؤشر ${m[1]} غير متاح`:w)+(d?" — "+trunc(d,100):"")};
 const arr=v=>Array.isArray(v)?v:[];
 const obj=v=>(v&&typeof v==="object"&&!Array.isArray(v))?v:{};
 const cellCls=c=>{if(c==null)return "z";const a=Math.abs(c);if(a<0.5)return "z";const k=a<1.5?1:a<3?2:3;return (c>0?"p":"n")+k};
@@ -593,7 +602,7 @@ function renderBanner(){
   f.innerHTML=`${staticLine}
    ${MODE==="partial"?`<div><b>تحميل جزئي:</b> ${SRC.market?"":"ملف السوق غير متاح، "}${SRC.news?"":"ملف الأخبار غير متاح، "}عُرضت اللقطة المضمّنة بدلاً منه.</div>`:""}
    <div><b>مصدر البيانات:</b> ${MODE==="static"?"data/market.json · data/news.json (مضمّنة)":`<span class="num">${esc(SRC.market||"snapshot")}</span> · <span class="num">${esc(SRC.news||"snapshot")}</span>`} · مولّدة <b class="num">${esc(MARKET.generated_at_riyadh||fmtR(genDate))}</b> الرياض${lastClosed?` · آخر إغلاق سعودي مؤكد <b class="num">${fmtR(lastClosed)}</b>`:""}.</div>
-   ${errs.length?`<div><b>ما لم نستطع تأكيده (${errs.length}):</b> ${errs.map(e=>`${esc(e.what||"")}${e.detail?" — "+esc(trunc(e.detail,140)):""}`).join(" · ")} <a href="#sec-dq" class="srclink">التفاصيل في جودة البيانات</a></div>`:`<div><b>لا أخطاء مسجّلة</b> في ملف السوق.</div>`}
+   ${errs.length?`<div><b>ما لم نستطع تأكيده (${errs.length}):</b> ${errs.map(e=>esc(errText(e))).join(" · ")} <a href="#sec-dq" class="srclink">التفاصيل في جودة البيانات</a></div>`:`<div><b>لا أخطاء مسجّلة</b> في ملف السوق.</div>`}
    ${win.length===2?`<div><b>نافذة استرجاع الأخبار:</b> <span class="num">${fmtUtc(parseD(win[0]))}</span> إلى <span class="num">${fmtUtc(parseD(win[1]))}</span> UTC.</div>`:""}`;
 }
 

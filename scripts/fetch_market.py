@@ -811,7 +811,8 @@ def fetch_us_indices(errors: list[dict], now: datetime) -> list[dict]:
     return out
 
 
-def fetch_indices(errors: list[dict], now: datetime, use_stooq: bool = True) -> list[dict]:
+def fetch_indices(errors: list[dict], now: datetime, use_stooq: bool = True,
+                  use_exchange: bool = True) -> list[dict]:
     """Saudi indices with the full Yahoo -> Saudi Exchange -> Stooq fallback chain."""
     indices: dict[str, dict] = {}
 
@@ -831,9 +832,13 @@ def fetch_indices(errors: list[dict], now: datetime, use_stooq: bool = True) -> 
             else:
                 log.info("index %s: no Yahoo symbol candidate works (%s); trying other sources", code, exc)
 
-    # 2. Saudi Exchange (fills whatever Yahoo did not)
+    # 2. Saudi Exchange (fills whatever Yahoo did not). Opt-in: the site answers
+    #    403 to automated clients (GitHub runners included), so by default we
+    #    skip it rather than record a dead URL in the errors list.
     missing = [c for c in INDEX_DEFS if c not in indices]
-    if missing:
+    if missing and not use_exchange:
+        log.info("indices not on Yahoo (%s): Saudi Exchange fallback disabled", ", ".join(missing))
+    if missing and use_exchange:
         try:
             found, url = fetch_saudiexchange_indices()
             for code in missing:
@@ -986,6 +991,8 @@ def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
     ap.add_argument("--sleep", type=float, default=0.25, help="seconds between Yahoo chart symbols (rate-limit courtesy)")
     ap.add_argument("--no-quote", action="store_true", help="skip Yahoo quote endpoint (market cap)")
     ap.add_argument("--no-stooq", action="store_true", help="skip the Stooq fallback")
+    ap.add_argument("--exchange-fallback", action="store_true",
+                    help="try saudiexchange.sa for MT30/NomuC (blocked for bots; off by default)")
     ap.add_argument("--indices-only", action="store_true", help="do not fetch stocks")
     ap.add_argument("-v", "--verbose", action="store_true")
     return ap.parse_args(argv)
@@ -1017,7 +1024,8 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     indices: list[dict] = []
     if "sa" in markets:
-        indices += fetch_indices(errors, now, use_stooq=not args.no_stooq)
+        indices += fetch_indices(errors, now, use_stooq=not args.no_stooq,
+                                 use_exchange=args.exchange_fallback)
     if "us" in markets:
         indices += fetch_us_indices(errors, now)
     if "cmd" in markets:
