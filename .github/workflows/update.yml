@@ -8,7 +8,7 @@ on:
     - cron: "0 */2 * * *"
   workflow_dispatch:
   push:
-    branches: [main, master, claude/brain-delegation-model-apyiiq]
+    branches: [main, master]
     paths: ["site/**", "scripts/**", ".github/workflows/update.yml"]
 
 concurrency:
