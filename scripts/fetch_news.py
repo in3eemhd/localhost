@@ -98,11 +98,8 @@ DEFAULT_FEEDS: list[dict[str, Any]] = [
     {"name": "Google News – العربية أسواق", "priority": 2, "lang": "ar", "url": gnews("site:alarabiya.net أسواق when:2d")},
     {"name": "Google News – CNBC عربية", "priority": 2, "lang": "ar", "url": gnews("site:cnbcarabia.com when:2d")},
     {"name": "Google News – الشرق بلومبرغ", "priority": 2, "lang": "ar", "url": gnews("site:asharqbusiness.com السعودية when:2d")},
-    # --- Saudi Exchange / official (403 -> alt browser profile retry) ------
-    {"name": "Saudi Exchange – إعلانات الشركات", "priority": 1, "lang": "ar",
-     "url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/rss/announcements?locale=ar"},
-    {"name": "Saudi Exchange – Announcements", "priority": 1, "lang": "en",
-     "url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/rss/announcements?locale=en"},
+    # --- official (Saudi Exchange direct RSS removed: the site answers 403 to
+    #     automated clients; its announcements arrive via the Google News query) ---
     {"name": "واس – RSS", "priority": 1, "lang": "ar", "url": "https://www.spa.gov.sa/rss?lang=ar"},
     {"name": "واس – الاقتصاد", "priority": 1, "lang": "ar", "url": "https://www.spa.gov.sa/rss/economy"},
     {"name": "SPA – RSS (EN)", "priority": 1, "lang": "en", "url": "https://www.spa.gov.sa/rss?lang=en"},
