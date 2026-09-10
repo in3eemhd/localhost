@@ -25,6 +25,7 @@ Output schema (data/news.json) - the ranked VIEW of the archive:
 {
   "generated_at_utc", "today_riyadh": "YYYY-MM-DD", "analysis_mode": "llm"|"rules"|"llm+rules",
   "sectors": {key: arabic_label},
+  "method_ar": [6 Arabic lines describing the six-step method (compliance-safe wording)],
   "days": [{"day_local", "count", "label_ar", "is_today"}],   # ordered newest day first
   "items": [ raw item fields (title, link, source, published_*, precision, relevance, ...) + {
       "id", "market": "sa"|"us"|"macro"|"other", "signal": "pos"|"neg"|"mix",
@@ -33,6 +34,14 @@ Output schema (data/news.json) - the ranked VIEW of the archive:
       "analysis_note_ar": fixed disclaimer,
       "beneficiary": {"name","why"}, "hurt": {"name","why"},
       "impact": {<14 sector keys>: int -3..3, "why": str}, "impact_market": "sa"|"us"|"both",
+      "fundamental": {                       # owner's six-step method, descriptive Arabic notes only
+          "scope": {"value": "macro"|"sector"|"micro", "label_ar", "note_ar"},
+          "credibility": {"tier": "A"|"B"|"C", "kind": "خبر"|"رأي/تحليل", "label_ar", "note_ar"},
+          "expectations": {"value": "beat"|"miss"|"inline"|"unknown", "label_ar", "note_ar"},
+          "horizon": {"value": "temporary"|"structural"|"unknown", "label_ar", "note_ar"},
+          "financials": {"lines": [subset of revenue,margin,debt,tax,capex,cashflow], "label_ar", "note_ar"},
+          "sentiment": {"value": "panic"|"euphoria"|"calm"|"unknown", "label_ar", "note_ar"}},
+      "fundamental_origin": "llm"|"rules",   # cached in the archive next to brief_ar; only new items are analyzed
       "cf": 1..3, "rules": [rule ids], "analysis": "llm"|"rules", "relevance": 0..1,
       "day_local": "YYYY-MM-DD" (Riyadh), "is_today": bool, "age_hours": float, "first_seen_utc"
   }],   # ordered: day_local desc (today first); within a day sa, us, macro, other; each newest first.
@@ -260,7 +269,9 @@ MAX_QUOTE_WORDS = 6    # direct quotes longer than this are rejected
 # as whole words on norm()-ed text (diacritics stripped, hamza folded), with an
 # optional و/ف clitic; "بع" is only ever the imperative "sell" as a bare word.
 _ADVICE_WORDS = ["ننصح", "ننصحك", "ننصحكم", "انصح", "نوصي", "اوصي", "توصيه", "توصيات", "اشتر", "اشتري", "اشتروا",
-                 "بع", "بيعوا", "فرصه", "فرص", "يجب", "ينبغي", "عليك", "عليكم"]
+                 "بع", "بيعوا", "فرصه", "فرص", "يجب", "ينبغي", "عليك", "عليكم",
+                 # owner's compliance list for the fundamental notes: no buy/sell/opportunity/exit/entry wording
+                 "شراء", "بيع", "خروج", "تخارج", "ادخل", "buy", "sell", "opportunity", "exit", "entry"]
 _ADVICE_RE = re.compile(r"(?<![\w])(?:و|ف)?(?:ال)?(?:" + "|".join(re.escape(norm(w)) for w in _ADVICE_WORDS) + r")(?![\w])")
 _FIRST_PERSON_RE = re.compile(r"(?<![\w])(?:انا|نحن|اعتقد|اظن|اري|برايي|براينا|نري|نعتقد)(?![\w])")
 _QUOTE_RE = re.compile(r"[«\"“”„](.+?)[»\"“”„]")
@@ -286,8 +297,12 @@ _SANITIZE_RULES: list[tuple[re.Pattern, str]] = [(re.compile(p), r) for p, r in 
     (r"(?<![\w])فرصة(?![\w])", "احتمال"),
     (r"(?<![\w])فرص(?![\w])", "احتمالات"),
     (r"(?<![\w])(?:يجب|ينبغي|لا\s*بد)(?:\s+(?:أن|ان))?(?![\w])", "قد"),
-    (r"(?<![\w])اشتر[ً-ْ]?(?:ِ|ي|وا)?(?![\w])", "الشراء المحتمل"),
-    (r"(?<![\w])ب[ً-ْ]?ع[ً-ْ]?(?![\w])", "البيع المحتمل"),
+    (r"(?<![\w])اشتر[ً-ْ]?(?:ِ|ي|وا)?(?![\w])", "الاقتناء المحتمل"),
+    (r"(?<![\w])ب[ً-ْ]?ع[ً-ْ]?(?![\w])", "التصريف المحتمل"),
+    (r"(?<![\w])((?:و|ف)?(?:بال|وال|لل|ال|ب|ل)?)شراء(?![\w])", r"\1اقتناء"),
+    (r"(?<![\w])((?:و|ف)?(?:بال|وال|لل|ال|ب|ل)?)بيع(?![\w])", r"\1تصريف"),
+    (r"(?<![\w])((?:و|ف)?(?:بال|وال|لل|ال|ب|ل)?)(?:خروج|تخارج)(?![\w])", r"\1انسحاب"),
+    (r"(?<![\w])(?:و|ف)?(?:ادخل|أدخل|ادخلوا|أدخلوا)(?![\w])", "الدخول المحتمل"),
     (r"(?:قد\s+){2,}", "قد "),
     (r"(قد (?:يستفيد|تستفيد|يتأثر سلبًا|تتأثر سلبًا))\s+(?:هو|هي|هم|هن)(?![\w])", r"\1"),  # "المستفيد الأكبر هو X" -> "قد يستفيد X"
 ]]
@@ -395,6 +410,298 @@ def template_brief_ar(item: dict[str, Any], sector_labels: dict[str, str] | None
 
 
 # ---------------------------------------------------------------------------
+# Fundamental analysis (owner's six-step method): scope, credibility,
+# expectations, horizon, financials, sentiment. Every note is descriptive.
+# ---------------------------------------------------------------------------
+METHOD_AR = [
+    "1. النطاق: هل الخبر كلّي يمس السوق كله، أم قطاعي يمس صناعة محددة، أم خاص بشركة بعينها؟",
+    "2. المصدر: هل هو إفصاح رسمي، أم وكالة موثوقة، أم مصدر غير مصنّف؟ ويُفصل دائمًا بين الحقيقة والرأي.",
+    "3. التوقعات: الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه.",
+    "4. المدى: هل الأثر مؤقت (قضية، عطل، غرامة) أم تغيير هيكلي في نموذج العمل أو السوق؟",
+    "5. البنود المالية: أي بند قد يمسه الخبر: الإيرادات، هامش الربح، الديون، الضرائب، الإنفاق الرأسمالي، التدفق النقدي؟",
+    "6. المزاج العام: هل تسيطر ردود فعل جماعية (ذعر أو تفاؤل مفرط) قد تبعد الأسعار عن القيمة مؤقتًا؟ وهذا وصف فقط لا أكثر.",
+]
+
+SCOPE_VALUES = ("macro", "sector", "micro")
+SCOPE_LABEL_AR = {"macro": "كلّي", "sector": "قطاعي", "micro": "خاص بالشركة"}
+SCOPE_NOTE_AR = {"macro": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله.",
+                 "sector": "خبر يمس صناعة محددة أكثر من بقية السوق.",
+                 "micro": "خبر يخص شركة بعينها: أرباح أو إدارة أو استحواذ أو عقود."}
+CRED_TIERS = ("A", "B", "C")
+CRED_KINDS = ("خبر", "رأي/تحليل")
+CRED_LABEL_AR = {"A": "مصدر رسمي", "B": "وكالة موثوقة", "C": "مصدر غير مصنّف"}
+CRED_NOTE_AR = {"A": "مصدر رسمي أو إفصاح مباشر من الجهة المعنية",
+                "B": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر",
+                "C": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل"}
+KIND_NOTE_AR = {"خبر": "والمادة مصنفة آليًا كخبر", "رأي/تحليل": "والمادة تحمل علامات رأي أو تحليل أو توقع"}
+CRED_SEPARATION_AR = "يُفصل بين الحقيقة والرأي"
+EXPECT_VALUES = ("beat", "miss", "inline", "unknown")
+EXPECT_LABEL_AR = {"beat": "فوق التوقعات", "miss": "دون التوقعات", "inline": "مطابق للتوقعات", "unknown": "غير محدد آليًا"}
+EXPECT_BASE_AR = "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه"
+EXPECT_DETECTED_AR = {"beat": "رُصدت عبارات تشير إلى نتيجة أعلى من التوقعات",
+                      "miss": "رُصدت عبارات تشير إلى نتيجة أدنى من التوقعات",
+                      "inline": "رُصدت عبارات تشير إلى نتيجة مطابقة للتوقعات",
+                      "unknown": "لم تُرصد مقارنة واضحة بالتوقعات في هذا الخبر",
+                      "mixed": "رُصدت إشارات متعارضة حول التوقعات فلم يُحسم آليًا",
+                      "na": "الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية"}
+HORIZON_VALUES = ("temporary", "structural", "unknown")
+HORIZON_LABEL_AR = {"temporary": "أثر مؤقت", "structural": "تغيير هيكلي", "unknown": "غير محدد آليًا"}
+HORIZON_NOTE_AR = {"temporary": "أخبار من هذا النوع (قضايا، أعطال، غرامات، تأخير) غالبًا ما يكون أثرها محدود المدة ولا تغيّر نموذج العمل بالضرورة.",
+                   "structural": "حدث من هذا النوع (استحواذ، تشريع، تقنية بديلة، منافس جديد) قد يغيّر نموذج العمل أو هيكل السوق بشكل دائم.",
+                   "unknown": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا.",
+                   "mixed": "رُصدت إشارات مؤقتة وهيكلية معًا فلم تُحسم مدة الأثر آليًا."}
+FIN_LINES = ("revenue", "margin", "debt", "tax", "capex", "cashflow")
+FIN_LABEL_AR = {"revenue": "الإيرادات", "margin": "هامش الربح", "debt": "الديون", "tax": "الضرائب",
+                "capex": "الإنفاق الرأسمالي", "cashflow": "التدفق النقدي"}
+FIN_NONE_AR = "لم يُحدَّد بند مالي آليًا"
+FIN_NOTE_AR = {"revenue": "أخبار العقود والمبيعات والطلب تنعكس أولًا على بند الإيرادات",
+               "margin": "تغيّر التكاليف أو الأسعار ينعكس على هامش الربح قبل صافي الدخل",
+               "debt": "تغيّر الفائدة أو التمويل ينعكس على كلفة الديون وخدمة الدين",
+               "tax": "ضريبة أو رسم جديد ينعكس مباشرة على صافي الربح",
+               "capex": "التوسعات والمشاريع الجديدة ترفع الإنفاق الرأسمالي قبل أن تظهر عوائدها",
+               "cashflow": "التوزيعات وبرامج الأسهم والسيولة تمس التدفق النقدي مباشرة"}
+FIN_NONE_NOTE_AR = "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+SENT_VALUES = ("panic", "euphoria", "calm", "unknown")
+SENT_LABEL_AR = {"panic": "ذعر جماعي", "euphoria": "تفاؤل مفرط", "calm": "هادئ", "unknown": "غير محدد آليًا"}
+SENT_BASE_AR = "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر"
+SENT_DETECTED_AR = {"panic": "رُصدت مفردات حادة توحي بموجة خوف",
+                    "euphoria": "رُصدت مفردات حماسية توحي بتفاؤل مرتفع",
+                    "calm": "لغة الخبر هادئة بلا مفردات حادة",
+                    "unknown": "لم تُرصد مفردات كافية لتقدير المزاج آليًا",
+                    "mixed": "رُصدت مفردات خوف وحماس معًا فلم يُحسم المزاج آليًا"}
+FUNDAMENTAL_ORIGINS = ("llm", "rules")
+
+# Built-in keyword fall-back when impact_rules.json has no "fundamental" section (kept minimal;
+# the JSON is the maintained list).
+_FUNDAMENTAL_FALLBACK: dict[str, Any] = {
+    "source_tiers": {"A": ["sec", "federal reserve", "الفيدرالي", "هيئة السوق المالية", "ساما", "sama", "gastat", "الهيئة العامة للإحصاء", "وزارة", "ministry"],
+                     "B": ["reuters", "رويترز", "bloomberg", "بلومبرغ", "cnbc", "wsj", "arab news", "argaam", "أرقام", "mubasher", "مباشر",
+                           "الاقتصادية", "maaal", "asharq", "الشرق", "marketwatch", "barron", "yahoo finance", "investing.com"],
+                     "disclosure_sources": ["argaam", "أرقام", "mubasher", "مباشر"],
+                     "disclosure_markers": ["تعلن", "أعلنت", "إعلان", "إفصاح", "announces", "announced", "filing"]},
+    "opinion_markers": [" رأي ", "تحليل", "توقع", " يرى ", "يعتقد", "opinion", "analysis", "forecast", " could ", " may ", " might "],
+    "scope": {"macro": ["فائدة", "تضخم", "الفيدرالي", " fed ", "rates", "inflation", "gdp", "tariff", "oil", "النفط"],
+              "sector": ["قطاع", "sector", "industry"],
+              "micro": ["أرباح", "نتائج", "استحواذ", "الإدارة", "earnings", "profit", "acquisition", "ceo", "guidance", "lawsuit"]},
+    "expectations": {"context": ["أرباح", "نتائج", "earnings", "guidance", "inflation", "gdp", "jobs", "profit", "results"],
+                     "beat": ["فاق التوقعات", "تجاوز التوقعات", "beat", "topped", "raises guidance", "guidance raise"],
+                     "miss": ["أقل من التوقعات", "دون التوقعات", "miss", "fell short", "cuts guidance", "guidance cut"],
+                     "inline": ["مطابق للتوقعات", "in line", "in-line", "as expected"]},
+    "horizon": {"temporary": ["قضية", "دعوى", "غرامة", "عطل", "حريق", "توقف مؤقت", "إضراب", "تأخير", "تسريب", "حادث",
+                              "lawsuit", "fine", "outage", "recall", "strike", "delay"],
+                "structural": ["استحواذ", "اندماج", "تكنولوجيا بديلة", "تغيير نموذج", "تشريع", "تنظيم دائم", "تغير سلوك المستهلك",
+                               "دخول منافس", "خروج من سوق", "acquisition", "merger", "regulation", "ban", "disruptive",
+                               "business model", "pivot", "exit market"]},
+    "financials": {"revenue": ["إيرادات", "مبيعات", "عقد", "revenue", "sales", "contract"],
+                   "margin": ["هامش", "تكلفة", "تكاليف", "margin", "cost", "costs"],
+                   "debt": ["ديون", "صكوك", "قرض", "فائدة", "debt", "bond", "loan", "rates"],
+                   "tax": ["ضريبة", "ضرائب", "زكاة", "رسوم جمركية", "tax", "tariff"],
+                   "capex": ["إنفاق رأسمالي", "توسعة", "مصنع جديد", "capex", "expansion", "new plant"],
+                   "cashflow": ["تدفق نقدي", "توزيعات", "سيولة", "cash flow", "dividend", "buyback", "liquidity"]},
+    "sentiment": {"panic": ["انهيار", "ذعر", "هبوط حاد", "تراجع تاريخي", "أسوأ", "crash", "plunge", "panic", "selloff", "worst"],
+                  "euphoria": ["قفزة", "تاريخي", "قياسي", "أعلى مستوى", "surge", "record high", "rally", "soar", "euphoria"],
+                  "finance_context": ["سوق", "سهم", "أسهم", "مؤشر", "market", "stock", "shares", "index", "earnings"]},
+}
+
+
+def _norm_kw_list(v: Any) -> list[str]:
+    return [norm_keyword(str(k)) for k in (v or []) if isinstance(k, str) and k.strip()]
+
+
+def _prepare_fundamental(cfg: Any) -> dict[str, Any]:
+    """Normalize the impact_rules.json "fundamental" section (missing keys -> fall-back lists)."""
+    cfg = cfg if isinstance(cfg, dict) else {}
+    out: dict[str, Any] = {}
+    for group, defaults in _FUNDAMENTAL_FALLBACK.items():
+        src = cfg.get(group)
+        if isinstance(defaults, list):
+            out[group] = _norm_kw_list(src if isinstance(src, list) else defaults)
+        else:
+            src = src if isinstance(src, dict) else {}
+            out[group] = {k: _norm_kw_list(src.get(k) if isinstance(src.get(k), list) else dv) for k, dv in defaults.items()}
+    return out
+
+
+def _hits(kws: list[str], padded: str) -> bool:
+    return any(k in padded for k in kws)
+
+
+def fundamental_rules(item: dict[str, Any], rules: dict[str, Any]) -> dict[str, Any]:
+    """Deterministic six-step fundamental read of one analyzed item (title +
+    source excerpt + source name + the rules-mode fields already on the item:
+    tickers, market, impact, rules). Every note is fixed descriptive Arabic."""
+    cfg = rules.get("_fundamental") or _prepare_fundamental(None)
+    title = str(item.get("title") or "")
+    text = f"{title} . {_excerpt(item)}"
+    padded = f" {norm(text)} "
+    src_padded = f" {norm(str(item.get('source') or ''))} "
+    tickers = [t for t in (item.get("tickers") or []) if isinstance(t, dict) and t.get("code")]
+    matched_rules = [str(r) for r in (item.get("rules") or [])]
+    impact = item.get("impact") or {}
+
+    # 1) scope
+    sc = cfg["scope"]
+    micro_hit = bool(tickers) or _hits(sc["micro"], padded)
+    macro_hit = _hits(sc["macro"], padded)
+    sector_hit = _hits(sc["sector"], padded) or any(r.endswith("_sector") for r in matched_rules)
+    if micro_hit and (tickers or not macro_hit):
+        scope = "micro"
+    elif macro_hit:
+        scope = "macro"
+    elif sector_hit:
+        scope = "sector"
+    else:
+        hot = [k for k in SECTOR_KEYS if isinstance(impact.get(k), int) and impact.get(k)]
+        scope = "sector" if 0 < len(hot) <= 2 and item.get("market") in ("sa", "us") else "macro"
+
+    # 2) credibility
+    st = cfg["source_tiers"]
+    if _hits(st["A"], src_padded):
+        tier = "A"
+    elif _hits(st["disclosure_sources"], src_padded) and _hits(st["disclosure_markers"], padded):
+        tier = "A"
+    elif _hits(st["B"], src_padded):
+        tier = "B"
+    else:
+        tier = "C"
+    kind = "رأي/تحليل" if ("?" in title or "؟" in title or _hits(cfg["opinion_markers"], padded)) else "خبر"
+
+    # 3) expectations
+    ex = cfg["expectations"]
+    earnings_ctx = _hits(ex["context"], padded) or any(r.startswith(("earnings", "guidance", "us_jobs", "inflation")) for r in matched_rules)
+    if not earnings_ctx:
+        expect, detected = "unknown", "na"
+    else:
+        beat, miss, inline = _hits(ex["beat"], padded), _hits(ex["miss"], padded), _hits(ex["inline"], padded)
+        n = sum((beat, miss, inline))
+        if n == 1:
+            expect = "beat" if beat else "miss" if miss else "inline"
+            detected = expect
+        elif n == 0:
+            expect, detected = "unknown", "unknown"
+        else:
+            expect, detected = "unknown", "mixed"
+
+    # 4) horizon
+    hz = cfg["horizon"]
+    temp, struct = _hits(hz["temporary"], padded), _hits(hz["structural"], padded)
+    if temp and struct:
+        horizon, hz_note = "unknown", HORIZON_NOTE_AR["mixed"]
+    elif temp:
+        horizon, hz_note = "temporary", HORIZON_NOTE_AR["temporary"]
+    elif struct:
+        horizon, hz_note = "structural", HORIZON_NOTE_AR["structural"]
+    else:
+        horizon, hz_note = "unknown", HORIZON_NOTE_AR["unknown"]
+
+    # 5) financial lines
+    lines = [ln for ln in FIN_LINES if _hits(cfg["financials"][ln], padded)]
+    if lines:
+        fin_label = "، ".join(FIN_LABEL_AR[ln] for ln in lines)
+        fin_note = "؛ و".join(FIN_NOTE_AR[ln] for ln in lines[:2]) + "."
+    else:
+        fin_label, fin_note = FIN_NONE_AR, FIN_NONE_NOTE_AR
+
+    # 6) sentiment
+    se = cfg["sentiment"]
+    panic, euph = _hits(se["panic"], padded), _hits(se["euphoria"], padded)
+    if panic and euph:
+        sent, s_det = "unknown", "mixed"
+    elif panic:
+        sent, s_det = "panic", "panic"
+    elif euph:
+        sent, s_det = "euphoria", "euphoria"
+    elif tickers or matched_rules or _hits(se["finance_context"], padded):
+        sent, s_det = "calm", "calm"
+    else:
+        sent, s_det = "unknown", "unknown"
+
+    return {
+        "scope": {"value": scope, "label_ar": SCOPE_LABEL_AR[scope], "note_ar": SCOPE_NOTE_AR[scope]},
+        "credibility": {"tier": tier, "kind": kind, "label_ar": f"{CRED_LABEL_AR[tier]} · {kind}",
+                        "note_ar": f"{CRED_NOTE_AR[tier]}، {KIND_NOTE_AR[kind]}؛ {CRED_SEPARATION_AR}."},
+        "expectations": {"value": expect, "label_ar": EXPECT_LABEL_AR[expect],
+                         "note_ar": f"{EXPECT_BASE_AR}؛ {EXPECT_DETECTED_AR[detected]}."},
+        "horizon": {"value": horizon, "label_ar": HORIZON_LABEL_AR[horizon], "note_ar": hz_note},
+        "financials": {"lines": lines, "label_ar": fin_label, "note_ar": fin_note},
+        "sentiment": {"value": sent, "label_ar": SENT_LABEL_AR[sent], "note_ar": f"{SENT_BASE_AR}؛ {SENT_DETECTED_AR[s_det]}."},
+    }
+
+
+def _fundamental_valid(f: Any) -> bool:
+    """Shape check for a stored/received fundamental object (enums + Arabic notes)."""
+    if not isinstance(f, dict):
+        return False
+    try:
+        return (f["scope"]["value"] in SCOPE_VALUES and f["credibility"]["tier"] in CRED_TIERS
+                and f["credibility"]["kind"] in CRED_KINDS and f["expectations"]["value"] in EXPECT_VALUES
+                and f["horizon"]["value"] in HORIZON_VALUES and f["sentiment"]["value"] in SENT_VALUES
+                and isinstance(f["financials"]["lines"], list) and set(f["financials"]["lines"]) <= set(FIN_LINES)
+                and all(isinstance(f[k].get("note_ar"), str) and has_arabic(f[k]["note_ar"])
+                        and not has_advice_language(f[k]["note_ar"]) for k in
+                        ("scope", "credibility", "expectations", "horizon", "financials", "sentiment")))
+    except (KeyError, TypeError):
+        return False
+
+
+def _note_ok(note: Any, source_text: str) -> str | None:
+    """A model-written note is usable when it is Arabic, short, original and advice-free."""
+    raw = str(note or "").strip()
+    if not raw or not has_arabic(raw) or len(raw) > 400:
+        return None
+    # model text with recommendation vocabulary is dropped, not paraphrased (same policy as beneficiary/hurt)
+    if has_advice_language(raw) or shared_ngram(raw, source_text) or _FIRST_PERSON_RE.search(norm(raw)):
+        return None
+    n = sanitize_ar(raw)
+    return n if n and not has_advice_language(n) else None
+
+
+def merge_llm_fundamental(obj: Any, fallback: dict[str, Any], source_text: str = "") -> tuple[dict[str, Any], str]:
+    """Combine the model's `fundamental` with the rules result field by field:
+    a field is taken from the model only when its enum is valid and its note
+    passes the advice / source-copy / first-person guards; otherwise the rules
+    field is kept. Labels are always ours (fixed Arabic). Returns
+    (fundamental, origin) with origin "llm" when at least one field is the
+    model's, else "rules"."""
+    out = {k: dict(v) for k, v in fallback.items()}
+    if not isinstance(obj, dict):
+        return out, "rules"
+    taken = 0
+
+    def field(key: str) -> dict[str, Any] | None:
+        v = obj.get(key)
+        return v if isinstance(v, dict) else None
+
+    f = field("scope")
+    if f and f.get("value") in SCOPE_VALUES and (n := _note_ok(f.get("note_ar"), source_text)):
+        out["scope"] = {"value": f["value"], "label_ar": SCOPE_LABEL_AR[f["value"]], "note_ar": n}
+        taken += 1
+    f = field("credibility")
+    if f and f.get("tier") in CRED_TIERS and f.get("kind") in CRED_KINDS and (n := _note_ok(f.get("note_ar"), source_text)):
+        out["credibility"] = {"tier": f["tier"], "kind": f["kind"], "label_ar": f"{CRED_LABEL_AR[f['tier']]} · {f['kind']}", "note_ar": n}
+        taken += 1
+    f = field("expectations")
+    if f and f.get("value") in EXPECT_VALUES and (n := _note_ok(f.get("note_ar"), source_text)):
+        out["expectations"] = {"value": f["value"], "label_ar": EXPECT_LABEL_AR[f["value"]], "note_ar": n}
+        taken += 1
+    f = field("horizon")
+    if f and f.get("value") in HORIZON_VALUES and (n := _note_ok(f.get("note_ar"), source_text)):
+        out["horizon"] = {"value": f["value"], "label_ar": HORIZON_LABEL_AR[f["value"]], "note_ar": n}
+        taken += 1
+    f = field("financials")
+    if f and isinstance(f.get("lines"), list) and (n := _note_ok(f.get("note_ar"), source_text)):
+        lines = [ln for ln in FIN_LINES if ln in f["lines"]]
+        out["financials"] = {"lines": lines, "label_ar": "، ".join(FIN_LABEL_AR[ln] for ln in lines) if lines else FIN_NONE_AR,
+                             "note_ar": n}
+        taken += 1
+    f = field("sentiment")
+    if f and f.get("value") in SENT_VALUES and (n := _note_ok(f.get("note_ar"), source_text)):
+        out["sentiment"] = {"value": f["value"], "label_ar": SENT_LABEL_AR[f["value"]], "note_ar": n}
+        taken += 1
+    return out, ("llm" if taken else "rules")
+
+
+# ---------------------------------------------------------------------------
 # Loading rules & constituents
 # ---------------------------------------------------------------------------
 def load_rules(path: str = DEFAULT_RULES) -> dict[str, Any]:
@@ -404,6 +711,7 @@ def load_rules(path: str = DEFAULT_RULES) -> dict[str, Any]:
     for k in SECTOR_KEYS:
         sectors.setdefault(k, SECTOR_LABELS_AR[k])
     rules["sectors"] = sectors
+    rules["_fundamental"] = _prepare_fundamental(rules.get("fundamental"))
     # Pre-normalize keywords once (deterministic order preserved).
     for r in rules.get("rules", []):
         r["_kw"] = [norm_keyword(k) for k in r.get("keywords", []) if k and k.strip()]
@@ -881,7 +1189,7 @@ def analyze_rules(item: dict[str, Any], rules: dict[str, Any], matcher, us_match
         pair["why"] = sanitize_ar(pair.get("why"))
     impact["why"] = sanitize_ar(impact["why"])
     market = classify_market(tn, item, rules, has_ticker=bool(sa_full), has_us_ticker=bool(us_full))
-    return {
+    out = {
         "market": market,
         "signal": signal,
         "tickers": tickers,
@@ -894,6 +1202,9 @@ def analyze_rules(item: dict[str, Any], rules: dict[str, Any], matcher, us_match
         "rules": [r.get("id", "?") for r in matched],
         "analysis": "rules",
     }
+    out["fundamental"] = fundamental_rules({**item, **out}, rules)
+    out["fundamental_origin"] = "rules"
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -920,12 +1231,46 @@ SYSTEM_PROMPT = """أنت محلل أسواق مالية متخصص في الس�
 - impact: أعداد صحيحة من -3 إلى +3 لكل قطاع من: energy, banks, petrochem, insurance, transport, realestate, cement, tech, smallcaps, telecom, health, retail, food, utilities، مع حقل "why" يشرح المنطق بالعربية في جملة أو جملتين. 0 يعني لا أثر. لخبر أمريكي تشير القطاعات إلى نظيراتها الأمريكية (tech = التقنية والذكاء الاصطناعي وأشباه الموصلات، banks = البنوك والمالية، retail = الاستهلاك، transport = الصناعة والنقل...).
 - impact_market: "sa" إذا كانت درجات الأثر تخص السوق السعودية، "us" إذا كانت تخص السوق الأمريكية، "both" إذا كان الخبر يؤثر على السوقين (الفيدرالي، النفط، الرسوم الجمركية...).
 - cf: ثقة 1..3 (3 = أثر مباشر وواضح على السوق المعنية).
+- fundamental: قراءة أساسية من ست خطوات، كل ملاحظة note_ar جملة عربية وصفية واحدة أو اثنتان خاصة بهذا الخبر (بلا نصح، بلا "شراء/بيع/فرصة/خروج/دخول"):
+  * scope: {"value": "macro" (فائدة/تضخم/سلع تمس السوق كله) | "sector" (صناعة محددة) | "micro" (شركة بعينها: أرباح، إدارة، استحواذ), "note_ar": لماذا}.
+  * credibility: {"tier": "A" (إفصاح رسمي، جهة تنظيمية، إعلان شركة) | "B" (وكالة أو صحيفة اقتصادية كبرى) | "C" (غير مصنّف أو مجمّع), "kind": "خبر" | "رأي/تحليل", "note_ar": وصف المصدر مع الفصل بين الحقيقة والرأي}.
+  * expectations: {"value": "beat" | "miss" | "inline" | "unknown", "note_ar": الفجوة بين المتوقع والفعلي إن وُجدت، وإلا اذكر أن الخبر ليس عن نتائج أو بيانات}. beat/miss/inline فقط لأخبار النتائج أو التوجيهات أو البيانات الاقتصادية.
+  * horizon: {"value": "temporary" (قضية، غرامة، عطل، إضراب، تأخير) | "structural" (استحواذ، تشريع، تقنية بديلة، تغير سلوك المستهلك، منافس جديد) | "unknown", "note_ar": وصف مدة الأثر المحتملة}.
+  * financials: {"lines": مجموعة فرعية من ["revenue","margin","debt","tax","capex","cashflow"], "note_ar": كيف قد ينتقل الخبر إلى ذلك البند (مثل: ضريبة جديدة تنعكس مباشرة على صافي الربح)}.
+  * sentiment: {"value": "panic" | "euphoria" | "calm" | "unknown", "note_ar": وصف المزاج في لغة الخبر، وأن ردود الفعل الجماعية قد تبعد الأسعار عن القيمة مؤقتًا، بصيغة وصفية فقط}.
 أعد JSON فقط وفق المخطط المطلوب."""
 
 IMPACT_SCHEMA = {
     "type": "object",
     "properties": {**{k: {"type": "integer"} for k in SECTOR_KEYS}, "why": {"type": "string"}},
     "required": SECTOR_KEYS + ["why"],
+    "additionalProperties": False,
+}
+
+
+def _enum_note(key: str, values: tuple[str, ...]) -> dict[str, Any]:
+    return {"type": "object", "properties": {key: {"type": "string", "enum": list(values)}, "note_ar": {"type": "string"}},
+            "required": [key, "note_ar"], "additionalProperties": False}
+
+
+FUNDAMENTAL_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "scope": _enum_note("value", SCOPE_VALUES),
+        "credibility": {"type": "object",
+                        "properties": {"tier": {"type": "string", "enum": list(CRED_TIERS)},
+                                       "kind": {"type": "string", "enum": list(CRED_KINDS)},
+                                       "note_ar": {"type": "string"}},
+                        "required": ["tier", "kind", "note_ar"], "additionalProperties": False},
+        "expectations": _enum_note("value", EXPECT_VALUES),
+        "horizon": _enum_note("value", HORIZON_VALUES),
+        "financials": {"type": "object",
+                       "properties": {"lines": {"type": "array", "items": {"type": "string", "enum": list(FIN_LINES)}},
+                                      "note_ar": {"type": "string"}},
+                       "required": ["lines", "note_ar"], "additionalProperties": False},
+        "sentiment": _enum_note("value", SENT_VALUES),
+    },
+    "required": ["scope", "credibility", "expectations", "horizon", "financials", "sentiment"],
     "additionalProperties": False,
 }
 RESULT_SCHEMA = {
@@ -952,9 +1297,10 @@ RESULT_SCHEMA = {
                     "impact": IMPACT_SCHEMA,
                     "impact_market": {"type": "string", "enum": list(IMPACT_MARKETS)},
                     "cf": {"type": "integer"},
+                    "fundamental": FUNDAMENTAL_SCHEMA,
                 },
                 "required": ["id", "market", "signal", "tickers", "brief_ar", "beneficiary", "hurt", "impact",
-                             "impact_market", "cf"],
+                             "impact_market", "cf", "fundamental"],
                 "additionalProperties": False,
             },
         }
@@ -1030,7 +1376,8 @@ def _parse_json_loose(text: str) -> Any:
 
 def validate_llm_item(obj: Any, known_codes: dict[str, str],
                       known_us: dict[str, str] | None = None,
-                      source_text: str = "") -> dict[str, Any] | None:
+                      source_text: str = "",
+                      fundamental_fallback: dict[str, Any] | None = None) -> dict[str, Any] | None:
     """Return a cleaned analysis dict or None if the object is unusable.
 
     `known_codes` = Saudi {code: name_ar}; `known_us` = US {SYMBOL: name_ar}.
@@ -1039,7 +1386,10 @@ def validate_llm_item(obj: Any, known_codes: dict[str, str],
     not copy: a brief that fails brief_rejection_reason() is dropped from the
     result (the caller then uses the template brief) while the rest of the
     analysis is kept. Beneficiary/hurt/why strings are sanitized; a `why` that
-    still carries advice vocabulary is blanked."""
+    still carries advice vocabulary is blanked. When `fundamental_fallback`
+    (the rules-mode fundamental object) is given, the model's `fundamental` is
+    merged onto it field by field (see merge_llm_fundamental) and the result
+    is returned as `fundamental` + `fundamental_origin`."""
     if not isinstance(obj, dict):
         return None
     known_us = known_us or {}
@@ -1107,6 +1457,11 @@ def validate_llm_item(obj: Any, known_codes: dict[str, str],
             out["brief_origin"] = "llm"
         else:
             log.warning("LLM brief for %s rejected (%s); template brief will be used", obj.get("id"), reason)
+        if fundamental_fallback and _fundamental_valid(fundamental_fallback):
+            out["fundamental"], out["fundamental_origin"] = merge_llm_fundamental(
+                obj.get("fundamental"), fundamental_fallback, source_text)
+            if out["fundamental_origin"] == "rules":
+                log.warning("LLM fundamental for %s unusable; rules fundamental kept", obj.get("id"))
         return out
     except (KeyError, TypeError, ValueError):
         return None
@@ -1127,6 +1482,7 @@ def analyze_llm_batch(items: list[dict[str, Any]], constituents: list[dict[str, 
                       "source": it.get("source", ""), "published_riyadh": it.get("published_riyadh", ""),
                       "lang": it.get("lang", ""), "market_hint": it.get("market_hint") or ""} for it in items]
     source_text = {it["id"]: f"{it.get('title', '')} . {_excerpt(it)}" for it in items}
+    fundamental_fb = {it["id"]: it.get("fundamental") for it in items}
     user = ("الشركات السعودية المدرجة (رمز=اسم): " + comp_list + "\n\n"
             + ("الشركات الأمريكية المدرجة (رمز=اسم): " + us_list + "\n\n" if us_list else "")
             + ("لقطة السوق الحالية (JSON): " + _market_context(market) + "\n\n" if market else "")
@@ -1149,7 +1505,8 @@ def analyze_llm_batch(items: list[dict[str, Any]], constituents: list[dict[str, 
     for obj in results or []:
         if not isinstance(obj, dict):
             continue
-        cleaned = validate_llm_item(obj, known, known_us, source_text=source_text.get(str(obj.get("id")), ""))
+        cleaned = validate_llm_item(obj, known, known_us, source_text=source_text.get(str(obj.get("id")), ""),
+                                    fundamental_fallback=fundamental_fb.get(str(obj.get("id"))))
         if cleaned is None:
             log.warning("LLM item %s failed validation; will use rules", obj.get("id") if isinstance(obj, dict) else "?")
             continue
@@ -1438,6 +1795,11 @@ def analyze(raw: dict[str, Any], rules: dict[str, Any], constituents: list[dict[
         if not it.get("brief_ar") or it.get("brief_origin") not in ("llm", "template"):
             it["brief_ar"] = template_brief_ar(it, rules.get("sectors"))
             it["brief_origin"] = "template"
+        # Six-step fundamental read: a cached (LLM or rules) object is kept as is;
+        # archives written before the field existed get the rules version.
+        if not _fundamental_valid(it.get("fundamental")) or it.get("fundamental_origin") not in FUNDAMENTAL_ORIGINS:
+            it["fundamental"] = fundamental_rules(it, rules)
+            it["fundamental_origin"] = "rules"
         it["analysis_note_ar"] = ANALYSIS_NOTE_AR
     add_day_fields(merged, now)
     merged.sort(key=lambda i: i.get("published_utc") or "", reverse=True)
@@ -1464,6 +1826,7 @@ def analyze(raw: dict[str, Any], rules: dict[str, Any], constituents: list[dict[
                   "by_day": {d["day_local"]: d["count"] for d in days_list}, "llm_items": llm_used,
                   "fetch_dropped": raw.get("dropped") if isinstance(raw, dict) else None},
         "sectors": {k: rules["sectors"][k] for k in SECTOR_KEYS},
+        "method_ar": list(METHOD_AR),
         "days": days_list,
         "items": ranked,
         "_archive": merged,
