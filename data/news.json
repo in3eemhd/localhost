@@ -1,24 +1,24 @@
 {
- "generated_at_utc": "2026-09-10T06:09:37Z",
+ "generated_at_utc": "2026-09-10T06:21:58Z",
  "today_riyadh": "2026-09-10",
- "source_generated_at_utc": "2026-09-10T06:09:07Z",
+ "source_generated_at_utc": "2026-09-10T06:21:29Z",
  "analysis_mode": "rules",
  "model": null,
  "days_window": 7,
- "dropped": 511,
+ "dropped": 523,
  "stats": {
   "input": 400,
-  "new_items": 12,
+  "new_items": 16,
   "already_known": 307,
-  "archive_total": 660,
+  "archive_total": 676,
   "expired": 0,
   "kept": 230,
-  "dropped_irrelevant": 81,
-  "dropped_cap": 430,
+  "dropped_irrelevant": 77,
+  "dropped_cap": 446,
   "by_market": {
-   "sa": 88,
+   "sa": 89,
    "macro": 34,
-   "us": 97,
+   "us": 96,
    "other": 11
   },
   "by_day": {
@@ -27,7 +27,7 @@
    "2026-09-08": 60
   },
   "llm_items": 0,
-  "fetch_dropped": 1941
+  "fetch_dropped": 1940
  },
  "sectors": {
   "energy": "الطاقة",
@@ -66,6 +66,66 @@
   }
  ],
  "items": [
+  {
+   "title": "تعليق التداول على سهم شركة الجبس الأهلية - عاجل",
+   "link": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5MX0tTTkhhY2QtRV9KUzlVUWV2OWdzbzh5SVRPWDBKRVdIbnhGS1RaNjNyRGJZVzFSWDBJM0tIQkNubW1JN0FCdg?oc=5",
+   "source": "عاجل (عبر Google News – السوق السعودية)",
+   "published_utc": "2026-09-10T06:05:56Z",
+   "published_riyadh": "2026-09-10 09:05:56",
+   "precision": "second",
+   "summary": "تعليق التداول على سهم شركة الجبس الأهلية عاجل",
+   "fetched_at_utc": "2026-09-10T06:21:29Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 0.85,
+   "raw_published": "Thu, 10 Sep 2026 06:05:56 GMT",
+   "id": "00719d3989e8",
+   "market": "sa",
+   "signal": "neg",
+   "tickers": [
+    {
+     "code": "2090",
+     "name_ar": "الجبس",
+     "market": "sa"
+    }
+   ],
+   "summary_ar": "تعليق التداول على سهم شركة الجبس الأهلية عاجل",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "الجبس (2090)",
+    "why": "إجراءات تنظيمية أو عقوبات تضغط على السهم المعني"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": -1,
+    "tech": 0,
+    "smallcaps": -1,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "إجراءات تنظيمية أو عقوبات تضغط على السهم المعني"
+   },
+   "impact_market": "sa",
+   "cf": 3,
+   "rules": [
+    "regulatory_sanction"
+   ],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:21:58Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.3,
+   "is_today": true
+  },
   {
    "title": "\"سابك للمغذيات\" ترسي عقد أعمال 3 مصانع مقابل 3.46 مليار دولار - الاقتصادية",
    "link": "https://news.google.com/rss/articles/CBMi7gNBVV95cUxNQjhkV29BM2VaYmlSRVpkbmVBVUM2RnhYRmNyTm5pWWcwdVZkdlR4UzVCT18wcFF1WHlkNnlCMWdlbUMwWlVhczhXM1dNcXdJanZ6ODdWbnVrSVJWVEN5dktRVEV3VWlWOTYwMllCc0hINTJKcjc1dmwwVERpcXMyTHNjX0FXaHpULVhfY01idGlWRzVVQmd4Z1RwbzBmbTh6S0ZlLXVJMlY5cVNlTWIwRE9EMXNnaFAxUkU4R09wTGVXXzdPNW9iLVVZOE1ieHE2RF9KZE91S1ZreThCR1htNHZydXlVRlppWGxiQ095NlN3dXc2SlAtMmVQRDRyOTlXLUR2VkJnNmJJOXhNUS1nUkJQQTY5VkVDN1pjNG1IbGt2TXJjY1RxajZVVGhrR0JKU0JlVDd0UmJaallVS000T0x4LVJoaUVZeHZRRkJEcXdSVHZGaWhhMWNZN01YNWZZUHBhS3NBWUlaSWN1T3lTcEZDMWRNSTNhV3JWR2FVZlJ1YlJCdTMwYUZncjBOOGhXWVA1NXp1ODlkU0Rqc1E0RHZvU2s4eDZyTlZWMXU2dEJsV0QyS2gwLXZtckR2WmVJc3ZodkltNndVYnRBRW82WXZxUG9kTGxodXNtcktud2RtMkxkb3RtXzBpOU9fUQ?oc=5",
@@ -123,7 +183,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:09:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.1,
+   "age_hours": 0.3,
    "is_today": true
   },
   {
@@ -175,7 +235,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:09:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.2,
+   "age_hours": 0.4,
    "is_today": true
   },
   {
@@ -229,7 +289,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.0,
+   "age_hours": 4.2,
    "is_today": true
   },
   {
@@ -283,7 +343,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.1,
+   "age_hours": 4.3,
    "is_today": true
   },
   {
@@ -335,7 +395,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:09:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.1,
+   "age_hours": 4.3,
    "is_today": true
   },
   {
@@ -387,7 +447,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.1,
+   "age_hours": 4.3,
    "is_today": true
   },
   {
@@ -439,7 +499,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:09:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.2,
+   "age_hours": 4.4,
    "is_today": true
   },
   {
@@ -497,7 +557,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.8,
+   "age_hours": 5.0,
    "is_today": true
   },
   {
@@ -552,7 +612,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.1,
+   "age_hours": 6.3,
    "is_today": true
   },
   {
@@ -604,7 +664,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.3,
+   "age_hours": 6.5,
    "is_today": true
   },
   {
@@ -664,7 +724,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.1,
+   "age_hours": 7.3,
    "is_today": true
   },
   {
@@ -716,7 +776,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:09:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.0,
+   "age_hours": 8.2,
    "is_today": true
   },
   {
@@ -771,7 +831,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.1,
+   "age_hours": 8.3,
    "is_today": true
   },
   {
@@ -823,7 +883,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 9.1,
+   "age_hours": 9.3,
    "is_today": true
   },
   {
@@ -881,7 +941,657 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 9.1,
+   "age_hours": 9.3,
+   "is_today": true
+  },
+  {
+   "title": "Editas Medicine, Inc. (NASDAQ:EDIT) Given Average Rating of \"Moderate Buy\" by Brokerages - MarketBeat",
+   "link": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNMTFFR1dVeGtaUG5YaUtWYmp0N0tCWUNyUnlQY1Fya1J1bmdPS1lkRmQtVVd3TmtzNmNCbFJXN1k0Nmc0eEljNER0M2x1Z21rSkh3aHRQZ29tZWw5cHZ0emx2eTV0ZC1qd2lLQXNNN2h4enFSdU0xNmNtWDcxMWdYeWZYTmhVTjNmdjRZZ0d6a1hDZE00SXN4MnlHRWhKNGRFVFFXdFZaRVFlakhfVGZER00tZ1h0U1NKenFoQmFkemNScjM0MzhCTl9yTlNBdmlLdzN1UXhURW40V3VvTDNN?oc=5",
+   "source": "MarketBeat (عبر Google News – S&P Nasdaq Dow)",
+   "published_utc": "2026-09-10T06:17:59Z",
+   "published_riyadh": "2026-09-10 09:17:59",
+   "precision": "second",
+   "summary": "Editas Medicine, Inc. (NASDAQ:EDIT) Given Average Rating of \"Moderate Buy\" by Brokerages MarketBeat",
+   "fetched_at_utc": "2026-09-10T06:21:29Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.55,
+   "raw_published": "Thu, 10 Sep 2026 06:17:59 GMT",
+   "market_hint": "us",
+   "id": "e6104815721f",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "Editas Medicine, Inc. (NASDAQ:EDIT) Given Average Rating of \"Moderate Buy\" by Brokerages MarketBeat",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:21:58Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.1,
+   "is_today": true
+  },
+  {
+   "title": "FirstService Corporation (NASDAQ:FSV) Given Consensus Recommendation of \"Moderate Buy\" by Brokerages - MarketBeat",
+   "link": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQWXZDNUhjbDRNX2I1WTQxdjFSUkZEQ3FLeGUyVlE5UFNBZXEweWdKQXJHMVBQYTdhWnpSRzRIUkwxcllodi1RMFhUazc1OVVNdkowTF9uMDJnbFpDa2VOeWhURy1VUXlzT0Y2dk14MURCTGlTVjY0YmJZVEVCeG5vZHdXcnNudzYxQUp3QmRwNndxS2ZkaXB0eXNYRVBDUll4alFDUFUwUzY3V2U3eTJMcU54Q0czWXVsMGNTYTd2YUFKbTExbzh5THZueWVTckMzZFlzdHFleVc1Vzg0YXZZZ3JVOXFPOHVzd1pBZEo1Y0stUQ?oc=5",
+   "source": "MarketBeat (عبر Google News – S&P Nasdaq Dow)",
+   "published_utc": "2026-09-10T06:17:59Z",
+   "published_riyadh": "2026-09-10 09:17:59",
+   "precision": "second",
+   "summary": "FirstService Corporation (NASDAQ:FSV) Given Consensus Recommendation of \"Moderate Buy\" by Brokerages MarketBeat",
+   "fetched_at_utc": "2026-09-10T06:21:29Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.55,
+   "raw_published": "Thu, 10 Sep 2026 06:17:59 GMT",
+   "market_hint": "us",
+   "id": "fc4b70b32b8c",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "FirstService Corporation (NASDAQ:FSV) Given Consensus Recommendation of \"Moderate Buy\" by Brokerages MarketBeat",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:21:58Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.1,
+   "is_today": true
+  },
+  {
+   "title": "Tactile Systems Technology, Inc. (NASDAQ:TCMD) Given Average Recommendation of \"Moderate Buy\" by Brokerages - MarketBeat",
+   "link": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNTk01RDhCSU1yMEZKR19Cc3pjTjl0b2lkOGNvYTRtdVdiTXVTTmZxZlZRaFEyTnU2MUFZVVBLeFcyQ2dSS1c4bnU5TzBoZ0g1Y1R3YjFzLXpvelJ5WW9ZSDE5N0NyQ2FnMTlUYlJnVDAxSFQ0S0dlRTctRF9XZjdya0tnLWludjh4TGl2WmpTb1g1RWNkWkFxQmtfclAzZ3A2YVcxRmpGSWt2T0VoeTBxYXRHLVhDZUFaM3d4ai1vb2ZVY2tERTV3dkJxWmhRSElQbE5DRE5VQ0VyLTlQUURnQmU4SHl0N041bGctck9rYlJSLXl3YldpYw?oc=5",
+   "source": "MarketBeat (عبر Google News – S&P Nasdaq Dow)",
+   "published_utc": "2026-09-10T06:17:59Z",
+   "published_riyadh": "2026-09-10 09:17:59",
+   "precision": "second",
+   "summary": "Tactile Systems Technology, Inc. (NASDAQ:TCMD) Given Average Recommendation of \"Moderate Buy\" by Brokerages MarketBeat",
+   "fetched_at_utc": "2026-09-10T06:21:29Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.55,
+   "raw_published": "Thu, 10 Sep 2026 06:17:59 GMT",
+   "market_hint": "us",
+   "id": "dc7a45de0339",
+   "market": "us",
+   "signal": "pos",
+   "tickers": [],
+   "summary_ar": "Tactile Systems Technology, Inc. (NASDAQ:TCMD) Given Average Recommendation of \"Moderate Buy\" by Brokerages MarketBeat",
+   "beneficiary": {
+    "name": "التقنية",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 1,
+    "smallcaps": 0,
+    "telecom": 1,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [
+    "tech_sector"
+   ],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:21:58Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.1,
+   "is_today": true
+  },
+  {
+   "title": "InMode Ltd. (NASDAQ:INMD) Receives Average Rating of \"Hold\" from Brokerages - MarketBeat",
+   "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQQ0szNDBZRmZlMFR1azF4QklIb2xRazdjN2lxbHBHRUtIUXlBcU53UkFBU1laTXd3ekRVa0hpMmVEU3VqbThEX3dlUFJoYW1pUGlPN28xZE1zVTRmVlF5ZlRkZ1BWSEQzX2VFNHRHT0JWYWYxZ2FmbnM5dFlKZENjNlptY3RMdU9veWdIVHJwd3BCemJ3OGJlS2ZnV1JVTWQyZThwS0U0TTBZdUZQTjJFWmZaWmkxRWFiWVJEODlKZ2J5bTRNOG92OVJHcGVtVlk?oc=5",
+   "source": "MarketBeat (عبر Google News – S&P Nasdaq Dow)",
+   "published_utc": "2026-09-10T06:17:58Z",
+   "published_riyadh": "2026-09-10 09:17:58",
+   "precision": "second",
+   "summary": "InMode Ltd. (NASDAQ:INMD) Receives Average Rating of \"Hold\" from Brokerages MarketBeat",
+   "fetched_at_utc": "2026-09-10T06:21:29Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.55,
+   "raw_published": "Thu, 10 Sep 2026 06:17:58 GMT",
+   "market_hint": "us",
+   "id": "dad332cee37e",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "InMode Ltd. (NASDAQ:INMD) Receives Average Rating of \"Hold\" from Brokerages MarketBeat",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:21:58Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.1,
+   "is_today": true
+  },
+  {
+   "title": "Option Care Health, Inc. (NASDAQ:OPCH) Given Consensus Rating of \"Hold\" by Brokerages - MarketBeat",
+   "link": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOREltNW1ka3hBSllCRE0yWmwya2Y5YVNaM1FZa2dmdC1meVlrSkFEUkNZM1pnZU1pUDlUbVJRV2JaSmNVVnZQX3h3RmVFTmZfTkxHOFdNR253VHRveXZ1VFRodU0xWkdvWXd2UnR6MWhlWG5kMzg0Z0ZJUl83SGVJWDgyV1dPZ2JGVEVVMUNpd2FuWjBRMzFGc2tSOXZTRXlfaHV5R3dOMFg1WkEzbFlfNEJFYlM1ZVZmMUd2bnRlZjRhaXhIajYwR2JFczMzZ1hlZWg5cHJEOUJZZGs?oc=5",
+   "source": "MarketBeat (عبر Google News – S&P Nasdaq Dow)",
+   "published_utc": "2026-09-10T06:17:58Z",
+   "published_riyadh": "2026-09-10 09:17:58",
+   "precision": "second",
+   "summary": "Option Care Health, Inc. (NASDAQ:OPCH) Given Consensus Rating of \"Hold\" by Brokerages MarketBeat",
+   "fetched_at_utc": "2026-09-10T06:21:29Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.55,
+   "raw_published": "Thu, 10 Sep 2026 06:17:58 GMT",
+   "market_hint": "us",
+   "id": "6d124f8d8021",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "Option Care Health, Inc. (NASDAQ:OPCH) Given Consensus Rating of \"Hold\" by Brokerages MarketBeat",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:21:58Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.1,
+   "is_today": true
+  },
+  {
+   "title": "Mvb Financial Corp. (NASDAQ:MVBF) Receives Average Recommendation of \"Moderate Buy\" from Analysts - MarketBeat",
+   "link": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPNjlzY2lhRmZEMWx6cHpPX3F5UndNaXpjMHktSDhGcC1tZG1jdDBLVTNzQjJ1QTBVblhDeExwQjhyUkMycGxXdjZWSm54RE53MlI5MW5PNmt2TjB2TV9VX0s0UHdJNGtqOFNPcGxLby1kNW8zN3NNbU5GY1Y1WWR4Qm1YUmVYWEk5QVVBSTNnQWpGTW9TNlNuakhFelBYRmNaNnJIeFlZY2h3bnJCdWxKbG12aDFaODVBcFJLa0xtQzgwVWk3RzRGVDB5T0hGQTZKNFVTUHo0X3VBb0hMcDB4MVpPeGI5N2xzcHlPZQ?oc=5",
+   "source": "MarketBeat (عبر Google News – S&P Nasdaq Dow)",
+   "published_utc": "2026-09-10T06:17:58Z",
+   "published_riyadh": "2026-09-10 09:17:58",
+   "precision": "second",
+   "summary": "Mvb Financial Corp. (NASDAQ:MVBF) Receives Average Recommendation of \"Moderate Buy\" from Analysts MarketBeat",
+   "fetched_at_utc": "2026-09-10T06:21:29Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.55,
+   "raw_published": "Thu, 10 Sep 2026 06:17:58 GMT",
+   "market_hint": "us",
+   "id": "8c23429b74dd",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "Mvb Financial Corp. (NASDAQ:MVBF) Receives Average Recommendation of \"Moderate Buy\" from Analysts MarketBeat",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:21:58Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.1,
+   "is_today": true
+  },
+  {
+   "title": "9/9/2026 Market Summary: 24 S&P 500 Stocks Hit Lows - Trefis",
+   "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNMlhxTEFVcno4bF9aSFllS0dJbkp3Wmp2eUVfZGsxSWszcVFfdU9JQjFLUU5JZjZqY012UVNBMG5SU3NaRWNZXzRVeGhDWlpENndwODZNc19HV1puNzdKSzRWYnF6S3g3WndKdzhoUnFuVzMzN3R5TGpCZzUtUUNsRjRvSkFlYWJFcHJjT0gycTB0a2VpNkk3UkJOelVUYjdmTlFtbVUtbld2QWZjaFJpVFhZMFJCT0xpdE1CZ1cyOWw?oc=5",
+   "source": "Trefis (عبر Google News – S&P Nasdaq Dow)",
+   "published_utc": "2026-09-10T06:14:49Z",
+   "published_riyadh": "2026-09-10 09:14:49",
+   "precision": "second",
+   "summary": "9/9/2026 Market Summary: 24 S&P 500 Stocks Hit Lows Trefis",
+   "fetched_at_utc": "2026-09-10T06:21:29Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 1.0,
+   "raw_published": "Thu, 10 Sep 2026 06:14:49 GMT",
+   "market_hint": "us",
+   "id": "fed9b5b30d0d",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "9/9/2026 Market Summary: 24 S&P 500 Stocks Hit Lows Trefis",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:21:58Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.1,
+   "is_today": true
+  },
+  {
+   "title": "‏سامسونج تطلق حملة ترويجية لجوالاتها القابلة للطي لمواجهة آبل ديو",
+   "link": "https://www.argaam.com/ar/article/articledetail/id/1935428",
+   "source": "أرقام",
+   "published_utc": "2026-09-10T06:13:00Z",
+   "published_riyadh": "2026-09-10 09:13:00",
+   "precision": "second",
+   "summary": "بدأت \"سامسونج\" حملة إعلانية خارجية عالمية للترويج لسلسلة \"جالاكسي زد فولد 8\" القابلة للطي، مستعرضة خبرتها وسبقها في السوق، عبر إعلانات رقمية في 6 معالم رئيسة في مدن كبرى حول العالم منذ الثاني من سبتمبر الجاري. ورفعت الشركة الكورية الجنوبية إعلانات في مدن كبرى مثل سيول وطوكيو ولندن، مستخدمة عبارات من بينها «مرحباً بكم في عالم الجوالات القابلة للطي» و«أخف جوال قابل للطي في العالم»، مع التركيز على نحافة أجهزتها وخفتها. ويأتي ذلك مع استعدادها لمنافسة \"آبل\" التي طرحت أمس أول جوالاتها القابلة للطي \"ديو\" بسعر 1999 دولارًا، وذلك تحت قيادة مديرها التنفيذي الجديد \"جون تيرنس\". واعتمدت الشركة الأمريكية تص",
+   "fetched_at_utc": "2026-09-10T06:21:29Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 0.55,
+   "raw_published": "Thu, 10 Sep 2026 09:13:00 GMT",
+   "time_adjusted": "riyadh_local",
+   "id": "76b5503e115c",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [
+    {
+     "code": "AAPL",
+     "name_ar": "أبل",
+     "market": "us"
+    }
+   ],
+   "summary_ar": "بدأت \"سامسونج\" حملة إعلانية خارجية عالمية للترويج لسلسلة \"جالاكسي زد فولد 8\" القابلة للطي، مستعرضة خبرتها وسبقها في السوق، عبر إعلانات رقمية في 6 معالم رئيسة في مدن كبرى حول العالم منذ الثاني من سبتمبر الجاري. ورفعت الشركة الكورية الجنوبية إعلانات في مدن كبرى مثل سيول وطوكيو ولندن، مستخدمة عبارات من بينها «مرحباً بكم في عالم الجوالات القابلة للطي» و«أخف جوال قابل للطي في العالم»، مع التركيز على نحافة أجهزتها وخفتها. ويأتي ذلك مع استعدادها لمنافسة \"آبل\" التي طرحت أمس أول جوالاتها القابلة للطي \"ديو\" بسعر 1999 دولارًا، وذلك تحت قيادة مديرها التنفيذي الجديد \"جون تيرنس\". واعتمدت الشركة الأمريكية تص",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:21:58Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.1,
+   "is_today": true
+  },
+  {
+   "title": "Jefferies Names Top Power and Utility Stocks for Fall",
+   "link": "https://www.investing.com/news/stock-market-news/jefferies-names-top-power-and-utility-stocks-for-fall-93CH-4894969",
+   "source": "Investing.com – Stock Market News",
+   "published_utc": "2026-09-10T06:07:42Z",
+   "published_riyadh": "2026-09-10 09:07:42",
+   "precision": "second",
+   "summary": "",
+   "fetched_at_utc": "2026-09-10T06:21:29Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.55,
+   "raw_published": "2026-09-10 06:07:42",
+   "market_hint": "us",
+   "id": "ce2506d47783",
+   "market": "us",
+   "signal": "pos",
+   "tickers": [],
+   "summary_ar": "Jefferies Names Top Power and Utility Stocks for Fall",
+   "beneficiary": {
+    "name": "المرافق",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 1,
+    "why": "مشاريع الكهرباء والمياه والطاقة المتجددة تدعم قطاع المرافق"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [
+    "utilities_sector"
+   ],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:21:58Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.2,
+   "is_today": true
+  },
+  {
+   "title": "Germany’s annual inflation rises to 2.9% in August",
+   "link": "https://seekingalpha.com/news/4641438-germanys-annual-inflation-rises-to-29-in-august?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
+   "source": "Seeking Alpha – Market News",
+   "published_utc": "2026-09-10T06:06:43Z",
+   "published_riyadh": "2026-09-10 09:06:43",
+   "precision": "second",
+   "summary": "",
+   "fetched_at_utc": "2026-09-10T06:21:29Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.55,
+   "raw_published": "Thu, 10 Sep 2026 02:06:43 -0400",
+   "market_hint": "us",
+   "id": "a48d515efd60",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "Germany’s annual inflation rises to 2.9% in August",
+   "beneficiary": {
+    "name": "البنوك",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "التجزئة",
+    "why": "أكبر أثر سلبي بحسب القواعد"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 1,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": -1,
+    "food": -1,
+    "utilities": 0,
+    "why": "التضخم يضغط على القوة الشرائية ويؤجل خفض الفائدة"
+   },
+   "impact_market": "both",
+   "cf": 1,
+   "rules": [
+    "inflation"
+   ],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:21:58Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.3,
+   "is_today": true
+  },
+  {
+   "title": "Is Charter Communications Stock Underperforming the Nasdaq? - barchart.com",
+   "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNbXctR3djQ3d3bmI4TVRMcDRCam55WG11UEw1YzEtdTJNX2c0QV9hZWtCNVZLTzU5NmZfaHoyVFVOUUVOT0FGWFN5U0x3NklFVzVoQ3BxNXU5eDNLT1JWbzJneTB4dEloZ1pIajdYMURhN0J4YlpVLU1za3hVZzc1ZVlzc284QzJxeEJWVU9SVTc5aHlNOVNHMWI5QjdnV2hIaG1LeA?oc=5",
+   "source": "barchart.com (عبر Google News – S&P Nasdaq Dow)",
+   "published_utc": "2026-09-10T06:05:11Z",
+   "published_riyadh": "2026-09-10 09:05:11",
+   "precision": "second",
+   "summary": "Is Charter Communications Stock Underperforming the Nasdaq? barchart.com",
+   "fetched_at_utc": "2026-09-10T06:21:29Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.7,
+   "raw_published": "Thu, 10 Sep 2026 06:05:11 GMT",
+   "market_hint": "us",
+   "id": "40c0662a5bfe",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "Is Charter Communications Stock Underperforming the Nasdaq? barchart.com",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:21:58Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.3,
+   "is_today": true
+  },
+  {
+   "title": "Taiwan stocks lower at close of trade; Taiwan Weighted down 0.52%",
+   "link": "https://www.investing.com/news/stock-market-news/taiwan-stocks-lower-at-close-of-trade-taiwan-weighted-down-052-4894966",
+   "source": "Investing.com – Stock Market News",
+   "published_utc": "2026-09-10T06:05:04Z",
+   "published_riyadh": "2026-09-10 09:05:04",
+   "precision": "second",
+   "summary": "",
+   "fetched_at_utc": "2026-09-10T06:21:29Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.55,
+   "raw_published": "2026-09-10 06:05:04",
+   "market_hint": "us",
+   "id": "170671489bc3",
+   "market": "us",
+   "signal": "neg",
+   "tickers": [],
+   "summary_ar": "Taiwan stocks lower at close of trade; Taiwan Weighted down 0.52%",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "الشركات الصغيرة",
+    "why": "أكبر أثر سلبي بحسب القواعد"
+   },
+   "impact": {
+    "energy": -1,
+    "banks": -1,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": -2,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "إغلاق سلبي للمؤشر يعكس ضغط بيع وتراجع شهية المخاطرة"
+   },
+   "impact_market": "us",
+   "cf": 2,
+   "rules": [
+    "market_down"
+   ],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:21:58Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.3,
    "is_today": true
   },
   {
@@ -934,7 +1644,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.1,
+   "age_hours": 0.3,
    "is_today": true
   },
   {
@@ -987,7 +1697,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.1,
+   "age_hours": 0.3,
    "is_today": true
   },
   {
@@ -1040,7 +1750,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.1,
+   "age_hours": 0.3,
    "is_today": true
   },
   {
@@ -1093,7 +1803,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.1,
+   "age_hours": 0.3,
    "is_today": true
   },
   {
@@ -1146,7 +1856,64 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:09:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.1,
+   "age_hours": 0.3,
+   "is_today": true
+  },
+  {
+   "title": "Stock Market: Will S&P 500 Open Up or Down Today?",
+   "link": "f0ee51ee-f2da-3804-a3a6-99b75e331570",
+   "source": "Yahoo Finance – Headlines",
+   "published_utc": "2026-09-10T06:02:33Z",
+   "published_riyadh": "2026-09-10 09:02:33",
+   "precision": "second",
+   "summary": "U.S. stock futures are trending higher early Thursday as investors evaluate an impending wave of inflation data, crucial tech earnings, and volatile geopolitical rhetoric. The Polymarket (CRYPTO: POL) crowd is leaning heavily bullish for the Sept. 10 trading session, with...",
+   "fetched_at_utc": "2026-09-10T06:21:29Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 1.0,
+   "raw_published": "Thu, 10 Sep 2026 06:02:33 +0000",
+   "market_hint": "us",
+   "id": "9d2af6ade118",
+   "market": "us",
+   "signal": "pos",
+   "tickers": [],
+   "summary_ar": "U.S. stock futures are trending higher early Thursday as investors evaluate an impending wave of inflation data, crucial tech earnings, and volatile geopolitical rhetoric. The Polymarket (CRYPTO: POL) crowd is leaning heavily bullish for the Sept. 10 trading session, with...",
+   "beneficiary": {
+    "name": "البنوك",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "التجزئة",
+    "why": "أكبر أثر سلبي بحسب القواعد"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 1,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 1,
+    "smallcaps": 0,
+    "telecom": 1,
+    "health": 0,
+    "retail": -1,
+    "food": -1,
+    "utilities": 0,
+    "why": "إعلان نتائج مالية · الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات · التضخم يضغط على القوة الشرائية ويؤجل خفض الفائدة"
+   },
+   "impact_market": "both",
+   "cf": 1,
+   "rules": [
+    "earnings_generic",
+    "tech_sector",
+    "inflation"
+   ],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:21:58Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.3,
    "is_today": true
   },
   {
@@ -1206,7 +1973,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.2,
+   "age_hours": 0.4,
    "is_today": true
   },
   {
@@ -1262,7 +2029,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.2,
+   "age_hours": 0.4,
    "is_today": true
   },
   {
@@ -1318,7 +2085,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.4,
+   "age_hours": 0.6,
    "is_today": true
   },
   {
@@ -1371,7 +2138,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.4,
+   "age_hours": 0.6,
    "is_today": true
   },
   {
@@ -1424,7 +2191,60 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.4,
+   "age_hours": 0.6,
+   "is_today": true
+  },
+  {
+   "title": "ReNew Energy Global (NASDAQ:RNW) Stock Price Down 0.1% - What's Next? - MarketBeat",
+   "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNWk5vaFN1OUQ1VGw0cWFZRmZqc283cnlwY210U3hRWjFDLXcycHphdkg3d0k4WFpvRFhCYnZZa05YbVA4Y3pOVS0yMmhOSUhsNDF4dHQzZEV6MHVfVG5xLUwzTE9HdHlocndsLXlSTGhGbW9Nbzl6NVlaUVU5TlNHQVF6VkFrWk1TdWpSODBzUzdqbFdSWF9HaWQ2Mzh6RWJJNDZZcGRCcUhuX3NCdkEyX2pkdFFqT2Q1dnVBQnd3?oc=5",
+   "source": "MarketBeat (عبر Google News – S&P Nasdaq Dow)",
+   "published_utc": "2026-09-10T05:47:33Z",
+   "published_riyadh": "2026-09-10 08:47:33",
+   "precision": "second",
+   "summary": "ReNew Energy Global (NASDAQ:RNW) Stock Price Down 0.1% - What's Next? MarketBeat",
+   "fetched_at_utc": "2026-09-10T06:21:29Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.7,
+   "raw_published": "Thu, 10 Sep 2026 05:47:33 GMT",
+   "market_hint": "us",
+   "id": "6f13debe8dbd",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "summary_ar": "ReNew Energy Global (NASDAQ:RNW) Stock Price Down 0.1% - What's Next? MarketBeat",
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "first_seen_utc": "2026-09-10T06:21:58Z",
+   "day_local": "2026-09-10",
+   "age_hours": 0.6,
    "is_today": true
   },
   {
@@ -1480,7 +2300,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.4,
+   "age_hours": 0.6,
    "is_today": true
   },
   {
@@ -1536,7 +2356,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.6,
+   "age_hours": 0.8,
    "is_today": true
   },
   {
@@ -1591,7 +2411,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.7,
+   "age_hours": 0.9,
    "is_today": true
   },
   {
@@ -1646,7 +2466,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:09:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.8,
+   "age_hours": 1.0,
    "is_today": true
   },
   {
@@ -1699,7 +2519,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.8,
+   "age_hours": 1.0,
    "is_today": true
   },
   {
@@ -1755,7 +2575,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.2,
+   "age_hours": 1.4,
    "is_today": true
   },
   {
@@ -1810,7 +2630,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.2,
+   "age_hours": 1.4,
    "is_today": true
   },
   {
@@ -1863,7 +2683,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.2,
+   "age_hours": 1.4,
    "is_today": true
   },
   {
@@ -1919,7 +2739,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.3,
+   "age_hours": 1.5,
    "is_today": true
   },
   {
@@ -1975,7 +2795,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.3,
+   "age_hours": 1.5,
    "is_today": true
   },
   {
@@ -2030,7 +2850,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.3,
+   "age_hours": 1.5,
    "is_today": true
   },
   {
@@ -2086,7 +2906,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.8,
+   "age_hours": 2.0,
    "is_today": true
   },
   {
@@ -2141,7 +2961,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.9,
+   "age_hours": 2.1,
    "is_today": true
   },
   {
@@ -2196,7 +3016,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.9,
+   "age_hours": 2.1,
    "is_today": true
   },
   {
@@ -2252,7 +3072,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.9,
+   "age_hours": 2.1,
    "is_today": true
   },
   {
@@ -2308,7 +3128,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 2.0,
+   "age_hours": 2.2,
    "is_today": true
   },
   {
@@ -2361,7 +3181,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 2.1,
+   "age_hours": 2.3,
    "is_today": true
   },
   {
@@ -2416,7 +3236,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 2.2,
+   "age_hours": 2.4,
    "is_today": true
   },
   {
@@ -2469,7 +3289,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 2.3,
+   "age_hours": 2.5,
    "is_today": true
   },
   {
@@ -2527,7 +3347,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 2.7,
+   "age_hours": 2.9,
    "is_today": true
   },
   {
@@ -2580,7 +3400,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.1,
+   "age_hours": 3.3,
    "is_today": true
   },
   {
@@ -2636,7 +3456,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.2,
+   "age_hours": 3.4,
    "is_today": true
   },
   {
@@ -2689,7 +3509,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.2,
+   "age_hours": 3.4,
    "is_today": true
   },
   {
@@ -2745,7 +3565,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.2,
+   "age_hours": 3.4,
    "is_today": true
   },
   {
@@ -2800,7 +3620,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.6,
+   "age_hours": 3.8,
    "is_today": true
   },
   {
@@ -2853,7 +3673,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.7,
+   "age_hours": 3.9,
    "is_today": true
   },
   {
@@ -2908,7 +3728,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.7,
+   "age_hours": 3.9,
    "is_today": true
   },
   {
@@ -2969,7 +3789,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.7,
+   "age_hours": 3.9,
    "is_today": true
   },
   {
@@ -3030,7 +3850,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:09:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.7,
+   "age_hours": 3.9,
    "is_today": true
   },
   {
@@ -3085,7 +3905,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.8,
+   "age_hours": 4.0,
    "is_today": true
   },
   {
@@ -3141,7 +3961,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.0,
+   "age_hours": 4.2,
    "is_today": true
   },
   {
@@ -3197,7 +4017,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.3,
+   "age_hours": 4.5,
    "is_today": true
   },
   {
@@ -3252,7 +4072,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.6,
+   "age_hours": 4.8,
    "is_today": true
   },
   {
@@ -3307,7 +4127,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.7,
+   "age_hours": 4.9,
    "is_today": true
   },
   {
@@ -3363,7 +4183,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.9,
+   "age_hours": 5.1,
    "is_today": true
   },
   {
@@ -3419,7 +4239,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.2,
+   "age_hours": 5.4,
    "is_today": true
   },
   {
@@ -3475,7 +4295,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.2,
+   "age_hours": 5.4,
    "is_today": true
   },
   {
@@ -3530,7 +4350,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.2,
+   "age_hours": 5.4,
    "is_today": true
   },
   {
@@ -3585,7 +4405,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.3,
+   "age_hours": 5.5,
    "is_today": true
   },
   {
@@ -3640,7 +4460,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.3,
+   "age_hours": 5.5,
    "is_today": true
   },
   {
@@ -3695,7 +4515,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.3,
+   "age_hours": 5.5,
    "is_today": true
   },
   {
@@ -3751,7 +4571,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.7,
+   "age_hours": 5.9,
    "is_today": true
   },
   {
@@ -3806,7 +4626,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.7,
+   "age_hours": 5.9,
    "is_today": true
   },
   {
@@ -3858,7 +4678,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.8,
+   "age_hours": 6.0,
    "is_today": true
   },
   {
@@ -3914,833 +4734,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.9,
-   "is_today": true
-  },
-  {
-   "title": "Energy Transfer preparing to switch primary listing to Texas from NYSE - WSJ",
-   "link": "https://seekingalpha.com/news/4641408-energy-transfer-preparing-to-switch-primary-listing-to-texas-from-nyse-wsj?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-   "source": "Seeking Alpha – Market News",
-   "published_utc": "2026-09-10T00:13:55Z",
-   "published_riyadh": "2026-09-10 03:13:55",
-   "precision": "second",
-   "summary": "",
-   "fetched_at_utc": "2026-09-10T01:38:46Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 0.7,
-   "raw_published": "Wed, 09 Sep 2026 20:13:55 -0400",
-   "market_hint": "us",
-   "id": "65f276a1cd5c",
-   "market": "us",
-   "signal": "pos",
-   "tickers": [],
-   "summary_ar": "Energy Transfer preparing to switch primary listing to Texas from NYSE - WSJ",
-   "beneficiary": {
-    "name": "البنوك",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 1,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 1,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "الطروحات تعمق السوق وتدعم عمولات البنوك الاستثمارية، مع سحب سيولة مؤقت من الأسهم القائمة"
-   },
-   "impact_market": "us",
-   "cf": 2,
-   "rules": [
-    "ipo"
-   ],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T01:39:14Z",
-   "day_local": "2026-09-10",
-   "age_hours": 5.9,
-   "is_today": true
-  },
-  {
-   "title": "Dow Jones Futures: Oil Prices Keep Rising But Market Hasn't Broken Yet. Inflation Data Due. - Investor's Business Daily",
-   "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOME10TE03THRKWjFfQ0JQcm5PdDZaTUczbEtRX2ZXVHA4bWJkaGdENWVQTEZPd1pLaWR1Si0zMXR0Q3haWVVZa1hqNDhlajRzZUctbmd1ZGlEdjhfdngtbkdvNUs5VGdXSmw3S0xBVGp2V3JUYmN4ZXE0OHJRVTY3TUtZVGhSMTdNVlNzU2tkdzJiUVlfdF90cTE1UEFrcjNfUnZwb2JFN3VJYktJdWVCcGlGMGNKVkRFdFJnOEItVmhFNkJyUU1Eek5sYmp3R28?oc=5",
-   "source": "Investor's Business Daily (عبر Google News – S&P Nasdaq Dow)",
-   "published_utc": "2026-09-10T00:12:00Z",
-   "published_riyadh": "2026-09-10 03:12:00",
-   "precision": "second",
-   "summary": "Dow Jones Futures: Oil Prices Keep Rising But Market Hasn't Broken Yet. Inflation Data Due. Investor's Business Daily",
-   "fetched_at_utc": "2026-09-10T01:38:46Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 1.0,
-   "raw_published": "Thu, 10 Sep 2026 00:12:00 GMT",
-   "market_hint": "us",
-   "id": "d92790d526da",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "Dow Jones Futures: Oil Prices Keep Rising But Market Hasn't Broken Yet. Inflation Data Due. Investor's Business Daily",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "التجزئة",
-    "why": "أكبر أثر سلبي بحسب القواعد"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 1,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": -1,
-    "food": -1,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · التضخم يضغط على القوة الشرائية ويؤجل خفض الفائدة"
-   },
-   "impact_market": "both",
-   "cf": 1,
-   "rules": [
-    "oil_generic",
-    "inflation"
-   ],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T01:39:14Z",
-   "day_local": "2026-09-10",
-   "age_hours": 6.0,
-   "is_today": true
-  },
-  {
-   "title": "SPY | State Street SPDR S&P 500 ETF Trust Overview - MarketWatch",
-   "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE45bF9yWVhBc0szV3NkUXRaeE1NRVhrS3lLZThOVHVRYm1UN0ZIRS1JUGFGTDFpSk16WXg0V18zZ1ppdlJ3Wjg0dlcyaHF5WDNVOVFvaWNTdEJNQQ?oc=5",
-   "source": "MarketWatch (عبر Google News – MarketWatch)",
-   "published_utc": "2026-09-10T00:05:36Z",
-   "published_riyadh": "2026-09-10 03:05:36",
-   "precision": "second",
-   "summary": "SPY | State Street SPDR S&P 500 ETF Trust Overview MarketWatch",
-   "fetched_at_utc": "2026-09-10T06:05:06Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 0.7,
-   "raw_published": "Thu, 10 Sep 2026 00:05:36 GMT",
-   "market_hint": "us",
-   "id": "ee8841aaa4b7",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "SPY | State Street SPDR S&P 500 ETF Trust Overview MarketWatch",
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T06:05:37Z",
-   "day_local": "2026-09-10",
    "age_hours": 6.1,
-   "is_today": true
-  },
-  {
-   "title": "وول ستريت جورنال: مستشارو ترامب يستعدون لاحتمال استمرار حرب إيران حتى نهاية ولايته - البوابة نيوز",
-   "link": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE54bkZ5WldaeEJORE1pVS12QndsV3I4RS16OGZPc01qRHVreFRZcEhaUDQ0NzdFRTBaVDlIVjNmOXg0aGRxaHRDYkdURnI?oc=5",
-   "source": "البوابة نيوز (عبر Google News – الأسهم الأمريكية)",
-   "published_utc": "2026-09-09T23:59:00Z",
-   "published_riyadh": "2026-09-10 02:59:00",
-   "precision": "second",
-   "summary": "وول ستريت جورنال: مستشارو ترامب يستعدون لاحتمال استمرار حرب إيران حتى نهاية ولايته البوابة نيوز",
-   "fetched_at_utc": "2026-09-10T01:38:46Z",
-   "lang": "ar",
-   "priority": 3,
-   "relevance": 0.55,
-   "raw_published": "Wed, 09 Sep 2026 23:59:00 GMT",
-   "market_hint": "us",
-   "id": "95da8402f43a",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "وول ستريت جورنال: مستشارو ترامب يستعدون لاحتمال استمرار حرب إيران حتى نهاية ولايته البوابة نيوز",
-   "beneficiary": {
-    "name": "العقار",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 1,
-    "cement": 1,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص القطاع العقاري وسلسلة البناء"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [
-    "realestate_sector"
-   ],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T01:39:14Z",
-   "day_local": "2026-09-10",
-   "age_hours": 6.2,
-   "is_today": true
-  },
-  {
-   "title": "وول ستريت جورنال: كبار مستشاري ترامب يواجهون احتمال استمرار الحرب مع إيران حتى نهاية ولايته - شبكة تواصل الإخبارية",
-   "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1VME0zdk9zcVZTVUt3VUFpbDlyc3hHa2FWUG1GeEtYYWhfX001NkpraHN1dER2QzVUU1diUEsyd0xaS2N1bWQ3NnRkV2ptYklFRzRZ?oc=5",
-   "source": "شبكة تواصل الإخبارية (عبر Google News – الأسهم الأمريكية)",
-   "published_utc": "2026-09-09T23:57:49Z",
-   "published_riyadh": "2026-09-10 02:57:49",
-   "precision": "second",
-   "summary": "وول ستريت جورنال: كبار مستشاري ترامب يواجهون احتمال استمرار الحرب مع إيران حتى نهاية ولايته شبكة تواصل الإخبارية",
-   "fetched_at_utc": "2026-09-10T01:38:46Z",
-   "lang": "ar",
-   "priority": 3,
-   "relevance": 0.55,
-   "raw_published": "Wed, 09 Sep 2026 23:57:49 GMT",
-   "market_hint": "us",
-   "id": "75211fba163c",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "وول ستريت جورنال: كبار مستشاري ترامب يواجهون احتمال استمرار الحرب مع إيران حتى نهاية ولايته شبكة تواصل الإخبارية",
-   "beneficiary": {
-    "name": "العقار",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 1,
-    "cement": 1,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص القطاع العقاري وسلسلة البناء"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [
-    "realestate_sector"
-   ],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T01:39:14Z",
-   "day_local": "2026-09-10",
-   "age_hours": 6.2,
-   "is_today": true
-  },
-  {
-   "title": "وول ستريت جورنال: كبار مستشاري ترامب يواجهون احتمال استمرار الحرب مع إيران حتى نهاية ولايته - القدس العربي",
-   "link": "https://news.google.com/rss/articles/CBMixwJBVV95cUxPdzRxWDdxY2hUbXVnOTFNVDRKVGp6NDBCWDZ1M1pxNUczeWU2TXlnQmZsUGNPQWVVV1dZeGpkMF9XNFpGcGJTNmxReXpTZTFFSHdFOWpSeUlOcGtqaGZRdzRUNDdCUGxxUWVBTTBIZElfWlN2amZQZmNRVVQ4RkFEc1VTN0NhYlN2VkdfZ1pPVExCSGI5blFSSm5ZOW5NWTRyX0Vxd3FvOEYzbmU2aUZrb3RFcXhMSVNjOHZlbmZzVjlsUUprbUpnOWR6WWRSbTh5VldjRW9fa2hJYUtMck9RSnJQWFFMSkotdThRbWRsTUpvTC1mMm4zTU5nVWE5UldJVHdyOGlKOER1al9jUXd6V0E5bWVzRWdBWjU5d0ZPNUhlbWtQR2tILXVCSXA2TC04cko0OGlhWXl1WUpUa3JjZ0JzSV9yS0k?oc=5",
-   "source": "القدس العربي (عبر Google News – الأسهم الأمريكية)",
-   "published_utc": "2026-09-09T23:56:57Z",
-   "published_riyadh": "2026-09-10 02:56:57",
-   "precision": "second",
-   "summary": "وول ستريت جورنال: كبار مستشاري ترامب يواجهون احتمال استمرار الحرب مع إيران حتى نهاية ولايته القدس العربي",
-   "fetched_at_utc": "2026-09-10T01:38:46Z",
-   "lang": "ar",
-   "priority": 3,
-   "relevance": 0.55,
-   "raw_published": "Wed, 09 Sep 2026 23:56:57 GMT",
-   "market_hint": "us",
-   "id": "129a08abe976",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "وول ستريت جورنال: كبار مستشاري ترامب يواجهون احتمال استمرار الحرب مع إيران حتى نهاية ولايته القدس العربي",
-   "beneficiary": {
-    "name": "العقار",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 1,
-    "cement": 1,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص القطاع العقاري وسلسلة البناء"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [
-    "realestate_sector"
-   ],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T01:39:14Z",
-   "day_local": "2026-09-10",
-   "age_hours": 6.2,
-   "is_today": true
-  },
-  {
-   "title": "Review & Preview: Oil Up, Market Down",
-   "link": "54fecdca-29c3-32b1-8c91-284ec08bcc2c",
-   "source": "Yahoo Finance – Headlines",
-   "published_utc": "2026-09-09T23:55:00Z",
-   "published_riyadh": "2026-09-10 02:55:00",
-   "precision": "second",
-   "summary": "The long awaited $2,000 iPhone Duo is here but it’s the market that folded on Wednesday, as higher oil prices and lower bond buybacks weighed on investors’ moods. The Dow Jones Industrial Average lost 0.8% while the S&P 500 fell 0.5% and the Nasdaq Composite slipped 0.6%. John Ternus, its new chief executive, faces increasing pressure to introduce newer, exciting products rather than incremental enhancements to get consumers to upgrade their smartphones more frequently.",
-   "fetched_at_utc": "2026-09-10T01:38:46Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 1.0,
-   "raw_published": "Wed, 09 Sep 2026 23:55:00 +0000",
-   "market_hint": "us",
-   "id": "a26c5058a36a",
-   "market": "us",
-   "signal": "pos",
-   "tickers": [],
-   "summary_ar": "The long awaited $2,000 iPhone Duo is here but it’s the market that folded on Wednesday, as higher oil prices and lower bond buybacks weighed on investors’ moods. The Dow Jones Industrial Average lost 0.8% while the S&P 500 fell 0.5% and the Nasdaq Composite slipped 0.6%. John Ternus, its new chief executive, faces increasing pressure to introduce newer, exciting products rather than incremental enhancements to get consumers to upgrade their smartphones more frequently.",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 1,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 1,
-    "cement": 1,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · المشاريع الكبرى والبنية التحتية تدعم الطلب على الأسمنت ومواد البناء · تغير التصنيف الائتماني ينعكس على تكلفة التمويل السيادي والمصرفي"
-   },
-   "impact_market": "both",
-   "cf": 2,
-   "rules": [
-    "oil_generic",
-    "cement_sector",
-    "credit_rating",
-    "buyback"
-   ],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T01:39:14Z",
-   "day_local": "2026-09-10",
-   "age_hours": 6.2,
-   "is_today": true
-  },
-  {
-   "title": "3 Days of Losses: Dow, S&P, Nasdaq Slide as Yields, Oil Rise",
-   "link": "3220a61e-8b8c-38bf-887c-b202020c000c",
-   "source": "Yahoo Finance – Headlines",
-   "published_utc": "2026-09-09T23:46:00Z",
-   "published_riyadh": "2026-09-10 02:46:00",
-   "precision": "second",
-   "summary": "US stocks fell for a third day as the 10-year Treasury yield hit 4.857% and Brent crude jumped toward $101 a barrel.",
-   "fetched_at_utc": "2026-09-10T01:38:46Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 1.0,
-   "raw_published": "Wed, 09 Sep 2026 23:46:00 +0000",
-   "market_hint": "us",
-   "id": "dd5e13dad0bc",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "US stocks fell for a third day as the 10-year Treasury yield hit 4.857% and Brent crude jumped toward $101 a barrel.",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "العقار",
-    "why": "أكبر أثر سلبي بحسب القواعد"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 1,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": -1,
-    "cement": 0,
-    "tech": -1,
-    "smallcaps": -1,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · ارتفاع عوائد الخزانة الأمريكية يرفع تكلفة التمويل ويضغط على أسهم النمو والعقار، ويحسن هامش البنوك"
-   },
-   "impact_market": "both",
-   "cf": 2,
-   "rules": [
-    "oil_generic",
-    "treasury_yields"
-   ],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T01:39:14Z",
-   "day_local": "2026-09-10",
-   "age_hours": 6.4,
-   "is_today": true
-  },
-  {
-   "title": "3 Days of Losses: Dow, S&P, Nasdaq Slide as Yields, Oil Rise - beincrypto.com",
-   "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFA3b0xiSlB2LVd6bHhyQzFqeVgzX2pGMkhlTERnQXUxb0ZZazlfUmZBTkFZTzRVN01FbzVhNERZdFM3T2JkZzhaeGRYTlFxUlVLTzY5cFNwZmpPNXZPeFYtSUZEaFVacTh0?oc=5",
-   "source": "beincrypto.com (عبر Google News – S&P Nasdaq Dow)",
-   "published_utc": "2026-09-09T23:46:00Z",
-   "published_riyadh": "2026-09-10 02:46:00",
-   "precision": "second",
-   "summary": "3 Days of Losses: Dow, S&P, Nasdaq Slide as Yields, Oil Rise beincrypto.com",
-   "fetched_at_utc": "2026-09-10T01:38:46Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 1.0,
-   "raw_published": "Wed, 09 Sep 2026 23:46:00 GMT",
-   "market_hint": "us",
-   "id": "8c1ee18c6f9d",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "3 Days of Losses: Dow, S&P, Nasdaq Slide as Yields, Oil Rise beincrypto.com",
-   "beneficiary": {
-    "name": "الطاقة",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [
-    "oil_generic"
-   ],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T01:39:14Z",
-   "day_local": "2026-09-10",
-   "age_hours": 6.4,
-   "is_today": true
-  },
-  {
-   "title": "مخاطر خفية في وول ستريت: لماذا يقلق المحللون من هدوء الاسواق قبل الانتخابات - شبكة تواصل الإخبارية",
-   "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5vNHJ4SlB1aG9BWm4ySFRKU01fQUdNbnNjRUphT3Z5WTkyR0lMc1dRSjRmcFpsbUI4MkM0REw1aVAwdzhKdDF4c2o4UFBNQnpQbUUw?oc=5",
-   "source": "شبكة تواصل الإخبارية (عبر Google News – الأسهم الأمريكية)",
-   "published_utc": "2026-09-09T23:44:48Z",
-   "published_riyadh": "2026-09-10 02:44:48",
-   "precision": "second",
-   "summary": "مخاطر خفية في وول ستريت: لماذا يقلق المحللون من هدوء الاسواق قبل الانتخابات شبكة تواصل الإخبارية",
-   "fetched_at_utc": "2026-09-10T06:09:07Z",
-   "lang": "ar",
-   "priority": 3,
-   "relevance": 0.7,
-   "raw_published": "Wed, 09 Sep 2026 23:44:48 GMT",
-   "market_hint": "us",
-   "id": "2737cae5166c",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "مخاطر خفية في وول ستريت: لماذا يقلق المحللون من هدوء الاسواق قبل الانتخابات شبكة تواصل الإخبارية",
-   "beneficiary": {
-    "name": "العقار",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 1,
-    "cement": 1,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص القطاع العقاري وسلسلة البناء"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [
-    "realestate_sector"
-   ],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T06:09:37Z",
-   "day_local": "2026-09-10",
-   "age_hours": 6.4,
-   "is_today": true
-  },
-  {
-   "title": "Reflecting On Online Marketplace Stocks’ Q2 Earnings: EverQuote (NASDAQ:EVER) - StockStory",
-   "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNNDk5dmstTDFYNlM3LTFJejRVbG1feUxpMC14OUhRcWJLTnlIZGxfa1FYTGtVZ2xmcm9Ec016S0g1cU9zZmp6V3ZhZEpKbkQ0QlVqbHVnd3pJR3Nqc1ZNUUpXUG9BY3ZyS0pZNDBVUGdDYmtuUGhZVGR5ZlRQc1gxb05JVUVHUkFnN2lPSDVDX2YyTG1CSVlodFEyQUVUcFlEemJsQXFmNWdWOGFWOVY0eHU5aHJ3dTJwQVpwTk0yWnVTNWtWeGxMc3pQSQ?oc=5",
-   "source": "StockStory (عبر Google News – S&P Nasdaq Dow)",
-   "published_utc": "2026-09-09T23:44:03Z",
-   "published_riyadh": "2026-09-10 02:44:03",
-   "precision": "second",
-   "summary": "Reflecting On Online Marketplace Stocks’ Q2 Earnings: EverQuote (NASDAQ:EVER) StockStory",
-   "fetched_at_utc": "2026-09-10T06:05:06Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 0.85,
-   "raw_published": "Wed, 09 Sep 2026 23:44:03 GMT",
-   "market_hint": "us",
-   "id": "86c125ef260d",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "Reflecting On Online Marketplace Stocks’ Q2 Earnings: EverQuote (NASDAQ:EVER) StockStory",
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "إعلان نتائج مالية"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [
-    "earnings_generic"
-   ],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T06:05:37Z",
-   "day_local": "2026-09-10",
-   "age_hours": 6.4,
-   "is_today": true
-  },
-  {
-   "title": "Samsung, SK Hynix payouts test South Korea's reform drive as investors seek more - Reuters",
-   "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPTFRIYzlpZmdmblB0WC10ZXBVZFM4R1dUMlRjNUozLWJDVFEwbHB2VnpYTmVlX1AxQ0dPa0tvQ24wRkR6YV95VnZ2RmxFZUtWUGxoemJSZ0NoeDZCS3l1OC11SUNRZHFpVG5nNEFmeVpvZWw3UzliWWhNcGZ2a0dPUUlIWkJ0d3Q2Rnp3V3dyY3VZWUw0ekdaZzNyaEFja3pqQVAtVWR3ZWw3eGo0QnY2NnpVN3NjT29IODA3UmdNM0EtRjdfRjMtd2VB?oc=5",
-   "source": "Reuters (عبر Google News – S&P Nasdaq Dow)",
-   "published_utc": "2026-09-09T23:40:00Z",
-   "published_riyadh": "2026-09-10 02:40:00",
-   "precision": "second",
-   "summary": "Samsung, SK Hynix payouts test South Korea's reform drive as investors seek more Reuters",
-   "fetched_at_utc": "2026-09-10T01:38:46Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 0.55,
-   "raw_published": "Wed, 09 Sep 2026 23:40:00 GMT",
-   "market_hint": "us",
-   "id": "477882574712",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "Samsung, SK Hynix payouts test South Korea's reform drive as investors seek more Reuters",
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T01:39:14Z",
-   "day_local": "2026-09-10",
-   "age_hours": 6.5,
-   "is_today": true
-  },
-  {
-   "title": "Cathie Wood buys $6.5M of surging semiconductor stock",
-   "link": "e790a4cd-9378-3a64-accf-5b5b49097c0f",
-   "source": "Yahoo Finance – Headlines",
-   "published_utc": "2026-09-09T23:37:00Z",
-   "published_riyadh": "2026-09-10 02:37:00",
-   "precision": "second",
-   "summary": "Here are Cathie Wood’s latest moves.",
-   "fetched_at_utc": "2026-09-10T01:38:46Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 0.7,
-   "raw_published": "Wed, 09 Sep 2026 23:37:00 +0000",
-   "market_hint": "us",
-   "id": "e669e6aea149",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "Here are Cathie Wood’s latest moves.",
-   "beneficiary": {
-    "name": "التقنية",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 1,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص قطاع أشباه الموصلات الأمريكي"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [
-    "us_semis"
-   ],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T01:39:14Z",
-   "day_local": "2026-09-10",
-   "age_hours": 6.5,
-   "is_today": true
-  },
-  {
-   "title": "مخاطر خفية في وول ستريت: لماذا يقلق المحللون من هدوء الاسواق قبل الانتخابات - الوقائع الإخبارية",
-   "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9DbUdyVjZKeWctUkRZcGx5cGhyY2Mza0J0YlVQUnZHRnR1OWdydDdKa3lyaXpIeUdKTU50LXF2YUNzdTVXUURWUUdSSQ?oc=5",
-   "source": "الوقائع الإخبارية (عبر Google News – الأسهم الأمريكية)",
-   "published_utc": "2026-09-09T23:34:08Z",
-   "published_riyadh": "2026-09-10 02:34:08",
-   "precision": "second",
-   "summary": "مخاطر خفية في وول ستريت: لماذا يقلق المحللون من هدوء الاسواق قبل الانتخابات الوقائع الإخبارية",
-   "fetched_at_utc": "2026-09-10T01:38:46Z",
-   "lang": "ar",
-   "priority": 3,
-   "relevance": 0.7,
-   "raw_published": "Wed, 09 Sep 2026 23:34:08 GMT",
-   "market_hint": "us",
-   "id": "5c0224f25b41",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "مخاطر خفية في وول ستريت: لماذا يقلق المحللون من هدوء الاسواق قبل الانتخابات الوقائع الإخبارية",
-   "beneficiary": {
-    "name": "العقار",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 1,
-    "cement": 1,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص القطاع العقاري وسلسلة البناء"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [
-    "realestate_sector"
-   ],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T01:39:14Z",
-   "day_local": "2026-09-10",
-   "age_hours": 6.6,
-   "is_today": true
-  },
-  {
-   "title": "Gold Steadies Near $4,400 as Traders Weigh Fed Rate-Hike Path - Bloomberg.com",
-   "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOaFRXcGQwNTFkN3pOdUk5d28xYXFuUzk5elZ0cEotYUpLY3lJTnAwMUs3OWVVMTIzQ1M0d2c0N0QzcG13aDJNWllJVGJ3THdmdnhad1JmaUtwemVERFVVY2tHamV5a0JWaXJJa05ZenhLdGtKci0xSHdqWlpBTkxjVEQ0a3MxUFVYVTJXZDJGc0VUazVPa1JXRTBsa1k5NUdTeEZLVkp0ZHdMMEh4MlNqeg?oc=5",
-   "source": "Bloomberg.com (عبر Google News – Fed rates)",
-   "published_utc": "2026-09-09T23:33:18Z",
-   "published_riyadh": "2026-09-10 02:33:18",
-   "precision": "second",
-   "summary": "Gold Steadies Near $4,400 as Traders Weigh Fed Rate-Hike Path Bloomberg.com",
-   "fetched_at_utc": "2026-09-10T01:38:46Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 0.55,
-   "raw_published": "Wed, 09 Sep 2026 23:33:18 GMT",
-   "market_hint": "us",
-   "id": "071943f525cc",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "summary_ar": "Gold Steadies Near $4,400 as Traders Weigh Fed Rate-Hike Path Bloomberg.com",
-   "beneficiary": {
-    "name": "البنوك",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "العقار",
-    "why": "أكبر أثر سلبي بحسب القواعد"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 1,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": -1,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "أخبار الفائدة تؤثر مباشرة على البنوك والعقار بسبب ربط الريال بالدولار"
-   },
-   "impact_market": "both",
-   "cf": 1,
-   "rules": [
-    "fed_generic"
-   ],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T01:39:14Z",
-   "day_local": "2026-09-10",
-   "age_hours": 6.6,
    "is_today": true
   },
   {
@@ -4796,7 +4790,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.5,
+   "age_hours": 0.7,
    "is_today": true
   },
   {
@@ -4851,7 +4845,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.9,
+   "age_hours": 1.1,
    "is_today": true
   },
   {
@@ -4906,7 +4900,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.6,
+   "age_hours": 1.8,
    "is_today": true
   },
   {
@@ -4961,7 +4955,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.1,
+   "age_hours": 3.3,
    "is_today": true
   },
   {
@@ -5017,7 +5011,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.2,
+   "age_hours": 3.4,
    "is_today": true
   },
   {
@@ -5070,7 +5064,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.4,
+   "age_hours": 3.6,
    "is_today": true
   },
   {
@@ -5124,7 +5118,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.1,
+   "age_hours": 4.3,
    "is_today": true
   },
   {
@@ -5179,7 +5173,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 4.8,
+   "age_hours": 5.0,
    "is_today": true
   },
   {
@@ -5232,7 +5226,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.6,
+   "age_hours": 5.8,
    "is_today": true
   },
   {
@@ -5288,7 +5282,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.0,
+   "age_hours": 6.2,
    "is_today": true
   },
   {
@@ -5341,7 +5335,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.7,
+   "age_hours": 6.9,
    "is_today": true
   },
   {
@@ -5396,7 +5390,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.3,
+   "age_hours": 7.5,
    "is_today": true
   },
   {
@@ -5451,7 +5445,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.4,
+   "age_hours": 7.6,
    "is_today": true
   },
   {
@@ -5505,7 +5499,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.1,
+   "age_hours": 8.3,
    "is_today": true
   },
   {
@@ -5561,7 +5555,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.2,
+   "age_hours": 8.4,
    "is_today": true
   },
   {
@@ -5616,7 +5610,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.7,
+   "age_hours": 8.9,
    "is_today": true
   },
   {
@@ -5671,7 +5665,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.9,
+   "age_hours": 9.1,
    "is_today": true
   },
   {
@@ -5726,7 +5720,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 9.2,
+   "age_hours": 9.4,
    "is_today": true
   },
   {
@@ -5782,7 +5776,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.2,
+   "age_hours": 0.4,
    "is_today": true
   },
   {
@@ -5836,7 +5830,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.4,
+   "age_hours": 0.6,
    "is_today": true
   },
   {
@@ -5891,7 +5885,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.8,
+   "age_hours": 1.0,
    "is_today": true
   },
   {
@@ -5947,7 +5941,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 0.8,
+   "age_hours": 1.0,
    "is_today": true
   },
   {
@@ -6002,7 +5996,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.6,
+   "age_hours": 7.8,
    "is_today": true
   },
   {
@@ -6057,7 +6051,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.8,
+   "age_hours": 8.0,
    "is_today": true
   },
   {
@@ -6113,7 +6107,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.8,
+   "age_hours": 8.0,
    "is_today": true
   },
   {
@@ -6165,7 +6159,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.4,
+   "age_hours": 9.6,
    "is_today": false
   },
   {
@@ -6217,7 +6211,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.4,
+   "age_hours": 9.6,
    "is_today": false
   },
   {
@@ -6275,7 +6269,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.9,
+   "age_hours": 10.1,
    "is_today": false
   },
   {
@@ -6330,7 +6324,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.5,
+   "age_hours": 10.7,
    "is_today": false
   },
   {
@@ -6384,7 +6378,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.5,
+   "age_hours": 10.7,
    "is_today": false
   },
   {
@@ -6436,7 +6430,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:09:37Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.7,
+   "age_hours": 10.9,
    "is_today": false
   },
   {
@@ -6496,7 +6490,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.8,
+   "age_hours": 11.0,
    "is_today": false
   },
   {
@@ -6548,7 +6542,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.8,
+   "age_hours": 11.1,
    "is_today": false
   },
   {
@@ -6602,7 +6596,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.0,
+   "age_hours": 11.2,
    "is_today": false
   },
   {
@@ -6665,7 +6659,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.1,
+   "age_hours": 11.3,
    "is_today": false
   },
   {
@@ -6725,7 +6719,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.2,
+   "age_hours": 11.4,
    "is_today": false
   },
   {
@@ -6777,7 +6771,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.5,
+   "age_hours": 11.7,
    "is_today": false
   },
   {
@@ -6838,7 +6832,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.6,
+   "age_hours": 11.8,
    "is_today": false
   },
   {
@@ -6898,7 +6892,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.6,
+   "age_hours": 11.8,
    "is_today": false
   },
   {
@@ -6956,7 +6950,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.0,
+   "age_hours": 12.2,
    "is_today": false
   },
   {
@@ -7010,7 +7004,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.0,
+   "age_hours": 12.2,
    "is_today": false
   },
   {
@@ -7062,7 +7056,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.0,
+   "age_hours": 12.3,
    "is_today": false
   },
   {
@@ -7116,7 +7110,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.2,
+   "age_hours": 12.4,
    "is_today": false
   },
   {
@@ -7170,7 +7164,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.4,
+   "age_hours": 12.6,
    "is_today": false
   },
   {
@@ -7222,7 +7216,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.4,
+   "age_hours": 12.6,
    "is_today": false
   },
   {
@@ -7274,7 +7268,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.5,
+   "age_hours": 12.7,
    "is_today": false
   },
   {
@@ -7326,7 +7320,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.8,
+   "age_hours": 13.0,
    "is_today": false
   },
   {
@@ -7378,7 +7372,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.1,
+   "age_hours": 13.3,
    "is_today": false
   },
   {
@@ -7432,7 +7426,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.2,
+   "age_hours": 13.4,
    "is_today": false
   },
   {
@@ -7484,7 +7478,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.2,
+   "age_hours": 13.4,
    "is_today": false
   },
   {
@@ -7536,7 +7530,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.5,
+   "age_hours": 13.7,
    "is_today": false
   },
   {
@@ -7590,7 +7584,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.5,
+   "age_hours": 13.7,
    "is_today": false
   },
   {
@@ -7650,7 +7644,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.6,
+   "age_hours": 13.9,
    "is_today": false
   },
   {
@@ -7702,7 +7696,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.8,
+   "age_hours": 14.0,
    "is_today": false
   },
   {
@@ -7762,7 +7756,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.9,
+   "age_hours": 14.1,
    "is_today": false
   },
   {
@@ -7818,7 +7812,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.2,
+   "age_hours": 9.4,
    "is_today": false
   },
   {
@@ -7871,7 +7865,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.2,
+   "age_hours": 9.4,
    "is_today": false
   },
   {
@@ -7927,7 +7921,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.2,
+   "age_hours": 9.4,
    "is_today": false
   },
   {
@@ -7983,7 +7977,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.3,
+   "age_hours": 9.5,
    "is_today": false
   },
   {
@@ -8036,7 +8030,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.3,
+   "age_hours": 9.5,
    "is_today": false
   },
   {
@@ -8089,7 +8083,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.4,
+   "age_hours": 9.6,
    "is_today": false
   },
   {
@@ -8142,7 +8136,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.4,
+   "age_hours": 9.6,
    "is_today": false
   },
   {
@@ -8195,7 +8189,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.4,
+   "age_hours": 9.6,
    "is_today": false
   },
   {
@@ -8250,7 +8244,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.4,
+   "age_hours": 9.6,
    "is_today": false
   },
   {
@@ -8305,7 +8299,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.4,
+   "age_hours": 9.6,
    "is_today": false
   },
   {
@@ -8358,7 +8352,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.4,
+   "age_hours": 9.6,
    "is_today": false
   },
   {
@@ -8411,7 +8405,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.4,
+   "age_hours": 9.6,
    "is_today": false
   },
   {
@@ -8467,7 +8461,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.4,
+   "age_hours": 9.6,
    "is_today": false
   },
   {
@@ -8520,7 +8514,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.4,
+   "age_hours": 9.6,
    "is_today": false
   },
   {
@@ -8573,7 +8567,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.4,
+   "age_hours": 9.6,
    "is_today": false
   },
   {
@@ -8626,7 +8620,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.4,
+   "age_hours": 9.7,
    "is_today": false
   },
   {
@@ -8682,7 +8676,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.4,
+   "age_hours": 9.7,
    "is_today": false
   },
   {
@@ -8735,7 +8729,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.5,
+   "age_hours": 9.7,
    "is_today": false
   },
   {
@@ -8793,7 +8787,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.5,
+   "age_hours": 9.7,
    "is_today": false
   },
   {
@@ -8851,7 +8845,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.6,
+   "age_hours": 9.8,
    "is_today": false
   },
   {
@@ -8906,7 +8900,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.3,
+   "age_hours": 9.5,
    "is_today": false
   },
   {
@@ -8960,7 +8954,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.4,
+   "age_hours": 9.6,
    "is_today": false
   },
   {
@@ -9015,7 +9009,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.5,
+   "age_hours": 9.8,
    "is_today": false
   },
   {
@@ -9070,7 +9064,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.1,
+   "age_hours": 10.3,
    "is_today": false
   },
   {
@@ -9126,7 +9120,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.1,
+   "age_hours": 10.3,
    "is_today": false
   },
   {
@@ -9178,7 +9172,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.5,
+   "age_hours": 10.7,
    "is_today": false
   },
   {
@@ -9233,7 +9227,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 10.9,
+   "age_hours": 11.1,
    "is_today": false
   },
   {
@@ -9288,7 +9282,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.1,
+   "age_hours": 11.3,
    "is_today": false
   },
   {
@@ -9343,7 +9337,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.3,
+   "age_hours": 9.5,
    "is_today": false
   },
   {
@@ -9397,7 +9391,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 9.9,
+   "age_hours": 10.1,
    "is_today": false
   },
   {
@@ -9457,7 +9451,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 33.7,
+   "age_hours": 33.9,
    "is_today": false
   },
   {
@@ -9509,7 +9503,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 33.9,
+   "age_hours": 34.1,
    "is_today": false
   },
   {
@@ -9564,7 +9558,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 34.4,
+   "age_hours": 34.6,
    "is_today": false
   },
   {
@@ -9616,7 +9610,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 34.9,
+   "age_hours": 35.2,
    "is_today": false
   },
   {
@@ -9668,7 +9662,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.0,
+   "age_hours": 35.2,
    "is_today": false
   },
   {
@@ -9720,7 +9714,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.0,
+   "age_hours": 35.3,
    "is_today": false
   },
   {
@@ -9774,7 +9768,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.1,
+   "age_hours": 35.3,
    "is_today": false
   },
   {
@@ -9828,7 +9822,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.3,
+   "age_hours": 35.5,
    "is_today": false
   },
   {
@@ -9888,7 +9882,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.6,
+   "age_hours": 35.8,
    "is_today": false
   },
   {
@@ -9940,7 +9934,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.7,
+   "age_hours": 35.9,
    "is_today": false
   },
   {
@@ -9992,7 +9986,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 36.0,
+   "age_hours": 36.2,
    "is_today": false
   },
   {
@@ -10046,7 +10040,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 36.1,
+   "age_hours": 36.3,
    "is_today": false
   },
   {
@@ -10098,7 +10092,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 36.5,
+   "age_hours": 36.7,
    "is_today": false
   },
   {
@@ -10156,7 +10150,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 36.6,
+   "age_hours": 36.9,
    "is_today": false
   },
   {
@@ -10214,7 +10208,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.0,
+   "age_hours": 37.2,
    "is_today": false
   },
   {
@@ -10268,7 +10262,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.1,
+   "age_hours": 37.3,
    "is_today": false
   },
   {
@@ -10322,7 +10316,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.6,
+   "age_hours": 37.8,
    "is_today": false
   },
   {
@@ -10377,7 +10371,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.6,
+   "age_hours": 37.8,
    "is_today": false
   },
   {
@@ -10429,7 +10423,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.6,
+   "age_hours": 37.8,
    "is_today": false
   },
   {
@@ -10481,7 +10475,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.7,
+   "age_hours": 37.9,
    "is_today": false
   },
   {
@@ -10535,7 +10529,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.0,
+   "age_hours": 38.2,
    "is_today": false
   },
   {
@@ -10593,7 +10587,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.4,
+   "age_hours": 38.6,
    "is_today": false
   },
   {
@@ -10645,7 +10639,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.6,
+   "age_hours": 38.8,
    "is_today": false
   },
   {
@@ -10699,7 +10693,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.7,
+   "age_hours": 38.9,
    "is_today": false
   },
   {
@@ -10753,7 +10747,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.7,
+   "age_hours": 38.9,
    "is_today": false
   },
   {
@@ -10805,7 +10799,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.7,
+   "age_hours": 38.9,
    "is_today": false
   },
   {
@@ -10857,7 +10851,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.8,
+   "age_hours": 39.0,
    "is_today": false
   },
   {
@@ -10911,7 +10905,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.8,
+   "age_hours": 39.0,
    "is_today": false
   },
   {
@@ -10963,7 +10957,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.9,
+   "age_hours": 39.1,
    "is_today": false
   },
   {
@@ -11021,7 +11015,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.9,
+   "age_hours": 39.1,
    "is_today": false
   },
   {
@@ -11075,7 +11069,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.3,
+   "age_hours": 39.6,
    "is_today": false
   },
   {
@@ -11129,7 +11123,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.4,
+   "age_hours": 39.6,
    "is_today": false
   },
   {
@@ -11181,7 +11175,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.5,
+   "age_hours": 39.7,
    "is_today": false
   },
   {
@@ -11235,7 +11229,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.6,
+   "age_hours": 39.8,
    "is_today": false
   },
   {
@@ -11289,7 +11283,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.7,
+   "age_hours": 39.9,
    "is_today": false
   },
   {
@@ -11341,7 +11335,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.7,
+   "age_hours": 39.9,
    "is_today": false
   },
   {
@@ -11395,7 +11389,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.8,
+   "age_hours": 40.0,
    "is_today": false
   },
   {
@@ -11447,7 +11441,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.8,
+   "age_hours": 40.0,
    "is_today": false
   },
   {
@@ -11499,7 +11493,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.9,
+   "age_hours": 40.1,
    "is_today": false
   },
   {
@@ -11551,7 +11545,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.0,
+   "age_hours": 40.2,
    "is_today": false
   },
   {
@@ -11605,7 +11599,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.1,
+   "age_hours": 40.3,
    "is_today": false
   },
   {
@@ -11657,7 +11651,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.2,
+   "age_hours": 40.4,
    "is_today": false
   },
   {
@@ -11709,7 +11703,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.3,
+   "age_hours": 40.5,
    "is_today": false
   },
   {
@@ -11761,7 +11755,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 33.4,
+   "age_hours": 33.6,
    "is_today": false
   },
   {
@@ -11816,7 +11810,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-08",
-   "age_hours": 33.4,
+   "age_hours": 33.6,
    "is_today": false
   },
   {
@@ -11874,7 +11868,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.6,
+   "age_hours": 35.8,
    "is_today": false
   },
   {
@@ -11935,7 +11929,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 36.2,
+   "age_hours": 36.4,
    "is_today": false
   },
   {
@@ -11993,7 +11987,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 36.7,
+   "age_hours": 36.9,
    "is_today": false
   },
   {
@@ -12054,7 +12048,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-08",
-   "age_hours": 36.8,
+   "age_hours": 37.0,
    "is_today": false
   },
   {
@@ -12116,7 +12110,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.9,
+   "age_hours": 38.2,
    "is_today": false
   },
   {
@@ -12171,7 +12165,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 33.8,
+   "age_hours": 34.0,
    "is_today": false
   },
   {
@@ -12223,7 +12217,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.3,
+   "age_hours": 35.5,
    "is_today": false
   },
   {
@@ -12277,7 +12271,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 36.8,
+   "age_hours": 37.0,
    "is_today": false
   },
   {
@@ -12331,7 +12325,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.0,
+   "age_hours": 37.2,
    "is_today": false
   },
   {
@@ -12386,7 +12380,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.0,
+   "age_hours": 37.2,
    "is_today": false
   },
   {
@@ -12440,7 +12434,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.2,
+   "age_hours": 37.4,
    "is_today": false
   },
   {
@@ -12494,7 +12488,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.4,
+   "age_hours": 37.6,
    "is_today": false
   },
   {
@@ -12548,7 +12542,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.4,
+   "age_hours": 37.6,
    "is_today": false
   },
   {
@@ -12604,7 +12598,7 @@
    "relevance_penalized": true,
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 34.8,
+   "age_hours": 35.0,
    "is_today": false
   },
   {
@@ -12659,7 +12653,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.9,
+   "age_hours": 36.1,
    "is_today": false
   }
  ]
