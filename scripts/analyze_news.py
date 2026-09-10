@@ -1801,6 +1801,22 @@ def analyze(raw: dict[str, Any], rules: dict[str, Any], constituents: list[dict[
             it["fundamental"] = fundamental_rules(it, rules)
             it["fundamental_origin"] = "rules"
         it["analysis_note_ar"] = ANALYSIS_NOTE_AR
+        # Re-run the advice-language guard over cached wording on every pass, so
+        # archives analyzed before the guard was extended are rewritten too.
+        imp = it.get("impact")
+        if isinstance(imp, dict) and isinstance(imp.get("why"), str):
+            imp["why"] = sanitize_ar(imp["why"])
+        for side in ("beneficiary", "hurt"):
+            obj = it.get(side)
+            if isinstance(obj, dict):
+                for k in ("name", "why"):
+                    if isinstance(obj.get(k), str):
+                        obj[k] = sanitize_ar(obj[k])
+        fund = it.get("fundamental")
+        if isinstance(fund, dict):
+            for sec in fund.values():
+                if isinstance(sec, dict) and isinstance(sec.get("note_ar"), str):
+                    sec["note_ar"] = sanitize_ar(sec["note_ar"])
     add_day_fields(merged, now)
     merged.sort(key=lambda i: i.get("published_utc") or "", reverse=True)
 
