@@ -365,6 +365,8 @@ def test_analyze_cli(raw, tmp_path):
     arc = json.loads(archive.read_text(encoding="utf-8"))
     assert arc["count"] == len(raw["items"]) == len(arc["items"]) and arc["days"] == 7
     assert all("source_excerpt" in i and "summary" not in i for i in arc["items"])   # analysis input kept in the archive only
+    assert all(an._fundamental_valid(i["fundamental"]) and i["fundamental_origin"] == "rules" for i in arc["items"])  # cached in the archive
+    assert all(an._fundamental_valid(i["fundamental"]) for i in data["items"]) and len(data["method_ar"]) == 6
     # second run: nothing new to analyze, archive stable, view identical
     r = subprocess.run(cmd, capture_output=True, text=True, env=env)
     assert r.returncode == 0, r.stderr
@@ -1100,3 +1102,298 @@ def test_legacy_archive_fields_are_migrated(raw):
     assert arc[b["id"]]["brief_origin"] == "llm" and arc[b["id"]]["brief_ar"] == "موجز قديم كتبه النموذج بكلماته عن الخبر."
     assert arc[c["id"]]["brief_origin"] == "template" and an.shared_ngram(arc[c["id"]]["brief_ar"], c_excerpt) is None
     assert all(not set(i) & set(an.VIEW_DROP_FIELDS) and i["analysis_note_ar"] for i in res["items"])
+
+
+# ---------------------------------------------------------------- fundamental: owner's six-step method
+FUND_BASE = {"link": "https://x/fund", "published_utc": "2026-09-09T09:00:00Z", "published_riyadh": "2026-09-09 12:00:00",
+             "precision": "second", "fetched_at_utc": "2026-09-09T12:00:00Z", "lang": "en", "priority": 3, "relevance": 1.0}
+FUND_KEYS = ("scope", "credibility", "expectations", "horizon", "financials", "sentiment")
+
+
+def _fund(title, source="Reuters", excerpt="", **kw):
+    it = dict(FUND_BASE, title=title, source=source, source_excerpt=excerpt, **kw)
+    return _analyze_items([it])["items"][0]
+
+
+def _fund_clean(f):
+    for k in FUND_KEYS:
+        assert an.has_arabic(f[k]["note_ar"]) and an.has_arabic(f[k]["label_ar"])
+        assert not an.has_advice_language(f[k]["note_ar"]) and not an.has_advice_language(f[k]["label_ar"]), (k, f[k])
+
+
+def test_fundamental_shape_and_notes_are_clean(raw, us_raw):
+    res = _analyze_items(raw["items"] + us_raw["items"])
+    assert res["method_ar"] == an.METHOD_AR and len(res["method_ar"]) == 6
+    assert all(an.has_arabic(l) and not an.has_advice_language(l) for l in res["method_ar"])
+    for it in res["items"]:
+        f = it["fundamental"]
+        assert it["fundamental_origin"] == "rules" and set(f) == set(FUND_KEYS) and an._fundamental_valid(f)
+        assert f["scope"]["value"] in an.SCOPE_VALUES and f["scope"]["label_ar"] == an.SCOPE_LABEL_AR[f["scope"]["value"]]
+        assert f["credibility"]["tier"] in an.CRED_TIERS and f["credibility"]["kind"] in an.CRED_KINDS
+        assert f["expectations"]["value"] in an.EXPECT_VALUES and f["horizon"]["value"] in an.HORIZON_VALUES
+        assert set(f["financials"]["lines"]) <= set(an.FIN_LINES) and f["sentiment"]["value"] in an.SENT_VALUES
+        assert "الفجوة بين المتوقع والفعلي" in f["expectations"]["note_ar"]
+        assert "ردود الفعل الجماعية" in f["sentiment"]["note_ar"]
+        assert "يُفصل بين الحقيقة والرأي" in f["credibility"]["note_ar"]
+        _fund_clean(f)
+    # the archive stores it alongside brief_ar; the view keeps it
+    assert all(an._fundamental_valid(i["fundamental"]) and "brief_ar" in i for i in res["_archive"])
+
+
+def test_fundamental_scope_enum():
+    fed = _fund("Fed holds rates steady, signals one cut later this year as inflation cools")
+    assert fed["fundamental"]["scope"]["value"] == "macro" and fed["fundamental"]["scope"]["label_ar"] == "كلّي"
+    assert "السوق كله" in fed["fundamental"]["scope"]["note_ar"]
+    nv = _fund("Nvidia shares jump 6% after earnings beat, data center revenue hits record", source="CNBC")
+    assert nv["fundamental"]["scope"]["value"] == "micro" and nv["fundamental"]["scope"]["label_ar"] == "خاص بالشركة"
+    ar = _fund("أرامكو السعودية تعلن ارتفاع أرباحها 12% في الربع الثاني وتوزيعات نقدية", source="أرقام", lang="ar")
+    assert ar["fundamental"]["scope"]["value"] == "micro"
+    sec = _fund("Cement sector volumes slip 4% in August as demand cools", source="Argaam")
+    assert sec["fundamental"]["scope"]["value"] == "sector" and sec["fundamental"]["scope"]["label_ar"] == "قطاعي"
+    assert _fund("Oil prices rise as Brent tops $100 a barrel")["fundamental"]["scope"]["value"] == "macro"
+
+
+def test_fundamental_credibility_tiers_and_kind():
+    a = _fund("SEC charges chipmaker executives with fraud", source="SEC")["fundamental"]["credibility"]
+    assert a["tier"] == "A" and a["kind"] == "خبر" and a["label_ar"].startswith("مصدر رسمي") and "رسمي" in a["note_ar"]
+    a2 = _fund("سابك تعلن نتائجها المالية للربع الثاني", source="أرقام", lang="ar")["fundamental"]["credibility"]
+    assert a2["tier"] == "A"                                         # company announcement relayed by Argaam
+    gastat = _fund("الهيئة العامة للإحصاء: التضخم في المملكة يستقر عند 2%", source="الهيئة العامة للإحصاء", lang="ar")
+    assert gastat["fundamental"]["credibility"]["tier"] == "A"
+    b = _fund("Stocks close higher as bank earnings top estimates", source="Reuters")["fundamental"]["credibility"]
+    assert b["tier"] == "B" and b["label_ar"].startswith("وكالة موثوقة") and "موثوقة" in b["note_ar"]
+    assert _fund("Saudi stocks: TASI closes higher", source="Bloomberg")["fundamental"]["credibility"]["tier"] == "B"
+    assert _fund("Saudi stocks: TASI closes higher", source="أرقام", lang="ar")["fundamental"]["credibility"]["tier"] == "B"  # no disclosure marker
+    c = _fund("Stocks close higher as bank earnings top estimates", source="Some Blog (عبر Google News)")["fundamental"]["credibility"]
+    assert c["tier"] == "C" and c["label_ar"].startswith("مصدر غير مصنّف") and "غير مصنّف" in c["note_ar"]
+    op = _fund("Analysis: could the Fed cut rates twice this year?", source="MarketWatch")["fundamental"]["credibility"]
+    assert op["tier"] == "B" and op["kind"] == "رأي/تحليل" and "رأي" in op["note_ar"]
+    q = _fund("Will Saudi stocks keep rallying after the Fed decision?", source="Arab News")["fundamental"]["credibility"]
+    assert q["kind"] == "رأي/تحليل"                                  # question mark in the title
+    ar_op = _fund("رأي: توقعات بتراجع أسعار النفط في الربع القادم", source="الاقتصادية", lang="ar")["fundamental"]["credibility"]
+    assert ar_op["kind"] == "رأي/تحليل" and ar_op["tier"] == "B"
+    assert _fund("Fed holds rates steady", source="Reuters")["fundamental"]["credibility"]["kind"] == "خبر"
+
+
+def test_fundamental_expectations_enum():
+    beat = _fund("Nvidia shares jump 6% after earnings beat, data center revenue hits record", source="CNBC")["fundamental"]
+    assert beat["scope"]["value"] == "micro" and beat["expectations"]["value"] == "beat"
+    assert beat["expectations"]["label_ar"] == "فوق التوقعات" and "أعلى من التوقعات" in beat["expectations"]["note_ar"]
+    miss = _fund("Retailer cuts guidance as quarterly profit falls short of estimates", source="WSJ")["fundamental"]["expectations"]
+    assert miss["value"] == "miss" and miss["label_ar"] == "دون التوقعات"
+    ar_miss = _fund("أرباح الشركة الفصلية جاءت أقل من التوقعات", source="أرقام", lang="ar")["fundamental"]["expectations"]
+    assert ar_miss["value"] == "miss"
+    inline = _fund("US inflation data in line with expectations, CPI up 0.2%", source="Reuters")["fundamental"]["expectations"]
+    assert inline["value"] == "inline" and inline["label_ar"] == "مطابق للتوقعات"
+    ar_beat = _fund("سابك تعلن نتائج تفوق التوقعات بارتفاع صافي الربح", source="أرقام", lang="ar")["fundamental"]["expectations"]
+    assert ar_beat["value"] == "beat"
+    # not an earnings/guidance/macro-data item -> unknown, even with "beat"-like words
+    other = _fund("Aramco and Exxon sign LNG supply deal", source="Reuters")["fundamental"]["expectations"]
+    assert other["value"] == "unknown" and other["label_ar"] == "غير محدد آليًا" and "ليس عن نتائج" in other["note_ar"]
+    none = _fund("Company reports quarterly earnings", source="Reuters")["fundamental"]["expectations"]
+    assert none["value"] == "unknown" and "لم تُرصد مقارنة" in none["note_ar"]
+
+
+def test_fundamental_horizon_enum():
+    t = _fund("Aramco faces lawsuit over pipeline leak; fine possible", source="Reuters")["fundamental"]["horizon"]
+    assert t["value"] == "temporary" and t["label_ar"] == "أثر مؤقت" and "محدود المدة" in t["note_ar"]
+    ar_t = _fund("غرامة على شركة تأمين بسبب تأخير في تسوية المطالبات", source="أرقام", lang="ar")["fundamental"]["horizon"]
+    assert ar_t["value"] == "temporary"
+    s = _fund("Microsoft completes acquisition of a cybersecurity firm", source="CNBC")["fundamental"]["horizon"]
+    assert s["value"] == "structural" and s["label_ar"] == "تغيير هيكلي" and "بشكل دائم" in s["note_ar"]
+    ar_s = _fund("سابك تعلن الاستحواذ على شركة كيماويات أوروبية", source="أرقام", lang="ar")["fundamental"]["horizon"]
+    assert ar_s["value"] == "structural"
+    reg = _fund("New regulation bans single-use plastics nationwide", source="Reuters")["fundamental"]["horizon"]
+    assert reg["value"] == "structural"
+    u = _fund("Fed holds rates steady", source="Reuters")["fundamental"]["horizon"]
+    assert u["value"] == "unknown" and u["label_ar"] == "غير محدد آليًا"
+    both = _fund("Merger delayed after regulator fine", source="Reuters")["fundamental"]["horizon"]
+    assert both["value"] == "unknown" and "مؤقتة وهيكلية معًا" in both["note_ar"]   # temporary + structural cues -> undecided
+
+
+def test_fundamental_financial_lines():
+    f = _fund("New corporate tax raises costs; company expects lower margins", source="Reuters")["fundamental"]["financials"]
+    assert f["lines"] == ["margin", "tax"] and f["label_ar"] == "هامش الربح، الضرائب"
+    assert "هامش الربح" in f["note_ar"] and "؛" in f["note_ar"]
+    ar = _fund("الراجحي يوقّع اتفاقية تمويل عقاري بقيمة 5 مليارات ريال مع توزيعات نقدية", source="أرقام", lang="ar")["fundamental"]["financials"]
+    assert "debt" in ar["lines"] and "cashflow" in ar["lines"] and "الديون" in ar["label_ar"] and "التدفق النقدي" in ar["label_ar"]
+    tax = _fund("ضريبة جديدة على الشركات", source="واس", lang="ar")["fundamental"]["financials"]
+    assert tax["lines"] == ["tax"] and tax["note_ar"] == an.FIN_NOTE_AR["tax"] + "." and "صافي الربح" in tax["note_ar"]
+    capex = _fund("Company to build a new plant in a $2bn expansion", source="Reuters")["fundamental"]["financials"]
+    assert "capex" in capex["lines"] and an.FIN_LABEL_AR["capex"] in capex["label_ar"]
+    none = _fund("Ceasefire talks resume", source="Reuters")["fundamental"]["financials"]
+    assert none["lines"] == [] and none["label_ar"] == an.FIN_NONE_AR and an.has_arabic(none["note_ar"])
+    assert all(ln in an.FIN_LABEL_AR for ln in an.FIN_LINES) and all(ln in an.FIN_NOTE_AR for ln in an.FIN_LINES)
+
+
+def test_fundamental_sentiment_enum():
+    p = _fund("Dow plunges 1,200 points in worst selloff since 2020 as panic grips Wall Street", source="CNBC")["fundamental"]["sentiment"]
+    assert p["value"] == "panic" and p["label_ar"] == "ذعر جماعي" and "موجة خوف" in p["note_ar"]
+    ar_p = _fund("انهيار حاد في الأسهم مع موجة ذعر", source="الاقتصادية", lang="ar")["fundamental"]["sentiment"]
+    assert ar_p["value"] == "panic"
+    e = _fund("Stocks soar to record high as rally extends", source="Reuters")["fundamental"]["sentiment"]
+    assert e["value"] == "euphoria" and e["label_ar"] == "تفاؤل مفرط"
+    ar_e = _fund("تاسي يسجل مستوى قياسي مع قفزة في أسهم البنوك", source="أرقام", lang="ar")["fundamental"]["sentiment"]
+    assert ar_e["value"] == "euphoria"
+    c = _fund("Fed holds rates steady", source="Reuters")["fundamental"]["sentiment"]
+    assert c["value"] == "calm" and c["label_ar"] == "هادئ"
+    u = an.fundamental_rules({"title": "Ceasefire talks resume in Geneva", "source": "x", "tickers": [], "rules": []}, an.load_rules())
+    assert u["sentiment"]["value"] == "unknown" and u["sentiment"]["label_ar"] == "غير محدد آليًا"
+    both = _fund("Stocks crash from record high in worst day of the year", source="Reuters")["fundamental"]["sentiment"]
+    assert both["value"] == "unknown"
+    for s in (p, e, c, u["sentiment"]):
+        assert an.SENT_BASE_AR in s["note_ar"] and not an.has_advice_language(s["note_ar"])
+
+
+def test_fundamental_rules_deterministic_and_pure(raw, us_raw):
+    rules = an.load_rules()
+    a = _analyze_items(raw["items"] + us_raw["items"])
+    b = _analyze_items(raw["items"] + us_raw["items"])
+    fa = {i["id"]: (i["fundamental"], i["fundamental_origin"]) for i in a["items"]}
+    fb = {i["id"]: (i["fundamental"], i["fundamental_origin"]) for i in b["items"]}
+    assert json.dumps(fa, sort_keys=True, ensure_ascii=False) == json.dumps(fb, sort_keys=True, ensure_ascii=False)
+    # direct calls are pure functions of the item + rules
+    item = dict(FUND_BASE, title="Nvidia shares jump 6% after earnings beat", source="CNBC", tickers=[{"code": "NVDA", "market": "us"}], rules=[])
+    assert an.fundamental_rules(item, rules) == an.fundamental_rules(dict(item), rules)
+    # works without a "fundamental" section in the rules file (built-in fall-back lists)
+    bare = {k: v for k, v in rules.items() if k not in ("fundamental", "_fundamental")}
+    f = an.fundamental_rules(item, bare)
+    assert f["scope"]["value"] == "micro" and f["expectations"]["value"] == "beat" and an._fundamental_valid(f)
+
+
+def test_advice_guard_covers_owner_list():
+    for w in ("شراء", "بيع", "اشترِ", "بِع", "فرصة", "الخروج", "تخارج", "ادخل", "buy", "sell", "opportunity", "exit", "entry"):
+        assert an.has_advice_language(f"هذا {w} الآن"), w
+    for w in ("شراء", "بيع", "الخروج", "تخارج", "ادخل"):
+        out = an.sanitize_ar(f"يُشير الخبر إلى {w} محتمل")
+        assert not an.has_advice_language(out) and w not in out, (w, out)
+    assert an.sanitize_ar("بالشراء وللبيع") == "بالاقتناء وللتصريف"
+    assert not an.has_advice_language("بعد الإعلان ارتفعت مبيعات الشركة")     # مبيعات is not بيع
+    assert not an.has_advice_language("selloff worsens")                        # selloff is not sell
+    for line in an.FIN_NOTE_AR.values():
+        assert not an.has_advice_language(line)
+    for d in (an.SCOPE_NOTE_AR, an.CRED_NOTE_AR, an.HORIZON_NOTE_AR, an.EXPECT_DETECTED_AR, an.SENT_DETECTED_AR,
+              an.SCOPE_LABEL_AR, an.EXPECT_LABEL_AR, an.HORIZON_LABEL_AR, an.SENT_LABEL_AR, an.CRED_LABEL_AR):
+        assert all(not an.has_advice_language(v) for v in d.values())
+    assert not an.has_advice_language(an.SENT_BASE_AR) and not an.has_advice_language(an.EXPECT_BASE_AR)
+    # rules-file display strings stay clean after the list extension
+    for r in an.load_rules()["rules"]:
+        for s in (r.get("why", ""), (r.get("beneficiary") or {}).get("why", ""), (r.get("hurt") or {}).get("why", "")):
+            assert not an.has_advice_language(an.sanitize_ar(s)), (r["id"], s)
+
+
+def _llm_body(target, fundamental, brief="موجز عربي من النموذج بكلماته الخاصة."):
+    return {"results": [{"id": target, "market": "us", "signal": "pos", "tickers": [], "brief_ar": brief,
+                         "beneficiary": {"name": "أ", "why": "ب"}, "hurt": {"name": "—", "why": ""},
+                         "impact": {k: 0 for k in an.SECTOR_KEYS} | {"why": "شرح"}, "cf": 2, "fundamental": fundamental}]}
+
+
+def _fake_post(body, captured=None):
+    def fake_post(payload, api_key, use_fallbacks, timeout=300):
+        if captured is not None:
+            captured.append(payload)
+        return {"stop_reason": "end_turn", "model": payload["model"], "usage": {},
+                "content": [{"type": "text", "text": json.dumps(body, ensure_ascii=False)}]}
+    return fake_post
+
+
+GOOD_FUND = {
+    "scope": {"value": "sector", "note_ar": "الخبر يمس صناعة الرقائق بأكملها لا شركة واحدة."},
+    "credibility": {"tier": "C", "kind": "رأي/تحليل", "note_ar": "مادة تحليلية من مصدر غير مصنّف، وتُقرأ كرأي لا كحقيقة."},
+    "expectations": {"value": "inline", "note_ar": "الأرقام جاءت قريبة مما كان متوقعًا فالفجوة ضيقة."},
+    "horizon": {"value": "structural", "note_ar": "تغيير في نموذج التسعير قد يدوم لسنوات."},
+    "financials": {"lines": ["margin", "capex"], "note_ar": "الإنفاق على المصانع يرفع الإنفاق الرأسمالي ويضغط على الهامش مؤقتًا."},
+    "sentiment": {"value": "euphoria", "note_ar": "لغة الخبر حماسية، وقد تبتعد الأسعار عن القيمة مؤقتًا بفعل التفاؤل الجماعي."},
+}
+
+
+def test_llm_fundamental_accepted_and_labelled(us_raw, monkeypatch):
+    rules, consts = an.load_rules(), an.load_constituents(path=None)
+    base = an.analyze(us_raw, rules, consts, constituents_us=US_CONSTS, now=NOW)
+    nv = next(i for i in base["items"] if i["title"].startswith("Nvidia"))
+    captured = []
+    monkeypatch.setattr(an, "_post_messages", _fake_post(_llm_body(nv["id"], GOOD_FUND), captured))
+    res = an.analyze(us_raw, rules, consts, constituents_us=US_CONSTS, api_key="sk-test", batch_size=50, now=NOW)
+    props = captured[0]["output_config"]["format"]["schema"]["properties"]["results"]["items"]
+    assert "fundamental" in props["required"] and props["properties"]["fundamental"] == an.FUNDAMENTAL_SCHEMA
+    assert props["properties"]["fundamental"]["properties"]["scope"]["properties"]["value"]["enum"] == list(an.SCOPE_VALUES)
+    assert "fundamental" in captured[0]["system"] and "scope" in captured[0]["system"] and "sentiment" in captured[0]["system"]
+    it = next(i for i in res["items"] if i["id"] == nv["id"])
+    f = it["fundamental"]
+    assert it["analysis"] == "llm" and it["fundamental_origin"] == "llm"
+    assert f["scope"] == {"value": "sector", "label_ar": "قطاعي", "note_ar": GOOD_FUND["scope"]["note_ar"]}
+    assert f["credibility"]["tier"] == "C" and f["credibility"]["kind"] == "رأي/تحليل" and f["credibility"]["label_ar"] == "مصدر غير مصنّف · رأي/تحليل"
+    assert f["expectations"]["value"] == "inline" and f["expectations"]["label_ar"] == "مطابق للتوقعات"
+    assert f["horizon"]["value"] == "structural" and f["horizon"]["label_ar"] == "تغيير هيكلي"
+    assert f["financials"]["lines"] == ["margin", "capex"] and f["financials"]["label_ar"] == "هامش الربح، الإنفاق الرأسمالي"
+    assert f["sentiment"]["value"] == "euphoria" and f["sentiment"]["label_ar"] == "تفاؤل مفرط"
+    _fund_clean(f)
+    others = [i for i in res["items"] if i["id"] != nv["id"]]
+    assert all(i["fundamental_origin"] == "rules" and an._fundamental_valid(i["fundamental"]) for i in others)
+    # the archive caches the LLM fundamental next to brief_ar
+    arc = next(i for i in res["_archive"] if i["id"] == nv["id"])
+    assert arc["fundamental"] == f and arc["fundamental_origin"] == "llm" and arc["brief_origin"] == "llm"
+
+
+def test_llm_bad_fundamental_falls_back_to_rules_per_field(us_raw, monkeypatch):
+    rules, consts = an.load_rules(), an.load_constituents(path=None)
+    base = an.analyze(us_raw, rules, consts, constituents_us=US_CONSTS, now=NOW)
+    nv = next(i for i in base["items"] if i["title"].startswith("Nvidia"))
+    rules_f = nv["fundamental"]
+    excerpt = an._excerpt(next(i for i in us_raw["items"] if an.item_id(i) == nv["id"]))
+    assert len(excerpt.split()) >= 8
+    bad = {
+        "scope": {"value": "global", "note_ar": "خبر عام"},                                    # bad enum
+        "credibility": {"tier": "D", "kind": "خبر", "note_ar": "مصدر"},                          # bad enum
+        "expectations": {"value": "beat", "note_ar": "فرصة شراء واضحة بعد تجاوز التوقعات"},        # advice language
+        "horizon": {"value": "temporary", "note_ar": "بحسب المصدر: " + excerpt},                   # copies the source
+        "financials": {"lines": ["revenue", "bogus"], "note_ar": "Revenue line only, in English"},  # not Arabic
+        "sentiment": {"value": "calm", "note_ar": "أعتقد أن المزاج هادئ"},                        # first person
+    }
+    monkeypatch.setattr(an, "_post_messages", _fake_post(_llm_body(nv["id"], bad)))
+    res = an.analyze(us_raw, rules, consts, constituents_us=US_CONSTS, api_key="sk-test", batch_size=50, now=NOW)
+    it = next(i for i in res["items"] if i["id"] == nv["id"])
+    assert it["analysis"] == "llm" and it["brief_origin"] == "llm"                 # the rest of the LLM analysis is kept
+    assert it["fundamental_origin"] == "rules" and it["fundamental"] == rules_f     # every field fell back
+    _fund_clean(it["fundamental"])
+    # missing object entirely -> rules kept; one good field -> that field only
+    body = _llm_body(nv["id"], GOOD_FUND)
+    body["results"][0].pop("fundamental")
+    monkeypatch.setattr(an, "_post_messages", _fake_post(body))
+    res = an.analyze(us_raw, rules, consts, constituents_us=US_CONSTS, api_key="sk-test", batch_size=50, now=NOW)
+    it = next(i for i in res["items"] if i["id"] == nv["id"])
+    assert it["fundamental_origin"] == "rules" and it["fundamental"] == rules_f
+    partial = dict(bad, horizon=GOOD_FUND["horizon"])
+    merged, origin = an.merge_llm_fundamental(partial, rules_f, source_text=excerpt)
+    assert origin == "llm" and merged["horizon"]["note_ar"] == GOOD_FUND["horizon"]["note_ar"]
+    assert {k: merged[k] for k in FUND_KEYS if k != "horizon"} == {k: rules_f[k] for k in FUND_KEYS if k != "horizon"}
+    assert an.merge_llm_fundamental("junk", rules_f) == (rules_f, "rules")
+    assert an.validate_llm_item({"market": "sa", "signal": "pos", "impact": {}}, {}) is not None    # no fallback -> field absent
+    assert "fundamental" not in an.validate_llm_item({"market": "sa", "signal": "pos", "impact": {}}, {})
+
+
+def test_fundamental_cached_in_archive_and_migrated(us_raw, monkeypatch):
+    rules, consts = an.load_rules(), an.load_constituents(path=None)
+    base = an.analyze(us_raw, rules, consts, constituents_us=US_CONSTS, now=NOW)
+    nv = next(i for i in base["items"] if i["title"].startswith("Nvidia"))
+    monkeypatch.setattr(an, "_post_messages", _fake_post(_llm_body(nv["id"], GOOD_FUND)))
+    first = an.analyze(us_raw, rules, consts, constituents_us=US_CONSTS, api_key="sk-test", batch_size=50, now=NOW)
+    llm_f = next(i for i in first["_archive"] if i["id"] == nv["id"])["fundamental"]
+    assert llm_f["scope"]["value"] == "sector"
+    # second run over the archive: nothing new is analyzed, the LLM fundamental survives (no API call at all)
+    monkeypatch.setattr(an, "_post_messages", lambda *a, **k: (_ for _ in ()).throw(AssertionError("must not call the API")))
+    second = an.analyze(us_raw, rules, consts, constituents_us=US_CONSTS, api_key="sk-test", archive=first["_archive"], now=NOW)
+    assert second["stats"]["new_items"] == 0
+    kept = next(i for i in second["items"] if i["id"] == nv["id"])
+    assert kept["fundamental"] == llm_f and kept["fundamental_origin"] == "llm"
+    # a legacy archive without the field (or with a corrupt one) gets the rules version on load
+    legacy = [dict(i) for i in first["_archive"]]
+    for x in legacy:
+        x.pop("fundamental", None); x.pop("fundamental_origin", None)
+    legacy[0]["fundamental"] = {"scope": "broken"}
+    legacy[0]["fundamental_origin"] = "llm"
+    third = an.analyze({"items": []}, rules, consts, constituents_us=US_CONSTS, archive=legacy, now=NOW)
+    for it in third["_archive"]:
+        assert it["fundamental_origin"] == "rules" and an._fundamental_valid(it["fundamental"])
+    assert next(i for i in third["items"] if i["id"] == nv["id"])["fundamental"] == nv["fundamental"]
+    assert "method_ar" in third and third["method_ar"][2].startswith("3.")
