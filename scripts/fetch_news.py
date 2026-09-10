@@ -22,13 +22,16 @@ Output schema (data/news_raw.json):
              "effective_url"?, "notes"?}],   # notes: 403 retry / autodiscovery trail
   "items": [
     {"title", "link", "source", "published_utc", "published_riyadh",
-     "precision": "second"|"minute"|"day", "summary", "fetched_at_utc",
+     "precision": "second"|"minute"|"day", "source_excerpt", "fetched_at_utc",
      "lang": "ar"|"en", "priority": int, "relevance": 0..1, "raw_published": str|null,
      "market_hint"?: "us", "time_adjusted"?: "riyadh_local"|"clamped"}
   ],
   "dropped": int, "stats": {raw, deduped, kept, dropped_irrelevant, dropped_old_or_undated, dropped_cap, duplicates}
-  ]
 }
+
+`source_excerpt` is the feed's own description text (analysis input only). It is
+kept here and in news_archive.json but never copied into data/news.json: the
+dashboard shows only our own wording (see analyze_news.py, brief_ar).
 """
 from __future__ import annotations
 
@@ -520,7 +523,7 @@ def _atom_link(el: ET.Element) -> str | None:
 
 
 def parse_feed(raw: bytes, feed_name: str) -> list[dict[str, Any]]:
-    """Return list of dicts: title, link, summary, date_raw, source."""
+    """Return list of dicts: title, link, source_excerpt, date_raw, source."""
     text = _decode(raw)
     try:
         root = ET.fromstring(text)
@@ -556,7 +559,7 @@ def parse_feed(raw: bytes, feed_name: str) -> list[dict[str, Any]]:
         out.append({
             "title": title,
             "link": link,
-            "summary": strip_html(summary)[:600],
+            "source_excerpt": strip_html(summary)[:600],
             "date_raw": date_raw,
             "source": source,
         })
@@ -745,8 +748,9 @@ def build_items(entries: Iterable[dict[str, Any]], feed: dict[str, Any], now: da
             dropped += 1
             log.debug("[%s] blocked domain, dropped: %s", feed["name"], link)
             continue
-        text_for_lang = f"{e['title']} {e.get('summary', '')}"
-        rel = relevance_score(e["title"], e.get("summary", ""), e.get("source") or feed["name"], link)
+        excerpt = e.get("source_excerpt", "")
+        text_for_lang = f"{e['title']} {excerpt}"
+        rel = relevance_score(e["title"], excerpt, e.get("source") or feed["name"], link)
         if rel < min_relevance:
             irrelevant += 1
             log.debug("[%s] irrelevant (%.2f): %s", feed["name"], rel, e["title"][:80])
@@ -758,7 +762,7 @@ def build_items(entries: Iterable[dict[str, Any]], feed: dict[str, Any], now: da
             "published_utc": fmt_utc(dt),
             "published_riyadh": fmt_riyadh(dt),
             "precision": precision,
-            "summary": e.get("summary", ""),
+            "source_excerpt": excerpt,
             "fetched_at_utc": fetched_at,
             "lang": detect_lang(text_for_lang),
             "priority": int(feed.get("priority", 3)),

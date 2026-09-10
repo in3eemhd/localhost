@@ -64,8 +64,9 @@ def test_parse_rss_with_cdata_and_html():
     assert len(entries) == 6
     first = entries[0]
     assert first["title"].startswith("أرامكو السعودية تعلن")
-    assert "<" not in first["summary"] and "alert" not in first["summary"]
-    assert "&amp;" not in first["summary"] and "&" in first["summary"]
+    assert "<" not in first["source_excerpt"] and "alert" not in first["source_excerpt"]
+    assert "&amp;" not in first["source_excerpt"] and "&" in first["source_excerpt"]
+    assert "summary" not in first  # raw feed text is only ever `source_excerpt`
     assert first["date_raw"] == "Wed, 09 Sep 2026 10:15:42 +0300"
     assert entries[2]["date_raw"] == "2026-09-09"  # dc:date fallback
 
@@ -75,7 +76,7 @@ def test_parse_atom():
         entries = fn.parse_feed(fh.read(), "Arab News")
     assert len(entries) == 4
     assert entries[0]["link"] == "https://www.arabnews.com/node/3000001/business"
-    assert entries[0]["summary"] == "Brent crude climbed above $100 a barrel on Wednesday. Bahri shares fell."
+    assert entries[0]["source_excerpt"] == "Brent crude climbed above $100 a barrel on Wednesday. Bahri shares fell."
     assert entries[1]["date_raw"] == "2026-09-08T22:30:00+00:00"
 
 
@@ -114,7 +115,7 @@ def test_run_window_dedupe_sort_and_schema(raw):
     assert houthi["precision"] == "day" and houthi["published_utc"] == "2026-09-09T00:00:00Z"
     gn = next(i for i in items if i["title"] == "Google News redirect item")
     assert gn["link"].startswith("https://www.reuters.com/")
-    required = {"title", "link", "source", "published_utc", "published_riyadh", "precision", "summary",
+    required = {"title", "link", "source", "published_utc", "published_riyadh", "precision", "source_excerpt",
                 "fetched_at_utc", "lang", "priority"}
     for it in items:
         assert required <= set(it)
@@ -180,7 +181,9 @@ def test_analyze_schema(analyzed):
         assert it["signal"] in an.SIGNALS
         assert 1 <= it["cf"] <= 3
         assert it["lang"] in ("ar", "en")
-        assert isinstance(it["summary_ar"], str) and it["summary_ar"]
+        assert isinstance(it["brief_ar"], str) and an.has_arabic(it["brief_ar"]) and it["brief_origin"] == "template"
+        assert it["analysis_note_ar"] == an.ANALYSIS_NOTE_AR
+        assert not set(it) & set(an.VIEW_DROP_FIELDS)   # raw feed text never reaches the view
         assert set(it["beneficiary"]) == {"name", "why"} and set(it["hurt"]) == {"name", "why"}
         assert set(it["impact"]) == set(an.SECTOR_KEYS) | {"why"}
         assert all(isinstance(it["impact"][k], int) and -3 <= it["impact"][k] <= 3 for k in an.SECTOR_KEYS)
@@ -220,7 +223,7 @@ def test_rules_attack(analyzed):
 
 def test_rules_oil_english(analyzed):
     it = next(i for i in analyzed["items"] if i["title"].startswith("Oil prices rise"))
-    assert it["lang"] == "en" and it["summary_ar"] == it["summary"]  # English kept when no LLM
+    assert it["lang"] == "en" and an.has_arabic(it["brief_ar"]) and "source_excerpt" not in it  # own Arabic brief, no source text
     assert it["market"] == "sa"  # summary names Bahri (4030): a constituent mention is an explicit Saudi signal
     assert "oil_up" in it["rules"] and "attack" in it["rules"]
     assert it["impact"]["energy"] >= 2 and it["impact"]["transport"] <= -2
@@ -276,12 +279,13 @@ def test_constituents_loader_shapes(tmp_path):
 def test_validate_llm_item():
     known = {"2222": "أرامكو"}
     good = {"id": "x", "market": "sa", "signal": "pos", "tickers": [{"code": "2222.SE", "name_ar": ""}, {"code": "9999", "name_ar": "?"}],
-            "summary_ar": "ملخص", "beneficiary": {"name": "أرامكو", "why": "سبب"}, "hurt": {"name": "—", "why": ""},
+            "brief_ar": "موجز عربي أصلي بكلمات النموذج عن نتائج الشركة.", "beneficiary": {"name": "أرامكو", "why": "سبب"}, "hurt": {"name": "—", "why": ""},
             "impact": {"energy": 5, "banks": -7, "why": "لأن"}, "cf": 9}
     out = an.validate_llm_item(good, known)
     assert out["tickers"] == [{"code": "2222", "name_ar": "أرامكو", "market": "sa"}]
     assert out["impact"]["energy"] == 3 and out["impact"]["banks"] == -3 and out["impact"]["retail"] == 0
-    assert out["cf"] == 3 and out["lang"] == "ar" and out["analysis"] == "llm"
+    assert out["cf"] == 3 and out["analysis"] == "llm" and "lang" not in out   # lang stays that of the source
+    assert out["brief_ar"].startswith("موجز") and out["brief_origin"] == "llm"
     assert out["impact_market"] == "sa"  # derived when the model omits it
     # US tickers: symbol validated against known_us (case-folded), unknown symbols dropped
     us = an.validate_llm_item(dict(good, market="us", impact_market="both",
@@ -290,7 +294,8 @@ def test_validate_llm_item():
     assert us["tickers"] == [{"code": "2222", "name_ar": "أرامكو", "market": "sa"}, {"code": "NVDA", "name_ar": "إنفيديا", "market": "us"}]
     assert us["impact_market"] == "both"
     assert an.validate_llm_item({"market": "moon", "signal": "pos"}, known) is None
-    assert an.validate_llm_item({"market": "sa", "signal": "pos", "summary_ar": "", "impact": {}}, known) is None
+    weak = an.validate_llm_item({"market": "sa", "signal": "pos", "brief_ar": "", "impact": {}}, known)
+    assert weak is not None and "brief_ar" not in weak and "brief_origin" not in weak   # analysis kept, brief -> template
     assert an.validate_llm_item("nope", known) is None
 
 
@@ -314,7 +319,7 @@ def test_llm_success_merges(raw, monkeypatch):
         captured["payload"] = payload
         captured["fallbacks"] = use_fallbacks
         body = {"results": [{"id": target, "market": "macro", "signal": "neg", "tickers": [],
-                             "summary_ar": "ملخص عربي من النموذج", "beneficiary": {"name": "أ", "why": "ب"},
+                             "brief_ar": "موجز عربي من النموذج بكلماته الخاصة.", "beneficiary": {"name": "أ", "why": "ب"},
                              "hurt": {"name": "ج", "why": "د"}, "impact": {k: 0 for k in an.SECTOR_KEYS} | {"why": "شرح"},
                              "cf": 2}]}
         return {"stop_reason": "end_turn", "model": payload["model"], "usage": {},
@@ -326,13 +331,16 @@ def test_llm_success_merges(raw, monkeypatch):
     assert captured["payload"]["model"] == an.DEFAULT_MODEL
     user_msg = captured["payload"]["messages"][0]["content"]
     assert "NVDA=" in user_msg and "الشركات الأمريكية" in user_msg          # US list handed to the model
-    assert "summary_ar" in captured["payload"]["system"] and "impact_market" in captured["payload"]["system"]
+    assert "brief_ar" in captured["payload"]["system"] and "impact_market" in captured["payload"]["system"]
+    assert "summary_ar" not in captured["payload"]["system"] and "ننصح" in captured["payload"]["system"]
+    assert "source_excerpt" in user_msg and "brief_ar" in json.dumps(captured["payload"]["output_config"]["format"]["schema"])
     assert captured["payload"]["output_config"]["format"]["schema"]["properties"]["results"]["items"]["required"].count("impact_market") == 1
     assert captured["payload"]["output_config"]["format"]["type"] == "json_schema"
     assert "thinking" not in captured["payload"]
     assert res["analysis_mode"] == "llm+rules"
     it = next(i for i in res["items"] if i["id"] == target)
-    assert it["analysis"] == "llm" and it["summary_ar"] == "ملخص عربي من النموذج" and it["market"] == "macro"
+    assert it["analysis"] == "llm" and it["brief_ar"] == "موجز عربي من النموذج بكلماته الخاصة." and it["market"] == "macro"
+    assert it["brief_origin"] == "llm" and it["analysis_note_ar"] == an.ANALYSIS_NOTE_AR and not set(it) & set(an.VIEW_DROP_FIELDS)
     assert it["rules"]  # rule ids retained for transparency
     others = [i for i in res["items"] if i["id"] != target]
     assert all(i["analysis"] == "rules" for i in others)
@@ -352,8 +360,11 @@ def test_analyze_cli(raw, tmp_path):
     data = json.loads(out.read_text(encoding="utf-8"))
     assert data["analysis_mode"] == "rules" and len(data["items"]) == len(raw["items"])
     assert data["sectors"]["banks"] == "البنوك" and "_archive" not in data
+    assert not any(set(i) & set(an.VIEW_DROP_FIELDS) for i in data["items"])         # policy: no source text in news.json
+    assert all(i["brief_ar"] and i["brief_origin"] == "template" and i["analysis_note_ar"] for i in data["items"])
     arc = json.loads(archive.read_text(encoding="utf-8"))
     assert arc["count"] == len(raw["items"]) == len(arc["items"]) and arc["days"] == 7
+    assert all("source_excerpt" in i and "summary" not in i for i in arc["items"])   # analysis input kept in the archive only
     # second run: nothing new to analyze, archive stable, view identical
     r = subprocess.run(cmd, capture_output=True, text=True, env=env)
     assert r.returncode == 0, r.stderr
@@ -641,14 +652,16 @@ def test_analyze_stats_relevance_and_summary_policy(raw):
     for day in {i["day_local"] for i in res["items"]}:
         markets = [i["market"] for i in res["items"] if i["day_local"] == day]
         assert markets == sorted(markets, key=lambda m: an.MARKET_ORDER[m])
+    excerpts = {an.item_id(i): an._excerpt(i) for i in raw["items"]}
     for it in res["items"]:
-        if it["lang"] == "ar":
-            assert an.has_arabic(it["summary_ar"])
-        else:
-            assert it["summary_ar"] == (it["summary"] or it["title"])
-    no_summary = dict(SPORTS, title="أرباح شركة سعودية ترتفع", summary="", lang="ar", relevance=1.0)
-    it = _analyze_items([no_summary])["items"][0]
-    assert it["summary_ar"] == "أرباح شركة سعودية ترتفع" and it["lang"] == "ar"
+        assert it["lang"] in ("ar", "en") and an.has_arabic(it["brief_ar"]) and it["brief_origin"] == "template"
+        assert not set(it) & set(an.VIEW_DROP_FIELDS)
+        # original wording: no 8-word run shared with the feed text, and the source name kept for attribution
+        assert an.shared_ngram(it["brief_ar"], excerpts.get(it["id"], "")) is None
+        assert it["source"] in it["brief_ar"] and it["link"] == it["link"]
+    no_excerpt = dict(SPORTS, title="أرباح شركة سعودية ترتفع", source_excerpt="", lang="ar", relevance=1.0)
+    it = _analyze_items([no_excerpt])["items"][0]
+    assert it["title"] == "أرباح شركة سعودية ترتفع" and it["lang"] == "ar" and it["brief_ar"].startswith("خبر من")
 
 
 # ---------------------------------------------------------------- future timestamps / explicit-Saudi market
@@ -764,7 +777,7 @@ def test_us_rss_fetch_window_and_hint(us_raw):
     assert all(i["market_hint"] == "us" for i in us_raw["items"])
     nv = us_raw["items"][0]
     assert nv["link"] == "https://www.cnbc.com/2026/09/09/nvidia-earnings-q2.html?utm_source=rss"
-    assert "<p>" not in nv["summary"] and nv["lang"] == "en"
+    assert "<p>" not in nv["source_excerpt"] and nv["lang"] == "en"
 
 
 def test_fetch_cap_reserves_us_slots():
@@ -867,7 +880,7 @@ def test_archive_merge_keeps_prior_analysis_and_expires(raw, monkeypatch):
     assert len(archive) == len(raw["items"]) and all("impact_market" in i for i in archive)
     # pretend an LLM analysed one archived item earlier; add an expired one and one from 6 days ago
     aramco = next(i for i in archive if i["title"].startswith("أرامكو"))
-    aramco.update(summary_ar="ملخص من النموذج", analysis="llm")
+    aramco.update(brief_ar="موجز من النموذج", brief_origin="llm", analysis="llm")
     expired = dict(aramco, id="old1", title="خبر قديم جداً عن سوق الأسهم", link="https://x.sa/old",
                    published_utc="2026-08-30T10:00:00Z")
     six_days = dict(aramco, id="six1", title="خبر عمره ستة أيام عن سوق الأسهم", link="https://x.sa/six",
@@ -875,7 +888,7 @@ def test_archive_merge_keeps_prior_analysis_and_expires(raw, monkeypatch):
     archive = archive + [expired, six_days]
     calls = []
     monkeypatch.setattr(an, "analyze_rules", lambda it, r, m, um=None: (calls.append(it["title"]), an.empty_impact()) and {
-        "market": "sa", "signal": "mix", "tickers": [], "summary_ar": it["title"], "lang": "ar",
+        "market": "sa", "signal": "mix", "tickers": [], "lang": "ar",
         "beneficiary": {"name": "—", "why": ""}, "hurt": {"name": "—", "why": ""}, "impact": an.empty_impact(),
         "impact_market": "sa", "cf": 1, "rules": [], "analysis": "rules"})
     new_item = dict(SPORTS, title="سابك توقع اتفاقية جديدة", link="https://x.sa/new", relevance=1.0,
@@ -889,7 +902,7 @@ def test_archive_merge_keeps_prior_analysis_and_expires(raw, monkeypatch):
     ids = {i["id"] for i in second["_archive"]}
     assert "six1" in ids and "old1" not in ids
     kept = next(i for i in second["_archive"] if i["id"] == aramco["id"])
-    assert kept["summary_ar"] == "ملخص من النموذج" and kept["analysis"] == "llm"   # prior analysis untouched
+    assert kept["brief_ar"] == "موجز من النموذج" and kept["brief_origin"] == "llm" and kept["analysis"] == "llm"   # prior analysis untouched
     stamps = [i["published_utc"] for i in second["_archive"]]
     assert stamps == sorted(stamps, reverse=True)                                    # archive: full, newest first
     view_ids = [i["id"] for i in second["items"]]
@@ -925,3 +938,165 @@ def test_day_label_and_expiry_helpers():
     items = [{"published_utc": "2026-09-02T12:00:00Z"}, {"published_utc": "2026-09-02T11:59:59Z"}, {"published_utc": "?"}]
     kept, n = an.expire_items(items, NOW, 7)
     assert kept == items[:1] and n == 2
+
+
+# ---------------------------------------------------------------- text policy: own wording, no advice
+@pytest.mark.parametrize("src,expected", [
+    ("المستفيد الأكبر هو أرامكو", "قد يستفيد أرامكو"),
+    ("المتضرر: البنوك", "قد يتأثر سلبًا: البنوك"),
+    ("المستفيد الرئيسي قطاع الطاقة والمتضرر الأكبر شركات النقل", "قد يستفيد قطاع الطاقة وقد يتأثر سلبًا شركات النقل"),
+    ("سيستفيد القطاع وسترتفع الأسهم بالتأكيد", "قد يستفيد القطاع وقد ترتفع الأسهم على الأرجح"),
+    ("ستتضرر البنوك حتماً", "قد تتأثر سلبًا البنوك على الأرجح"),
+    ("قد يستفيد قطاع الطاقة", "قد يستفيد قطاع الطاقة"),             # already possibility phrasing: untouched
+    ("نتائج إيجابية تدعم السهم والقطاع", "نتائج إيجابية تدعم السهم والقطاع"),
+    ("", ""),
+])
+def test_sanitize_ar(src, expected):
+    assert an.sanitize_ar(src) == expected
+    assert not an.has_advice_language(an.sanitize_ar(src))
+
+
+def test_sanitize_ar_removes_advice_words():
+    s = "ننصح بشراء السهم، فرصة يجب اقتناصها، توصية: اشترِ الآن ثم بِع"
+    assert an.has_advice_language(s)
+    out = an.sanitize_ar(s)
+    assert not an.has_advice_language(out)
+    for w in ("ننصح", "فرصة", "يجب", "توصية", "اشترِ", "بِع"):
+        assert w not in out
+    assert an.sanitize_ar(None) == "" and an.sanitize_ar("قد قد يستفيد") == "قد يستفيد"
+
+
+def test_has_advice_language_is_word_bounded_and_diacritics_insensitive():
+    assert an.has_advice_language("اشْتَرِ السهم") and an.has_advice_language("هذه فُرْصَة") and an.has_advice_language("بِع الآن")
+    assert an.has_advice_language("ويجب الحذر") and an.has_advice_language("التوصية: احتفظ")
+    assert not an.has_advice_language("بعد الإعلان ارتفع السهم")          # "بعد" is not "بع"
+    assert not an.has_advice_language("أرباح الشركة ترتفع 12% مع توزيعات")
+    assert not an.has_advice_language("")
+
+
+def test_brief_rejection_reason():
+    src = "أعلنت أرامكو السعودية عن ارتفاع صافي أرباحها بنسبة 12% في الربع الثاني مع توزيعات نقدية قدرها 20 مليار ريال"
+    assert an.brief_rejection_reason("سجّلت الشركة نموًا في الربحية خلال الربع الثاني وأقرّت توزيعات نقدية. قد يستفيد قطاع الطاقة.", src) is None
+    assert "copies" in an.brief_rejection_reason("وفق الخبر، أعلنت أرامكو السعودية عن ارتفاع صافي أرباحها بنسبة 12% في الربع الثاني.", src)
+    assert "copies" in an.brief_rejection_reason("أَعْلَنَتْ أَرَامْكُو السُّعُودِيَّة عَنْ ارتفاع صافي أرباحها بنسبة 12% في الربع الثاني", src)  # diacritics ignored
+    assert an.brief_rejection_reason("The brief is in English only", src) == "empty or not Arabic"
+    assert an.brief_rejection_reason("", src) == "empty or not Arabic"
+    assert an.brief_rejection_reason("نمو الأرباح فرصة للمستثمرين.", src) == "advice language"
+    assert "quote" in an.brief_rejection_reason("قال المصدر «الأرباح ارتفعت بشكل كبير خلال الربع الثاني الحالي بفضل الأسعار».", src)
+    assert an.brief_rejection_reason("قال المصدر «الأرباح ارتفعت بقوة».", src) is None    # short quote (<= 6 words) is fine
+    assert an.brief_rejection_reason("أعتقد أن الأرباح سترتفع.", src) == "first person"
+    assert an.brief_rejection_reason("موجز " * 400, src) == "too long"
+    # English sources: case-insensitive
+    en = "Brent crude climbed above $100 a barrel on Wednesday after a tanker attack. Bahri shares fell."
+    assert an.shared_ngram("brent CRUDE climbed above $100 a barrel on wednesday", en) is not None
+    assert an.shared_ngram("خام برنت فوق 100 دولار", en) is None
+
+
+def test_template_brief_is_original_and_structured_only(raw, us_raw):
+    long_excerpt = dict(SPORTS, title="سابك تعلن نتائجها المالية للربع الثاني", relevance=1.0, link="https://x.sa/sabic",
+                        source="أرقام", lang="ar",
+                        source_excerpt="أعلنت الشركة السعودية للصناعات الأساسية سابك اليوم عن نتائجها المالية للربع الثاني "
+                                       "حيث ارتفع صافي الربح بنسبة 30% مقارنة بالفترة نفسها من العام الماضي مدعوماً بتحسن الأسعار")
+    items = raw["items"] + us_raw["items"] + [long_excerpt]
+    res = _analyze_items(items)
+    src_by_id = {an.item_id(i): an._excerpt(i) for i in items}
+    assert len(res["items"]) >= len(items) - 1
+    for it in res["items"]:
+        assert it["brief_origin"] == "template" and it["analysis_note_ar"] == an.ANALYSIS_NOTE_AR
+        assert an.shared_ngram(it["brief_ar"], src_by_id[it["id"]]) is None
+        assert not an.has_advice_language(it["brief_ar"])
+        assert not an.has_advice_language(it["beneficiary"]["why"]) and not an.has_advice_language(it["hurt"]["why"])
+        assert not set(it) & set(an.VIEW_DROP_FIELDS) and it["source"] and it["link"] and it["title"]
+        # a template never reads the feed text: even 3-word runs of the excerpt (beyond words in the title) do not appear
+        excerpt_only = an.word_ngrams(src_by_id[it["id"]], 3) - an.word_ngrams(it["title"], 3)
+        assert not (an.word_ngrams(it["brief_ar"], 3) & excerpt_only)
+    by = {i["title"]: i for i in res["items"]}
+    sabic = by[long_excerpt["title"]]
+    assert "سابك (2010)" in sabic["brief_ar"] and "أرقام" in sabic["brief_ar"] and "الأربعاء 9 سبتمبر" in sabic["brief_ar"]
+    assert "قد يستفيد" in sabic["brief_ar"]
+    # nothing known -> explicit "no parties" sentence, still grammatical
+    bare = an.template_brief_ar({"source": "مصدر", "published_riyadh": "2026-09-09 10:00:00", "market": "macro",
+                                 "signal": "mix", "tickers": [], "impact": an.empty_impact(),
+                                 "beneficiary": {"name": "—", "why": ""}, "hurt": {"name": "—", "why": ""}})
+    assert bare == ("خبر من مصدر بتاريخ الأربعاء 9 سبتمبر يخص الاقتصاد الكلي والسلع. "
+                    "التصنيف الآلي للإشارة: مختلط أو محايد. " + an.NO_PARTIES_AR + ".")
+    # names coming from the LLM/rules are sanitized inside the template too
+    t = an.template_brief_ar({"source": "س", "published_riyadh": "2026-09-09", "market": "sa", "signal": "neg", "cf": 2,
+                              "tickers": [{"code": "4030", "name_ar": "البحري"}], "beneficiary": {"name": "المستفيد الأكبر أرامكو"},
+                              "hurt": {"name": "المتضرر البحري"}})
+    assert "قد يستفيد: قد يستفيد أرامكو" not in t and "أرامكو" in t and "البحري (4030)" in t and "المتضرر" not in t
+
+
+def test_llm_copied_or_advice_brief_falls_back_to_template(raw, monkeypatch):
+    rules, consts = an.load_rules(), an.load_constituents(path=None)
+    base = an.analyze(raw, rules, consts, now=NOW)
+    oil = next(i for i in base["items"] if i["title"].startswith("Oil prices rise"))
+    aramco = next(i for i in base["items"] if i["title"].startswith("أرامكو"))
+    rajhi = next(i for i in base["items"] if i["title"].startswith("الراجحي"))
+    excerpt = {an.item_id(i): an._excerpt(i) for i in raw["items"]}
+    assert len(excerpt[oil["id"]].split()) >= 8
+    ok = {k: 0 for k in an.SECTOR_KEYS} | {"why": "شرح"}
+    body = {"results": [
+        # verbatim copy of the English source excerpt inside an Arabic brief -> rejected
+        {"id": oil["id"], "market": "macro", "signal": "neg", "tickers": [], "impact": ok, "cf": 2,
+         "brief_ar": "بحسب المصدر: " + excerpt[oil["id"]] + " وهذا موجز.",
+         "beneficiary": {"name": "أرامكو (2222)", "why": "سيستفيد من ارتفاع البرميل"},
+         "hurt": {"name": "البحري (4030)", "why": "ننصح ببيع السهم"}},
+        # advice vocabulary -> rejected
+        {"id": aramco["id"], "market": "sa", "signal": "pos", "tickers": [], "impact": ok, "cf": 3,
+         "brief_ar": "نمو الأرباح فرصة للمستثمرين ويجب اقتناصها.", "beneficiary": {"name": "أ", "why": "ب"}, "hurt": {"name": "—", "why": ""}},
+        # original wording -> accepted
+        {"id": rajhi["id"], "market": "sa", "signal": "pos", "tickers": [], "impact": ok, "cf": 3,
+         "brief_ar": "وقّع المصرف اتفاقًا تمويليًا كبيرًا في قطاع الإسكان. قد ينعكس ذلك على محفظته التمويلية تدريجيًا.",
+         "beneficiary": {"name": "الراجحي (1120)", "why": "قد يستفيد من نمو المحفظة"}, "hurt": {"name": "—", "why": ""}},
+    ]}
+    calls = []
+
+    def fake_post(payload, api_key, use_fallbacks, timeout=300):
+        calls.append(payload)
+        return {"stop_reason": "end_turn", "model": payload["model"], "usage": {},
+                "content": [{"type": "text", "text": json.dumps(body, ensure_ascii=False)}]}
+
+    monkeypatch.setattr(an, "_post_messages", fake_post)
+    res = an.analyze(raw, rules, consts, api_key="sk-test", batch_size=50, now=NOW)
+    assert len(calls) == 1
+    by = {i["id"]: i for i in res["items"]}
+    o, a, r = by[oil["id"]], by[aramco["id"]], by[rajhi["id"]]
+    assert o["analysis"] == "llm" and o["market"] == "macro"                       # the rest of the analysis is kept
+    assert o["brief_origin"] == "template" and an.shared_ngram(o["brief_ar"], excerpt[oil["id"]]) is None
+    assert o["beneficiary"]["why"] == "قد يستفيد من ارتفاع البرميل"                # certainty -> possibility
+    assert o["hurt"]["why"] == ""                                                  # advice language blanked
+    assert a["brief_origin"] == "template" and not an.has_advice_language(a["brief_ar"])
+    assert r["brief_origin"] == "llm" and r["brief_ar"].startswith("وقّع المصرف")
+    assert all(i["analysis_note_ar"] == an.ANALYSIS_NOTE_AR and not set(i) & set(an.VIEW_DROP_FIELDS) for i in res["items"])
+    assert all("source_excerpt" in i for i in res["_archive"] if i["id"] in (o["id"], a["id"], r["id"]))
+
+
+def test_legacy_summary_key_is_migrated_to_source_excerpt():
+    old = dict(SPORTS, title="سابك تعلن نتائجها المالية", relevance=1.0, link="https://x.sa/legacy",
+               summary="نص من المصدر بصيغة الحقل القديم summary")
+    res = _analyze_items([old])
+    arc = res["_archive"][0]
+    assert arc["source_excerpt"] == old["summary"] and "summary" not in arc
+    assert "summary" not in res["items"][0] and "source_excerpt" not in res["items"][0]
+
+
+def test_legacy_archive_fields_are_migrated(raw):
+    rules, consts = an.load_rules(), an.load_constituents(path=None)
+    first = an.analyze(raw, rules, consts, now=NOW)
+    a, b, c = [dict(i) for i in first["_archive"][:3]]
+    for x in (a, b, c):
+        x["summary"] = x.pop("source_excerpt")                      # old key
+    a.update(summary_ar=a["summary"], analysis="rules")             # rules mode used to copy the feed text
+    b.update(summary_ar="موجز قديم كتبه النموذج بكلماته عن الخبر.", analysis="llm")
+    c.update(summary_ar="وفق المصدر: " + c["summary"], analysis="llm")   # old LLM summary that quotes the feed
+    for x in (a, b, c):
+        x.pop("brief_ar", None); x.pop("brief_origin", None)
+    c_excerpt = c["summary"]                                        # archive dicts are migrated in place
+    res = an.analyze({"items": []}, rules, consts, archive=[a, b, c], now=NOW)
+    arc = {i["id"]: i for i in res["_archive"]}
+    assert all("summary" not in i and "summary_ar" not in i and "source_excerpt" in i for i in arc.values())
+    assert arc[a["id"]]["brief_origin"] == "template"
+    assert arc[b["id"]]["brief_origin"] == "llm" and arc[b["id"]]["brief_ar"] == "موجز قديم كتبه النموذج بكلماته عن الخبر."
+    assert arc[c["id"]]["brief_origin"] == "template" and an.shared_ngram(arc[c["id"]]["brief_ar"], c_excerpt) is None
+    assert all(not set(i) & set(an.VIEW_DROP_FIELDS) and i["analysis_note_ar"] for i in res["items"])

@@ -26,9 +26,11 @@ Output schema (data/news.json) - the ranked VIEW of the archive:
   "generated_at_utc", "today_riyadh": "YYYY-MM-DD", "analysis_mode": "llm"|"rules"|"llm+rules",
   "sectors": {key: arabic_label},
   "days": [{"day_local", "count", "label_ar", "is_today"}],   # ordered newest day first
-  "items": [ raw item fields + {
+  "items": [ raw item fields (title, link, source, published_*, precision, relevance, ...) + {
       "id", "market": "sa"|"us"|"macro"|"other", "signal": "pos"|"neg"|"mix",
-      "tickers": [{"code","name_ar","market": "sa"|"us"}], "summary_ar", "lang": "ar"|"en",
+      "tickers": [{"code","name_ar","market": "sa"|"us"}], "lang": "ar"|"en",
+      "brief_ar": our own Arabic summary, "brief_origin": "llm"|"template",
+      "analysis_note_ar": fixed disclaimer,
       "beneficiary": {"name","why"}, "hurt": {"name","why"},
       "impact": {<14 sector keys>: int -3..3, "why": str}, "impact_market": "sa"|"us"|"both",
       "cf": 1..3, "rules": [rule ids], "analysis": "llm"|"rules", "relevance": 0..1,
@@ -38,6 +40,19 @@ Output schema (data/news.json) - the ranked VIEW of the archive:
   "dropped": int, "stats": {input, new_items, archive_total, expired, kept, dropped_irrelevant, dropped_cap,
                             by_market, by_day, llm_items, fetch_dropped}
 }
+
+Text policy (owner's legal/copyright requirement)
+  The dashboard never shows text copied from a source article or feed
+  description. The raw feed text (`source_excerpt`, formerly `summary`) stays in
+  news_raw.json / news_archive.json as analysis input only and is stripped from
+  news.json (VIEW_DROP_FIELDS). Every item carries `brief_ar`, our own wording:
+  in LLM mode the model writes an original 2-4 sentence Arabic summary that is
+  rejected (-> template) when it shares any 8-word sequence with the source or
+  uses advice language; in rules mode `template_brief_ar()` builds it from
+  structured fields only (source, day, tickers/sectors, signal, beneficiary,
+  hurt). Beneficiary/hurt/why strings go through sanitize_ar() so certainty and
+  advice phrasing becomes possibility phrasing ("قد يستفيد" / "قد يتأثر").
+  Title, source name and link are always kept for attribution.
 """
 from __future__ import annotations
 
@@ -224,6 +239,159 @@ def item_id(item: dict[str, Any]) -> str:
     link = normalize_link(item.get("link") or "")
     key = ("link:" + link) if link else ("title:" + title_key(item.get("title", "")))
     return hashlib.sha1(key.encode("utf-8")).hexdigest()[:12]
+
+
+def _excerpt(item: dict[str, Any]) -> str:
+    """The feed's own description text (analysis input only). New raw files use
+    `source_excerpt`; older raw/archive files used `summary`."""
+    return str(item.get("source_excerpt") or item.get("summary") or "").strip()
+
+
+# ---------------------------------------------------------------------------
+# Text policy: our own wording only (no verbatim source text, no advice language)
+# ---------------------------------------------------------------------------
+ANALYSIS_NOTE_AR = "تحليل آلي إحصائي مبني على معلومات متاحة علناً"
+# Fields that must never reach data/news.json (raw feed text and its copies).
+VIEW_DROP_FIELDS = ("source_excerpt", "summary", "summary_ar")
+NGRAM_N = 8            # a brief sharing any 8-word run with the source is a copy
+MAX_QUOTE_WORDS = 6    # direct quotes longer than this are rejected
+
+# Advice / recommendation vocabulary forbidden in anything we display. Matched
+# as whole words on norm()-ed text (diacritics stripped, hamza folded), with an
+# optional و/ف clitic; "بع" is only ever the imperative "sell" as a bare word.
+_ADVICE_WORDS = ["ننصح", "ننصحك", "ننصحكم", "انصح", "نوصي", "اوصي", "توصيه", "توصيات", "اشتر", "اشتري", "اشتروا",
+                 "بع", "بيعوا", "فرصه", "فرص", "يجب", "ينبغي", "عليك", "عليكم"]
+_ADVICE_RE = re.compile(r"(?<![\w])(?:و|ف)?(?:ال)?(?:" + "|".join(re.escape(norm(w)) for w in _ADVICE_WORDS) + r")(?![\w])")
+_FIRST_PERSON_RE = re.compile(r"(?<![\w])(?:انا|نحن|اعتقد|اظن|اري|برايي|براينا|نري|نعتقد)(?![\w])")
+_QUOTE_RE = re.compile(r"[«\"“”„](.+?)[»\"“”„]")
+
+# Certainty / advice phrasing -> possibility phrasing. Ordered: longer forms first.
+_SANITIZE_RULES: list[tuple[re.Pattern, str]] = [(re.compile(p), r) for p, r in [
+    (r"المستفيد(?:ون|ين)?\s+(?:الأكبر|الاكبر|الرئيسي|الرئيسيون|الأول|الاول|الأبرز|الابرز)", "قد يستفيد"),
+    (r"المتضرر(?:ون|ين)?\s+(?:الأكبر|الاكبر|الرئيسي|الرئيسيون|الأول|الاول|الأبرز|الابرز)", "قد يتأثر سلبًا"),
+    (r"أكبر\s+المستفيدين|اكبر\s+المستفيدين", "قد يستفيد"),
+    (r"أكبر\s+المتضررين|اكبر\s+المتضررين", "قد يتأثر سلبًا"),
+    (r"(?<![\w])المستفيد(?:ون|ين)?(?![\w])", "قد يستفيد"),
+    (r"(?<![\w])المتضرر(?:ون|ين)?(?![\w])", "قد يتأثر سلبًا"),
+    (r"(?<![\w])(و|ف)?(?:س|سوف\s+)يستفيد(?![\w])", r"\1قد يستفيد"),
+    (r"(?<![\w])(و|ف)?(?:س|سوف\s+)تستفيد(?![\w])", r"\1قد تستفيد"),
+    (r"(?<![\w])(و|ف)?(?:س|سوف\s+)يتضرر(?![\w])", r"\1قد يتأثر سلبًا"),
+    (r"(?<![\w])(و|ف)?(?:س|سوف\s+)تتضرر(?![\w])", r"\1قد تتأثر سلبًا"),
+    (r"(?<![\w])(و|ف)?(?:س|سوف\s+)(ي|ت)(رتفع|نخفض|تراجع|صعد|هبط|نمو|زيد|تحسن|ضغط|دعم|تأثر|تاثر)(?![\w])", r"\1قد \2\3"),
+    (r"(?<![\w])(?:بالتأكيد|بالتاكيد|حتمًا|حتماً|حتما|لا\s+محالة|بلا\s+شك|من\s+المؤكد\s+أن|من\s+المؤكد)(?![\w])", "على الأرجح"),
+    (r"(?<![\w])(?:مؤكد|مؤكدة|المؤكد|أكيد|اكيد)(?![\w])", "محتمل"),
+    (r"(?<![\w])(?:و|ف)?(?:ننصح|ننصحك|ننصحكم|نوصي|أنصح|انصح|أوصي|اوصي)\s*(?:بـ|ب)?(?![\w])", "يُشار إلى احتمال"),
+    (r"(?<![\w])توصية(?![\w])", "تقدير آلي"),
+    (r"(?<![\w])توصيات(?![\w])", "تقديرات آلية"),
+    (r"(?<![\w])فرصة(?![\w])", "احتمال"),
+    (r"(?<![\w])فرص(?![\w])", "احتمالات"),
+    (r"(?<![\w])(?:يجب|ينبغي|لا\s*بد)(?:\s+(?:أن|ان))?(?![\w])", "قد"),
+    (r"(?<![\w])اشتر[ً-ْ]?(?:ِ|ي|وا)?(?![\w])", "الشراء المحتمل"),
+    (r"(?<![\w])ب[ً-ْ]?ع[ً-ْ]?(?![\w])", "البيع المحتمل"),
+    (r"(?:قد\s+){2,}", "قد "),
+    (r"(قد (?:يستفيد|تستفيد|يتأثر سلبًا|تتأثر سلبًا))\s+(?:هو|هي|هم|هن)(?![\w])", r"\1"),  # "المستفيد الأكبر هو X" -> "قد يستفيد X"
+]]
+
+
+def sanitize_ar(text: str | None) -> str:
+    """Rewrite certainty/advice phrasing to possibility phrasing in text we
+    generate or receive from the model (beneficiary/hurt names and reasons,
+    impact.why, briefs). Never applied to titles (kept verbatim for attribution)."""
+    t = str(text or "")
+    if not t:
+        return t
+    for pat, repl in _SANITIZE_RULES:
+        t = pat.sub(repl, t)
+    return re.sub(r"[ \t]{2,}", " ", t).strip()
+
+
+def has_advice_language(text: str | None) -> bool:
+    """True when the text contains recommendation vocabulary (ننصح، اشترِ، بِع، فرصة، يجب، توصية...)."""
+    return bool(_ADVICE_RE.search(norm(text or "")))
+
+
+def _words(text: str) -> list[str]:
+    return re.findall(r"\w+", norm(text))
+
+
+def word_ngrams(text: str, n: int = NGRAM_N) -> set[tuple[str, ...]]:
+    """Set of normalized (case/diacritics/hamza-insensitive) n-word runs."""
+    w = _words(text)
+    return {tuple(w[i:i + n]) for i in range(len(w) - n + 1)}
+
+
+def shared_ngram(text: str, source_text: str, n: int = NGRAM_N) -> tuple[str, ...] | None:
+    """First n-word run appearing verbatim in both texts (normalized), or None."""
+    common = word_ngrams(text, n) & word_ngrams(source_text, n)
+    return min(common) if common else None
+
+
+def brief_rejection_reason(brief: str, source_text: str) -> str | None:
+    """Why a model-written brief must not be displayed (None = acceptable):
+    copied n-gram, advice vocabulary, long direct quote, first person, or an
+    implausible length. Case- and diacritics-insensitive."""
+    b = (brief or "").strip()
+    if not b or not has_arabic(b):
+        return "empty or not Arabic"
+    if len(b) > 900:
+        return "too long"
+    if shared_ngram(b, source_text):
+        return f"copies a {NGRAM_N}-word sequence from the source"
+    if has_advice_language(b):
+        return "advice language"
+    for q in _QUOTE_RE.findall(b):
+        if len(_words(q)) > MAX_QUOTE_WORDS:
+            return "direct quote longer than 6 words"
+    if _FIRST_PERSON_RE.search(norm(b)):
+        return "first person"
+    return None
+
+
+SIGNAL_AR = {"pos": "إيجابي على الأرجح", "neg": "سلبي على الأرجح", "mix": "مختلط أو محايد"}
+MARKET_AR = {"sa": "السوق السعودية", "us": "السوق الأمريكية", "macro": "الاقتصاد الكلي والسلع", "other": "الشأن الاقتصادي العام"}
+NO_PARTIES_AR = "لم تُحدَّد أطراف متأثرة آليًا"
+
+
+def _party(v: Any) -> str:
+    name = sanitize_ar(str((v or {}).get("name") or "")) if isinstance(v, dict) else ""
+    # the template adds its own "قد يستفيد:" / "قد يتأثر سلبًا:" label
+    name = re.sub(r"^(?:قد\s+(?:يستفيد|تستفيد|يتأثر\s+سلبًا|تتأثر\s+سلبًا)\s*[:：]?\s*)+", "", name).strip()
+    return "" if name in ("", "—", "-", "لا يوجد") else name
+
+
+def template_brief_ar(item: dict[str, Any], sector_labels: dict[str, str] | None = None) -> str:
+    """Our own Arabic brief built ONLY from structured fields (source name,
+    day, tickers or sectors, signal, beneficiary, hurt, confidence). It never
+    reads the feed text, so it cannot reproduce it."""
+    labels = sector_labels or SECTOR_LABELS_AR
+    source = sanitize_ar(str(item.get("source") or "مصدر غير محدد"))
+    day = day_label_ar((item.get("published_riyadh") or item.get("day_local") or "")[:10]) or "تاريخ غير محدد"
+    tickers = [t for t in (item.get("tickers") or []) if isinstance(t, dict) and t.get("code")]
+    if tickers:
+        names = [f"{t.get('name_ar') or t['code']} ({t['code']})" for t in tickers[:3]]
+        subject = "شركات مدرجة هي " + "، ".join(names) if len(names) > 1 else "شركة " + names[0]
+    else:
+        impact = item.get("impact") or {}
+        hot = sorted((k for k in SECTOR_KEYS if isinstance(impact.get(k), int) and impact.get(k)),
+                     key=lambda k: (-abs(impact[k]), SECTOR_KEYS.index(k)))[:3]
+        subject = (("قطاع " if len(hot) == 1 else "قطاعات ") + "، ".join(labels.get(k, k) for k in hot)) if hot else ""
+    signal = SIGNAL_AR.get(item.get("signal"), SIGNAL_AR["mix"])
+    cf = item.get("cf")
+    cf_txt = f" (درجة الثقة {int(cf)} من 3)" if isinstance(cf, (int, float)) and not isinstance(cf, bool) else ""
+    market = MARKET_AR.get(item.get("market"), MARKET_AR["other"])
+    ben, hurt = _party(item.get("beneficiary")), _party(item.get("hurt"))
+    opening = (f"خبر من {source} بتاريخ {day} يتعلق بـ{subject} ضمن {market}." if subject
+               else f"خبر من {source} بتاريخ {day} يخص {market}.")
+    parts = [opening, f"التصنيف الآلي للإشارة: {signal}{cf_txt}."]
+    if ben and hurt:
+        parts.append(f"قد يستفيد: {ben}؛ وقد يتأثر سلبًا: {hurt}.")
+    elif ben:
+        parts.append(f"قد يستفيد: {ben}.")
+    elif hurt:
+        parts.append(f"قد يتأثر سلبًا: {hurt}.")
+    else:
+        parts.append(NO_PARTIES_AR + ".")
+    return " ".join(parts)
 
 
 # ---------------------------------------------------------------------------
@@ -644,7 +812,7 @@ def empty_impact() -> dict[str, Any]:
 
 
 def analyze_rules(item: dict[str, Any], rules: dict[str, Any], matcher, us_matcher=None) -> dict[str, Any]:
-    text = f"{item.get('title', '')} . {item.get('summary', '')}"
+    text = f"{item.get('title', '')} . {_excerpt(item)}"
     tn = norm(text)
     padded = f" {tn} "
     amb = rules.get("_ambiguous", {})
@@ -705,17 +873,18 @@ def analyze_rules(item: dict[str, Any], rules: dict[str, Any], matcher, us_match
         cf += 1
     cf = max(1, min(3, cf))
 
-    lang = detect_lang(f"{item.get('title', '')} {item.get('summary', '')}")
-    # Rules mode never machine-translates: Arabic sources keep their Arabic
-    # summary (title if the feed had none); English items keep the English text
-    # unchanged and are flagged lang="en" for the UI.
-    summary_src = (item.get("summary") or "").strip() or (item.get("title") or "")
+    lang = detect_lang(text)  # language of the SOURCE (the UI flags translated/English items)
+    # Rules mode never copies the feed text anywhere displayable: the brief is
+    # built later by template_brief_ar() from these structured fields only.
+    for pair in (beneficiary, hurt):
+        pair["name"] = sanitize_ar(pair.get("name"))
+        pair["why"] = sanitize_ar(pair.get("why"))
+    impact["why"] = sanitize_ar(impact["why"])
     market = classify_market(tn, item, rules, has_ticker=bool(sa_full), has_us_ticker=bool(us_full))
     return {
         "market": market,
         "signal": signal,
         "tickers": tickers,
-        "summary_ar": summary_src,
         "lang": lang,
         "beneficiary": beneficiary,
         "hurt": hurt,
@@ -733,15 +902,21 @@ def analyze_rules(item: dict[str, Any], rules: dict[str, Any], matcher, us_match
 API_URL = os.environ.get("ANTHROPIC_API_URL", "https://api.anthropic.com/v1/messages")
 DEFAULT_MODEL = "claude-opus-5"
 
-SYSTEM_PROMPT = """أنت محلل أسواق مالية متخصص في السوق السعودية (تداول/تاسي) والسوق الأمريكية (وول ستريت). ستتلقى قائمة أخبار (عنوان + ملخص + مصدر) ولقطة من بيانات السوق إن وُجدت.
+SYSTEM_PROMPT = """أنت محلل أسواق مالية متخصص في السوق السعودية (تداول/تاسي) والسوق الأمريكية (وول ستريت). ستتلقى قائمة أخبار (عنوان + مقتطف من المصدر + اسم المصدر) ولقطة من بيانات السوق إن وُجدت.
+قيود قانونية صارمة على كل نص تكتبه (يُرفض العنصر آليًا عند مخالفتها):
+- اكتب بأسلوبك الخاص دائمًا: لا تنقل أي جملة من العنوان أو المقتطف، ولا تعِد صياغة سطحية بتبديل كلمة أو كلمتين. أي تسلسل من 8 كلمات مطابق للمصدر يُرفض.
+- لا اقتباسات مباشرة أطول من 6 كلمات.
+- لا ضمير المتكلم (أنا/نحن/أعتقد/برأيي)، ونبرة محايدة وصفية بلا مبالغة.
+- لا لغة نصح أو توصية إطلاقًا: ممنوع استخدام كلمات مثل "ننصح"، "اشترِ"، "بِع"، "فرصة"، "يجب"، "توصية"، "ينبغي"، "عليك". صف الاحتمالات فقط.
+- كل ذكر لطرف مستفيد أو متأثر يُصاغ كاحتمال ("قد يستفيد"، "قد يتأثر") لا كحقيقة مؤكدة.
 لكل خبر أعد كائن JSON بالحقول التالية بدقة:
 - id: كما ورد.
 - market: "sa" (خبر سعودي/خليجي مباشر)، "us" (الأسهم الأمريكية، وول ستريت، الفيدرالي، شركات أمريكية مدرجة)، "macro" (نفط، سلع، جيوسياسة، اقتصاد عالمي)، "other".
 - signal: "pos" | "neg" | "mix" من منظور مستثمر في السوق المعنية (السعودية لخبر sa، الأمريكية لخبر us).
 - tickers: الشركات المدرجة المذكورة أو المتأثرة مباشرة، سعودية أو أمريكية: [{"code":"2222","name_ar":"أرامكو","market":"sa"}, {"code":"NVDA","name_ar":"إنفيديا","market":"us"}] — استخدم فقط رموزاً من القائمتين المرفقتين (رمز رقمي من 4 خانات للسعودية، رمز حروف كبيرة للأمريكية)، وقائمة فارغة إن لم يوجد.
-- summary_ar: ملخص عربي دائماً (ترجم الأخبار الإنجليزية) من جملتين إلى ثلاث، واقعي بلا مبالغة، يذكر الأرقام إن وُجدت.
-- beneficiary: {"name": الشركة أو القطاع المستفيد مع الرمز إن أمكن مثل "أرامكو (2222)" أو "إنفيديا (NVDA)", "why": سبب في جملة}.
-- hurt: {"name": الشركة أو القطاع المتضرر مع الرمز إن أمكن, "why": سبب في جملة}. استخدم "—" إن لم يوجد.
+- brief_ar: موجز عربي أصلي بكلماتك أنت من جملتين إلى أربع جمل (بالعربية دائمًا حتى للأخبار الإنجليزية)، يشرح ماذا حدث ولماذا قد يهم المستثمر في السوق المعنية، ويذكر الأرقام الأساسية إن وُجدت. لا تنسخ أي جملة من المصدر، ولا تضف بعده أي شيء آخر (لا تعليق، لا توصية، لا خاتمة).
+- beneficiary: {"name": الشركة أو القطاع الذي قد يستفيد مع الرمز إن أمكن مثل "أرامكو (2222)" أو "إنفيديا (NVDA)", "why": السبب في عبارة قصيرة واحدة تبدأ بـ"قد يستفيد" وتصف احتمالًا لا يقينًا}.
+- hurt: {"name": الشركة أو القطاع الذي قد يتأثر سلبًا مع الرمز إن أمكن, "why": السبب في عبارة قصيرة واحدة تبدأ بـ"قد يتأثر" وتصف احتمالًا لا يقينًا}. استخدم "—" إن لم يوجد.
 - impact: أعداد صحيحة من -3 إلى +3 لكل قطاع من: energy, banks, petrochem, insurance, transport, realestate, cement, tech, smallcaps, telecom, health, retail, food, utilities، مع حقل "why" يشرح المنطق بالعربية في جملة أو جملتين. 0 يعني لا أثر. لخبر أمريكي تشير القطاعات إلى نظيراتها الأمريكية (tech = التقنية والذكاء الاصطناعي وأشباه الموصلات، banks = البنوك والمالية، retail = الاستهلاك، transport = الصناعة والنقل...).
 - impact_market: "sa" إذا كانت درجات الأثر تخص السوق السعودية، "us" إذا كانت تخص السوق الأمريكية، "both" إذا كان الخبر يؤثر على السوقين (الفيدرالي، النفط، الرسوم الجمركية...).
 - cf: ثقة 1..3 (3 = أثر مباشر وواضح على السوق المعنية).
@@ -769,7 +944,7 @@ RESULT_SCHEMA = {
                         "properties": {"code": {"type": "string"}, "name_ar": {"type": "string"},
                                        "market": {"type": "string", "enum": ["sa", "us"]}},
                         "required": ["code", "name_ar", "market"], "additionalProperties": False}},
-                    "summary_ar": {"type": "string"},
+                    "brief_ar": {"type": "string"},
                     "beneficiary": {"type": "object", "properties": {"name": {"type": "string"}, "why": {"type": "string"}},
                                     "required": ["name", "why"], "additionalProperties": False},
                     "hurt": {"type": "object", "properties": {"name": {"type": "string"}, "why": {"type": "string"}},
@@ -778,7 +953,7 @@ RESULT_SCHEMA = {
                     "impact_market": {"type": "string", "enum": list(IMPACT_MARKETS)},
                     "cf": {"type": "integer"},
                 },
-                "required": ["id", "market", "signal", "tickers", "summary_ar", "beneficiary", "hurt", "impact",
+                "required": ["id", "market", "signal", "tickers", "brief_ar", "beneficiary", "hurt", "impact",
                              "impact_market", "cf"],
                 "additionalProperties": False,
             },
@@ -854,11 +1029,17 @@ def _parse_json_loose(text: str) -> Any:
 
 
 def validate_llm_item(obj: Any, known_codes: dict[str, str],
-                      known_us: dict[str, str] | None = None) -> dict[str, Any] | None:
+                      known_us: dict[str, str] | None = None,
+                      source_text: str = "") -> dict[str, Any] | None:
     """Return a cleaned analysis dict or None if the object is unusable.
 
     `known_codes` = Saudi {code: name_ar}; `known_us` = US {SYMBOL: name_ar}.
-    Saudi tickers must be 4 digits, US tickers an uppercase symbol from known_us."""
+    Saudi tickers must be 4 digits, US tickers an uppercase symbol from known_us.
+    `source_text` (title + source_excerpt) is what the model's `brief_ar` must
+    not copy: a brief that fails brief_rejection_reason() is dropped from the
+    result (the caller then uses the template brief) while the rest of the
+    analysis is kept. Beneficiary/hurt/why strings are sanitized; a `why` that
+    still carries advice vocabulary is blanked."""
     if not isinstance(obj, dict):
         return None
     known_us = known_us or {}
@@ -905,17 +1086,28 @@ def validate_llm_item(obj: Any, known_codes: dict[str, str],
         def pair(v: Any) -> dict[str, str]:
             if not isinstance(v, dict):
                 return {"name": "—", "why": ""}
-            return {"name": str(v.get("name") or "—"), "why": str(v.get("why") or "")}
+            raw_name, raw_why = str(v.get("name") or "—"), str(v.get("why") or "")
+            # model text with recommendation vocabulary is dropped, not paraphrased
+            name = "—" if has_advice_language(raw_name) or shared_ngram(raw_name, source_text) else (sanitize_ar(raw_name) or "—")
+            why = "" if has_advice_language(raw_why) or shared_ngram(raw_why, source_text) else sanitize_ar(raw_why)
+            return {"name": name, "why": why}
 
-        summary_ar = str(obj.get("summary_ar") or "").strip()
-        if not summary_ar:
-            return None
+        if has_advice_language(impact["why"]) or shared_ngram(impact["why"], source_text):
+            impact["why"] = ""
+        impact["why"] = sanitize_ar(impact["why"])
         cf = obj.get("cf", 1)
         cf = max(1, min(3, int(cf))) if isinstance(cf, (int, float)) and not isinstance(cf, bool) else 1
-        return {"market": market, "signal": signal, "tickers": tickers, "summary_ar": summary_ar,
-                "lang": "ar" if has_arabic(summary_ar) else "en",
-                "beneficiary": pair(obj.get("beneficiary")), "hurt": pair(obj.get("hurt")),
-                "impact": impact, "impact_market": impact_market, "cf": cf, "analysis": "llm"}
+        out = {"market": market, "signal": signal, "tickers": tickers,
+               "beneficiary": pair(obj.get("beneficiary")), "hurt": pair(obj.get("hurt")),
+               "impact": impact, "impact_market": impact_market, "cf": cf, "analysis": "llm"}
+        brief = sanitize_ar(str(obj.get("brief_ar") or obj.get("summary_ar") or ""))
+        reason = brief_rejection_reason(brief, source_text)
+        if reason is None:
+            out["brief_ar"] = brief
+            out["brief_origin"] = "llm"
+        else:
+            log.warning("LLM brief for %s rejected (%s); template brief will be used", obj.get("id"), reason)
+        return out
     except (KeyError, TypeError, ValueError):
         return None
 
@@ -931,9 +1123,10 @@ def analyze_llm_batch(items: list[dict[str, Any]], constituents: list[dict[str, 
     comp_list = ", ".join(f"{c['code']}={c['name_ar']}" for c in constituents[:400])
     us_list = ", ".join(f"{c['code']}={c['name_ar']}" + (f" ({c['name_en']})" if c.get("name_en") else "")
                         for c in constituents_us[:200])
-    payload_items = [{"id": it["id"], "title": it.get("title", ""), "summary": (it.get("summary") or "")[:500],
+    payload_items = [{"id": it["id"], "title": it.get("title", ""), "source_excerpt": _excerpt(it)[:500],
                       "source": it.get("source", ""), "published_riyadh": it.get("published_riyadh", ""),
                       "lang": it.get("lang", ""), "market_hint": it.get("market_hint") or ""} for it in items]
+    source_text = {it["id"]: f"{it.get('title', '')} . {_excerpt(it)}" for it in items}
     user = ("الشركات السعودية المدرجة (رمز=اسم): " + comp_list + "\n\n"
             + ("الشركات الأمريكية المدرجة (رمز=اسم): " + us_list + "\n\n" if us_list else "")
             + ("لقطة السوق الحالية (JSON): " + _market_context(market) + "\n\n" if market else "")
@@ -956,7 +1149,7 @@ def analyze_llm_batch(items: list[dict[str, Any]], constituents: list[dict[str, 
     for obj in results or []:
         if not isinstance(obj, dict):
             continue
-        cleaned = validate_llm_item(obj, known, known_us)
+        cleaned = validate_llm_item(obj, known, known_us, source_text=source_text.get(str(obj.get("id")), ""))
         if cleaned is None:
             log.warning("LLM item %s failed validation; will use rules", obj.get("id") if isinstance(obj, dict) else "?")
             continue
@@ -1175,8 +1368,11 @@ def analyze(raw: dict[str, Any], rules: dict[str, Any], constituents: list[dict[
     first_seen = now.strftime(UTC_FMT)
     for it in new_items:
         _fix_future_time(it)
+        if "summary" in it:  # raw files written before the rename
+            it["source_excerpt"] = _excerpt(it)
+            del it["summary"]
         if "relevance" not in it:
-            it["relevance"] = (relevance_score(it.get("title", ""), it.get("summary", ""), it.get("source", ""),
+            it["relevance"] = (relevance_score(it.get("title", ""), _excerpt(it), it.get("source", ""),
                                                it.get("link", "")) if relevance_score else 1.0)
         if it["relevance"] < min_relevance:
             dropped_relevance += 1
@@ -1221,15 +1417,33 @@ def analyze(raw: dict[str, Any], rules: dict[str, Any], constituents: list[dict[
     n_llm = sum(1 for i in merged if i.get("analysis") == "llm")
     mode = "llm" if merged and n_llm == len(merged) else "llm+rules" if n_llm else "rules"
     for it in merged:  # older archives may predate these fields
+        if "summary" in it:  # archives written before the rename
+            it["source_excerpt"] = _excerpt(it)
+            del it["summary"]
+        if "summary_ar" in it:
+            # legacy field: rules mode stored a copy of the feed text (dropped); an
+            # old LLM summary is promoted to brief_ar only if it passes the same
+            # originality/advice check as a fresh one.
+            old = sanitize_ar(str(it.pop("summary_ar") or ""))
+            src = f"{it.get('title', '')} . {_excerpt(it)}"
+            if it.get("analysis") == "llm" and not it.get("brief_ar") and brief_rejection_reason(old, src) is None:
+                it["brief_ar"], it["brief_origin"] = old, "llm"
         it.setdefault("impact_market", derive_impact_market(
             it.get("market", "other"), [], any(t.get("market", "sa") == "sa" for t in it.get("tickers") or []),
             any(t.get("market") == "us" for t in it.get("tickers") or [])))
         for t in it.get("tickers") or []:
             t.setdefault("market", "sa")
+        # Our own wording only: a validated LLM brief, otherwise the template
+        # (also covers archives written before brief_ar existed).
+        if not it.get("brief_ar") or it.get("brief_origin") not in ("llm", "template"):
+            it["brief_ar"] = template_brief_ar(it, rules.get("sectors"))
+            it["brief_origin"] = "template"
+        it["analysis_note_ar"] = ANALYSIS_NOTE_AR
     add_day_fields(merged, now)
     merged.sort(key=lambda i: i.get("published_utc") or "", reverse=True)
 
-    ranked, dropped_cap = rank_items([dict(i) for i in merged], now=now, max_items=max_items, per_day=per_day)
+    view = [{k: v for k, v in i.items() if k not in VIEW_DROP_FIELDS} for i in merged]
+    ranked, dropped_cap = rank_items(view, now=now, max_items=max_items, per_day=per_day)
     today = now.astimezone(RIYADH_TZ).strftime("%Y-%m-%d")
     by_market = {m: sum(1 for i in ranked if i["market"] == m) for m in MARKETS}
     days_list = days_summary(ranked, today)
