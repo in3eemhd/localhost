@@ -1,24 +1,24 @@
 {
- "generated_at_utc": "2026-09-10T08:14:19Z",
+ "generated_at_utc": "2026-09-10T08:18:04Z",
  "today_riyadh": "2026-09-10",
- "source_generated_at_utc": "2026-09-10T08:13:52Z",
+ "source_generated_at_utc": "2026-09-10T08:17:37Z",
  "analysis_mode": "rules",
  "model": null,
  "days_window": 7,
- "dropped": 614,
+ "dropped": 619,
  "stats": {
   "input": 400,
-  "new_items": 58,
-  "already_known": 265,
-  "archive_total": 767,
+  "new_items": 6,
+  "already_known": 318,
+  "archive_total": 773,
   "expired": 0,
   "kept": 230,
-  "dropped_irrelevant": 77,
-  "dropped_cap": 537,
+  "dropped_irrelevant": 76,
+  "dropped_cap": 543,
   "by_market": {
-   "sa": 106,
+   "sa": 107,
    "macro": 36,
-   "us": 76,
+   "us": 75,
    "other": 12
   },
   "by_day": {
@@ -27,7 +27,7 @@
    "2026-09-08": 60
   },
   "llm_items": 0,
-  "fetch_dropped": 1943
+  "fetch_dropped": 1939
  },
  "sectors": {
   "energy": "الطاقة",
@@ -167,7 +167,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 0.2,
+   "age_hours": 0.3,
    "is_today": true
   },
   {
@@ -263,7 +263,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 0.3,
+   "age_hours": 0.4,
    "is_today": true
   },
   {
@@ -359,7 +359,99 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 0.3,
+   "age_hours": 0.4,
+   "is_today": true
+  },
+  {
+   "title": "Saudi mining and quarrying activity surges 19 percent in July",
+   "link": "https://saudigazette.com.sa/article/664454/saudi-arabia/saudi-mining-and-quarrying-activity-surges-19-percent-in-july",
+   "source": "Saudi Gazette – Business",
+   "published_utc": "2026-09-10T07:48:37Z",
+   "published_riyadh": "2026-09-10 10:48:37",
+   "precision": "second",
+   "fetched_at_utc": "2026-09-10T08:17:37Z",
+   "lang": "en",
+   "priority": 1,
+   "relevance": 0.55,
+   "raw_published": "Thu, 10 Sep 2026 10:48:37 +0300",
+   "id": "3dd3f4be5660",
+   "market": "sa",
+   "signal": "neg",
+   "tickers": [],
+   "beneficiary": {
+    "name": "الطاقة",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "الشركات الصغيرة",
+    "why": "أكبر أثر سلبي بحسب القواعد"
+   },
+   "impact": {
+    "energy": 1,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 1,
+    "realestate": 0,
+    "cement": 1,
+    "tech": 0,
+    "smallcaps": -1,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 1,
+    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · مشاريع الكهرباء والمياه والطاقة المتجددة تدعم قطاع المرافق · إجراءات تنظيمية أو عقوبات تضغط على السهم المعني"
+   },
+   "impact_market": "sa",
+   "cf": 2,
+   "rules": [
+    "oil_generic",
+    "utilities_sector",
+    "regulatory_sanction",
+    "us_industrial"
+   ],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "macro",
+     "label_ar": "كلّي",
+     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
+    },
+    "credibility": {
+     "tier": "C",
+     "kind": "خبر",
+     "label_ar": "مصدر غير مصنّف · خبر",
+     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
+    },
+    "horizon": {
+     "value": "temporary",
+     "label_ar": "أثر مؤقت",
+     "note_ar": "أخبار من هذا النوع (قضايا، أعطال، غرامات، تأخير) غالبًا ما يكون أثرها محدود المدة ولا تغيّر نموذج العمل بالضرورة."
+    },
+    "financials": {
+     "lines": [],
+     "label_ar": "لم يُحدَّد بند مالي آليًا",
+     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+    },
+    "sentiment": {
+     "value": "euphoria",
+     "label_ar": "تفاؤل مفرط",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ رُصدت مفردات حماسية توحي بتفاؤل مرتفع."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-09-10T08:18:04Z",
+   "brief_ar": "خبر من Saudi Gazette – Business بتاريخ الخميس 10 سبتمبر يتعلق بـقطاعات الطاقة، النقل، الأسمنت ضمن السوق السعودية. التصنيف الآلي للإشارة: سلبي على الأرجح (درجة الثقة 2 من 3). قد يستفيد: الطاقة؛ وقد يتأثر سلبًا: الشركات الصغيرة.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-09-10",
+   "age_hours": 0.5,
    "is_today": true
   },
   {
@@ -536,7 +628,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 0.5,
+   "age_hours": 0.6,
    "is_today": true
   },
   {
@@ -623,7 +715,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 0.5,
+   "age_hours": 0.6,
    "is_today": true
   },
   {
@@ -799,7 +891,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.1,
+   "age_hours": 1.2,
    "is_today": true
   },
   {
@@ -888,7 +980,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.3,
+   "age_hours": 1.4,
    "is_today": true
   },
   {
@@ -944,7 +1036,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.8,
+   "age_hours": 1.9,
    "is_today": true,
    "fundamental": {
     "scope": {
@@ -1036,7 +1128,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:21:58Z",
    "day_local": "2026-09-10",
-   "age_hours": 2.1,
+   "age_hours": 2.2,
    "is_today": true,
    "brief_ar": "خبر من عاجل (عبر Google News – السوق السعودية) بتاريخ الخميس 10 سبتمبر يتعلق بـشركة الجبس (2090) ضمن السوق السعودية. التصنيف الآلي للإشارة: سلبي على الأرجح (درجة الثقة 3 من 3). قد يتأثر سلبًا: الجبس (2090).",
    "brief_origin": "template",
@@ -1257,7 +1349,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 2.2,
+   "age_hours": 2.3,
    "is_today": true
   },
   {
@@ -1307,7 +1399,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:09:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 2.2,
+   "age_hours": 2.3,
    "is_today": true,
    "brief_ar": "خبر من معلومات مباشر (عبر Google News – مباشر السعودية) بتاريخ الخميس 10 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -1397,7 +1489,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 2.5,
+   "age_hours": 2.6,
    "is_today": true,
    "fundamental": {
     "scope": {
@@ -1520,7 +1612,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 3.2,
+   "age_hours": 3.3,
    "is_today": true
   },
   {
@@ -1573,7 +1665,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 3.3,
+   "age_hours": 3.4,
    "is_today": true,
    "fundamental": {
     "scope": {
@@ -1659,7 +1751,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.1,
+   "age_hours": 6.2,
    "is_today": true,
    "brief_ar": "خبر من الاقتصادية (عبر Google News – الاقتصادية) بتاريخ الخميس 10 سبتمبر يتعلق بـقطاع البنوك ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: البنوك.",
    "brief_origin": "template",
@@ -1748,7 +1840,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.1,
+   "age_hours": 6.2,
    "is_today": true,
    "brief_ar": "خبر من الاقتصادية (عبر Google News – الاقتصادية) بتاريخ الخميس 10 سبتمبر يتعلق بـقطاعات التقنية، الاتصالات ضمن السوق السعودية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 1 من 3). قد يستفيد: التقنية.",
    "brief_origin": "template",
@@ -1835,7 +1927,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:09:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.1,
+   "age_hours": 6.2,
    "is_today": true,
    "brief_ar": "خبر من الاقتصادية (عبر Google News – الاقتصادية) بتاريخ الخميس 10 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -1922,7 +2014,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.1,
+   "age_hours": 6.2,
    "is_today": true,
    "brief_ar": "خبر من الاقتصادية (عبر Google News – الاقتصادية) بتاريخ الخميس 10 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -2009,7 +2101,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:09:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.3,
+   "age_hours": 6.4,
    "is_today": true,
    "brief_ar": "خبر من صحيفة مال (عبر Google News – معال) بتاريخ الخميس 10 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -2102,7 +2194,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.8,
+   "age_hours": 6.9,
    "is_today": true,
    "brief_ar": "خبر من صحيفة مال (عبر Google News – معال) بتاريخ الخميس 10 سبتمبر يتعلق بـشركة الدريس (4200) ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -2192,7 +2284,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 6.9,
+   "age_hours": 7.0,
    "is_today": true,
    "fundamental": {
     "scope": {
@@ -2319,7 +2411,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 8.0,
+   "age_hours": 8.1,
    "is_today": true
   },
   {
@@ -2372,7 +2464,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.2,
+   "age_hours": 8.3,
    "is_today": true,
    "brief_ar": "خبر من قناة المملكة (عبر Google News – الأسهم الأمريكية) بتاريخ الخميس 10 سبتمبر يتعلق بـقطاعات العقار، الأسمنت ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: العقار.",
    "brief_origin": "template",
@@ -2459,7 +2551,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.3,
+   "age_hours": 8.4,
    "is_today": true,
    "brief_ar": "خبر من ارقام (عبر Google News – تداول/تاسي) بتاريخ الخميس 10 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -2592,7 +2684,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 8.8,
+   "age_hours": 8.9,
    "is_today": true
   },
   {
@@ -2739,7 +2831,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:09:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 10.1,
+   "age_hours": 10.2,
    "is_today": true,
    "brief_ar": "خبر من صحيفة مال (عبر Google News – السوق السعودية) بتاريخ الخميس 10 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -2829,7 +2921,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 10.1,
+   "age_hours": 10.2,
    "is_today": true,
    "brief_ar": "خبر من ارقام (عبر Google News – تداول/تاسي) بتاريخ الخميس 10 سبتمبر يتعلق بـقطاعات البنوك، العقار، الأسمنت ضمن السوق السعودية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 2 من 3). قد يستفيد: البنوك.",
    "brief_origin": "template",
@@ -3050,6 +3142,97 @@
    "fundamental_origin": "rules"
   },
   {
+   "title": "The Odds of a Rate Hike Are Soaring Ahead of the Sept. 16 FOMC Meeting - The Motley Fool",
+   "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNcTBzOXUwdmZxUmtmVmVCRzhDOTlManZoSmtwd1VtTTVNYVpKMXRRTGg1VFFCSUlYQTd6OTBuODNJWDR6R2ZZOGY2SlFYVldlZG5vclcwSnkwNTl1VDFXNWFWMXUwUjcwdElCNkhVc0xKRU9vZWhKbG5UcDVueVZZbzZKTlpSZGRmTGVwZU5kcDJzMS1adG92QUdrWmJ6QlVBbUtMalI0ajY3cjhuMkF5TlR3?oc=5",
+   "source": "The Motley Fool (عبر Google News – Fed rates)",
+   "published_utc": "2026-09-10T08:13:56Z",
+   "published_riyadh": "2026-09-10 11:13:56",
+   "precision": "second",
+   "fetched_at_utc": "2026-09-10T08:17:37Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.7,
+   "raw_published": "Thu, 10 Sep 2026 08:13:56 GMT",
+   "market_hint": "us",
+   "id": "b4874be36c30",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "beneficiary": {
+    "name": "الراجحي (1120) والبنوك",
+    "why": "ارتفاع هامش الفائدة الصافي"
+   },
+   "hurt": {
+    "name": "العقار والشركات المثقلة بالديون",
+    "why": "ارتفاع تكلفة التمويل والرهن العقاري"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 3,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": -3,
+    "cement": -1,
+    "tech": -1,
+    "smallcaps": -2,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "ربط الريال بالدولار ينقل قرار الفيدرالي إلى ساما: هامش الفائدة للبنوك يتحسن، وتكلفة التمويل ترتفع على العقار والشركات الصغيرة · أخبار الفائدة تؤثر مباشرة على البنوك والعقار بسبب ربط الريال بالدولار"
+   },
+   "impact_market": "both",
+   "cf": 3,
+   "rules": [
+    "fed_hike",
+    "fed_generic"
+   ],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "macro",
+     "label_ar": "كلّي",
+     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
+    },
+    "credibility": {
+     "tier": "C",
+     "kind": "خبر",
+     "label_ar": "مصدر غير مصنّف · خبر",
+     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [],
+     "label_ar": "لم يُحدَّد بند مالي آليًا",
+     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+    },
+    "sentiment": {
+     "value": "euphoria",
+     "label_ar": "تفاؤل مفرط",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ رُصدت مفردات حماسية توحي بتفاؤل مرتفع."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-09-10T08:18:04Z",
+   "brief_ar": "خبر من The Motley Fool (عبر Google News – Fed rates) بتاريخ الخميس 10 سبتمبر يتعلق بـقطاعات البنوك، العقار، الشركات الصغيرة ضمن السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 3 من 3). قد يستفيد: الراجحي (1120) والبنوك؛ وقد يتأثر سلبًا: العقار والشركات المثقلة بالديون.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-09-10",
+   "age_hours": 0.1,
+   "is_today": true
+  },
+  {
    "title": "Dow Jones futures gain ahead of US PPI data - FXStreet",
    "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQeUdQV2FtZm9hLWQxR2VyVlpPU1E1NkVQSndmemlWNmdvUng2ODV2bEQ0TTVOVDZaRVBHWFB1OTUwc2lnVW1Sc1FBUEpQVWFXZmtZWGNuMHROS2x6R1lYYnYyb19FSklYbVpCZUpaU3RGcl9YalpDdGs5Zlp2WTFZUmk1eXE2MVVCWHE0TlRkZw?oc=5",
    "source": "FXStreet (عبر Google News – Fed rates)",
@@ -3134,7 +3317,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 0.0,
+   "age_hours": 0.1,
    "is_today": true
   },
   {
@@ -3400,7 +3583,99 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 0.2,
+   "age_hours": 0.3,
+   "is_today": true
+  },
+  {
+   "title": "محكمة في هونغ كونغ تدين ناشر صحيفة \"وول ستريت جورنال\" - العربي الجديد",
+   "link": "https://news.google.com/rss/articles/CBMitgNBVV95cUxPcVpvb1psSnF1M05FeFRTRlhhb3BxTV9kclRSaGVoQy1IZG5wM0I2NTJYN2dYc0lCQUNZM0VKeU1UVUh6VXVQYndXUzhsd0c0YzFHOXNFOXV5TU5WeXlMb2lzQnhHekFqbjJmbklQbldnY3ZyTzloQ2NLOW4zZXltTWNRR2lYb21VSlpNUUdmYzR5LTJBellBZXN1WXZndVI4QllFSTluZlFXdnp4aGc5TkJqWkxWZG5xU0tIWTRDNUZPX3JaRE1zSFpQQk9LWm1ramJoNjBsOUF2VUEwUGZHNjhaT0xsVnkzbUxrNHAwcGFlSGd0V1NSNFlsVGJWYWRPVmlGcnZBallXU2xGM2JQTGw3NmdhYVU4WkRjcG1BOS1hX0dNX2loaFIxbXFFWEFmQmY3cl9OekdQQ2VnN05PbTJUQktUVjItbjdYUnZRQ3NWMWp6UTF3c1c0X05lQUZrTEdrQXV5MlVZSjMyODRVbFVIbFpDdE03T0stY0p0ZTR6RUhHZWlpbmxVTDlEekdCQlBsRnZxY0tlVzVydzg4dXU3enRyckxKT00zRHhFbWRUcUlGNUHSAbsDQVVfeXFMTmNxa0FTVGtEUW51WWNkdjBMTldtTUozRE5pZzE5RmJpb01VaGlHWUdXN1BCcFNwWTBJa2FLTFBjVU5PWHVTcXNReFRXRkk5T05Kd25UUk04RXJQVWc3NWhORWFkYWdlclp2Nnl4cjV0ZHdFWEZ4RGt0VjJ5bVRHRmdrV1FublBKY3Y3WmJDeWxPUVJFWDVFNDFwLWJQcXgzZnB0UVpGdlRvSkt2T2VSTHZ5ZEJVTDVrVVdFWWpmN0xNem5XdFdldlFMNGRFV3NhNnAzQlhpcFJLYUx4RHd2YTRHQ2FfbEI2SmFpUmh6Qk11Z2ZkWXVSaEtpV1R5NW9pWUFQc2k4d0RmRWt3Y2hEd3lzdlpTeEJOUl9fSUVhdzRTR25SQ1BvNHNjbDRZY3FYTXZ0ZmNfZTdJM0pHQzc4eVlVWmtSMnIyS0QzSElUajVVWlBDcVd0bnp1UUNkYTNLdXpuQmNocDZlM01RN1BNODZLS0EwV0pNREhDM3FWR19vRHQ1clpQVTBIZ25JcVlKUjFadGpzOFVwTV9ZMENvRG0yNHZUbjVDc29ZNzJkdURPX2xVWFZjTDQySmc?oc=5",
+   "source": "العربي الجديد (عبر Google News – الأسهم الأمريكية)",
+   "published_utc": "2026-09-10T07:50:34Z",
+   "published_riyadh": "2026-09-10 10:50:34",
+   "precision": "second",
+   "fetched_at_utc": "2026-09-10T08:17:37Z",
+   "lang": "ar",
+   "priority": 3,
+   "relevance": 0.55,
+   "raw_published": "Thu, 10 Sep 2026 07:50:34 GMT",
+   "market_hint": "us",
+   "id": "ddab4303d4a3",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "beneficiary": {
+    "name": "العقار",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 1,
+    "cement": 1,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "خبر يخص القطاع العقاري وسلسلة البناء"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [
+    "realestate_sector"
+   ],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "sector",
+     "label_ar": "قطاعي",
+     "note_ar": "خبر يمس صناعة محددة أكثر من بقية السوق."
+    },
+    "credibility": {
+     "tier": "C",
+     "kind": "خبر",
+     "label_ar": "مصدر غير مصنّف · خبر",
+     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [
+      "debt"
+     ],
+     "label_ar": "الديون",
+     "note_ar": "تغيّر الفائدة أو التمويل ينعكس على كلفة الديون وخدمة الدين."
+    },
+    "sentiment": {
+     "value": "calm",
+     "label_ar": "هادئ",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-09-10T08:18:04Z",
+   "brief_ar": "خبر من العربي الجديد (عبر Google News – الأسهم الأمريكية) بتاريخ الخميس 10 سبتمبر يتعلق بـقطاعات العقار، الأسمنت ضمن السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: العقار.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-09-10",
+   "age_hours": 0.5,
    "is_today": true
   },
   {
@@ -3490,7 +3765,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 0.4,
+   "age_hours": 0.5,
    "is_today": true
   },
   {
@@ -3670,7 +3945,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 0.5,
+   "age_hours": 0.6,
    "is_today": true
   },
   {
@@ -3850,7 +4125,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 0.7,
+   "age_hours": 0.8,
    "is_today": true
   },
   {
@@ -3938,7 +4213,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 0.8,
+   "age_hours": 0.9,
    "is_today": true
   },
   {
@@ -4306,7 +4581,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.1,
+   "age_hours": 1.2,
    "is_today": true
   },
   {
@@ -4750,7 +5025,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.2,
+   "age_hours": 1.3,
    "is_today": true
   },
   {
@@ -4840,7 +5115,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.2,
+   "age_hours": 1.3,
    "is_today": true
   },
   {
@@ -4931,7 +5206,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.3,
+   "age_hours": 1.4,
    "is_today": true
   },
   {
@@ -5019,7 +5294,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.3,
+   "age_hours": 1.4,
    "is_today": true
   },
   {
@@ -5110,7 +5385,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.3,
+   "age_hours": 1.4,
    "is_today": true
   },
   {
@@ -5198,7 +5473,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.3,
+   "age_hours": 1.4,
    "is_today": true
   },
   {
@@ -5288,7 +5563,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.3,
+   "age_hours": 1.4,
    "is_today": true
   },
   {
@@ -5376,7 +5651,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.3,
+   "age_hours": 1.4,
    "is_today": true
   },
   {
@@ -5464,7 +5739,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.3,
+   "age_hours": 1.4,
    "is_today": true
   },
   {
@@ -5650,7 +5925,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.5,
+   "age_hours": 1.6,
    "is_today": true
   },
   {
@@ -5783,7 +6058,7 @@
     "retail": 0,
     "food": 0,
     "utilities": 0,
-    "why": "برامج إعادة شراء الأسهم تدعم السعر وربحية السهم"
+    "why": "برامج إعادة اقتناء الأسهم تدعم السعر وربحية السهم"
    },
    "impact_market": "us",
    "cf": 2,
@@ -5887,7 +6162,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.7,
+   "age_hours": 1.8,
    "is_today": true,
    "fundamental": {
     "scope": {
@@ -5975,7 +6250,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.7,
+   "age_hours": 1.8,
    "is_today": true,
    "fundamental": {
     "scope": {
@@ -6063,7 +6338,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.7,
+   "age_hours": 1.8,
    "is_today": true,
    "fundamental": {
     "scope": {
@@ -6151,7 +6426,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.7,
+   "age_hours": 1.8,
    "is_today": true,
    "fundamental": {
     "scope": {
@@ -6243,7 +6518,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.7,
+   "age_hours": 1.8,
    "is_today": true,
    "fundamental": {
     "scope": {
@@ -6333,7 +6608,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.8,
+   "age_hours": 1.9,
    "is_today": true,
    "fundamental": {
     "scope": {
@@ -6421,7 +6696,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.8,
+   "age_hours": 1.9,
    "is_today": true,
    "fundamental": {
     "scope": {
@@ -6498,7 +6773,7 @@
     "retail": -1,
     "food": -1,
     "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · إغلاق سلبي للمؤشر يعكس ضغط بيع وتراجع شهية المخاطرة · التضخم يضغط على القوة الشرائية ويؤجل خفض الفائدة"
+    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · إغلاق سلبي للمؤشر يعكس ضغط تصريف وتراجع شهية المخاطرة · التضخم يضغط على القوة الشرائية ويؤجل خفض الفائدة"
    },
    "impact_market": "both",
    "cf": 2,
@@ -6513,7 +6788,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.8,
+   "age_hours": 1.9,
    "is_today": true,
    "fundamental": {
     "scope": {
@@ -6605,7 +6880,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.8,
+   "age_hours": 1.9,
    "is_today": true,
    "fundamental": {
     "scope": {
@@ -6690,7 +6965,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:21:58Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.9,
+   "age_hours": 2.0,
    "is_today": true,
    "brief_ar": "خبر من MarketBeat (عبر Google News – S&P Nasdaq Dow) بتاريخ الخميس 10 سبتمبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -6778,7 +7053,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:21:58Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.9,
+   "age_hours": 2.0,
    "is_today": true,
    "brief_ar": "خبر من MarketBeat (عبر Google News – S&P Nasdaq Dow) بتاريخ الخميس 10 سبتمبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -6868,7 +7143,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:21:58Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.9,
+   "age_hours": 2.0,
    "is_today": true,
    "brief_ar": "خبر من MarketBeat (عبر Google News – S&P Nasdaq Dow) بتاريخ الخميس 10 سبتمبر يتعلق بـقطاعات التقنية، الاتصالات ضمن السوق الأمريكية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 1 من 3). قد يستفيد: التقنية.",
    "brief_origin": "template",
@@ -6956,7 +7231,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:21:58Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.9,
+   "age_hours": 2.0,
    "is_today": true,
    "brief_ar": "خبر من MarketBeat (عبر Google News – S&P Nasdaq Dow) بتاريخ الخميس 10 سبتمبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -7044,7 +7319,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:21:58Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.9,
+   "age_hours": 2.0,
    "is_today": true,
    "brief_ar": "خبر من MarketBeat (عبر Google News – S&P Nasdaq Dow) بتاريخ الخميس 10 سبتمبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -7132,7 +7407,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:21:58Z",
    "day_local": "2026-09-10",
-   "age_hours": 1.9,
+   "age_hours": 2.0,
    "is_today": true,
    "brief_ar": "خبر من MarketBeat (عبر Google News – S&P Nasdaq Dow) بتاريخ الخميس 10 سبتمبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -7173,33 +7448,33 @@
    "fundamental_origin": "rules"
   },
   {
-   "title": "Norway core CPI rises as expected in August",
-   "link": "https://www.investing.com/news/stock-market-news/norway-core-cpi-rises-as-expected-in-august-93CH-4894974",
-   "source": "Investing.com – Stock Market News",
-   "published_utc": "2026-09-10T06:17:42Z",
-   "published_riyadh": "2026-09-10 09:17:42",
+   "title": "European TTF Gas Marches Higher on LNG Supply Fears",
+   "link": "WP-WSJ-0003880946",
+   "source": "WSJ – Markets",
+   "published_utc": "2026-09-10T08:16:00Z",
+   "published_riyadh": "2026-09-10 11:16:00",
    "precision": "second",
-   "fetched_at_utc": "2026-09-10T06:41:09Z",
+   "fetched_at_utc": "2026-09-10T08:17:37Z",
    "lang": "en",
    "priority": 3,
-   "relevance": 0.55,
-   "raw_published": "2026-09-10 06:17:42",
+   "relevance": 0.7,
+   "raw_published": "Thu, 10 Sep 2026 08:16:00 GMT",
    "market_hint": "us",
-   "id": "f6737def0173",
-   "market": "us",
+   "id": "bb946b48067a",
+   "market": "macro",
    "signal": "mix",
    "tickers": [],
    "beneficiary": {
-    "name": "البنوك",
+    "name": "الطاقة",
     "why": "أعلى أثر إيجابي بحسب القواعد"
    },
    "hurt": {
-    "name": "التجزئة",
-    "why": "أكبر أثر سلبي بحسب القواعد"
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
    },
    "impact": {
-    "energy": 0,
-    "banks": 1,
+    "energy": 1,
+    "banks": 0,
     "petrochem": 0,
     "insurance": 0,
     "transport": 0,
@@ -7209,29 +7484,22 @@
     "smallcaps": 0,
     "telecom": 0,
     "health": 0,
-    "retail": -1,
-    "food": -1,
+    "retail": 0,
+    "food": 0,
     "utilities": 0,
-    "why": "التضخم يضغط على القوة الشرائية ويؤجل خفض الفائدة"
+    "why": "خبر يخص قطاع الطاقة الأمريكي وينعكس على أسعار الخام العالمية"
    },
    "impact_market": "both",
    "cf": 1,
    "rules": [
-    "inflation"
+    "us_energy"
    ],
    "analysis": "rules",
-   "first_seen_utc": "2026-09-10T06:41:40Z",
-   "brief_ar": "خبر من Investing.com – Stock Market News بتاريخ الخميس 10 سبتمبر يتعلق بـقطاعات البنوك، التجزئة، الأغذية ضمن السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: البنوك؛ وقد يتأثر سلبًا: التجزئة.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "day_local": "2026-09-10",
-   "age_hours": 1.9,
-   "is_today": true,
    "fundamental": {
     "scope": {
-     "value": "macro",
-     "label_ar": "كلّي",
-     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
+     "value": "micro",
+     "label_ar": "خاص بالشركة",
+     "note_ar": "خبر يخص شركة بعينها: أرباح أو إدارة أو استحواذ أو عقود."
     },
     "credibility": {
      "tier": "B",
@@ -7240,107 +7508,21 @@
      "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
     },
     "expectations": {
-     "value": "inline",
-     "label_ar": "مطابق للتوقعات",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ رُصدت عبارات تشير إلى نتيجة مطابقة للتوقعات."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
-    }
-   },
-   "fundamental_origin": "rules"
-  },
-  {
-   "title": "9/9/2026 Market Summary: 24 S&P 500 Stocks Hit Lows - Trefis",
-   "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNMlhxTEFVcno4bF9aSFllS0dJbkp3Wmp2eUVfZGsxSWszcVFfdU9JQjFLUU5JZjZqY012UVNBMG5SU3NaRWNZXzRVeGhDWlpENndwODZNc19HV1puNzdKSzRWYnF6S3g3WndKdzhoUnFuVzMzN3R5TGpCZzUtUUNsRjRvSkFlYWJFcHJjT0gycTB0a2VpNkk3UkJOelVUYjdmTlFtbVUtbld2QWZjaFJpVFhZMFJCT0xpdE1CZ1cyOWw?oc=5",
-   "source": "Trefis (عبر Google News – S&P Nasdaq Dow)",
-   "published_utc": "2026-09-10T06:14:49Z",
-   "published_riyadh": "2026-09-10 09:14:49",
-   "precision": "second",
-   "fetched_at_utc": "2026-09-10T06:21:29Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 1.0,
-   "raw_published": "Thu, 10 Sep 2026 06:14:49 GMT",
-   "market_hint": "us",
-   "id": "fed9b5b30d0d",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T06:21:58Z",
-   "day_local": "2026-09-10",
-   "age_hours": 2.0,
-   "is_today": true,
-   "brief_ar": "خبر من Trefis (عبر Google News – S&P Nasdaq Dow) بتاريخ الخميس 10 سبتمبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "fundamental": {
-    "scope": {
-     "value": "macro",
-     "label_ar": "كلّي",
-     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
-    },
-    "credibility": {
-     "tier": "C",
-     "kind": "خبر",
-     "label_ar": "مصدر غير مصنّف · خبر",
-     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
      "value": "unknown",
      "label_ar": "غير محدد آليًا",
      "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
     },
     "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+     "value": "temporary",
+     "label_ar": "أثر مؤقت",
+     "note_ar": "أخبار من هذا النوع (قضايا، أعطال، غرامات، تأخير) غالبًا ما يكون أثرها محدود المدة ولا تغيّر نموذج العمل بالضرورة."
     },
     "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+     "lines": [
+      "revenue"
+     ],
+     "label_ar": "الإيرادات",
+     "note_ar": "أخبار العقود والمبيعات والطلب تنعكس أولًا على بند الإيرادات."
     },
     "sentiment": {
      "value": "calm",
@@ -7348,95 +7530,14 @@
      "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
     }
    },
-   "fundamental_origin": "rules"
-  },
-  {
-   "title": "9/9/2026 Market Summary: 7 S&P 500 Stocks Hit Highs - Trefis",
-   "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOM0N4SjJLNEJhUVNWcDVQbVlVZFZiQklUdGJ0VG9mbkk2M3FqN0VsaklGbWFtS0FpcGZUQmphbWd0c2VmeG9DNlkzVTVPMDVCajh0S0VHcmQyQnNyN01TeEhtdU9Udmc3MnVjMGVEWDZadnRHNlZxSVI4MzZmYzkxaTB3RjMzbUVkaTBCODctYk8xVHJBMDVvenFqVVl0NU1qc3FJWW1SU296b1Q2TVRGNUcxQzZ2aW5QLXV3VVVReFM?oc=5",
-   "source": "Trefis (عبر Google News – S&P Nasdaq Dow)",
-   "published_utc": "2026-09-10T06:14:26Z",
-   "published_riyadh": "2026-09-10 09:14:26",
-   "precision": "second",
-   "fetched_at_utc": "2026-09-10T06:41:09Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 1.0,
-   "raw_published": "Thu, 10 Sep 2026 06:14:26 GMT",
-   "market_hint": "us",
-   "id": "369bcdba99cc",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T06:41:40Z",
-   "brief_ar": "خبر من Trefis (عبر Google News – S&P Nasdaq Dow) بتاريخ الخميس 10 سبتمبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-09-10T08:18:04Z",
+   "brief_ar": "خبر من WSJ – Markets بتاريخ الخميس 10 سبتمبر يتعلق بـقطاع الطاقة ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: الطاقة.",
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 2.0,
-   "is_today": true,
-   "fundamental": {
-    "scope": {
-     "value": "macro",
-     "label_ar": "كلّي",
-     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
-    },
-    "credibility": {
-     "tier": "C",
-     "kind": "خبر",
-     "label_ar": "مصدر غير مصنّف · خبر",
-     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
-    }
-   },
-   "fundamental_origin": "rules"
+   "age_hours": 0.0,
+   "is_today": true
   },
   {
    "title": "Teledyne Technologies subsidiary awarded $15.4M contract to supply advanced drone energetics in Europe",
@@ -7527,7 +7628,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 0.3,
+   "age_hours": 0.4,
    "is_today": true
   },
   {
@@ -7617,7 +7718,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 0.7,
+   "age_hours": 0.8,
    "is_today": true
   },
   {
@@ -7707,7 +7808,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 0.7,
+   "age_hours": 0.8,
    "is_today": true
   },
   {
@@ -7891,7 +7992,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-10",
-   "age_hours": 1.0,
+   "age_hours": 1.1,
    "is_today": true
   },
   {
@@ -8125,7 +8226,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 2.6,
+   "age_hours": 2.7,
    "is_today": true,
    "brief_ar": "خبر من الاقتصادية (عبر Google News – الاقتصادية) بتاريخ الخميس 10 سبتمبر يتعلق بـقطاعات الطاقة، البنوك، النقل ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 3 من 3). قد يستفيد: أرامكو (2222)؛ وقد يتأثر سلبًا: البحري (4030) وشركات الطيران.",
    "brief_origin": "template",
@@ -8305,7 +8406,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.0,
+   "age_hours": 3.1,
    "is_today": true,
    "brief_ar": "خبر من WSJ – Markets بتاريخ الخميس 10 سبتمبر يتعلق بـقطاع البنوك ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: البنوك.",
    "brief_origin": "template",
@@ -8395,7 +8496,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 3.7,
+   "age_hours": 3.8,
    "is_today": true,
    "brief_ar": "خبر من Reuters (عبر Google News – Reuters Business) بتاريخ الخميس 10 سبتمبر يتعلق بـقطاع الطاقة ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: الطاقة.",
    "brief_origin": "template",
@@ -8485,7 +8586,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.2,
+   "age_hours": 5.3,
    "is_today": true,
    "brief_ar": "خبر من ارقام (عبر Google News – أرقام) بتاريخ الخميس 10 سبتمبر يتعلق بـقطاعات الطاقة، البنوك ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: الطاقة.",
    "brief_origin": "template",
@@ -8578,7 +8679,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 5.2,
+   "age_hours": 5.3,
    "is_today": true,
    "brief_ar": "خبر من MarketWatch – Top Stories بتاريخ الخميس 10 سبتمبر يتعلق بـقطاعات البتروكيماويات، الطاقة، النقل ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 2 من 3). قد يتأثر سلبًا: البتروكيماويات.",
    "brief_origin": "template",
@@ -8758,7 +8859,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.1,
+   "age_hours": 6.2,
    "is_today": true,
    "brief_ar": "خبر من Reuters (عبر Google News – Reuters Saudi) بتاريخ الخميس 10 سبتمبر يتعلق بـقطاع الطاقة ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: الطاقة.",
    "brief_origin": "template",
@@ -8850,7 +8951,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 6.8,
+   "age_hours": 6.9,
    "is_today": true,
    "brief_ar": "خبر من Reuters (عبر Google News – Reuters Saudi) بتاريخ الخميس 10 سبتمبر يتعلق بـقطاعات التأمين، النقل، البنوك ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: سلبي على الأرجح (درجة الثقة 3 من 3). قد يستفيد: أرامكو (2222)؛ وقد يتأثر سلبًا: التأمين (التعاونية 8010، بوبا 8210) والبحري (4030).",
    "brief_origin": "template",
@@ -8938,7 +9039,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 7.7,
+   "age_hours": 7.8,
    "is_today": true,
    "brief_ar": "خبر من WSJ – Markets بتاريخ الخميس 10 سبتمبر يخص الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -9029,7 +9130,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.0,
+   "age_hours": 8.1,
    "is_today": true,
    "brief_ar": "خبر من WSJ – Markets بتاريخ الخميس 10 سبتمبر يتعلق بـقطاعات الطاقة، النقل، البنوك ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 3 من 3). قد يستفيد: أرامكو (2222)؛ وقد يتأثر سلبًا: البحري (4030) وشركات الطيران.",
    "brief_origin": "template",
@@ -9117,7 +9218,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 8.7,
+   "age_hours": 8.8,
    "is_today": true,
    "brief_ar": "خبر من Reuters (عبر Google News – Reuters Markets) بتاريخ الخميس 10 سبتمبر يخص الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -9153,98 +9254,6 @@
      "value": "unknown",
      "label_ar": "غير محدد آليًا",
      "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لم تُرصد مفردات كافية لتقدير المزاج آليًا."
-    }
-   },
-   "fundamental_origin": "rules"
-  },
-  {
-   "title": "European Banks or U.S. Lenders: Which Financial ETF Is the Better Buy Right Now, EUFN or KBE?",
-   "link": "63782f45-0d41-310c-b7d6-81e0c2d12986",
-   "source": "Yahoo Finance – Headlines",
-   "published_utc": "2026-09-09T22:51:21Z",
-   "published_riyadh": "2026-09-10 01:51:21",
-   "precision": "second",
-   "fetched_at_utc": "2026-09-10T01:38:46Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 0.55,
-   "raw_published": "Wed, 09 Sep 2026 22:51:21 +0000",
-   "market_hint": "us",
-   "id": "5968a93026eb",
-   "market": "macro",
-   "signal": "mix",
-   "tickers": [],
-   "beneficiary": {
-    "name": "البنوك",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 1,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص القطاع المصرفي"
-   },
-   "impact_market": "both",
-   "cf": 1,
-   "rules": [
-    "bank_sector"
-   ],
-   "analysis": "rules",
-   "first_seen_utc": "2026-09-10T01:39:14Z",
-   "day_local": "2026-09-10",
-   "age_hours": 9.4,
-   "is_today": true,
-   "brief_ar": "خبر من Yahoo Finance – Headlines بتاريخ الخميس 10 سبتمبر يتعلق بـقطاع البنوك ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: البنوك.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "fundamental": {
-    "scope": {
-     "value": "sector",
-     "label_ar": "قطاعي",
-     "note_ar": "خبر يمس صناعة محددة أكثر من بقية السوق."
-    },
-    "credibility": {
-     "tier": "B",
-     "kind": "رأي/تحليل",
-     "label_ar": "وكالة موثوقة · رأي/تحليل",
-     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة تحمل علامات رأي أو تحليل أو توقع؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
-    },
-    "horizon": {
-     "value": "structural",
-     "label_ar": "تغيير هيكلي",
-     "note_ar": "حدث من هذا النوع (استحواذ، تشريع، تقنية بديلة، منافس جديد) قد يغيّر نموذج العمل أو هيكل السوق بشكل دائم."
-    },
-    "financials": {
-     "lines": [
-      "margin"
-     ],
-     "label_ar": "هامش الربح",
-     "note_ar": "تغيّر التكاليف أو الأسعار ينعكس على هامش الربح قبل صافي الدخل."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
     }
    },
    "fundamental_origin": "rules"
@@ -9392,7 +9401,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 2.3,
+   "age_hours": 2.4,
    "is_today": true,
    "brief_ar": "خبر من أرقام بتاريخ الخميس 10 سبتمبر يتعلق بـقطاعات البتروكيماويات، الطاقة، النقل ضمن الشأن الاقتصادي العام. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 2 من 3). قد يتأثر سلبًا: البتروكيماويات.",
    "brief_origin": "template",
@@ -9485,7 +9494,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 2.5,
+   "age_hours": 2.6,
    "is_today": true,
    "brief_ar": "خبر من صحيفة مال (عبر Google News – معال) بتاريخ الخميس 10 سبتمبر يخص الشأن الاقتصادي العام. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 2 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -9575,7 +9584,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-10",
-   "age_hours": 2.8,
+   "age_hours": 2.9,
    "is_today": true,
    "brief_ar": "خبر من Seeking Alpha – Market News بتاريخ الخميس 10 سبتمبر يخص الشأن الاقتصادي العام. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 2 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -9945,7 +9954,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-10",
-   "age_hours": 9.9,
+   "age_hours": 10.0,
    "is_today": true,
    "brief_ar": "خبر من MarketWatch – Top Stories بتاريخ الخميس 10 سبتمبر يتعلق بـقطاعات البنوك، التأمين، التقنية ضمن الشأن الاقتصادي العام. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 2 من 3). قد يستفيد: أسهم التقنية الكبرى (NVDA، MSFT، AAPL).",
    "brief_origin": "template",
@@ -10212,7 +10221,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.0,
+   "age_hours": 12.1,
    "is_today": false,
    "brief_ar": "خبر من المتداول العربي (عبر Google News – الأسهم الأمريكية) بتاريخ الأربعاء 9 سبتمبر يتعلق بـقطاعات البنوك، الطاقة، العقار ضمن السوق السعودية. التصنيف الآلي للإشارة: سلبي على الأرجح (درجة الثقة 2 من 3). قد يستفيد: البنوك؛ وقد يتأثر سلبًا: العقار.",
    "brief_origin": "template",
@@ -10393,7 +10402,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.6,
+   "age_hours": 12.7,
    "is_today": false,
    "brief_ar": "خبر من ارقام (عبر Google News – تداول/تاسي) بتاريخ الأربعاء 9 سبتمبر يتعلق بـقطاعات البنوك، الشركات الصغيرة ضمن السوق السعودية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 2 من 3). قد يستفيد: البنوك.",
    "brief_origin": "template",
@@ -10480,7 +10489,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:09:37Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.8,
+   "age_hours": 12.9,
    "is_today": false,
    "brief_ar": "خبر من صحيفة مال (عبر Google News – السوق السعودية) بتاريخ الأربعاء 9 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -10575,7 +10584,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.9,
+   "age_hours": 13.0,
    "is_today": false,
    "brief_ar": "خبر من صحيفة مال (عبر Google News – معال) بتاريخ الأربعاء 9 سبتمبر يتعلق بـشركة موبايلي (7020) ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 2 من 3). قد يستفيد: الاتصالات.",
    "brief_origin": "template",
@@ -10662,7 +10671,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.9,
+   "age_hours": 13.0,
    "is_today": false,
    "brief_ar": "خبر من alsaudi.news (عبر Google News – السوق السعودية) بتاريخ الأربعاء 9 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -10752,7 +10761,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-09",
-   "age_hours": 12.9,
+   "age_hours": 13.0,
    "is_today": false,
    "fundamental": {
     "scope": {
@@ -10841,7 +10850,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.1,
+   "age_hours": 13.2,
    "is_today": false,
    "brief_ar": "خبر من الاقتصادية (عبر Google News – الاقتصادية) بتاريخ الأربعاء 9 سبتمبر يتعلق بـقطاعات العقار، الأسمنت ضمن السوق السعودية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 1 من 3). قد يستفيد: العقار.",
    "brief_origin": "template",
@@ -11217,7 +11226,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.6,
+   "age_hours": 13.7,
    "is_today": false,
    "brief_ar": "خبر من الاقتصادية (عبر Google News – الاقتصادية) بتاريخ الأربعاء 9 سبتمبر يتعلق بـشركة البحري (4030) ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 2 من 3). قد يستفيد: التأمين.",
    "brief_origin": "template",
@@ -11404,7 +11413,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-09",
-   "age_hours": 13.7,
+   "age_hours": 13.8,
    "is_today": false,
    "fundamental": {
     "scope": {
@@ -11536,7 +11545,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-09",
-   "age_hours": 13.8,
+   "age_hours": 13.9,
    "is_today": false
   },
   {
@@ -11867,7 +11876,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.1,
+   "age_hours": 14.2,
    "is_today": false,
    "brief_ar": "خبر من الاقتصادية (عبر Google News – الاقتصادية) بتاريخ الأربعاء 9 سبتمبر يتعلق بـقطاع الطاقة ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: الطاقة.",
    "brief_origin": "template",
@@ -11954,7 +11963,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.1,
+   "age_hours": 14.2,
    "is_today": false,
    "brief_ar": "خبر من الاقتصادية (عبر Google News – الاقتصادية) بتاريخ الأربعاء 9 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -12043,7 +12052,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.3,
+   "age_hours": 14.4,
    "is_today": false,
    "brief_ar": "خبر من صحيفة مال (عبر Google News – معال) بتاريخ الأربعاء 9 سبتمبر يتعلق بـقطاع البنوك ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: البنوك.",
    "brief_origin": "template",
@@ -12134,7 +12143,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.4,
+   "age_hours": 14.5,
    "is_today": false,
    "brief_ar": "خبر من صحيفة مال (عبر Google News – معال) بتاريخ الأربعاء 9 سبتمبر يتعلق بـقطاع البنوك ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: البنوك.",
    "brief_origin": "template",
@@ -12221,7 +12230,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.5,
+   "age_hours": 14.6,
    "is_today": false,
    "brief_ar": "خبر من ارقام (عبر Google News – السوق السعودية) بتاريخ الأربعاء 9 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -12308,7 +12317,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 14.6,
+   "age_hours": 14.7,
    "is_today": false,
    "brief_ar": "خبر من ارقام (عبر Google News – السوق السعودية) بتاريخ الأربعاء 9 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -12738,7 +12747,7 @@
     "retail": 0,
     "food": 0,
     "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · إغلاق سلبي للمؤشر يعكس ضغط بيع وتراجع شهية المخاطرة"
+    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · إغلاق سلبي للمؤشر يعكس ضغط تصريف وتراجع شهية المخاطرة"
    },
    "impact_market": "us",
    "cf": 2,
@@ -12917,7 +12926,7 @@
     "retail": 0,
     "food": 0,
     "utilities": 0,
-    "why": "ارتفاع عوائد الخزانة الأمريكية يرفع تكلفة التمويل ويضغط على أسهم النمو والعقار، ويحسن هامش البنوك · برامج إعادة شراء الأسهم تدعم السعر وربحية السهم"
+    "why": "ارتفاع عوائد الخزانة الأمريكية يرفع تكلفة التمويل ويضغط على أسهم النمو والعقار، ويحسن هامش البنوك · برامج إعادة اقتناء الأسهم تدعم السعر وربحية السهم"
    },
    "impact_market": "both",
    "cf": 2,
@@ -12928,7 +12937,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.3,
+   "age_hours": 11.4,
    "is_today": false,
    "brief_ar": "خبر من WSJ – Markets بتاريخ الأربعاء 9 سبتمبر يتعلق بـقطاعات البنوك، العقار، التقنية ضمن السوق الأمريكية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 2 من 3). قد يستفيد: البنوك؛ وقد يتأثر سلبًا: العقار.",
    "brief_origin": "template",
@@ -13202,7 +13211,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.4,
+   "age_hours": 11.5,
    "is_today": false,
    "brief_ar": "خبر من ChartMill (عبر Google News – S&P Nasdaq Dow) بتاريخ الأربعاء 9 سبتمبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -13290,7 +13299,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.4,
+   "age_hours": 11.5,
    "is_today": false,
    "brief_ar": "خبر من ChartMill (عبر Google News – S&P Nasdaq Dow) بتاريخ الأربعاء 9 سبتمبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -13818,7 +13827,7 @@
     "retail": 0,
     "food": 0,
     "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · إغلاق سلبي للمؤشر يعكس ضغط بيع وتراجع شهية المخاطرة"
+    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · إغلاق سلبي للمؤشر يعكس ضغط تصريف وتراجع شهية المخاطرة"
    },
    "impact_market": "us",
    "cf": 2,
@@ -13829,7 +13838,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.5,
+   "age_hours": 11.6,
    "is_today": false,
    "brief_ar": "خبر من MarketWatch (عبر Google News – MarketWatch) بتاريخ الأربعاء 9 سبتمبر يتعلق بـقطاعات الشركات الصغيرة، البنوك ضمن السوق الأمريكية. التصنيف الآلي للإشارة: سلبي على الأرجح (درجة الثقة 2 من 3). قد يتأثر سلبًا: الشركات الصغيرة.",
    "brief_origin": "template",
@@ -13917,7 +13926,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.5,
+   "age_hours": 11.6,
    "is_today": false,
    "brief_ar": "خبر من barchart.com (عبر Google News – Wall Street) بتاريخ الأربعاء 9 سبتمبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -14005,7 +14014,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.5,
+   "age_hours": 11.6,
    "is_today": false,
    "brief_ar": "خبر من ChartMill (عبر Google News – S&P Nasdaq Dow) بتاريخ الأربعاء 9 سبتمبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -14093,7 +14102,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.5,
+   "age_hours": 11.6,
    "is_today": false,
    "brief_ar": "خبر من Seeking Alpha (عبر Google News – S&P Nasdaq Dow) بتاريخ الأربعاء 9 سبتمبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -14184,7 +14193,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.5,
+   "age_hours": 11.6,
    "is_today": false,
    "brief_ar": "خبر من Yahoo Finance (عبر Google News – S&P Nasdaq Dow) بتاريخ الأربعاء 9 سبتمبر يتعلق بـقطاع البنوك ضمن السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: البنوك.",
    "brief_origin": "template",
@@ -14365,7 +14374,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.6,
+   "age_hours": 11.7,
    "is_today": false,
    "brief_ar": "خبر من ارقام (عبر Google News – أرقام) بتاريخ الأربعاء 9 سبتمبر يتعلق بـشركة أبل (AAPL) ضمن السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -14458,7 +14467,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.6,
+   "age_hours": 11.7,
    "is_today": false,
    "brief_ar": "خبر من MarketWatch – Top Stories بتاريخ الأربعاء 9 سبتمبر يتعلق بـقطاعات البنوك، الطاقة، العقار ضمن السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: البنوك؛ وقد يتأثر سلبًا: العقار.",
    "brief_origin": "template",
@@ -14551,7 +14560,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.4,
+   "age_hours": 11.5,
    "is_today": false,
    "brief_ar": "خبر من WSJ – Markets بتاريخ الأربعاء 9 سبتمبر يتعلق بـقطاعات البنوك، الشركات الصغيرة ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 2 من 3). قد يستفيد: البنوك.",
    "brief_origin": "template",
@@ -14640,7 +14649,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T01:39:14Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.5,
+   "age_hours": 11.6,
    "is_today": false,
    "brief_ar": "خبر من صحيفة مال (عبر Google News – معال) بتاريخ الأربعاء 9 سبتمبر يتعلق بـقطاعات البنوك، التجزئة، الأغذية ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: البنوك؛ وقد يتأثر سلبًا: التجزئة.",
    "brief_origin": "template",
@@ -14730,7 +14739,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.6,
+   "age_hours": 11.7,
    "is_today": false,
    "brief_ar": "خبر من Reuters (عبر Google News – Reuters Business) بتاريخ الأربعاء 9 سبتمبر يتعلق بـقطاع الطاقة ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: الطاقة.",
    "brief_origin": "template",
@@ -14820,7 +14829,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.1,
+   "age_hours": 12.2,
    "is_today": false,
    "brief_ar": "خبر من Reuters (عبر Google News – Reuters Saudi) بتاريخ الأربعاء 9 سبتمبر يتعلق بـقطاعات التقنية، الاتصالات، الرعاية الصحية ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 1 من 3). قد يستفيد: التقنية.",
    "brief_origin": "template",
@@ -14911,7 +14920,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 12.2,
+   "age_hours": 12.3,
    "is_today": false,
    "brief_ar": "خبر من Law360 (عبر Google News – Fed rates) بتاريخ الأربعاء 9 سبتمبر يتعلق بـقطاعات البتروكيماويات، الطاقة، البنوك ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: سلبي على الأرجح (درجة الثقة 2 من 3). قد يستفيد: البنوك؛ وقد يتأثر سلبًا: البتروكيماويات.",
    "brief_origin": "template",
@@ -15181,7 +15190,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-10T06:05:37Z",
    "day_local": "2026-09-09",
-   "age_hours": 13.2,
+   "age_hours": 13.3,
    "is_today": false,
    "brief_ar": "خبر من Reuters (عبر Google News – Reuters Saudi) بتاريخ الأربعاء 9 سبتمبر يتعلق بـقطاعات الطاقة، البنوك، التجزئة ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: الطاقة؛ وقد يتأثر سلبًا: التجزئة.",
    "brief_origin": "template",
@@ -15271,7 +15280,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.4,
+   "age_hours": 11.5,
    "is_today": false,
    "brief_ar": "خبر من WSJ (عبر Google News – Wall Street) بتاريخ الأربعاء 9 سبتمبر يتعلق بـقطاعات البنوك، الشركات الصغيرة ضمن الشأن الاقتصادي العام. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 2 من 3). قد يستفيد: البنوك.",
    "brief_origin": "template",
@@ -15360,7 +15369,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-09",
-   "age_hours": 11.9,
+   "age_hours": 12.0,
    "is_today": false,
    "brief_ar": "خبر من ارقام (عبر Google News – أرقام) بتاريخ الأربعاء 9 سبتمبر يخص الشأن الاقتصادي العام. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 2 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -15542,7 +15551,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.9,
+   "age_hours": 36.0,
    "is_today": false,
    "brief_ar": "خبر من معلومات مباشر (عبر Google News – مباشر السعودية) بتاريخ الثلاثاء 8 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -15632,7 +15641,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 36.5,
+   "age_hours": 36.6,
    "is_today": false,
    "brief_ar": "خبر من Reuters (عبر Google News – Reuters Saudi) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاعات التأمين، النقل، البنوك ضمن السوق السعودية. التصنيف الآلي للإشارة: سلبي على الأرجح (درجة الثقة 3 من 3). قد يستفيد: أرامكو (2222)؛ وقد يتأثر سلبًا: التأمين (التعاونية 8010، بوبا 8210) والبحري (4030).",
    "brief_origin": "template",
@@ -15719,7 +15728,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.0,
+   "age_hours": 37.1,
    "is_today": false,
    "brief_ar": "خبر من معلومات مباشر (عبر Google News – مباشر السعودية) بتاريخ الثلاثاء 8 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -15893,7 +15902,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.1,
+   "age_hours": 37.2,
    "is_today": false,
    "brief_ar": "خبر من الاقتصادية (عبر Google News – الاقتصادية) بتاريخ الثلاثاء 8 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -16071,7 +16080,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.3,
+   "age_hours": 37.4,
    "is_today": false,
    "brief_ar": "خبر من الاقتصادية (عبر Google News – الاقتصادية) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاعات العقار، الأسمنت ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: العقار.",
    "brief_origin": "template",
@@ -16255,7 +16264,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.7,
+   "age_hours": 37.8,
    "is_today": false,
    "brief_ar": "خبر من معلومات مباشر (عبر Google News – مباشر السعودية) بتاريخ الثلاثاء 8 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -16342,7 +16351,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.0,
+   "age_hours": 38.1,
    "is_today": false,
    "brief_ar": "خبر من الاقتصادية (عبر Google News – الاقتصادية) بتاريخ الثلاثاء 8 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -16431,7 +16440,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.1,
+   "age_hours": 38.2,
    "is_today": false,
    "brief_ar": "خبر من ارقام (عبر Google News – أرقام) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاع الشركات الصغيرة ضمن السوق السعودية. التصنيف الآلي للإشارة: سلبي على الأرجح (درجة الثقة 2 من 3). قد يتأثر سلبًا: الشركات الصغيرة.",
    "brief_origin": "template",
@@ -16518,7 +16527,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.6,
+   "age_hours": 38.7,
    "is_today": false,
    "brief_ar": "خبر من الاقتصادية (عبر Google News – الاقتصادية) بتاريخ الثلاثاء 8 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -16611,7 +16620,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.7,
+   "age_hours": 38.8,
    "is_today": false,
    "brief_ar": "خبر من aleqtsad.org (عبر Google News – السوق السعودية) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـشركة أرامكو السعودية (2222) ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -16704,7 +16713,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.1,
+   "age_hours": 39.2,
    "is_today": false,
    "brief_ar": "خبر من alsaudi.news (عبر Google News – السوق السعودية) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـشركة أرامكو السعودية (2222) ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -16793,7 +16802,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.2,
+   "age_hours": 39.3,
    "is_today": false,
    "brief_ar": "خبر من Saudi Gazette – Business بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاع البنوك ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: البنوك.",
    "brief_origin": "template",
@@ -16882,7 +16891,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.6,
+   "age_hours": 39.7,
    "is_today": false,
    "brief_ar": "خبر من Arab News (عبر Google News – Arab News Business) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاع الطاقة ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: الطاقة.",
    "brief_origin": "template",
@@ -16972,7 +16981,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.6,
+   "age_hours": 39.7,
    "is_today": false,
    "brief_ar": "خبر من Saudi Gazette – Business بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاعات البنوك، التجزئة ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: البنوك.",
    "brief_origin": "template",
@@ -17148,7 +17157,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.8,
+   "age_hours": 39.9,
    "is_today": false,
    "brief_ar": "خبر من جريدة الوطن السعودية (عبر Google News – السوق السعودية) بتاريخ الثلاثاء 8 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -17237,7 +17246,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.0,
+   "age_hours": 40.1,
    "is_today": false,
    "brief_ar": "خبر من صحيفة مال (عبر Google News – معال) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاع البنوك ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: البنوك.",
    "brief_origin": "template",
@@ -17330,7 +17339,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.4,
+   "age_hours": 40.5,
    "is_today": false,
    "brief_ar": "خبر من الاقتصادية (عبر Google News – الاقتصادية) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـشركة أرامكو السعودية (2222) ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -17506,7 +17515,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.7,
+   "age_hours": 40.8,
    "is_today": false,
    "brief_ar": "خبر من معلومات مباشر (عبر Google News – مباشر السعودية) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاع التجزئة ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: التجزئة.",
    "brief_origin": "template",
@@ -17595,7 +17604,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.8,
+   "age_hours": 40.9,
    "is_today": false,
    "brief_ar": "خبر من ارقام (عبر Google News – تداول/تاسي) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاع الرعاية الصحية ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: الرعاية الصحية.",
    "brief_origin": "template",
@@ -17682,7 +17691,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.8,
+   "age_hours": 40.9,
    "is_today": false,
    "brief_ar": "خبر من الاقتصادية (عبر Google News – الاقتصادية) بتاريخ الثلاثاء 8 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -17769,7 +17778,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.8,
+   "age_hours": 40.9,
    "is_today": false,
    "brief_ar": "خبر من الاقتصادية (عبر Google News – الاقتصادية) بتاريخ الثلاثاء 8 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -17858,7 +17867,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.8,
+   "age_hours": 40.9,
    "is_today": false,
    "brief_ar": "خبر من ارقام (عبر Google News – السوق السعودية) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاع الشركات الصغيرة ضمن السوق السعودية. التصنيف الآلي للإشارة: سلبي على الأرجح (درجة الثقة 2 من 3). قد يتأثر سلبًا: الشركات الصغيرة.",
    "brief_origin": "template",
@@ -18038,7 +18047,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 41.0,
+   "age_hours": 41.1,
    "is_today": false,
    "brief_ar": "خبر من العربية (عبر Google News – السوق السعودية) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـشركة صناعات كهربائية (1303) ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -18127,7 +18136,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 41.4,
+   "age_hours": 41.5,
    "is_today": false,
    "brief_ar": "خبر من معلومات مباشر (عبر Google News – مباشر السعودية) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاع البنوك ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: البنوك.",
    "brief_origin": "template",
@@ -18218,7 +18227,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 41.5,
+   "age_hours": 41.6,
    "is_today": false,
    "brief_ar": "خبر من Saudi Gazette – Business بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاعات التأمين، النقل، الطاقة ضمن السوق السعودية. التصنيف الآلي للإشارة: سلبي على الأرجح (درجة الثقة 3 من 3). قد يستفيد: أرامكو (2222)؛ وقد يتأثر سلبًا: التأمين (التعاونية 8010، بوبا 8210) والبحري (4030).",
    "brief_origin": "template",
@@ -18305,7 +18314,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 41.6,
+   "age_hours": 41.7,
    "is_today": false,
    "brief_ar": "خبر من معلومات مباشر (عبر Google News – مباشر السعودية) بتاريخ الثلاثاء 8 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -18394,7 +18403,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 41.7,
+   "age_hours": 41.8,
    "is_today": false,
    "brief_ar": "خبر من al-jazirahonline.com (عبر Google News – السوق السعودية) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاعات الطاقة، البنوك، الشركات الصغيرة ضمن السوق السعودية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 2 من 3). قد يستفيد: الطاقة.",
    "brief_origin": "template",
@@ -18570,7 +18579,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 41.8,
+   "age_hours": 41.9,
    "is_today": false,
    "brief_ar": "خبر من صحيفة صراحة الالكترونية (عبر Google News – السوق السعودية) بتاريخ الثلاثاء 8 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -18659,7 +18668,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 41.8,
+   "age_hours": 41.9,
    "is_today": false,
    "brief_ar": "خبر من ارقام (عبر Google News – تداول/تاسي) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاعات البنوك، الشركات الصغيرة ضمن السوق السعودية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 2 من 3). قد يستفيد: البنوك.",
    "brief_origin": "template",
@@ -18746,7 +18755,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 41.9,
+   "age_hours": 42.0,
    "is_today": false,
    "brief_ar": "خبر من ارقام (عبر Google News – السوق السعودية) بتاريخ الثلاثاء 8 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -18833,7 +18842,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 42.0,
+   "age_hours": 42.1,
    "is_today": false,
    "brief_ar": "خبر من اندبندنت عربية (عبر Google News – السوق السعودية) بتاريخ الثلاثاء 8 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -18920,7 +18929,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 42.1,
+   "age_hours": 42.2,
    "is_today": false,
    "brief_ar": "خبر من cnbcarabia.com (عبر Google News – تداول/تاسي) بتاريخ الثلاثاء 8 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -19187,7 +19196,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 42.3,
+   "age_hours": 42.4,
    "is_today": false,
    "brief_ar": "خبر من صحيفة مال (عبر Google News – معال) بتاريخ الثلاثاء 8 سبتمبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -19274,7 +19283,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.4,
+   "age_hours": 35.5,
    "is_today": false,
    "brief_ar": "خبر من صحيفة مال (عبر Google News – معال) بتاريخ الثلاثاء 8 سبتمبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -19364,7 +19373,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.5,
+   "age_hours": 35.6,
    "is_today": false,
    "brief_ar": "خبر من Reuters (عبر Google News – Reuters Saudi) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاعات الطاقة، البنوك، التجزئة ضمن السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: الطاقة؛ وقد يتأثر سلبًا: التجزئة.",
    "brief_origin": "template",
@@ -19457,7 +19466,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.6,
+   "age_hours": 37.7,
    "is_today": false,
    "brief_ar": "خبر من ارقام (عبر Google News – أرقام) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـشركة تسلا (TSLA) ضمن السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -19553,7 +19562,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.3,
+   "age_hours": 38.4,
    "is_today": false,
    "brief_ar": "خبر من ارقام (عبر Google News – أرقام) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـشركة شيفرون (CVX) ضمن السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 2 من 3). قد يستفيد: الطاقة.",
    "brief_origin": "template",
@@ -19646,7 +19655,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.8,
+   "age_hours": 38.9,
    "is_today": false,
    "brief_ar": "خبر من ارقام (عبر Google News – أرقام) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـشركة إنتل (INTC) ضمن السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -19742,7 +19751,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.9,
+   "age_hours": 39.0,
    "is_today": false,
    "brief_ar": "خبر من Reuters (عبر Google News – Reuters Saudi) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـشركة شيفرون (CVX) ضمن السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 2 من 3). قد يستفيد: الطاقة.",
    "brief_origin": "template",
@@ -19839,7 +19848,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 40.0,
+   "age_hours": 40.1,
    "is_today": false,
    "brief_ar": "خبر من صحيفة مال (عبر Google News – معال) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـشركة بنك أوف أمريكا (BAC) ضمن السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 2 من 3). قد يستفيد: البنوك.",
    "brief_origin": "template",
@@ -19932,7 +19941,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-09-08",
-   "age_hours": 35.5,
+   "age_hours": 35.6,
    "is_today": false,
    "fundamental": {
     "scope": {
@@ -20019,7 +20028,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 35.9,
+   "age_hours": 36.0,
    "is_today": false,
    "brief_ar": "خبر من Reuters (عبر Google News – Reuters Saudi) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاعات التأمين، النقل، البنوك ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: سلبي على الأرجح (درجة الثقة 3 من 3). قد يستفيد: أرامكو (2222)؛ وقد يتأثر سلبًا: التأمين (التعاونية 8010، بوبا 8210) والبحري (4030).",
    "brief_origin": "template",
@@ -20106,7 +20115,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T22:02:25Z",
    "day_local": "2026-09-08",
-   "age_hours": 37.4,
+   "age_hours": 37.5,
    "is_today": false,
    "brief_ar": "خبر من ارقام (عبر Google News – أرقام) بتاريخ الثلاثاء 8 سبتمبر يخص الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
@@ -20195,7 +20204,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 38.8,
+   "age_hours": 38.9,
    "is_today": false,
    "brief_ar": "خبر من صحيفة مال (عبر Google News – معال) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاع الطاقة ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: الطاقة.",
    "brief_origin": "template",
@@ -20463,7 +20472,7 @@
    "analysis": "rules",
    "first_seen_utc": "2026-09-09T19:23:01Z",
    "day_local": "2026-09-08",
-   "age_hours": 39.2,
+   "age_hours": 39.3,
    "is_today": false,
    "brief_ar": "خبر من ارقام (عبر Google News – أرقام) بتاريخ الثلاثاء 8 سبتمبر يتعلق بـقطاع الطاقة ضمن الاقتصاد الكلي والسلع. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: الطاقة.",
    "brief_origin": "template",
