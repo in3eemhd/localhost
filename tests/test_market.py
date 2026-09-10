@@ -59,18 +59,6 @@ def quote_obj(symbol, price, prev, mcap, market_time=MARKET_TIME, state="REGULAR
             "regularMarketTime": market_time, "marketState": state, "regularMarketVolume": volume, "currency": currency}
 
 
-SAUDIEXCHANGE_HTML = """
-<html><body><div class="indices">
-<table class="table">
- <thead><tr><th>المؤشر</th><th>القيمة</th><th>التغير</th><th>التغير %</th></tr></thead>
- <tbody>
-  <tr><td><a href="#">المؤشر العام تاسي (TASI)</a></td><td>11,432.17</td><td>-58.44</td><td>-0.51 %</td></tr>
-  <tr><td>مؤشر MT30</td><td>1,480.22</td><td>+3.10</td><td>0.21%</td></tr>
-  <tr><td>مؤشر نمو الموازية (NomuC)</td><td>26,801.90</td><td>(120.30)</td><td>(0.45%)</td></tr>
- </tbody>
-</table></div></body></html>
-"""
-
 STOOQ_CSV = "Date,Open,High,Low,Close,Volume\n2025-05-29,11400,11450,11380,11420,1\n2025-06-01,11420,11500,11390,11480.5,2\n"
 
 
@@ -222,26 +210,6 @@ def test_us_eastern_fallback_matches_zoneinfo():
         assert fm.fmt_local(dt, fb) == fm.fmt_local(dt, real), dt
 
 
-def test_parse_saudiexchange_html():
-    found = fm.parse_saudiexchange_indices_html(SAUDIEXCHANGE_HTML)
-    assert set(found) == {"TASI", "MT30", "NomuC"}
-    assert found["TASI"] == {"value": 11432.17, "change_pts": -58.44, "change_pct": -0.51}
-    assert found["MT30"] == {"value": 1480.22, "change_pts": 3.10, "change_pct": 0.21}
-    assert found["NomuC"] == {"value": 26801.90, "change_pts": -120.30, "change_pct": -0.45}
-
-
-def test_parse_saudiexchange_html_no_rows():
-    with pytest.raises(fm.FetchError):
-        fm.parse_saudiexchange_indices_html("<html><table><tr><td>nothing</td></tr></table></html>")
-
-
-def test_parse_saudiexchange_json():
-    data = {"data": [{"indexName": "TASI", "lastValue": "11,432.17", "change": "-58.44", "changePercent": "-0.51"},
-                     {"indexName": "Something else", "lastValue": "1"}]}
-    found = fm.parse_saudiexchange_indices_json(data)
-    assert found == {"TASI": {"value": 11432.17, "change_pts": -58.44, "change_pct": -0.51}}
-
-
 def test_parse_stooq_csv():
     p = fm.parse_stooq_csv(STOOQ_CSV)
     assert p["value"] == 11480.5 and p["session_date"] == "2025-06-01"
@@ -293,46 +261,38 @@ def test_yahoo_chart_error_payload(monkeypatch):
 # Orchestration: fallback order + error recording
 # --------------------------------------------------------------------------- #
 
-def test_indices_yahoo_then_saudiexchange_for_the_rest(monkeypatch):
-    use_session(monkeypatch, {
-        "chart/%5ETASI.SR": FakeResponse(body=yahoo_fixture()),
-        "indices-performance": FakeResponse(text=SAUDIEXCHANGE_HTML),
-    })
+def test_indices_yahoo_tasi_only_when_no_candidate_works(monkeypatch, caplog):
+    """TASI via Yahoo; MT30/NomuC have no working Yahoo symbol -> simply absent,
+    with an INFO log and no error record (no other site is ever consulted)."""
+    s = use_session(monkeypatch, {"chart/%5ETASI.SR": FakeResponse(body=yahoo_fixture())})
     errors = []
-    idx = fm.fetch_indices(errors, NOW)
+    with caplog.at_level("INFO", logger="fetch_market"):
+        idx = fm.fetch_indices(errors, NOW)
     by = {i["code"]: i for i in idx}
-    assert [i["code"] for i in idx] == ["TASI", "MT30", "NomuC"]
+    assert [i["code"] for i in idx] == ["TASI"]
     assert by["TASI"]["source"] == "yahoo" and by["TASI"]["value"] == 11500.25
     assert by["TASI"]["as_of_utc"] == "2025-06-02T11:58:40Z" and by["TASI"]["as_of_riyadh"] == "2025-06-02 14:58:40"
-    assert by["MT30"]["source"] == "saudiexchange" and by["MT30"]["value"] == 1480.22
-    assert by["NomuC"]["change_pct"] == -0.45 and by["NomuC"]["is_closed"] is None
     assert errors == []
-
-
-def test_indices_saudiexchange_when_yahoo_down(monkeypatch):
-    use_session(monkeypatch, {
-        "yahoo.com": FakeResponse(500),
-        "indices-performance": FakeResponse(text=SAUDIEXCHANGE_HTML),
-    })
-    errors = []
-    idx = fm.fetch_indices(errors, NOW)
-    assert {i["code"]: i["source"] for i in idx} == {"TASI": "saudiexchange", "MT30": "saudiexchange", "NomuC": "saudiexchange"}
-    assert [e["what"] for e in errors] == ["index:TASI:yahoo"]
+    assert "index MT30: no Yahoo symbol candidate works" in caplog.text
+    assert "index NomuC: no Yahoo symbol configured" in caplog.text
+    hosts = {c[0].split("/")[2] for c in s.calls}
+    assert hosts <= {"query1.finance.yahoo.com", "query2.finance.yahoo.com"}
 
 
 def test_indices_stooq_last_resort(monkeypatch):
-    use_session(monkeypatch, {"stooq.com/q/d/l/?s=^tasi": FakeResponse(text=STOOQ_CSV)})
+    s = use_session(monkeypatch, {"stooq.com/q/d/l/?s=^tasi": FakeResponse(text=STOOQ_CSV)})
     errors = []
     idx = fm.fetch_indices(errors, NOW)
     assert len(idx) == 1 and idx[0]["code"] == "TASI" and idx[0]["source"] == "stooq"
     assert idx[0]["value"] == 11480.5 and idx[0]["session_date"] == "2025-06-01"
-    assert {e["what"] for e in errors} == {"index:TASI:yahoo", "index:saudiexchange"}
+    assert {e["what"] for e in errors} == {"index:TASI:yahoo"}
+    assert {c[0].split("/")[2] for c in s.calls} == {"query1.finance.yahoo.com", "query2.finance.yahoo.com", "stooq.com"}
 
 
 def test_indices_all_sources_fail(monkeypatch):
     errors = []
     assert fm.fetch_indices(errors, NOW) == []
-    assert {e["what"] for e in errors} == {"index:TASI:yahoo", "index:saudiexchange", "index:TASI:stooq"}
+    assert {e["what"] for e in errors} == {"index:TASI:yahoo", "index:TASI:stooq"}
     assert all(e["detail"] for e in errors)
 
 
@@ -417,16 +377,14 @@ def test_mt30_yahoo_candidates_loop_first_hit_wins_and_is_logged(monkeypatch, ca
         "chart/%5ETASI.SR": FakeResponse(body=yahoo_fixture()),
         "chart/%5EMT30": FakeResponse(404, text="nope"),
         "chart/MT30.SR": FakeResponse(body=yahoo_fixture("MT30.SR", price=1480.22, closes=(1470.0, 1475.0, 1480.22))),
-        "indices-performance": FakeResponse(text=SAUDIEXCHANGE_HTML),
     })
     errors = []
     with caplog.at_level("INFO", logger="fetch_market"):
         idx = fm.fetch_indices(errors, NOW)
     by = {i["code"]: i for i in idx}
-    assert [i["code"] for i in idx] == ["TASI", "MT30", "NomuC"]
+    assert [i["code"] for i in idx] == ["TASI", "MT30"]  # NomuC has no Yahoo symbol -> absent
     assert by["MT30"]["source"] == "yahoo" and by["MT30"]["yahoo"] == "MT30.SR" and by["MT30"]["value"] == 1480.22
     assert by["MT30"]["change_pts"] == pytest.approx(5.22) and "unit" not in by["MT30"]
-    assert by["NomuC"]["source"] == "saudiexchange"  # only the still-missing one came from the exchange page
     assert errors == []
     tried = [c[0].rsplit("/", 1)[1] for c in s.calls if "/v8/finance/chart/" in c[0]]
     assert "%5ETMT30" not in tried and tried.index("%5EMT30") < tried.index("MT30.SR")
@@ -435,25 +393,22 @@ def test_mt30_yahoo_candidates_loop_first_hit_wins_and_is_logged(monkeypatch, ca
 
 def test_mt30_yahoo_candidates_all_fail_is_soft(monkeypatch, caplog):
     """No candidate works (the live situation today): no error is recorded for the
-    probe, MT30 comes from Saudi Exchange, and every candidate was tried once per host."""
-    s = use_session(monkeypatch, {
-        "chart/%5ETASI.SR": FakeResponse(body=yahoo_fixture()),
-        "indices-performance": FakeResponse(text=SAUDIEXCHANGE_HTML),
-    })
+    probe, MT30 is simply absent (never fabricated), and every candidate was tried
+    once per host."""
+    s = use_session(monkeypatch, {"chart/%5ETASI.SR": FakeResponse(body=yahoo_fixture())})
     errors = []
     with caplog.at_level("INFO", logger="fetch_market"):
         idx = fm.fetch_indices(errors, NOW)
-    by = {i["code"]: i for i in idx}
-    assert by["MT30"]["source"] == "saudiexchange" and by["MT30"]["yahoo"] is None
+    assert [i["code"] for i in idx] == ["TASI"]
     assert errors == []
     tried = [c[0].rsplit("/", 1)[1] for c in s.calls if "/v8/finance/chart/" in c[0]]
     assert tried.count("%5EMT30") == 2 and tried.count("MT30.SR") == 2 and tried.count("%5ETMT30") == 2
     assert "no Yahoo symbol candidate works" in caplog.text
-    # and when the exchange page is down too, MT30 is simply absent (never fabricated)
+    # same without the Stooq fallback: still only TASI, still no error record
     use_session(monkeypatch, {"chart/%5ETASI.SR": FakeResponse(body=yahoo_fixture())})
     errors = []
     assert [i["code"] for i in fm.fetch_indices(errors, NOW, use_stooq=False)] == ["TASI"]
-    assert [e["what"] for e in errors] == ["index:saudiexchange"]
+    assert errors == []
 
 
 def test_yahoo_index_candidates_raises_with_every_failure():
@@ -634,11 +589,10 @@ def test_main_writes_schema_and_exits_0(monkeypatch, tmp_path):
     use_session(monkeypatch, {
         "chart/%5ETASI.SR": FakeResponse(body=yahoo_fixture()),
         "chart/2222.SR": FakeResponse(body=yahoo_fixture("2222.SR", price=27.5)),
-        "indices-performance": FakeResponse(text=SAUDIEXCHANGE_HTML),
     })
     out = tmp_path / "data" / "market.json"
     rc = fm.main(["--out", str(out), "--constituents", fm.DEFAULT_CONSTITUENTS, "--markets", "sa",
-                  "--no-quote", "--sleep", "0", "--exchange-fallback"])
+                  "--no-quote", "--sleep", "0"])
     assert rc == 0 and out.exists()
     data = json.loads(out.read_text(encoding="utf-8"))
     assert set(data) == PAYLOAD_KEYS
@@ -646,7 +600,7 @@ def test_main_writes_schema_and_exits_0(monkeypatch, tmp_path):
     assert data["generated_at_riyadh"] == "2025-06-02 15:00:00"
     assert data["generated_at_new_york"] == "2025-06-02 08:00:00"  # EDT
     assert data["markets"] == ["sa"]
-    assert [i["code"] for i in data["indices"]] == ["TASI", "MT30", "NomuC"]
+    assert [i["code"] for i in data["indices"]] == ["TASI"]  # MT30/NomuC absent: no Yahoo symbol worked
     for i in data["indices"]:
         assert set(i) == SA_INDEX_KEYS and i["market"] == "sa" and i["currency"] == "SAR" and i["tz"] == "Asia/Riyadh"
         assert i["as_of_riyadh"] == i["as_of_local"]
@@ -671,16 +625,15 @@ def test_main_both_markets_default(monkeypatch, tmp_path):
         "chart/%5EDJI": FakeResponse(body=us_fixture("^DJI", price=42000.0)),
         "chart/2222.SR": FakeResponse(body=yahoo_fixture("2222.SR", price=27.5)),
         "chart/AAPL": FakeResponse(body=us_fixture("AAPL", price=201.5, closes=(198.0, 199.0, 200.0, 200.0, 201.5))),
-        "indices-performance": FakeResponse(text=SAUDIEXCHANGE_HTML),
     })
     out = tmp_path / "market.json"
-    rc = fm.main(["--out", str(out), "--no-quote", "--sleep", "0", "--exchange-fallback"])
+    rc = fm.main(["--out", str(out), "--no-quote", "--sleep", "0"])
     assert rc == 0
     data = json.loads(out.read_text(encoding="utf-8"))
     # every "cmd" symbol 404'd -> "cmd" is dropped from `markets` (only advertised when something was fetched)
     assert data["markets"] == ["sa", "us"]
-    # SA indices first, then US ones; ^IXIC 404'd so it is absent (never fabricated)
-    assert [i["code"] for i in data["indices"]] == ["TASI", "MT30", "NomuC", "^GSPC", "^DJI"]
+    # SA indices first, then US ones; MT30/NomuC and ^IXIC 404'd so they are absent (never fabricated)
+    assert [i["code"] for i in data["indices"]] == ["TASI", "^GSPC", "^DJI"]
     assert {"index:^IXIC:yahoo", "index:BZ=F:yahoo", "index:BTC-USD:yahoo"} <= {e["what"] for e in data["errors"]}
     spx = next(i for i in data["indices"] if i["code"] == "^GSPC")
     assert set(spx) == US_INDEX_KEYS and spx["market"] == "us" and spx["currency"] == "USD"
@@ -794,18 +747,34 @@ def test_main_missing_constituents_still_writes_indices(monkeypatch, tmp_path):
     assert rc == 0
     data = json.loads(out.read_text(encoding="utf-8"))
     assert data["stocks"] == [] and data["indices"][0]["code"] == "TASI"
-    # Saudi Exchange fallback is opt-in now, so no dead-URL error is recorded by default
+    # missing MT30/NomuC never produce an error record
     assert {e["what"] for e in data["errors"]} == {"constituents:sa"}
 
 
-def test_main_exchange_fallback_is_opt_in(monkeypatch, tmp_path):
-    use_session(monkeypatch, {"chart/%5ETASI.SR": FakeResponse(body=yahoo_fixture())})
+def test_exchange_fallback_flag_and_parameter_are_gone():
+    import inspect
+    with pytest.raises(SystemExit):
+        fm.parse_args(["--out", "x.json", "--exchange-fallback"])
+    assert "use_exchange" not in inspect.signature(fm.fetch_indices).parameters
+    assert not [n for n in dir(fm) if "saudiexchange" in n.lower()]
+
+
+def test_no_saudi_exchange_urls_anywhere(monkeypatch, tmp_path):
+    """The owner wants zero requests to saudiexchange.sa: the module source must
+    not reference the host at all, and a full default run must never call it."""
+    with open(fm.__file__, encoding="utf-8") as fh:
+        src = fh.read()
+    assert "saudiexchange.sa" not in src
+    assert "saudiexchange" not in src.lower()
+    s = use_session(monkeypatch, {"chart/%5ETASI.SR": FakeResponse(body=yahoo_fixture())})
     out = tmp_path / "market.json"
-    rc = fm.main(["--out", str(out), "--constituents", str(tmp_path / "nope.json"), "--no-stooq",
-                  "--markets", "sa", "--exchange-fallback"])
-    assert rc == 0
+    assert fm.main(["--out", str(out), "--sleep", "0"]) == 0
+    assert s.calls and not any("saudiexchange" in c[0].lower() for c in s.calls)
+    hosts = {c[0].split("/")[2] for c in s.calls}
+    assert hosts <= {"query1.finance.yahoo.com", "query2.finance.yahoo.com", "fc.yahoo.com", "stooq.com"}
     data = json.loads(out.read_text(encoding="utf-8"))
-    assert {e["what"] for e in data["errors"]} == {"constituents:sa", "index:saudiexchange"}
+    assert not any("saudiexchange" in json.dumps(e).lower() for e in data["errors"])
+    assert all(i["source"] in ("yahoo", "stooq") for i in data["indices"])
 
 
 def test_constituents_file_is_sane():

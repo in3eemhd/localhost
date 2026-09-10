@@ -463,9 +463,18 @@ def test_default_feed_list_shape():
     assert all(u.startswith("https://") for u in urls)
     gn = [u for u in urls if "news.google.com/rss/search" in u]
     assert len(gn) >= 10
-    for site in ("argaam.com", "arabnews.com", "alarabiya.net", "saudiexchange.sa", "mubasher.info",
+    for site in ("argaam.com", "arabnews.com", "alarabiya.net", "mubasher.info",
                  "aleqt.com", "maaal.com", "cnbcarabia.com"):
         assert any(f"site%3A{site}" in u for u in gn), site
+    # owner's request: never query or link Saudi Exchange
+    assert not any("saudiexchange" in u for u in urls)
+
+
+def test_blocked_domain_items_are_dropped():
+    assert fn.is_blocked_domain("https://www.saudiexchange.sa/wps/portal/x")
+    assert fn.is_blocked_domain("https://saudiexchange.sa/")
+    assert not fn.is_blocked_domain("https://www.argaam.com/ar/article/1")
+    assert not fn.is_blocked_domain("")
     us = [f for f in fn.DEFAULT_FEEDS if f.get("market_hint") == "us"]
     assert len(us) >= 20 and all(f["priority"] == 3 for f in us)
     us_urls = " ".join(f["url"] for f in us)

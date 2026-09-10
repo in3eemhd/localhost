@@ -15,8 +15,10 @@ Sources, in fallback order:
                                                          -> stocks (price + marketCap)
      Yahoo Finance chart API  (query1 then query2)      -> indices + any stock the
                                                             quote endpoint missed
-  2. Saudi Exchange (saudiexchange.sa) HTML/JSON         -> TASI / MT30 / NomuC
-  3. Stooq CSV (optional last resort)                    -> TASI only
+  2. Stooq CSV (optional last resort)                    -> TASI only
+
+MT30 / NomuC are only probed through Yahoo symbol candidates; when none works
+they are simply absent from the output (no exchange website is ever contacted).
 
 Nothing is ever fabricated: a value that could not be fetched is null and the
 failure is appended to the "errors" list.  Exit code 0 if at least one index or
@@ -37,7 +39,6 @@ import re
 import sys
 import time
 from datetime import datetime, timedelta, timezone, tzinfo
-from html.parser import HTMLParser
 from typing import Any, Callable, Iterable, Optional
 
 import requests
@@ -133,21 +134,6 @@ YAHOO_QUOTE_URL = "https://query1.finance.yahoo.com/v7/finance/quote"
 YAHOO_CRUMB_URL = "https://query1.finance.yahoo.com/v1/test/getcrumb"
 YAHOO_COOKIE_URL = "https://fc.yahoo.com"
 
-SAUDIEXCHANGE_INDICES_URL = (
-    "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/"
-    "main-market-watch/indices-performance?locale=ar"
-)
-SAUDIEXCHANGE_MARKET_WATCH_URL = (
-    "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/"
-    "main-market-watch/?locale=ar"
-)
-# Candidate JSON endpoints (the portal exposes a few unstable ajax URLs; every
-# one is optional and any failure is just logged).
-SAUDIEXCHANGE_JSON_CANDIDATES = (
-    "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/"
-    "main-market-watch/indices-performance/!ut/p/z1/?locale=ar&format=json",
-)
-
 STOOQ_CANDIDATES = (
     "https://stooq.com/q/d/l/?s=^tasi&i=d",
     "https://stooq.com/q/d/l/?s=tasi.sa&i=d",
@@ -158,24 +144,21 @@ INDEX_DEFS = {
         "name_ar": "المؤشر العام تاسي",
         "name_en": "Tadawul All Share Index",
         "yahoo": "^TASI.SR",
-        "keywords": ("تاسي", "tasi", "المؤشر العام", "all share"),
     },
     "MT30": {
         "name_ar": "مؤشر إم تي 30",
         "name_en": "MSCI Tadawul 30",
         "yahoo": None,  # not reliably on Yahoo; the candidates below are probed
         "yahoo_candidates": ("^MT30", "MT30.SR", "^TMT30"),
-        "keywords": ("mt30", "إم تي 30", "ام تي 30", "mt 30"),
     },
     "NomuC": {
         "name_ar": "مؤشر نمو الموازية",
         "name_en": "Nomu Parallel Market Capped",
-        "yahoo": None,
-        "keywords": ("nomu", "نمو"),
+        "yahoo": None,  # no known Yahoo symbol; absent unless one is added here
     },
 }
 
-# US indices: Yahoo chart only (no exchange-site fallback).  code == Yahoo symbol.
+# US indices: Yahoo chart only.  code == Yahoo symbol.
 US_INDEX_DEFS = {
     "^GSPC": {"name_ar": "ستاندرد آند بورز 500", "name_en": "S&P 500", "yahoo": "^GSPC"},
     "^DJI": {"name_ar": "داو جونز الصناعي", "name_en": "Dow Jones Industrial Average", "yahoo": "^DJI"},
@@ -518,152 +501,7 @@ def fetch_yahoo_quotes(symbols: Iterable[str]) -> dict[str, dict]:
 
 
 # --------------------------------------------------------------------------- #
-# Source 2: Saudi Exchange
-# --------------------------------------------------------------------------- #
-
-class _TableParser(HTMLParser):
-    """Collect every <table> as a list of rows, each a list of cell texts."""
-
-    def __init__(self) -> None:
-        super().__init__(convert_charrefs=True)
-        self.tables: list[list[list[str]]] = []
-        self._row: Optional[list[str]] = None
-        self._cell: Optional[list[str]] = None
-        self._depth = 0
-
-    def handle_starttag(self, tag, attrs):
-        if tag == "table":
-            self._depth += 1
-            self.tables.append([])
-        elif tag == "tr" and self._depth:
-            self._row = []
-        elif tag in ("td", "th") and self._row is not None:
-            self._cell = []
-
-    def handle_endtag(self, tag):
-        if tag in ("td", "th") and self._cell is not None and self._row is not None:
-            self._row.append(" ".join("".join(self._cell).split()))
-            self._cell = None
-        elif tag == "tr" and self._row is not None:
-            if self._row and self.tables:
-                self.tables[-1].append(self._row)
-            self._row = None
-        elif tag == "table" and self._depth:
-            self._depth -= 1
-
-    def handle_data(self, data):
-        if self._cell is not None:
-            self._cell.append(data)
-
-
-def _match_index_code(text: str) -> Optional[str]:
-    t = text.lower()
-    # Order matters: "نمو" must not steal TASI rows and MT30 must beat "tasi".
-    for code in ("MT30", "NomuC", "TASI"):
-        if any(k in t for k in INDEX_DEFS[code]["keywords"]):
-            return code
-    return None
-
-
-def _numbers_from_cells(cells: list[str]) -> tuple[Optional[float], Optional[float], Optional[float]]:
-    """Heuristically pick (value, change_pts, change_pct) from a table row."""
-    value = change = pct = None
-    for c in cells:
-        f = to_float(c)
-        if f is None:
-            continue
-        if ("%" in c or "٪" in c) and pct is None:
-            pct = f
-        elif value is None and abs(f) >= 100:
-            value = f
-        elif change is None and (abs(f) < 100 or value is not None):
-            change = f
-    if value is not None and change is not None and pct is None:
-        pct = pct_change(value, value - change)
-    return value, change, pct
-
-
-def parse_saudiexchange_indices_html(html: str) -> dict[str, dict]:
-    """Extract TASI/MT30/NomuC rows from an indices table.  Returns {code: {...}}."""
-    parser = _TableParser()
-    try:
-        parser.feed(html)
-    except Exception as exc:  # html.parser is lenient, but never let it kill us
-        raise FetchError(f"html parse error: {exc}")
-    found: dict[str, dict] = {}
-    for table in parser.tables:
-        for row in table:
-            if not row:
-                continue
-            code = _match_index_code(" ".join(row[:2]))
-            if code is None or code in found:
-                continue
-            value, change, pct = _numbers_from_cells(row)
-            if value is None:
-                continue
-            found[code] = {"value": value, "change_pts": change, "change_pct": pct}
-    if not found:
-        raise FetchError("no index rows found in Saudi Exchange HTML")
-    return found
-
-
-def _walk_json(obj: Any):
-    if isinstance(obj, dict):
-        yield obj
-        for v in obj.values():
-            yield from _walk_json(v)
-    elif isinstance(obj, list):
-        for v in obj:
-            yield from _walk_json(v)
-
-
-def parse_saudiexchange_indices_json(data: Any) -> dict[str, dict]:
-    """Very tolerant: any dict with an index-ish name and a numeric value/last."""
-    found: dict[str, dict] = {}
-    name_keys = ("indexName", "name", "indexNameAr", "indexNameEn", "index")
-    value_keys = ("lastValue", "last", "value", "indexValue", "previousClose")
-    change_keys = ("change", "changeValue", "netChange")
-    pct_keys = ("changePercent", "percentChange", "changePct", "percent")
-    for d in _walk_json(data):
-        name = next((str(d[k]) for k in name_keys if isinstance(d.get(k), str)), None)
-        if not name:
-            continue
-        code = _match_index_code(name)
-        if code is None or code in found:
-            continue
-        value = next((to_float(d[k]) for k in value_keys if d.get(k) is not None), None)
-        if value is None:
-            continue
-        found[code] = {
-            "value": value,
-            "change_pts": next((to_float(d[k]) for k in change_keys if d.get(k) is not None), None),
-            "change_pct": next((to_float(d[k]) for k in pct_keys if d.get(k) is not None), None),
-        }
-    if not found:
-        raise FetchError("no index objects found in Saudi Exchange JSON")
-    return found
-
-
-def fetch_saudiexchange_indices() -> tuple[dict[str, dict], str]:
-    """Try JSON candidates then the HTML indices page.  Returns ({code: {...}}, url)."""
-    errors = []
-    for url in SAUDIEXCHANGE_JSON_CANDIDATES:
-        try:
-            resp = http_get(url, retries=1, headers={"Accept": "application/json", "X-Requested-With": "XMLHttpRequest"})
-            return parse_saudiexchange_indices_json(resp.json()), url
-        except (FetchError, ValueError) as exc:
-            errors.append(f"{url}: {exc}")
-    for url in (SAUDIEXCHANGE_INDICES_URL, SAUDIEXCHANGE_MARKET_WATCH_URL):
-        try:
-            resp = http_get(url, retries=2, headers={"Accept": "text/html"})
-            return parse_saudiexchange_indices_html(resp.text), url
-        except FetchError as exc:
-            errors.append(f"{url}: {exc}")
-    raise FetchError("; ".join(errors))
-
-
-# --------------------------------------------------------------------------- #
-# Source 3: Stooq (optional)
+# Source 2: Stooq (optional)
 # --------------------------------------------------------------------------- #
 
 def parse_stooq_csv(text: str) -> dict:
@@ -811,17 +649,17 @@ def fetch_us_indices(errors: list[dict], now: datetime) -> list[dict]:
     return out
 
 
-def fetch_indices(errors: list[dict], now: datetime, use_stooq: bool = True,
-                  use_exchange: bool = True) -> list[dict]:
-    """Saudi indices with the full Yahoo -> Saudi Exchange -> Stooq fallback chain."""
+def fetch_indices(errors: list[dict], now: datetime, use_stooq: bool = True) -> list[dict]:
+    """Saudi indices: Yahoo, then Stooq for TASI.  Nothing else is contacted."""
     indices: dict[str, dict] = {}
 
     # 1. Yahoo.  A definite `yahoo` symbol failing is an error; the speculative
-    #    `yahoo_candidates` (MT30) are only probed and logged, because the Saudi
-    #    Exchange page is the real source for those and reports its own error.
+    #    `yahoo_candidates` (MT30) are only probed and logged: when none works
+    #    the index is simply absent from the output (no error record).
     for code, spec in INDEX_DEFS.items():
         symbols = _yahoo_symbols(spec)
         if not symbols:
+            log.info("index %s: no Yahoo symbol configured; skipped", code)
             continue
         try:
             indices[code] = _yahoo_index_candidates(code, symbols, "sa", now)
@@ -830,37 +668,9 @@ def fetch_indices(errors: list[dict], now: datetime, use_stooq: bool = True,
                 errors.append({"what": f"index:{code}:yahoo", "detail": str(exc)})
                 log.warning("index %s via yahoo failed: %s", code, exc)
             else:
-                log.info("index %s: no Yahoo symbol candidate works (%s); trying other sources", code, exc)
+                log.info("index %s: no Yahoo symbol candidate works (%s); index omitted", code, exc)
 
-    # 2. Saudi Exchange (fills whatever Yahoo did not). Opt-in: the site answers
-    #    403 to automated clients (GitHub runners included), so by default we
-    #    skip it rather than record a dead URL in the errors list.
-    missing = [c for c in INDEX_DEFS if c not in indices]
-    if missing and not use_exchange:
-        log.info("indices not on Yahoo (%s): Saudi Exchange fallback disabled", ", ".join(missing))
-    if missing and use_exchange:
-        try:
-            found, url = fetch_saudiexchange_indices()
-            for code in missing:
-                if code in found:
-                    f = found[code]
-                    indices[code] = _index_record(
-                        code, "sa", value=f["value"], change_pts=round_or_none(f.get("change_pts")),
-                        change_pct=round_or_none(f.get("change_pct")),
-                        session_date=now.astimezone(RIYADH_TZ).strftime("%Y-%m-%d"),
-                        is_closed=None, source="saudiexchange", source_url=url,
-                        **as_of_fields(now, "sa"),
-                    )
-                    log.info("index %s via saudiexchange: %s", code, f["value"])
-            still = [c for c in missing if c not in indices]
-            if still:
-                errors.append({"what": "index:saudiexchange",
-                               "detail": f"page parsed but rows not found for: {', '.join(still)}"})
-        except FetchError as exc:
-            errors.append({"what": "index:saudiexchange", "detail": str(exc)})
-            log.warning("saudiexchange indices failed: %s", exc)
-
-    # 3. Stooq for TASI only
+    # 2. Stooq for TASI only
     if use_stooq and "TASI" not in indices:
         try:
             p, url = fetch_stooq_tasi()
@@ -991,8 +801,6 @@ def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
     ap.add_argument("--sleep", type=float, default=0.25, help="seconds between Yahoo chart symbols (rate-limit courtesy)")
     ap.add_argument("--no-quote", action="store_true", help="skip Yahoo quote endpoint (market cap)")
     ap.add_argument("--no-stooq", action="store_true", help="skip the Stooq fallback")
-    ap.add_argument("--exchange-fallback", action="store_true",
-                    help="try saudiexchange.sa for MT30/NomuC (blocked for bots; off by default)")
     ap.add_argument("--indices-only", action="store_true", help="do not fetch stocks")
     ap.add_argument("-v", "--verbose", action="store_true")
     return ap.parse_args(argv)
@@ -1024,8 +832,7 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     indices: list[dict] = []
     if "sa" in markets:
-        indices += fetch_indices(errors, now, use_stooq=not args.no_stooq,
-                                 use_exchange=args.exchange_fallback)
+        indices += fetch_indices(errors, now, use_stooq=not args.no_stooq)
     if "us" in markets:
         indices += fetch_us_indices(errors, now)
     if "cmd" in markets:
