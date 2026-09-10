@@ -42,7 +42,7 @@
       "session_date": "2026-09-09",
       "is_closed": false,
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch/indices-performance?locale=ar"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "^GSPC",
@@ -230,7 +230,7 @@
       "market_cap_sar": 6740000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "2380",
@@ -245,7 +245,7 @@
       "market_cap_sar": 13300000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "2030",
@@ -260,7 +260,7 @@
       "market_cap_sar": 1750000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "1120",
@@ -275,7 +275,7 @@
       "market_cap_sar": 385000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "1180",
@@ -290,7 +290,7 @@
       "market_cap_sar": 217000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "1010",
@@ -305,7 +305,7 @@
       "market_cap_sar": 81000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "1150",
@@ -320,7 +320,7 @@
       "market_cap_sar": 69000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "1060",
@@ -335,7 +335,7 @@
       "market_cap_sar": 71000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "1080",
@@ -350,7 +350,7 @@
       "market_cap_sar": 44000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "1111",
@@ -365,7 +365,7 @@
       "market_cap_sar": 21600000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "2010",
@@ -380,7 +380,7 @@
       "market_cap_sar": 187000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "1211",
@@ -395,7 +395,7 @@
       "market_cap_sar": 150000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "2020",
@@ -410,7 +410,7 @@
       "market_cap_sar": 53000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "2290",
@@ -425,7 +425,7 @@
       "market_cap_sar": 19000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "2350",
@@ -440,7 +440,7 @@
       "market_cap_sar": 9080000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "2090",
@@ -470,7 +470,7 @@
       "market_cap_sar": 207000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "7020",
@@ -485,7 +485,7 @@
       "market_cap_sar": 42000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "7030",
@@ -500,7 +500,7 @@
       "market_cap_sar": 9800000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "8010",
@@ -515,7 +515,7 @@
       "market_cap_sar": 16000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "8210",
@@ -530,7 +530,7 @@
       "market_cap_sar": 25000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "8310",
@@ -545,7 +545,7 @@
       "market_cap_sar": 383000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "4300",
@@ -560,7 +560,7 @@
       "market_cap_sar": 20700000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "4250",
@@ -575,7 +575,7 @@
       "market_cap_sar": 25000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "4324",
@@ -605,7 +605,7 @@
       "market_cap_sar": 20900000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "5110",
@@ -620,7 +620,7 @@
       "market_cap_sar": 64000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "2082",
@@ -635,7 +635,7 @@
       "market_cap_sar": 183000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "4190",
@@ -650,7 +650,7 @@
       "market_cap_sar": 15800000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "4001",
@@ -665,7 +665,7 @@
       "market_cap_sar": 8600000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "1213",
@@ -680,7 +680,7 @@
       "market_cap_sar": 500000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "7200",
@@ -695,7 +695,7 @@
       "market_cap_sar": 3500000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "7203",
@@ -710,7 +710,7 @@
       "market_cap_sar": 72000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "4013",
@@ -725,7 +725,7 @@
       "market_cap_sar": 98000000000,
       "as_of_utc": "2026-09-08T12:00:00Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/main-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "9619",
@@ -740,7 +740,7 @@
       "market_cap_sar": null,
       "as_of_utc": "2026-09-09T11:42:07Z",
       "source": "تداول السعودية",
-      "source_url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/ourmarkets/nomu-parallel-market-watch"
+      "source_url": "https://finance.yahoo.com/quote/%5ETASI.SR/"
     },
     {
       "code": "AAPL",

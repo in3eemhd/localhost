@@ -87,7 +87,6 @@ DEFAULT_FEEDS: list[dict[str, Any]] = [
     {"name": "Google News – تداول/تاسي", "priority": 1, "lang": "ar",
      "url": "https://news.google.com/rss/search?q=Tadawul+OR+%D8%AA%D8%A7%D8%B3%D9%8A&hl=ar&gl=SA&ceid=SA:ar"},
     {"name": "Google News – أرقام", "priority": 1, "lang": "ar", "url": gnews("site:argaam.com when:2d")},
-    {"name": "Google News – Saudi Exchange", "priority": 1, "lang": "ar", "url": gnews("site:saudiexchange.sa when:2d")},
     {"name": "Google News – مباشر السعودية", "priority": 1, "lang": "ar", "url": gnews("site:mubasher.info السعودية when:2d")},
     {"name": "Google News – الاقتصادية", "priority": 1, "lang": "ar", "url": gnews("site:aleqt.com when:2d")},
     {"name": "Google News – معال", "priority": 1, "lang": "ar", "url": gnews("site:maaal.com when:2d")},
@@ -705,6 +704,18 @@ def adjust_future_time(dt: datetime, now: datetime, precision: str) -> tuple[dat
     return now, ("minute" if precision == "second" else precision), "clamped"
 
 
+# Domains we never link to or fetch from (owner's request: avoid any terms-of-use exposure).
+BLOCKED_DOMAINS = ("saudiexchange.sa", "tadawul.com.sa")
+
+
+def is_blocked_domain(link: str) -> bool:
+    try:
+        host = urlparse(link).netloc.lower()
+    except ValueError:
+        return False
+    return any(host == d or host.endswith("." + d) for d in BLOCKED_DOMAINS)
+
+
 def build_items(entries: Iterable[dict[str, Any]], feed: dict[str, Any], now: datetime,
                 window_hours: float, min_relevance: float = RELEVANCE_MIN) -> tuple[list[dict[str, Any]], int, int]:
     """Returns (items, dropped_by_date, dropped_by_relevance)."""
@@ -730,6 +741,10 @@ def build_items(entries: Iterable[dict[str, Any]], feed: dict[str, Any], now: da
         link = e.get("link") or ""
         if "news.google.com" in link:
             link = resolve_google_news_link(link)
+        if is_blocked_domain(link):
+            dropped += 1
+            log.debug("[%s] blocked domain, dropped: %s", feed["name"], link)
+            continue
         text_for_lang = f"{e['title']} {e.get('summary', '')}"
         rel = relevance_score(e["title"], e.get("summary", ""), e.get("source") or feed["name"], link)
         if rel < min_relevance:
