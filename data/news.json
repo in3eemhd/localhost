@@ -1,20 +1,20 @@
 {
- "generated_at_utc": "2026-10-18T15:47:26Z",
+ "generated_at_utc": "2026-10-18T16:59:28Z",
  "today_riyadh": "2026-10-18",
- "source_generated_at_utc": "2026-10-18T15:46:56Z",
+ "source_generated_at_utc": "2026-10-18T16:58:58Z",
  "analysis_mode": "rules",
  "model": null,
  "days_window": 7,
- "dropped": 3934,
+ "dropped": 3929,
  "stats": {
   "input": 400,
-  "new_items": 119,
-  "already_known": 187,
-  "archive_total": 4140,
-  "expired": 122,
+  "new_items": 30,
+  "already_known": 279,
+  "archive_total": 4138,
+  "expired": 32,
   "kept": 300,
-  "dropped_irrelevant": 94,
-  "dropped_cap": 3840,
+  "dropped_irrelevant": 91,
+  "dropped_cap": 3838,
   "by_market": {
    "sa": 143,
    "macro": 44,
@@ -29,7 +29,7 @@
    "2026-10-14": 10
   },
   "llm_items": 0,
-  "fetch_dropped": 1842
+  "fetch_dropped": 1865
  },
  "sectors": {
   "energy": "الطاقة",
@@ -88,6 +88,530 @@
   }
  ],
  "items": [
+  {
+   "title": "\"تاسي\" في أفضل يوم بنحو أسبوعين .. والنتائج تختبر استدامة الصعود - الاقتصادية",
+   "link": "https://news.google.com/rss/articles/CBMilwRBVV95cUxOemdpcVhScGJGTURHS3FLVVZVRl9QSlNjdzFzN3UzcnRNOXlDeVgydVFIMWQxaHZPMnRBUDJvX29Day16b3hUaFRta3Y0QWFYSUtray11bUd5VWlnNFFFMkNaZFJ3ZUdkQ3R3LW52ODVfUnY5a1JyNk1tdWFEWFhYNUhENWFSVDUwUjRxQVYtOHZpenpRT051dDVWcG5iQnRKQXVBazBWakRkVTZHYXlDWlFiQmloZVJBQk5DVElrQ0k0MVdtTVV4dWhoM0tyeW9CWXdFc1U4bDl0RzZHMDAzVUlndWpyaVNIZERPMjdtVGtvSXRjQWRCZy1GS0kzT3BpT2x5VEU4NmpiZnQ1UkFCUDgzVjVnYzc1eklRUlo0Q0FaUkFMMjV0TGFxdUVHZEhOSV9aUmxwdzBDeTBkSklrQVBwYl9rUkd4MUJuOUE3NTM1TFYxdjJXLXRyV250OWFzdUQyYlFGYTNhUGFDQVpkNXpKZmNiWmtPQWMyczhrM0NTamdHZDhPLXhQYzdicU9fTEJCdWxzU3BjYnRnOVdrY0ZqYnFOWklybWpxZU0zeHR3WXpaRXRNdk1mRTgxbkJfQ3Atc2ZmLUJtN182ZVhWMWd3MXJNcFI3bzhfTGRzWEFUalY1YWtQV2hwQVVVdl9Tam5JQU0yMWJ2ZzhJZHlWb1NNcjZPdGZjR1J5NkxabUZkV29IZnRF?oc=5",
+   "source": "الاقتصادية (عبر Google News – تداول/تاسي)",
+   "published_utc": "2026-10-18T16:52:30Z",
+   "published_riyadh": "2026-10-18 19:52:30",
+   "precision": "second",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 0.85,
+   "raw_published": "Sun, 18 Oct 2026 16:52:30 GMT",
+   "id": "211eb9c9ce78",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "sa",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "micro",
+     "label_ar": "خاص بالشركة",
+     "note_ar": "خبر يخص شركة بعينها: أرباح أو إدارة أو استحواذ أو عقود."
+    },
+    "credibility": {
+     "tier": "B",
+     "kind": "خبر",
+     "label_ar": "وكالة موثوقة · خبر",
+     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ لم تُرصد مقارنة واضحة بالتوقعات في هذا الخبر."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [],
+     "label_ar": "لم يُحدَّد بند مالي آليًا",
+     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+    },
+    "sentiment": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لم تُرصد مفردات كافية لتقدير المزاج آليًا."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من الاقتصادية (عبر Google News – تداول/تاسي) بتاريخ الأحد 18 أكتوبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-10-18",
+   "age_hours": 0.1,
+   "is_today": true
+  },
+  {
+   "title": "أسواق الأسهم الخليجية تنهي تداولات اليوم على تباين - صحيفة مال",
+   "link": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQYkw0bVFMTWxfYzBzOE5hQ0lGbWwtWEVrQWNxUXNQUGJCSUxSUHVDLTVfNWcxanNaWnV6WHp0VTcyN01nenFURmZOUUd2bW9CY2tJRlZrc0FvdUhlN0ZjRzNUb21SXzJaSGZzSTFwQUFIV0JVdDVTLU5pcEJGaVg0MnA2OEo4NEhlbmtFOXgwOGp3V3RQYzl4V2t3SkxkQmNTZkhEdnlXeFgzQTZwYTU4U2Q3T2tPTEhOXy0yZEcyQnloRzV0TU03Yml2cmczNksxaXhfQW56T0dKdFFuWi00aWg4OElxRWJKWmJ0WUZ1QjRGSy1iamNlNXI3UQ?oc=5",
+   "source": "صحيفة مال (عبر Google News – معال)",
+   "published_utc": "2026-10-18T16:34:18Z",
+   "published_riyadh": "2026-10-18 19:34:18",
+   "precision": "second",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 0.85,
+   "raw_published": "Sun, 18 Oct 2026 16:34:18 GMT",
+   "id": "f0f98ea865ea",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "sa",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "macro",
+     "label_ar": "كلّي",
+     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
+    },
+    "credibility": {
+     "tier": "B",
+     "kind": "خبر",
+     "label_ar": "وكالة موثوقة · خبر",
+     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [],
+     "label_ar": "لم يُحدَّد بند مالي آليًا",
+     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+    },
+    "sentiment": {
+     "value": "panic",
+     "label_ar": "ذعر جماعي",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ رُصدت مفردات حادة توحي بموجة خوف."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من صحيفة مال (عبر Google News – معال) بتاريخ الأحد 18 أكتوبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-10-18",
+   "age_hours": 0.4,
+   "is_today": true
+  },
+  {
+   "title": "السعودية وروسيا تبحثان التصعيد في اليمن وتهديدات الملاحة - الاقتصادية",
+   "link": "https://news.google.com/rss/articles/CBMijARBVV95cUxPMXhYT19Gd21oODVWNnFNV0VqbVVhT1FHRmNNdFo0U3dCbjF0dzdMQTVSbTFqUXJSVlFTSGN6WTBoWWgwN3dkSFlKb2dZejBtVXZSTzNZQTBlSTAxdVNSdzFtM3pSWV9FUHNYSlRKWWVnQjhEanlJdHdGLUFMQURuWHpmVm1oSjluTnJXTm1VLU4zcmdDZTItQnJ5b3ZBcExiZ0ZTSWlycXh1VWJyVWtfeFNqaEtVbGRHTjROblVNN2FzWTk1MWw4TmlVSlRNVWFpTktVeng5YllGUzR3UW55MWF0WkVuVU9XNWtyVUkwLUNTTWJBQkJIcFJuSUhWR1RoM2RieG5QNEdFUHk3a2FqeW5IMnVvZnREeTRBUTBUY0dYRlZfbVZ3TUlqTnRJci03NDlkMVlVcDgxOFJVSVhJT2NFd1lLQlZfdU1XZXlIMWRPOWtvaDNiQ2o4clJndUxvN0k2TTVWQWhTSFMzSTlIQUZQampDWWZFbmVOaFkzbExOZ3VNSVVaajJBY0VSQVA2Y0hWOVBUYjg4TW9vSmQ2a0Z3Y29sN0pteUh3SVNGeHVJUlByMnhuYW1HeU5BWDdlV2x5ek0xcVJmbW9IaVV0akEzNEQxc0NndDF5WWZEcGhMa2dYRWpTYWxOTlpGNjd2SFBuOGZWNFRBRVpaX0ZqRmtycEJRMEwxdGFVcg?oc=5",
+   "source": "الاقتصادية (عبر Google News – الاقتصادية)",
+   "published_utc": "2026-10-18T16:03:55Z",
+   "published_riyadh": "2026-10-18 19:03:55",
+   "precision": "second",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 0.55,
+   "raw_published": "Sun, 18 Oct 2026 16:03:55 GMT",
+   "id": "f0770b77919a",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "beneficiary": {
+    "name": "النقل",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 1,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "خبر يخص قطاع النقل واللوجستيات"
+   },
+   "impact_market": "sa",
+   "cf": 1,
+   "rules": [
+    "transport_sector"
+   ],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "sector",
+     "label_ar": "قطاعي",
+     "note_ar": "خبر يمس صناعة محددة أكثر من بقية السوق."
+    },
+    "credibility": {
+     "tier": "B",
+     "kind": "خبر",
+     "label_ar": "وكالة موثوقة · خبر",
+     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [],
+     "label_ar": "لم يُحدَّد بند مالي آليًا",
+     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+    },
+    "sentiment": {
+     "value": "calm",
+     "label_ar": "هادئ",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من الاقتصادية (عبر Google News – الاقتصادية) بتاريخ الأحد 18 أكتوبر يتعلق بـقطاع النقل ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: النقل.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-10-18",
+   "age_hours": 0.9,
+   "is_today": true
+  },
+  {
+   "title": "مؤشر الأسهم السعودية يرتفع 83 نقطة ويتجاوز مستوى 10189 نقطة - صحيفة الحدث",
+   "link": "https://news.google.com/rss/articles/CBMiuwNBVV95cUxQUHNLT1dXNkU5MC15bzFVdHQwaWtuY1IzNnlFQ0N0eEJHNGhEZUxfeWl2Nmt0blZacnUwMTRfYlVYRGc2a0dQRnMyVXV0UTJ3dUhlX0Z5MnBCclBFVF9NU1VkQ08zbEU0b09rZ1dkN0lpRG1nVGNOWjFvMmJZeS1WcTRBZ1NfcVRIbU01c0VHWEdQUVNXMUFiS0xrZ0FpbVM3VGYtVHBBeUZSUzY1QWsyVUJRVmlkOE1BVFdieEpma0hCMjRrYkl5eHQ1VkFOaG5ZZjFvQk5TM1FnVVNRY0NfWS1QNlJOdUV1ZHBMcUNGeEhGeFZOUE9ZbUdJSU5yUzd3d1pmbS1FUkQ5elA5V2g2c0hLLWNrQldMTHNfZGVzVXpJR2J4UTRTUm1XT0FIbWE5Z0RseUszU1NCMktRMjhmdFVaa25IWUpBOGN6ZUcxb29QVngtX2Y4QjNRVGgxN0VReXFMWU1EZFRNVVhXbzhoZUZ4cXpGUjdfai1wc1NDNVRxRzN5eVlMUnJhWG5vSWFJV2VnNzBrNE9USUJjWW12emx5ZGpzT0MyajI1UHpkOWFLQUJUTDk1SG1uNA?oc=5",
+   "source": "صحيفة الحدث (عبر Google News – السوق السعودية)",
+   "published_utc": "2026-10-18T15:53:35Z",
+   "published_riyadh": "2026-10-18 18:53:35",
+   "precision": "second",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 0.7,
+   "raw_published": "Sun, 18 Oct 2026 15:53:35 GMT",
+   "id": "3977bc3763bb",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "sa",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "macro",
+     "label_ar": "كلّي",
+     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
+    },
+    "credibility": {
+     "tier": "C",
+     "kind": "خبر",
+     "label_ar": "مصدر غير مصنّف · خبر",
+     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [],
+     "label_ar": "لم يُحدَّد بند مالي آليًا",
+     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+    },
+    "sentiment": {
+     "value": "calm",
+     "label_ar": "هادئ",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من صحيفة الحدث (عبر Google News – السوق السعودية) بتاريخ الأحد 18 أكتوبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-10-18",
+   "age_hours": 1.1,
+   "is_today": true
+  },
+  {
+   "title": "من الرياض إلى القاهرة.. التوترات الجيوسياسية تضغط على مؤشرات البورصات العربية - شبكة تواصل الإخبارية",
+   "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFA4QnJqaEh3cUt4Q3VuMkNWMlY1bGtHUmdTenlMVGhnaGx4UWpvN2djLUJORUNCUllCR3RPM3R6YjQ0UE9aR1Y1WGduSFRqRGNzVGVv?oc=5",
+   "source": "شبكة تواصل الإخبارية (عبر Google News – السوق السعودية)",
+   "published_utc": "2026-10-18T15:46:39Z",
+   "published_riyadh": "2026-10-18 18:46:39",
+   "precision": "second",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 0.55,
+   "raw_published": "Sun, 18 Oct 2026 15:46:39 GMT",
+   "id": "a2c6be77576b",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "sa",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "macro",
+     "label_ar": "كلّي",
+     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
+    },
+    "credibility": {
+     "tier": "C",
+     "kind": "خبر",
+     "label_ar": "مصدر غير مصنّف · خبر",
+     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [],
+     "label_ar": "لم يُحدَّد بند مالي آليًا",
+     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+    },
+    "sentiment": {
+     "value": "calm",
+     "label_ar": "هادئ",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من شبكة تواصل الإخبارية (عبر Google News – السوق السعودية) بتاريخ الأحد 18 أكتوبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-10-18",
+   "age_hours": 1.2,
+   "is_today": true
+  },
+  {
+   "title": "تغيرات كبار الملاك في السوق السعودي ليوم الأربعاء 14 أكتوبر - ارقام",
+   "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5obkhQanY0bUVybHk5UGs4Ul90aU5iZlpBOTVmRk5mNWNxdGl1ejdqWTRJWEJXUE41Rmh1V1pFMkZjQnFCMEV5VlNEMW0wNG1hbkExTjdiLTVKYVZaS2FpOHhXWEdYVmhVajNZVEVLQW54QlJLY2kyUU82QQ?oc=5",
+   "source": "ارقام (عبر Google News – أرقام)",
+   "published_utc": "2026-10-18T15:18:21Z",
+   "published_riyadh": "2026-10-18 18:18:21",
+   "precision": "second",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 0.55,
+   "raw_published": "Sun, 18 Oct 2026 15:18:21 GMT",
+   "id": "c65db5c14250",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "sa",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "macro",
+     "label_ar": "كلّي",
+     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
+    },
+    "credibility": {
+     "tier": "B",
+     "kind": "خبر",
+     "label_ar": "وكالة موثوقة · خبر",
+     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [],
+     "label_ar": "لم يُحدَّد بند مالي آليًا",
+     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+    },
+    "sentiment": {
+     "value": "calm",
+     "label_ar": "هادئ",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من ارقام (عبر Google News – أرقام) بتاريخ الأحد 18 أكتوبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-10-18",
+   "age_hours": 1.7,
+   "is_today": true
+  },
   {
    "title": "تاسي: انخفاض القيمة السوقية بـ 181.8 مليار ريال الأسبوع الماضي.. وملكية الأجانب 4.58% - ارقام",
    "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5XRUlBNm1XRUpDRUNTSzVkNzlORmNrWWF4ZWZETFo2c0lBUEhLZGl6WlVxb29KcDFXWmkyUmU0TTdEMWtwb05rak0zZEx5YkRRblZ5cEJrSWgwT2N2WW9NdUh6NzNOeHNTNEE?oc=5",
@@ -174,7 +698,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 0.5,
+   "age_hours": 1.7,
    "is_today": true
   },
   {
@@ -261,7 +785,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 0.5,
+   "age_hours": 1.7,
    "is_today": true
   },
   {
@@ -350,7 +874,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 0.6,
+   "age_hours": 1.8,
    "is_today": true
   },
   {
@@ -439,7 +963,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 0.6,
+   "age_hours": 1.8,
    "is_today": true
   },
   {
@@ -526,7 +1050,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 0.7,
+   "age_hours": 1.9,
    "is_today": true
   },
   {
@@ -615,7 +1139,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 0.7,
+   "age_hours": 1.9,
    "is_today": true
   },
   {
@@ -704,7 +1228,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 0.8,
+   "age_hours": 2.0,
    "is_today": true
   },
   {
@@ -793,7 +1317,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.0,
+   "age_hours": 2.2,
    "is_today": true
   },
   {
@@ -880,7 +1404,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.1,
+   "age_hours": 2.3,
    "is_today": true
   },
   {
@@ -969,7 +1493,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.1,
+   "age_hours": 2.3,
    "is_today": true
   },
   {
@@ -1056,7 +1580,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.2,
+   "age_hours": 2.4,
    "is_today": true
   },
   {
@@ -1146,7 +1670,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.3,
+   "age_hours": 2.5,
    "is_today": true
   },
   {
@@ -1236,7 +1760,94 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.3,
+   "age_hours": 2.6,
+   "is_today": true
+  },
+  {
+   "title": "تداول\" توافق على إنهاء اتفاقية صناعة السوق لشركتي \"رتال\" و\"الجادة الأولى - شبكة تواصل الإخبارية",
+   "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1JNXh2aUJBOTRNeVJHb2tfcmhIS0x4bllfMl96WnU2OWNPOU01dXlXZVRNMWNQb0NnX0pjNjROZ3ZfMVhCTXZCZmpNa01tamRNcHBj?oc=5",
+   "source": "شبكة تواصل الإخبارية (عبر Google News – السوق السعودية)",
+   "published_utc": "2026-10-18T14:21:40Z",
+   "published_riyadh": "2026-10-18 17:21:40",
+   "precision": "second",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 0.7,
+   "raw_published": "Sun, 18 Oct 2026 14:21:40 GMT",
+   "id": "a15cd605795a",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "sa",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "micro",
+     "label_ar": "خاص بالشركة",
+     "note_ar": "خبر يخص شركة بعينها: أرباح أو إدارة أو استحواذ أو عقود."
+    },
+    "credibility": {
+     "tier": "C",
+     "kind": "خبر",
+     "label_ar": "مصدر غير مصنّف · خبر",
+     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [],
+     "label_ar": "لم يُحدَّد بند مالي آليًا",
+     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+    },
+    "sentiment": {
+     "value": "calm",
+     "label_ar": "هادئ",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من شبكة تواصل الإخبارية (عبر Google News – السوق السعودية) بتاريخ الأحد 18 أكتوبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-10-18",
+   "age_hours": 2.6,
    "is_today": true
   },
   {
@@ -1323,7 +1934,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.5,
+   "age_hours": 2.7,
    "is_today": true
   },
   {
@@ -1412,7 +2023,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.5,
+   "age_hours": 2.7,
    "is_today": true
   },
   {
@@ -1507,7 +2118,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.5,
+   "age_hours": 2.7,
    "is_today": true
   },
   {
@@ -1594,7 +2205,96 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.6,
+   "age_hours": 2.8,
+   "is_today": true
+  },
+  {
+   "title": "مؤشر سوق الأسهم السعودية يغلق مرتفعًا عند مستوى 10189 نقطة - www.al-jazirahonline.com",
+   "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5OcUNjZWozdHlZQTNfYU52ZjAxLU1iRXkzYVB5OEdXcUdpd1hFbHprUHBfZDJ2bGxPdkVvOXdvMl96TnNtamJKVUpqaGlLOWJvdFJrWTNqdDlBZThVUVdnYQ?oc=5",
+   "source": "www.al-jazirahonline.com (عبر Google News – السوق السعودية)",
+   "published_utc": "2026-10-18T14:10:33Z",
+   "published_riyadh": "2026-10-18 17:10:33",
+   "precision": "second",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 0.85,
+   "raw_published": "Sun, 18 Oct 2026 14:10:33 GMT",
+   "id": "4987f02706e7",
+   "market": "sa",
+   "signal": "pos",
+   "tickers": [],
+   "beneficiary": {
+    "name": "الطاقة",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 1,
+    "banks": 1,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 1,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "إغلاق إيجابي للمؤشر يعكس شهية مخاطرة أفضل"
+   },
+   "impact_market": "sa",
+   "cf": 2,
+   "rules": [
+    "market_up"
+   ],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "macro",
+     "label_ar": "كلّي",
+     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
+    },
+    "credibility": {
+     "tier": "C",
+     "kind": "خبر",
+     "label_ar": "مصدر غير مصنّف · خبر",
+     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [],
+     "label_ar": "لم يُحدَّد بند مالي آليًا",
+     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+    },
+    "sentiment": {
+     "value": "calm",
+     "label_ar": "هادئ",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من www.al-jazirahonline.com (عبر Google News – السوق السعودية) بتاريخ الأحد 18 أكتوبر يتعلق بـقطاعات الطاقة، البنوك، الشركات الصغيرة ضمن السوق السعودية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 2 من 3). قد يستفيد: الطاقة.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-10-18",
+   "age_hours": 2.8,
    "is_today": true
   },
   {
@@ -1683,7 +2383,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.7,
+   "age_hours": 2.9,
    "is_today": true
   },
   {
@@ -1770,7 +2470,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.7,
+   "age_hours": 2.9,
    "is_today": true
   },
   {
@@ -1857,7 +2557,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.7,
+   "age_hours": 2.9,
    "is_today": true
   },
   {
@@ -1946,7 +2646,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.7,
+   "age_hours": 2.9,
    "is_today": true
   },
   {
@@ -2033,7 +2733,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.9,
+   "age_hours": 3.1,
    "is_today": true
   },
   {
@@ -2122,7 +2822,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.9,
+   "age_hours": 3.1,
    "is_today": true
   },
   {
@@ -2213,7 +2913,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.9,
+   "age_hours": 3.1,
    "is_today": true
   },
   {
@@ -2302,7 +3002,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.9,
+   "age_hours": 3.1,
    "is_today": true
   },
   {
@@ -2393,7 +3093,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.0,
+   "age_hours": 3.2,
    "is_today": true
   },
   {
@@ -2482,7 +3182,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.0,
+   "age_hours": 3.2,
    "is_today": true
   },
   {
@@ -2569,7 +3269,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.1,
+   "age_hours": 3.3,
    "is_today": true
   },
   {
@@ -2656,7 +3356,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.1,
+   "age_hours": 3.3,
    "is_today": true
   },
   {
@@ -2745,7 +3445,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.2,
+   "age_hours": 3.4,
    "is_today": true
   },
   {
@@ -2832,7 +3532,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.2,
+   "age_hours": 3.4,
    "is_today": true
   },
   {
@@ -2921,7 +3621,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.4,
+   "age_hours": 3.6,
    "is_today": true
   },
   {
@@ -3010,7 +3710,99 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.4,
+   "age_hours": 3.6,
+   "is_today": true
+  },
+  {
+   "title": "\"دراية ريت\" يوزع أرباحا نقدية عن الربع الثالث 2026 بواقع 0.10 ريال للسهم - صحيفة مال",
+   "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPUV9pWGx0VTc2RVc1NEV1dFh6Q3h6eWV1VlZrNk5YVkVha3V1bm9menVzZktRNkxQOVc4VnpMYWRndXBnRzkwcE5GSmNwOU5PQWI1bVhmMmZzQ2hnZWRRNFdVanhkTWlqb3NndFVWWDZJamNCXzdWTmxQRTM5bE9VSWF0d0VtWE1pUm53UDJOakt3SEhMQnhaSlFBU2NKcTZIQ2luZ3lXenozWVFjdktFek1Ra0o5cG5LbVBjbnlkeW1qVU14RDJiMDVYUHROUk5XaV9aQm5PQTZ5M1J2SmsxYzBIWGU?oc=5",
+   "source": "صحيفة مال (عبر Google News – معال)",
+   "published_utc": "2026-10-18T13:23:12Z",
+   "published_riyadh": "2026-10-18 16:23:12",
+   "precision": "second",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "ar",
+   "priority": 1,
+   "relevance": 0.7,
+   "raw_published": "Sun, 18 Oct 2026 13:23:12 GMT",
+   "id": "6df113efe24f",
+   "market": "sa",
+   "signal": "mix",
+   "tickers": [],
+   "beneficiary": {
+    "name": "العقار",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 1,
+    "cement": 1,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "إعلان نتائج مالية · خبر يخص القطاع العقاري وسلسلة البناء"
+   },
+   "impact_market": "sa",
+   "cf": 1,
+   "rules": [
+    "earnings_generic",
+    "realestate_sector"
+   ],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "micro",
+     "label_ar": "خاص بالشركة",
+     "note_ar": "خبر يخص شركة بعينها: أرباح أو إدارة أو استحواذ أو عقود."
+    },
+    "credibility": {
+     "tier": "B",
+     "kind": "خبر",
+     "label_ar": "وكالة موثوقة · خبر",
+     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ لم تُرصد مقارنة واضحة بالتوقعات في هذا الخبر."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [
+      "cashflow"
+     ],
+     "label_ar": "التدفق النقدي",
+     "note_ar": "التوزيعات وبرامج الأسهم والسيولة تمس التدفق النقدي مباشرة."
+    },
+    "sentiment": {
+     "value": "calm",
+     "label_ar": "هادئ",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من صحيفة مال (عبر Google News – معال) بتاريخ الأحد 18 أكتوبر يتعلق بـقطاعات العقار، الأسمنت ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: العقار.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-10-18",
+   "age_hours": 3.6,
    "is_today": true
   },
   {
@@ -3099,391 +3891,24 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.4,
+   "age_hours": 3.6,
    "is_today": true
   },
   {
-   "title": "محللون:نتائج الربع الثالث وفرص الشراء تقودان \"تاسي\" للارتداد فوق 10,200 نقطة - معلومات مباشر",
-   "link": "https://news.google.com/rss/articles/CBMisARBVV95cUxPSUotVU9kLVB2d05IajFTU1ZZNFFIMEs2dUJJMVAtVWdmYzQzTHdzWmpUTXdQQjhPR2YtZTN4M0R2eU5lSHoweWhEUVZnRU03MUNMM2pWMDlUWWdRLTFNYV91QmZCNXZId0tONHlQYnlsdlRiUnRzVjhFbjJscWUtNUNSZDFXNjBVTVNpTjZRbmdqT1VGeVVoWUxHVWw1YjNvajE0eVJUdm1ta3AtY2VmbWRoQkFWVXQ0b3NFelNlSDV4bGk3S0FnYkFVbFhzYm5VNi15eHZuTm5pU2Nvc2VIc1lBZi10eFFBSW5ta2toM0ZySFRxUU1Ed3JnWnp6VlhKY05MX0RxZjE0anhyaDFEMndNd2doNVNGNzJvaEQwbjlzZ2J2WlZ0dXBrSExMQ0VWMDhEZ3MzVk1xWGZiWWFuck4yNXdSYkltMTFuVHdZVkZ3amloRmU5SXZncTZya0I5Vlp0aXBqYktuNHVGSlRITUdTMHZrVm02RUhZR1V5R2E5d2wtVjNyRTFpaW5aQWdIUnBOX1hDOFk2ODB0QWhVODIwSU95SGZ0Q0ZuS2pzdDBSWjUwWXAxY3htTy1LbjYwemZ3ejdESXhhWmh3am1ONG53YWhHNGZwNUFqeDRsUXpvV3Eyd2tTRmNGOEFWTmdsTllJNTFRcTVyRmVhYWl0NEhHR1ZyS2lVNGJSdlpOOElDbXJLaE91THJMVXNVSEpVcHdTa3Q3bXd3YTRsRkU3cQ?oc=5",
-   "source": "معلومات مباشر (عبر Google News – مباشر السعودية)",
-   "published_utc": "2026-10-18T13:17:36Z",
-   "published_riyadh": "2026-10-18 16:17:36",
+   "title": "Should You Invest in the S&P 500 Right Now or Wait? There's 1 Clear Answer",
+   "link": "851327a7-efb0-3041-bbd1-66f4aae952b4",
+   "source": "Yahoo Finance – Headlines",
+   "published_utc": "2026-10-18T16:50:00Z",
+   "published_riyadh": "2026-10-18 19:50:00",
    "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "ar",
-   "priority": 1,
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "en",
+   "priority": 3,
    "relevance": 0.7,
-   "raw_published": "Sun, 18 Oct 2026 13:17:36 GMT",
-   "id": "59cd0ab5a278",
-   "market": "sa",
-   "signal": "mix",
-   "tickers": [],
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "إعلان نتائج مالية"
-   },
-   "impact_market": "sa",
-   "cf": 1,
-   "rules": [
-    "earnings_generic"
-   ],
-   "analysis": "rules",
-   "fundamental": {
-    "scope": {
-     "value": "micro",
-     "label_ar": "خاص بالشركة",
-     "note_ar": "خبر يخص شركة بعينها: أرباح أو إدارة أو استحواذ أو عقود."
-    },
-    "credibility": {
-     "tier": "B",
-     "kind": "خبر",
-     "label_ar": "وكالة موثوقة · خبر",
-     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ لم تُرصد مقارنة واضحة بالتوقعات في هذا الخبر."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
-    }
-   },
-   "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من معلومات مباشر (عبر Google News – مباشر السعودية) بتاريخ الأحد 18 أكتوبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "day_local": "2026-10-18",
-   "age_hours": 2.5,
-   "is_today": true
-  },
-  {
-   "title": "تاسي: رصد للأسهم والصناديق التي سجلت أدنى مستوياتها منذ الإدراج - ارقام",
-   "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE05UmxjY25kSEVpS1VPZTUyeTZveEhReW55TW9KWXdmc1RrWjBxMlNGT0NBZWMtTjhVOU1wbE1vV0V0WHZlZUNSdC0yUmpHLWFQS2NrZENhQktxX09WZjhrM0JJakp2OVA2SFE?oc=5",
-   "source": "ارقام (عبر Google News – تداول/تاسي)",
-   "published_utc": "2026-10-18T13:17:14Z",
-   "published_riyadh": "2026-10-18 16:17:14",
-   "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "ar",
-   "priority": 1,
-   "relevance": 0.85,
-   "raw_published": "Sun, 18 Oct 2026 13:17:14 GMT",
-   "id": "79c94ba544f2",
-   "market": "sa",
-   "signal": "pos",
-   "tickers": [],
-   "beneficiary": {
-    "name": "البنوك",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 1,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 1,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "الطروحات تعمق السوق وتدعم عمولات البنوك الاستثمارية، مع سحب سيولة مؤقت من الأسهم القائمة"
-   },
-   "impact_market": "sa",
-   "cf": 2,
-   "rules": [
-    "ipo"
-   ],
-   "analysis": "rules",
-   "fundamental": {
-    "scope": {
-     "value": "micro",
-     "label_ar": "خاص بالشركة",
-     "note_ar": "خبر يخص شركة بعينها: أرباح أو إدارة أو استحواذ أو عقود."
-    },
-    "credibility": {
-     "tier": "B",
-     "kind": "خبر",
-     "label_ar": "وكالة موثوقة · خبر",
-     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
-    }
-   },
-   "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من ارقام (عبر Google News – تداول/تاسي) بتاريخ الأحد 18 أكتوبر يتعلق بـقطاعات البنوك، الشركات الصغيرة ضمن السوق السعودية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 2 من 3). قد يستفيد: البنوك.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "day_local": "2026-10-18",
-   "age_hours": 2.5,
-   "is_today": true
-  },
-  {
-   "title": "نظرة على أداء شركة زين والنتائج المتوقعة خلال الربع الثالث 2026 - ارقام",
-   "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQbURtNGZ1dmNTeTEyVnF5UXpJak9yelpzZUtueGp6bVlVbTE1TFdHdlZWVXRkMzY4UEhwM0NtVXJkQndXUzAtVVZCOFdtMzd1T2p2VjU0c3pnaEVnZVpRUmNLU2YxVk9xTFp3VVFaQkZRRkdlSmY1SXNOTVZQVmZLb2NnTjdTTEdlZzRXeA?oc=5",
-   "source": "ارقام (عبر Google News – أرقام)",
-   "published_utc": "2026-10-18T13:08:18Z",
-   "published_riyadh": "2026-10-18 16:08:18",
-   "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "ar",
-   "priority": 1,
-   "relevance": 0.7,
-   "raw_published": "Sun, 18 Oct 2026 13:08:18 GMT",
-   "id": "f80a4cf55823",
-   "market": "sa",
-   "signal": "mix",
-   "tickers": [
-    {
-     "code": "7030",
-     "name_ar": "زين السعودية",
-     "market": "sa"
-    }
-   ],
-   "beneficiary": {
-    "name": "الاتصالات",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 1,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص قطاع الاتصالات"
-   },
-   "impact_market": "sa",
-   "cf": 2,
-   "rules": [
-    "telecom_sector"
-   ],
-   "analysis": "rules",
-   "fundamental": {
-    "scope": {
-     "value": "micro",
-     "label_ar": "خاص بالشركة",
-     "note_ar": "خبر يخص شركة بعينها: أرباح أو إدارة أو استحواذ أو عقود."
-    },
-    "credibility": {
-     "tier": "B",
-     "kind": "رأي/تحليل",
-     "label_ar": "وكالة موثوقة · رأي/تحليل",
-     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة تحمل علامات رأي أو تحليل أو توقع؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ لم تُرصد مقارنة واضحة بالتوقعات في هذا الخبر."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
-    }
-   },
-   "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من ارقام (عبر Google News – أرقام) بتاريخ الأحد 18 أكتوبر يتعلق بـشركة زين السعودية (7030) ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 2 من 3). قد يستفيد: الاتصالات.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "day_local": "2026-10-18",
-   "age_hours": 2.7,
-   "is_today": true
-  },
-  {
-   "title": "نظرةٌ على أداء مصرف الإنماء والنتائج المتوقعة للربع الثالث 2026 - ارقام",
-   "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOY2lDYm5rQldSWEZqaGIxbmlYUEJXVk01WVRKclozSnVLa0hkcmdHbDU2cy1wSEF4dnN6cTRhZVVHOGlzTHViM1BNdGg5X0E3aGNCWnJQU2MzRkQtRGR1TElHcFVfR0FPVDg1MmJyNW9UVUNpdW40amsxX2FWYXNNRllsMmhNelJMcHRNOA?oc=5",
-   "source": "ارقام (عبر Google News – أرقام)",
-   "published_utc": "2026-10-18T13:08:11Z",
-   "published_riyadh": "2026-10-18 16:08:11",
-   "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "ar",
-   "priority": 1,
-   "relevance": 0.7,
-   "raw_published": "Sun, 18 Oct 2026 13:08:11 GMT",
-   "id": "4e54b3a8556b",
-   "market": "sa",
-   "signal": "mix",
-   "tickers": [
-    {
-     "code": "1150",
-     "name_ar": "مصرف الإنماء",
-     "market": "sa"
-    }
-   ],
-   "beneficiary": {
-    "name": "البنوك",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 1,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص القطاع المصرفي"
-   },
-   "impact_market": "sa",
-   "cf": 2,
-   "rules": [
-    "bank_sector"
-   ],
-   "analysis": "rules",
-   "fundamental": {
-    "scope": {
-     "value": "micro",
-     "label_ar": "خاص بالشركة",
-     "note_ar": "خبر يخص شركة بعينها: أرباح أو إدارة أو استحواذ أو عقود."
-    },
-    "credibility": {
-     "tier": "B",
-     "kind": "رأي/تحليل",
-     "label_ar": "وكالة موثوقة · رأي/تحليل",
-     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة تحمل علامات رأي أو تحليل أو توقع؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ لم تُرصد مقارنة واضحة بالتوقعات في هذا الخبر."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
-    }
-   },
-   "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من ارقام (عبر Google News – أرقام) بتاريخ الأحد 18 أكتوبر يتعلق بـشركة مصرف الإنماء (1150) ضمن السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 2 من 3). قد يستفيد: البنوك.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "day_local": "2026-10-18",
-   "age_hours": 2.7,
-   "is_today": true
-  },
-  {
-   "title": "تاسي: 7 صفقات خاصة بقيمة 65 مليون ريال - ارقام",
-   "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9WZktHQS1uUTFlMUttUGtwVndXcTlSeEVBX2pKRU1JdmhhYWptMnBZTlJoTjY2M2tYSVgwQm9xZXFWTVgtdGd2cXR6bGdRVTEyX0xZZllzMUZsd2oyQ2t3X05hR3dkaUtUQWc?oc=5",
-   "source": "ارقام (عبر Google News – تداول/تاسي)",
-   "published_utc": "2026-10-18T13:05:11Z",
-   "published_riyadh": "2026-10-18 16:05:11",
-   "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "ar",
-   "priority": 1,
-   "relevance": 0.85,
-   "raw_published": "Sun, 18 Oct 2026 13:05:11 GMT",
-   "id": "5ed5513c31a2",
-   "market": "sa",
+   "raw_published": "Sun, 18 Oct 2026 16:50:00 +0000",
+   "market_hint": "us",
+   "id": "383666a546bf",
+   "market": "us",
    "signal": "mix",
    "tickers": [],
    "beneficiary": {
@@ -3511,7 +3936,7 @@
     "utilities": 0,
     "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
    },
-   "impact_market": "sa",
+   "impact_market": "us",
    "cf": 1,
    "rules": [],
    "analysis": "rules",
@@ -3523,9 +3948,9 @@
     },
     "credibility": {
      "tier": "B",
-     "kind": "خبر",
-     "label_ar": "وكالة موثوقة · خبر",
-     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+     "kind": "رأي/تحليل",
+     "label_ar": "وكالة موثوقة · رأي/تحليل",
+     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة تحمل علامات رأي أو تحليل أو توقع؛ يُفصل بين الحقيقة والرأي."
     },
     "expectations": {
      "value": "unknown",
@@ -3538,9 +3963,11 @@
      "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
     },
     "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+     "lines": [
+      "capex"
+     ],
+     "label_ar": "الإنفاق الرأسمالي",
+     "note_ar": "التوسعات والمشاريع الجديدة ترفع الإنفاق الرأسمالي قبل أن تظهر عوائدها."
     },
     "sentiment": {
      "value": "unknown",
@@ -3549,28 +3976,29 @@
     }
    },
    "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من ارقام (عبر Google News – تداول/تاسي) بتاريخ الأحد 18 أكتوبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من Yahoo Finance – Headlines بتاريخ الأحد 18 أكتوبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.7,
+   "age_hours": 0.2,
    "is_today": true
   },
   {
-   "title": "نمو: صفقة خاصة على نت وركرس بقيمة 612 ألف ريال - ارقام",
-   "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5jb2FUWFVRMnF6MU1IanBmZXFMSTM4UHNVUUhLQUQ0d0ZIZDg3V0pNZXhSczFNWXhKVHY3Si16Y2xtWmtkOWJNcFk3Wk9fYmVTZXJCRHpDR0tCUjNwOXZJc1Z3RE9BTmdQRUE?oc=5",
-   "source": "ارقام (عبر Google News – السوق السعودية)",
-   "published_utc": "2026-10-18T13:05:11Z",
-   "published_riyadh": "2026-10-18 16:05:11",
+   "title": "Should You Invest in the S&P 500 Right Now or Wait? There's 1 Clear Answer - The Motley Fool",
+   "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPdThzQ1RHbVNnVEtRYXFSQ3hYVFVlUW1lQV9RV001SzNrSW9ndVJiWlgxcXBjWHFmRTdTbFd1N2JZT01IUDhkRW5CVzZBWGItUEdrZVdFTlE0OUlVVmg5OElmdWpMMTJLNGotOVBSclRkOVRIcTdwQ3VaZVZ6SGpHb29HWlE3ajhYaXJoRExRbDBlb3dlUjNv?oc=5",
+   "source": "The Motley Fool (عبر Google News – S&P Nasdaq Dow)",
+   "published_utc": "2026-10-18T16:38:20Z",
+   "published_riyadh": "2026-10-18 19:38:20",
    "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "ar",
-   "priority": 1,
-   "relevance": 0.55,
-   "raw_published": "Sun, 18 Oct 2026 13:05:11 GMT",
-   "id": "d9c74bc495d5",
-   "market": "sa",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.7,
+   "raw_published": "Sun, 18 Oct 2026 16:38:20 GMT",
+   "market_hint": "us",
+   "id": "3c1a430ba605",
+   "market": "us",
    "signal": "mix",
    "tickers": [],
    "beneficiary": {
@@ -3598,7 +4026,7 @@
     "utilities": 0,
     "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
    },
-   "impact_market": "sa",
+   "impact_market": "us",
    "cf": 1,
    "rules": [],
    "analysis": "rules",
@@ -3609,10 +4037,10 @@
      "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
     },
     "credibility": {
-     "tier": "B",
-     "kind": "خبر",
-     "label_ar": "وكالة موثوقة · خبر",
-     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+     "tier": "C",
+     "kind": "رأي/تحليل",
+     "label_ar": "مصدر غير مصنّف · رأي/تحليل",
+     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة تحمل علامات رأي أو تحليل أو توقع؛ يُفصل بين الحقيقة والرأي."
     },
     "expectations": {
      "value": "unknown",
@@ -3625,9 +4053,11 @@
      "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
     },
     "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+     "lines": [
+      "capex"
+     ],
+     "label_ar": "الإنفاق الرأسمالي",
+     "note_ar": "التوسعات والمشاريع الجديدة ترفع الإنفاق الرأسمالي قبل أن تظهر عوائدها."
     },
     "sentiment": {
      "value": "unknown",
@@ -3636,59 +4066,60 @@
     }
    },
    "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من ارقام (عبر Google News – السوق السعودية) بتاريخ الأحد 18 أكتوبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من The Motley Fool (عبر Google News – S&P Nasdaq Dow) بتاريخ الأحد 18 أكتوبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.7,
+   "age_hours": 0.4,
    "is_today": true
   },
   {
-   "title": "مؤشر سوق الأسهم السعودية يغلق مرتفعا 0.8% اليوم الأحد - alyaum",
-   "link": "https://news.google.com/rss/articles/CBMiwwRBVV95cUxOVWNHVzJhbjI0MEh6THoxRmM1OFhOaHhLT0ZwVHJLeVVmcm1WZWdSMW1tcEwzMVpuU18xSHdlcjNkZG1MajZCajJnU3Y3V2pVWG1BVFBkQzRQTTRqVzZ3VUxpZkdNWUxYbE8td2xzTk5XdTB0SDNmcW83bUJxWm92ZE1OZ1B6YnM3QnktdnRNZnJaTEtGejlNblg5MjFuN1ZOc2FOMzUzLTAzOVVxVHRhWW1hTEo3RWdYaWl3eUNNSmVfN0lFY3E5OTRGRzRBR1pWZ3IxS3E2ZXpDMzFEOHVjVUVrQUJNT1VUaTE3MVhiUURnSHBSUkwxREQ1dW16OW5GRWI2eElaaGFGcDR6ZnZUVWEwOWRBQ0lIdVlIekk3eTVGUlU1WFdUSWdLNkszSmJ3ZFh0LXNsOHZvNTRCWk41Ni1hVUczdnZEZ2F2dlI1a3ZGV2NGMDhnNW5vVFkwcWlBOVVwQnpxMC1oTXg4dWM2ak5tLXp1R28xRklnakdGSzFYcFFkYUpYbWctc2FXb2U4MDZSSTVvbFp3MTRBQlBzMmpjVlpMY2lybHEtR3VwWDRJWk8zbi1QdUZZNVp3UTNKbHE1a0p6MzYxTWwyaHJIM3VUckxKSHdqSVVoVUFMQmhvYjVGc0pJdmFzR2JZVnBDT2o3b2FFVU16bDJtTkNEM2EzamFFOUNBY0lwQTBDOFBFRFZhdWkzazdJXzJxLTBYeG90LTh6Ri1UZUV1RlB1ekpOSmM2Q0t5eFI3bFpqODFfb0XSAVNBVV95cUxNSUIwQ2hjRVJSamlCcHJIdmlhV1Mta04xMFpWTG5uUE9VcksycVllTEs5eUpHS1JMR0ZMWV96UjNXVnZDd0RGNDVlWTZVZXJSYzVtdw?oc=5",
-   "source": "alyaum (عبر Google News – تداول/تاسي)",
-   "published_utc": "2026-10-18T13:05:06Z",
-   "published_riyadh": "2026-10-18 16:05:06",
+   "title": "Former Treasury official cautions against raising interest rates ahead of midterms - Fox News",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB2eG40Q2tJTHQzaFFCRzFELVVrZTBRTTRuTkRDaUVxRkR5enJuRWFsVHF5TXQ4eFlRdTFmdWN2cEE4OGVjcVBhczVKdHV4eWJDQ3FkalNR?oc=5",
+   "source": "Fox News (عبر Google News – Fed rates)",
+   "published_utc": "2026-10-18T16:19:21Z",
+   "published_riyadh": "2026-10-18 19:19:21",
    "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "ar",
-   "priority": 1,
-   "relevance": 0.85,
-   "raw_published": "Sun, 18 Oct 2026 13:05:06 GMT",
-   "id": "4e33d2084bfa",
-   "market": "sa",
-   "signal": "pos",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.7,
+   "raw_published": "Sun, 18 Oct 2026 16:19:21 GMT",
+   "market_hint": "us",
+   "id": "59ccb0fac5d2",
+   "market": "us",
+   "signal": "mix",
    "tickers": [],
    "beneficiary": {
-    "name": "الطاقة",
+    "name": "البنوك",
     "why": "أعلى أثر إيجابي بحسب القواعد"
    },
    "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
+    "name": "العقار",
+    "why": "أكبر أثر سلبي بحسب القواعد"
    },
    "impact": {
-    "energy": 1,
+    "energy": 0,
     "banks": 1,
     "petrochem": 0,
     "insurance": 0,
     "transport": 0,
-    "realestate": 0,
+    "realestate": -1,
     "cement": 0,
     "tech": 0,
-    "smallcaps": 1,
+    "smallcaps": 0,
     "telecom": 0,
     "health": 0,
     "retail": 0,
     "food": 0,
     "utilities": 0,
-    "why": "إغلاق إيجابي للمؤشر يعكس شهية مخاطرة أفضل"
+    "why": "أخبار الفائدة تؤثر مباشرة على البنوك والعقار بسبب ربط الريال بالدولار"
    },
-   "impact_market": "sa",
-   "cf": 2,
+   "impact_market": "both",
+   "cf": 1,
    "rules": [
-    "market_up"
+    "fed_generic"
    ],
    "analysis": "rules",
    "fundamental": {
@@ -3714,9 +4145,11 @@
      "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
     },
     "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+     "lines": [
+      "debt"
+     ],
+     "label_ar": "الديون",
+     "note_ar": "تغيّر الفائدة أو التمويل ينعكس على كلفة الديون وخدمة الدين."
     },
     "sentiment": {
      "value": "calm",
@@ -3725,145 +4158,62 @@
     }
    },
    "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من alyaum (عبر Google News – تداول/تاسي) بتاريخ الأحد 18 أكتوبر يتعلق بـقطاعات الطاقة، البنوك، الشركات الصغيرة ضمن السوق السعودية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 2 من 3). قد يستفيد: الطاقة.",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من Fox News (عبر Google News – Fed rates) بتاريخ الأحد 18 أكتوبر يتعلق بـقطاعات البنوك، العقار ضمن السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). قد يستفيد: البنوك؛ وقد يتأثر سلبًا: العقار.",
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.7,
+   "age_hours": 0.7,
    "is_today": true
   },
   {
-   "title": "نمو يرتفع 1.6% عند 22186 نقطة.. بتداولات 15.6 مليون ريال - ارقام",
-   "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1vUHVsekZoQ09rek1sek1lWlNxWWtDOUc0cHE5Z0pOTkl5VFA4ZlIxNXN4QWpSTnJNNnlYZG1zYm96WUdZYlR1bUxWaGs0TEhmZVZoQzgzdHNwS3ZMQ0l3cVlGcnBVYnQxQkcwZUVqenUzN1NwZFE?oc=5",
-   "source": "ارقام (عبر Google News – أرقام)",
-   "published_utc": "2026-10-18T13:04:59Z",
-   "published_riyadh": "2026-10-18 16:04:59",
+   "title": "وول ستريت جورنال: طهران تتجه إلى الغواصات لإيصال الأسلحة إلى الحوثيين - المنتصف نت",
+   "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1WWlJ5QTRqRDZUaXFUbVh6ZldMRFg2QnlTc3EwMW1PUDRLMlEwM3pvWTd1dW5lZXU1N2xPdXBkelRuNzQ2RXJKOXkwNk9Nc29faXJ6cg?oc=5",
+   "source": "المنتصف نت (عبر Google News – الأسهم الأمريكية)",
+   "published_utc": "2026-10-18T16:17:30Z",
+   "published_riyadh": "2026-10-18 19:17:30",
    "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
    "lang": "ar",
-   "priority": 1,
-   "relevance": 0.85,
-   "raw_published": "Sun, 18 Oct 2026 13:04:59 GMT",
-   "id": "6bb00ad83d4d",
-   "market": "sa",
-   "signal": "mix",
+   "priority": 3,
+   "relevance": 0.55,
+   "raw_published": "Sun, 18 Oct 2026 16:17:30 GMT",
+   "market_hint": "us",
+   "id": "dbd5f655b6c1",
+   "market": "us",
+   "signal": "neg",
    "tickers": [],
    "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
+    "name": "أرامكو (2222)",
+    "why": "علاوة المخاطر ترفع سعر البرميل أكثر مما يضر التوقف المؤقت"
    },
    "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
+    "name": "التأمين (التعاونية 8010، بوبا 8210) والبحري (4030)",
+    "why": "مطالبات حرائق ومنشآت وارتفاع مخاطر الملاحة"
    },
    "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
+    "energy": -1,
+    "banks": -1,
+    "petrochem": -1,
+    "insurance": -3,
+    "transport": -2,
+    "realestate": 1,
+    "cement": 1,
     "tech": 0,
     "smallcaps": 0,
     "telecom": 0,
     "health": 0,
     "retail": 0,
     "food": 0,
-    "utilities": 0,
-    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+    "utilities": -1,
+    "why": "مخاطر جيوسياسية: مطالبات التأمين والحرائق، وارتفاع أقساط الشحن، وخطر تشغيلي على منشآت الطاقة، مقابل علاوة سعر في النفط · خبر يخص القطاع العقاري وسلسلة البناء"
    },
-   "impact_market": "sa",
-   "cf": 1,
-   "rules": [],
-   "analysis": "rules",
-   "fundamental": {
-    "scope": {
-     "value": "macro",
-     "label_ar": "كلّي",
-     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
-    },
-    "credibility": {
-     "tier": "B",
-     "kind": "خبر",
-     "label_ar": "وكالة موثوقة · خبر",
-     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
-    }
-   },
-   "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من ارقام (عبر Google News – أرقام) بتاريخ الأحد 18 أكتوبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "day_local": "2026-10-18",
-   "age_hours": 2.7,
-   "is_today": true
-  },
-  {
-   "title": "مؤشر\"تاسي\" يتهي جلسة الأحد مرتفعا بـ0.82% بدعم من قطاعي الإعلام والطاقة - شبكة تواصل الإخبارية",
-   "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1HcGtHa0NBdmd2X0U3UEJtQWl4X2pXc1h5ellRMlJsLU1EajNvWTcwdjlSRzlibkVWTWtJN3ZhMnF0anFOalZBdVFjaWV1SnJNMGYw?oc=5",
-   "source": "شبكة تواصل الإخبارية (عبر Google News – تداول/تاسي)",
-   "published_utc": "2026-10-18T12:55:40Z",
-   "published_riyadh": "2026-10-18 15:55:40",
-   "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "ar",
-   "priority": 1,
-   "relevance": 0.7,
-   "raw_published": "Sun, 18 Oct 2026 12:55:40 GMT",
-   "id": "913863c157e5",
-   "market": "sa",
-   "signal": "mix",
-   "tickers": [],
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
-   },
-   "impact_market": "sa",
-   "cf": 1,
-   "rules": [],
+   "impact_market": "us",
+   "cf": 3,
+   "rules": [
+    "attack",
+    "realestate_sector"
+   ],
    "analysis": "rules",
    "fundamental": {
     "scope": {
@@ -3899,12 +4249,190 @@
     }
    },
    "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من شبكة تواصل الإخبارية (عبر Google News – تداول/تاسي) بتاريخ الأحد 18 أكتوبر يخص السوق السعودية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من المنتصف نت (عبر Google News – الأسهم الأمريكية) بتاريخ الأحد 18 أكتوبر يتعلق بـقطاعات التأمين، النقل، الطاقة ضمن السوق الأمريكية. التصنيف الآلي للإشارة: سلبي على الأرجح (درجة الثقة 3 من 3). قد يستفيد: أرامكو (2222)؛ وقد يتأثر سلبًا: التأمين (التعاونية 8010، بوبا 8210) والبحري (4030).",
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.9,
+   "age_hours": 0.7,
+   "is_today": true
+  },
+  {
+   "title": "'Just another scare': Wall Street sees the AI trade strong despite tech's latest rout",
+   "link": "43460ef5-5d50-4700-8eb0-a1ed54152598",
+   "source": "Yahoo Finance – Headlines",
+   "published_utc": "2026-10-18T15:59:30Z",
+   "published_riyadh": "2026-10-18 18:59:30",
+   "precision": "second",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.85,
+   "raw_published": "Sun, 18 Oct 2026 15:59:30 +0000",
+   "market_hint": "us",
+   "id": "ad02dfd79f34",
+   "market": "us",
+   "signal": "pos",
+   "tickers": [],
+   "beneficiary": {
+    "name": "التقنية",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 1,
+    "smallcaps": 0,
+    "telecom": 1,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [
+    "tech_sector"
+   ],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "sector",
+     "label_ar": "قطاعي",
+     "note_ar": "خبر يمس صناعة محددة أكثر من بقية السوق."
+    },
+    "credibility": {
+     "tier": "B",
+     "kind": "خبر",
+     "label_ar": "وكالة موثوقة · خبر",
+     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [],
+     "label_ar": "لم يُحدَّد بند مالي آليًا",
+     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+    },
+    "sentiment": {
+     "value": "panic",
+     "label_ar": "ذعر جماعي",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ رُصدت مفردات حادة توحي بموجة خوف."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من Yahoo Finance – Headlines بتاريخ الأحد 18 أكتوبر يتعلق بـقطاعات التقنية، الاتصالات ضمن السوق الأمريكية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 1 من 3). قد يستفيد: التقنية.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-10-18",
+   "age_hours": 1.0,
+   "is_today": true
+  },
+  {
+   "title": "The Playboy Who Inherited an Empire of Gunfighters and Gold Smugglers",
+   "link": "WP-WSJ-0003985203",
+   "source": "WSJ – Markets",
+   "published_utc": "2026-10-18T15:48:00Z",
+   "published_riyadh": "2026-10-18 18:48:00",
+   "precision": "second",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.4,
+   "raw_published": "Sun, 18 Oct 2026 15:48:00 GMT",
+   "market_hint": "us",
+   "id": "096100efeba7",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "macro",
+     "label_ar": "كلّي",
+     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
+    },
+    "credibility": {
+     "tier": "B",
+     "kind": "خبر",
+     "label_ar": "وكالة موثوقة · خبر",
+     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [],
+     "label_ar": "لم يُحدَّد بند مالي آليًا",
+     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+    },
+    "sentiment": {
+     "value": "calm",
+     "label_ar": "هادئ",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من WSJ – Markets بتاريخ الأحد 18 أكتوبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-10-18",
+   "age_hours": 1.2,
    "is_today": true
   },
   {
@@ -3994,7 +4522,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 0.1,
+   "age_hours": 1.3,
    "is_today": true
   },
   {
@@ -4084,7 +4612,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 0.1,
+   "age_hours": 1.3,
    "is_today": true
   },
   {
@@ -4174,7 +4702,98 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 0.1,
+   "age_hours": 1.3,
+   "is_today": true
+  },
+  {
+   "title": "«وول ستريت».. نتائج عمالقة التقنية تختبر طفرة الذكاء الاصطناعي - البيان",
+   "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9SY25FN3ZnY0hDRWh3WGhEanA4eWlDZEI2QUFpVlpod1A0T3R2RUQ3aE9paTh1NGtaTERyWkU4aUdGZy1oVFBSMXB3eFZyQjlpcV9ZRHc4djJ5UmtCbHRzMHA4OHVOT0R0VGdoeEh30gFzQVVfeXFMTkU2Q19YYXJrVko3c1hsWEhla0lTWkVLS2VBT21rLW1TbTdjYVFBSVZDNzhNYmRQcl9MZ0gwSGwyeGpVenVQVEtwWFRDS0FjaTUzRW5VV3RqVWpJa3lyNWtVNm5OeS1jMkthZVBjbzZvbWtubw?oc=5",
+   "source": "البيان (عبر Google News – الأسهم الأمريكية)",
+   "published_utc": "2026-10-18T15:32:00Z",
+   "published_riyadh": "2026-10-18 18:32:00",
+   "precision": "second",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "ar",
+   "priority": 3,
+   "relevance": 0.7,
+   "raw_published": "Sun, 18 Oct 2026 15:32:00 GMT",
+   "market_hint": "us",
+   "id": "19edc0cba907",
+   "market": "us",
+   "signal": "pos",
+   "tickers": [],
+   "beneficiary": {
+    "name": "العقار",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 1,
+    "cement": 1,
+    "tech": 1,
+    "smallcaps": 0,
+    "telecom": 1,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "خبر يخص القطاع العقاري وسلسلة البناء · الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [
+    "realestate_sector",
+    "tech_sector"
+   ],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "micro",
+     "label_ar": "خاص بالشركة",
+     "note_ar": "خبر يخص شركة بعينها: أرباح أو إدارة أو استحواذ أو عقود."
+    },
+    "credibility": {
+     "tier": "C",
+     "kind": "خبر",
+     "label_ar": "مصدر غير مصنّف · خبر",
+     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ لم تُرصد مقارنة واضحة بالتوقعات في هذا الخبر."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [],
+     "label_ar": "لم يُحدَّد بند مالي آليًا",
+     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+    },
+    "sentiment": {
+     "value": "euphoria",
+     "label_ar": "تفاؤل مفرط",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ رُصدت مفردات حماسية توحي بتفاؤل مرتفع."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من البيان (عبر Google News – الأسهم الأمريكية) بتاريخ الأحد 18 أكتوبر يتعلق بـقطاعات العقار، الأسمنت، التقنية ضمن السوق الأمريكية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 1 من 3). قد يستفيد: العقار.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-10-18",
+   "age_hours": 1.5,
    "is_today": true
   },
   {
@@ -4270,7 +4889,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 0.3,
+   "age_hours": 1.5,
    "is_today": true
   },
   {
@@ -4360,7 +4979,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 0.4,
+   "age_hours": 1.6,
    "is_today": true
   },
   {
@@ -4450,7 +5069,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 0.4,
+   "age_hours": 1.6,
    "is_today": true
   },
   {
@@ -4538,7 +5157,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 0.4,
+   "age_hours": 1.6,
    "is_today": true
   },
   {
@@ -4628,7 +5247,97 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 0.7,
+   "age_hours": 1.9,
+   "is_today": true
+  },
+  {
+   "title": "The 10-Year Treasury Is Above 5% for the First Time in Almost 20 Years. History Says This Is How the S&P 500 Index Will Perform Over the Next 12 Months. - Yahoo Finance",
+   "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQUml4c3A4TVZIQ1loSk0tLUd2VEVYdUdSRW85Z2RfSnVCUWp6OUlIMktVTWN2UERncmhqbzFibDAzSmNBWDluMU9TdXo3WHpOdkp2MjhSbHZ3ckpCZThQUnl2Y0FXdFdBZ1VLd1k1Zk92VDZ5cW1XTzNiSng4d0lEd2hHZDZPQzVJUnlsVzJmQlZEMjh1?oc=5",
+   "source": "Yahoo Finance (عبر Google News – S&P Nasdaq Dow)",
+   "published_utc": "2026-10-18T15:07:00Z",
+   "published_riyadh": "2026-10-18 18:07:00",
+   "precision": "second",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 1.0,
+   "raw_published": "Sun, 18 Oct 2026 15:07:00 GMT",
+   "market_hint": "us",
+   "id": "23f83d59d7ef",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "beneficiary": {
+    "name": "البنوك",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "العقار",
+    "why": "أكبر أثر سلبي بحسب القواعد"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 1,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": -1,
+    "cement": 0,
+    "tech": -1,
+    "smallcaps": -1,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "ارتفاع عوائد الخزانة الأمريكية يرفع تكلفة التمويل ويضغط على أسهم النمو والعقار، ويحسن هامش البنوك"
+   },
+   "impact_market": "both",
+   "cf": 2,
+   "rules": [
+    "treasury_yields"
+   ],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "macro",
+     "label_ar": "كلّي",
+     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
+    },
+    "credibility": {
+     "tier": "B",
+     "kind": "خبر",
+     "label_ar": "وكالة موثوقة · خبر",
+     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [],
+     "label_ar": "لم يُحدَّد بند مالي آليًا",
+     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+    },
+    "sentiment": {
+     "value": "calm",
+     "label_ar": "هادئ",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من Yahoo Finance (عبر Google News – S&P Nasdaq Dow) بتاريخ الأحد 18 أكتوبر يتعلق بـقطاعات البنوك، العقار، التقنية ضمن السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 2 من 3). قد يستفيد: البنوك؛ وقد يتأثر سلبًا: العقار.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-10-18",
+   "age_hours": 1.9,
    "is_today": true
   },
   {
@@ -4722,7 +5431,185 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 0.7,
+   "age_hours": 1.9,
+   "is_today": true
+  },
+  {
+   "title": "US shares typically deliver their strongest returns in final quarter - NZ Herald",
+   "link": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxQMG5ielVWQ2twMFIwZ09SNVdnN3lSTWVOeF9xaG5QdWxHR2NpalI2cnFlMnh0elBkZl8ySnZKcW1EVlVrNEJqZjViU21VLUVNemwzSUtVbFVlQ0tmU2R6aHkxSHp4YmtIWFBhajNoX2JFdHppaUtSYXAzR1U5NFRrbTViVkNqMnprVThGZ1l1NXZneV83OGRES2RwQUNJcG9zdDVlVl9FczFwblhkTnRIRjAwR2cwQjdaMG1UaWFXM0tOOURQaVpqVEpILWZGWTAtYjhBMDduT3BjNEV2ZmhHeG9DaEhVY3I0bTVRX1RTNHVsdk0wSVNUVWg2RXdKdm8?oc=5",
+   "source": "NZ Herald (عبر Google News – Fed rates)",
+   "published_utc": "2026-10-18T15:04:42Z",
+   "published_riyadh": "2026-10-18 18:04:42",
+   "precision": "second",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.55,
+   "raw_published": "Sun, 18 Oct 2026 15:04:42 GMT",
+   "market_hint": "us",
+   "id": "253d2b1bbe88",
+   "market": "us",
+   "signal": "mix",
+   "tickers": [],
+   "beneficiary": {
+    "name": "—",
+    "why": "لا يوجد مستفيد واضح"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 0,
+    "smallcaps": 0,
+    "telecom": 0,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "macro",
+     "label_ar": "كلّي",
+     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
+    },
+    "credibility": {
+     "tier": "C",
+     "kind": "خبر",
+     "label_ar": "مصدر غير مصنّف · خبر",
+     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [],
+     "label_ar": "لم يُحدَّد بند مالي آليًا",
+     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+    },
+    "sentiment": {
+     "value": "calm",
+     "label_ar": "هادئ",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من NZ Herald (عبر Google News – Fed rates) بتاريخ الأحد 18 أكتوبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-10-18",
+   "age_hours": 1.9,
+   "is_today": true
+  },
+  {
+   "title": "هل تقترب أسهم الذكاء الاصطناعي من فقاعة جديدة؟ - موقع 24",
+   "link": "https://news.google.com/rss/articles/CBMiggNBVV95cUxOSWdjbmVZN1Z0UFNMTGltaTZZeWlzU2pDWXNYSEdxUGptT3EzS21wVFBOZ2dwbVNUbmxDZGxxZFAtZlBTZk93aF82UURlMHZWTGVCQlBoZEEyZXRrbEFpenNtMGpXTTVxUC13YnFEaU1QNDdNcVI0N003Rm9YZU1sVzd3dUdhRXVOak1sRkUtNG1tNjlPVlpPRElVWnZwRWZ3MDJVbWFRWVFTd3FxYm95aENKNFJwejAtc3k1NUIxSE9TOTZYeU9UOVJ4ekw2QlJfLWxSUjYwR1ZLNTVxdzFaSkk0OVZXOVYwUmFONmg1OXNRQVJjWUJmUkk5WVQtN0U2WFBMLXJicjZ5cl9PWXQzMkJuTUMxOHNrVWxBTFR0cnpHbHJYWHhmaFBLN0hCV3FxRi1UenlpNlppRTNCLXk1MHQ4T3ZqOHZkLXc2Slp2S0dfb1ZCX2FGdDA2SENCRS1ocHplQU1pUEtKZGZLaW4yY29MbDBvU3hhaGpsSjYxNTZaZw?oc=5",
+   "source": "موقع 24 (عبر Google News – الأسهم الأمريكية)",
+   "published_utc": "2026-10-18T14:55:00Z",
+   "published_riyadh": "2026-10-18 17:55:00",
+   "precision": "second",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "ar",
+   "priority": 3,
+   "relevance": 0.55,
+   "raw_published": "Sun, 18 Oct 2026 14:55:00 GMT",
+   "market_hint": "us",
+   "id": "6f9e58e70d67",
+   "market": "us",
+   "signal": "pos",
+   "tickers": [],
+   "beneficiary": {
+    "name": "التقنية",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 1,
+    "smallcaps": 0,
+    "telecom": 1,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [
+    "tech_sector"
+   ],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "sector",
+     "label_ar": "قطاعي",
+     "note_ar": "خبر يمس صناعة محددة أكثر من بقية السوق."
+    },
+    "credibility": {
+     "tier": "C",
+     "kind": "رأي/تحليل",
+     "label_ar": "مصدر غير مصنّف · رأي/تحليل",
+     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة تحمل علامات رأي أو تحليل أو توقع؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [],
+     "label_ar": "لم يُحدَّد بند مالي آليًا",
+     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+    },
+    "sentiment": {
+     "value": "calm",
+     "label_ar": "هادئ",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من موقع 24 (عبر Google News – الأسهم الأمريكية) بتاريخ الأحد 18 أكتوبر يتعلق بـقطاعات التقنية، الاتصالات ضمن السوق الأمريكية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 1 من 3). قد يستفيد: التقنية.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-10-18",
+   "age_hours": 2.1,
    "is_today": true
   },
   {
@@ -4812,7 +5699,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.1,
+   "age_hours": 2.3,
    "is_today": true
   },
   {
@@ -4911,7 +5798,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.2,
+   "age_hours": 2.4,
    "is_today": true
   },
   {
@@ -5010,7 +5897,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.6,
+   "age_hours": 2.8,
    "is_today": true
   },
   {
@@ -5098,7 +5985,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.7,
+   "age_hours": 2.9,
    "is_today": true
   },
   {
@@ -5188,7 +6075,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.8,
+   "age_hours": 3.0,
    "is_today": true
   },
   {
@@ -5279,7 +6166,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.8,
+   "age_hours": 3.0,
    "is_today": true
   },
   {
@@ -5369,7 +6256,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.8,
+   "age_hours": 3.0,
    "is_today": true
   },
   {
@@ -5468,7 +6355,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.8,
+   "age_hours": 3.0,
    "is_today": true
   },
   {
@@ -5564,7 +6451,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.8,
+   "age_hours": 3.0,
    "is_today": true
   },
   {
@@ -5654,7 +6541,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.9,
+   "age_hours": 3.1,
    "is_today": true
   },
   {
@@ -5748,7 +6635,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.9,
+   "age_hours": 3.1,
    "is_today": true
   },
   {
@@ -5836,7 +6723,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.2,
+   "age_hours": 3.4,
    "is_today": true
   },
   {
@@ -5926,7 +6813,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.2,
+   "age_hours": 3.4,
    "is_today": true
   },
   {
@@ -6016,7 +6903,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.4,
+   "age_hours": 3.6,
    "is_today": true
   },
   {
@@ -6104,7 +6991,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.4,
+   "age_hours": 3.6,
    "is_today": true
   },
   {
@@ -6201,7 +7088,98 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.6,
+   "age_hours": 3.8,
+   "is_today": true
+  },
+  {
+   "title": "Price to earnings forward of HengHong Technology Inc. – NASDAQ:HCPC - TradingView",
+   "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPU1J4T2ZkOXYyR1hkTTB4emRiU1NHdGZqS2lxN3hCNFFKLWhLbnVqQWZBUFZqNE1HZk9DZzNvN2pZOWtvcHJfRGk3UGxvUk1PWmVzbENLRkxYMzJJeG1sUW1hb2NQeGdUVWJLZU5ubkZGc1l2N0Z6UUpPQ3AzRDJjLXNlTGd5d01SNURBR0NnMTNRMzBtTzd6eFVueTlDd016OXc?oc=5",
+   "source": "TradingView (عبر Google News – S&P Nasdaq Dow)",
+   "published_utc": "2026-10-18T13:08:54Z",
+   "published_riyadh": "2026-10-18 16:08:54",
+   "precision": "second",
+   "fetched_at_utc": "2026-10-18T16:58:58Z",
+   "lang": "en",
+   "priority": 3,
+   "relevance": 0.7,
+   "raw_published": "Sun, 18 Oct 2026 13:08:54 GMT",
+   "market_hint": "us",
+   "id": "e0592fad97f7",
+   "market": "us",
+   "signal": "pos",
+   "tickers": [],
+   "beneficiary": {
+    "name": "التقنية",
+    "why": "أعلى أثر إيجابي بحسب القواعد"
+   },
+   "hurt": {
+    "name": "—",
+    "why": "لا يوجد متضرر واضح"
+   },
+   "impact": {
+    "energy": 0,
+    "banks": 0,
+    "petrochem": 0,
+    "insurance": 0,
+    "transport": 0,
+    "realestate": 0,
+    "cement": 0,
+    "tech": 1,
+    "smallcaps": 0,
+    "telecom": 1,
+    "health": 0,
+    "retail": 0,
+    "food": 0,
+    "utilities": 0,
+    "why": "إعلان نتائج مالية · الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات"
+   },
+   "impact_market": "us",
+   "cf": 1,
+   "rules": [
+    "earnings_generic",
+    "tech_sector"
+   ],
+   "analysis": "rules",
+   "fundamental": {
+    "scope": {
+     "value": "micro",
+     "label_ar": "خاص بالشركة",
+     "note_ar": "خبر يخص شركة بعينها: أرباح أو إدارة أو استحواذ أو عقود."
+    },
+    "credibility": {
+     "tier": "C",
+     "kind": "خبر",
+     "label_ar": "مصدر غير مصنّف · خبر",
+     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
+    },
+    "expectations": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ لم تُرصد مقارنة واضحة بالتوقعات في هذا الخبر."
+    },
+    "horizon": {
+     "value": "unknown",
+     "label_ar": "غير محدد آليًا",
+     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
+    },
+    "financials": {
+     "lines": [],
+     "label_ar": "لم يُحدَّد بند مالي آليًا",
+     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
+    },
+    "sentiment": {
+     "value": "calm",
+     "label_ar": "هادئ",
+     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
+    }
+   },
+   "fundamental_origin": "rules",
+   "first_seen_utc": "2026-10-18T16:59:28Z",
+   "brief_ar": "خبر من TradingView (عبر Google News – S&P Nasdaq Dow) بتاريخ الأحد 18 أكتوبر يتعلق بـقطاعات التقنية، الاتصالات ضمن السوق الأمريكية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 1 من 3). قد يستفيد: التقنية.",
+   "brief_origin": "template",
+   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
+   "day_local": "2026-10-18",
+   "age_hours": 3.8,
    "is_today": true
   },
   {
@@ -6289,7 +7267,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.7,
+   "age_hours": 3.9,
    "is_today": true
   },
   {
@@ -6377,7 +7355,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.7,
+   "age_hours": 3.9,
    "is_today": true
   },
   {
@@ -6465,7 +7443,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.7,
+   "age_hours": 3.9,
    "is_today": true
   },
   {
@@ -6553,1018 +7531,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.7,
-   "is_today": true
-  },
-  {
-   "title": "Stocks are heading for a high-stakes showdown, as strong earnings collide with rising borrowing costs",
-   "link": "WP-MKTW-0005291679",
-   "source": "MarketWatch – Top Stories",
-   "published_utc": "2026-10-18T13:00:00Z",
-   "published_riyadh": "2026-10-18 16:00:00",
-   "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 1.0,
-   "raw_published": "Sun, 18 Oct 2026 13:00:00 GMT",
-   "market_hint": "us",
-   "id": "edb24bd4f926",
-   "market": "us",
-   "signal": "pos",
-   "tickers": [],
-   "beneficiary": {
-    "name": "البنوك",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "العقار",
-    "why": "أكبر أثر سلبي بحسب القواعد"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 1,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": -1,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": -1,
-    "telecom": 1,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "إعلان نتائج مالية · الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات · ارتفاع عوائد الخزانة الأمريكية يرفع تكلفة التمويل ويضغط على أسهم النمو والعقار، ويحسن هامش البنوك"
-   },
-   "impact_market": "both",
-   "cf": 2,
-   "rules": [
-    "earnings_generic",
-    "tech_sector",
-    "treasury_yields"
-   ],
-   "analysis": "rules",
-   "fundamental": {
-    "scope": {
-     "value": "macro",
-     "label_ar": "كلّي",
-     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
-    },
-    "credibility": {
-     "tier": "B",
-     "kind": "خبر",
-     "label_ar": "وكالة موثوقة · خبر",
-     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ لم تُرصد مقارنة واضحة بالتوقعات في هذا الخبر."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [
-      "margin",
-      "debt"
-     ],
-     "label_ar": "هامش الربح، الديون",
-     "note_ar": "تغيّر التكاليف أو الأسعار ينعكس على هامش الربح قبل صافي الدخل؛ وتغيّر الفائدة أو التمويل ينعكس على كلفة الديون وخدمة الدين."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
-    }
-   },
-   "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من MarketWatch – Top Stories بتاريخ الأحد 18 أكتوبر يتعلق بـقطاعات البنوك، العقار، الشركات الصغيرة ضمن السوق الأمريكية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 2 من 3). قد يستفيد: البنوك؛ وقد يتأثر سلبًا: العقار.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "day_local": "2026-10-18",
-   "age_hours": 2.8,
-   "is_today": true
-  },
-  {
-   "title": "Stocks are heading for a high-stakes showdown, as strong earnings collide with rising borrowing costs - MarketWatch",
-   "link": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQYnA4RGRGYk52NEI2RGNhMUtPQUtRYWQ0S0Y5V0hfSFlLT1o1UFVCTWxPSW8yVFVrRElkOHpTOHRmVTBkLTFMdlFpNE1GYmFndnl5VmlWR04xZDVyMnFFNG5ERm9McThwQWN6MWVsWmlRNEdUaVAxYzdPakhTUXBLSHE0NnpZQWQ4OExwRnY1MWdROElzbC1xMjZjSmJfbEdyV1piQTZDb04wSEJmYW5GVVpNQ25ybS1RSTlUWlFXcnBMWTU3dl92X3laNVllNWxjMmdXM1hodTg3Q0k?oc=5",
-   "source": "MarketWatch (عبر Google News – MarketWatch)",
-   "published_utc": "2026-10-18T13:00:00Z",
-   "published_riyadh": "2026-10-18 16:00:00",
-   "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 0.7,
-   "raw_published": "Sun, 18 Oct 2026 13:00:00 GMT",
-   "market_hint": "us",
-   "id": "475dda3ff341",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "إعلان نتائج مالية"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [
-    "earnings_generic"
-   ],
-   "analysis": "rules",
-   "fundamental": {
-    "scope": {
-     "value": "micro",
-     "label_ar": "خاص بالشركة",
-     "note_ar": "خبر يخص شركة بعينها: أرباح أو إدارة أو استحواذ أو عقود."
-    },
-    "credibility": {
-     "tier": "B",
-     "kind": "خبر",
-     "label_ar": "وكالة موثوقة · خبر",
-     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ لم تُرصد مقارنة واضحة بالتوقعات في هذا الخبر."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [
-      "margin",
-      "debt"
-     ],
-     "label_ar": "هامش الربح، الديون",
-     "note_ar": "تغيّر التكاليف أو الأسعار ينعكس على هامش الربح قبل صافي الدخل؛ وتغيّر الفائدة أو التمويل ينعكس على كلفة الديون وخدمة الدين."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
-    }
-   },
-   "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من MarketWatch (عبر Google News – MarketWatch) بتاريخ الأحد 18 أكتوبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "day_local": "2026-10-18",
-   "age_hours": 2.8,
-   "is_today": true
-  },
-  {
-   "title": "Quantinuum vs. IonQ: Why One Major Wall Street Firm Says This Stock Is the Better Bet - The Motley Fool",
-   "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNdFZJTDVvdktVcVRPN1NkNjEyTGlud1RiS3dENEs5ZFNtTXV2UHJvTVVWNUVNVXpfdGFJaTZRZWlWM0pOODF3SHVGeDB6YlRqQmhoVEZ2UEsxTXBCMlVwZUlISDBKUlhQWUVVcmlOdnNPODc1QjNGNW8yX00xWFAxUFk1X2NqQ1laaEhqWTM1eGJydDQ?oc=5",
-   "source": "The Motley Fool (عبر Google News – Wall Street)",
-   "published_utc": "2026-10-18T12:36:59Z",
-   "published_riyadh": "2026-10-18 15:36:59",
-   "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 0.85,
-   "raw_published": "Sun, 18 Oct 2026 12:36:59 GMT",
-   "market_hint": "us",
-   "id": "9229d8764217",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [],
-   "analysis": "rules",
-   "fundamental": {
-    "scope": {
-     "value": "macro",
-     "label_ar": "كلّي",
-     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
-    },
-    "credibility": {
-     "tier": "C",
-     "kind": "خبر",
-     "label_ar": "مصدر غير مصنّف · خبر",
-     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
-    }
-   },
-   "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من The Motley Fool (عبر Google News – Wall Street) بتاريخ الأحد 18 أكتوبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "day_local": "2026-10-18",
-   "age_hours": 3.2,
-   "is_today": true
-  },
-  {
-   "title": "Top Wall Street analysts are bullish on the growth potential of these 3 stocks",
-   "link": "https://www.cnbc.com/2026/10/18/top-analysts-are-bullish-on-the-growth-potential-of-these-3-stocks.html",
-   "source": "CNBC – Top News",
-   "published_utc": "2026-10-18T12:34:51Z",
-   "published_riyadh": "2026-10-18 15:34:51",
-   "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 1.0,
-   "raw_published": "Sun, 18 Oct 2026 12:34:51 GMT",
-   "market_hint": "us",
-   "id": "6779333a9c01",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "beneficiary": {
-    "name": "الراجحي (1120) والبنوك",
-    "why": "ارتفاع هامش الفائدة الصافي"
-   },
-   "hurt": {
-    "name": "العقار والشركات المثقلة بالديون",
-    "why": "ارتفاع تكلفة التمويل والرهن العقاري"
-   },
-   "impact": {
-    "energy": 1,
-    "banks": 2,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": -2,
-    "cement": -1,
-    "tech": -1,
-    "smallcaps": -2,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "خبر يخص سوق النفط، وأثره على الطاقة يعتمد على اتجاه السعر · ربط الريال بالدولار ينقل قرار الفيدرالي إلى ساما: هامش الفائدة للبنوك يتحسن، وتكلفة التمويل ترتفع على العقار والشركات الصغيرة"
-   },
-   "impact_market": "both",
-   "cf": 3,
-   "rules": [
-    "oil_generic",
-    "fed_hike"
-   ],
-   "analysis": "rules",
-   "fundamental": {
-    "scope": {
-     "value": "macro",
-     "label_ar": "كلّي",
-     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
-    },
-    "credibility": {
-     "tier": "B",
-     "kind": "رأي/تحليل",
-     "label_ar": "وكالة موثوقة · رأي/تحليل",
-     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة تحمل علامات رأي أو تحليل أو توقع؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
-    }
-   },
-   "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من CNBC – Top News بتاريخ الأحد 18 أكتوبر يتعلق بـقطاعات البنوك، العقار، الشركات الصغيرة ضمن السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 3 من 3). قد يستفيد: الراجحي (1120) والبنوك؛ وقد يتأثر سلبًا: العقار والشركات المثقلة بالديون.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "day_local": "2026-10-18",
-   "age_hours": 3.2,
-   "is_today": true
-  },
-  {
-   "title": "Top Wall Street analysts are bullish on the growth potential of these 3 stocks - CNBC",
-   "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPUlA0dWpISVQzc09fbG1RYTRMMVNjc1NTVnp0eDVWemdkVjl0VEtaUTZNOHkxWHVpRUhMNXMtaXZJX3NuZGNRcFZQYmhvbzloa1pDRUlwQk1ROWZkWVBDU0dOZXNQdGxyamtWc1R1dkJoM2lOWERlakxUOWw0QkFPVnc4NldFRXJGaHd6X1N6dVlxTWFHeGkwVmx6aFdmOGhBNmpkWkFn0gGrAUFVX3lxTE41YS1DbDdFUGRKdUtXWlo1VDU0S2RybkRsS3RVTmlOZU1RZ1NZNVRwa3lfSi1LY0VtNjZQUFgzTnp6bDQtT0o4VEtGakIyOTFzeDZvLXZIeEdCcFZyUDFTaXpPT1lUd2RnN3o3QnZDbk84SHJRNFBsbTZYQVFfa2pPQ1ItcElpLU9ORjd4V3plSU5WaUhPMTFuYWRXendEQnp4Um5JMkVaajJNcw?oc=5",
-   "source": "CNBC (عبر Google News – CNBC)",
-   "published_utc": "2026-10-18T12:34:51Z",
-   "published_riyadh": "2026-10-18 15:34:51",
-   "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 0.85,
-   "raw_published": "Sun, 18 Oct 2026 12:34:51 GMT",
-   "market_hint": "us",
-   "id": "471bb1c7dffc",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [],
-   "analysis": "rules",
-   "fundamental": {
-    "scope": {
-     "value": "macro",
-     "label_ar": "كلّي",
-     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
-    },
-    "credibility": {
-     "tier": "B",
-     "kind": "رأي/تحليل",
-     "label_ar": "وكالة موثوقة · رأي/تحليل",
-     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة تحمل علامات رأي أو تحليل أو توقع؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
-    }
-   },
-   "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من CNBC (عبر Google News – CNBC) بتاريخ الأحد 18 أكتوبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "day_local": "2026-10-18",
-   "age_hours": 3.2,
-   "is_today": true
-  },
-  {
-   "title": "A Dividend Strategy Shines for This Top iShares ETF",
-   "link": "9b640f70-ded2-3ac0-b5d2-98a300fae643",
-   "source": "Yahoo Finance – Headlines",
-   "published_utc": "2026-10-18T12:30:00Z",
-   "published_riyadh": "2026-10-18 15:30:00",
-   "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 0.85,
-   "raw_published": "Sun, 18 Oct 2026 12:30:00 +0000",
-   "market_hint": "us",
-   "id": "436ad93a375e",
-   "market": "us",
-   "signal": "pos",
-   "tickers": [],
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "إعلان توزيعات يدعم السهم ويجذب المستثمرين الباحثين عن العائد · برامج استرداد الأسهم تدعم السعر وربحية السهم"
-   },
-   "impact_market": "us",
-   "cf": 2,
-   "rules": [
-    "dividend",
-    "buyback"
-   ],
-   "analysis": "rules",
-   "fundamental": {
-    "scope": {
-     "value": "micro",
-     "label_ar": "خاص بالشركة",
-     "note_ar": "خبر يخص شركة بعينها: أرباح أو إدارة أو استحواذ أو عقود."
-    },
-    "credibility": {
-     "tier": "B",
-     "kind": "خبر",
-     "label_ar": "وكالة موثوقة · خبر",
-     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [
-      "cashflow"
-     ],
-     "label_ar": "التدفق النقدي",
-     "note_ar": "التوزيعات وبرامج الأسهم والسيولة تمس التدفق النقدي مباشرة."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
-    }
-   },
-   "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من Yahoo Finance – Headlines بتاريخ الأحد 18 أكتوبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 2 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "day_local": "2026-10-18",
-   "age_hours": 3.3,
-   "is_today": true
-  },
-  {
-   "title": "Tech Sell-Off: 2 Growth Stocks Investors Might Regret Not Buying on the Dip",
-   "link": "8c194c33-11bf-3fac-a985-7a974bf19e06",
-   "source": "Yahoo Finance – Headlines",
-   "published_utc": "2026-10-18T12:20:00Z",
-   "published_riyadh": "2026-10-18 15:20:00",
-   "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 0.85,
-   "raw_published": "Sun, 18 Oct 2026 12:20:00 +0000",
-   "market_hint": "us",
-   "id": "0efc4219b955",
-   "market": "us",
-   "signal": "neg",
-   "tickers": [],
-   "beneficiary": {
-    "name": "التقنية",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "الشركات الصغيرة",
-    "why": "أكبر أثر سلبي بحسب القواعد"
-   },
-   "impact": {
-    "energy": -1,
-    "banks": -1,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 1,
-    "smallcaps": -2,
-    "telecom": 1,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات · إغلاق سلبي للمؤشر يعكس ضغط تصريف وتراجع شهية المخاطرة"
-   },
-   "impact_market": "us",
-   "cf": 2,
-   "rules": [
-    "tech_sector",
-    "market_down"
-   ],
-   "analysis": "rules",
-   "fundamental": {
-    "scope": {
-     "value": "sector",
-     "label_ar": "قطاعي",
-     "note_ar": "خبر يمس صناعة محددة أكثر من بقية السوق."
-    },
-    "credibility": {
-     "tier": "B",
-     "kind": "رأي/تحليل",
-     "label_ar": "وكالة موثوقة · رأي/تحليل",
-     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة تحمل علامات رأي أو تحليل أو توقع؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
-    },
-    "sentiment": {
-     "value": "panic",
-     "label_ar": "ذعر جماعي",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ رُصدت مفردات حادة توحي بموجة خوف."
-    }
-   },
-   "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من Yahoo Finance – Headlines بتاريخ الأحد 18 أكتوبر يتعلق بـقطاعات الشركات الصغيرة، الطاقة، البنوك ضمن السوق الأمريكية. التصنيف الآلي للإشارة: سلبي على الأرجح (درجة الثقة 2 من 3). قد يستفيد: التقنية؛ وقد يتأثر سلبًا: الشركات الصغيرة.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "day_local": "2026-10-18",
-   "age_hours": 3.5,
-   "is_today": true
-  },
-  {
-   "title": "Buy these 2 stocks amid AI financing concerns: Analyst",
-   "link": "https://www.investing.com/news/stock-market-news/buy-these-2-stocks-amid-ai-financing-concerns-analyst-4955896",
-   "source": "Investing.com – Stock Market News",
-   "published_utc": "2026-10-18T12:16:35Z",
-   "published_riyadh": "2026-10-18 15:16:35",
-   "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 0.55,
-   "raw_published": "2026-10-18 12:16:35",
-   "market_hint": "us",
-   "id": "ae98b497e231",
-   "market": "us",
-   "signal": "pos",
-   "tickers": [],
-   "beneficiary": {
-    "name": "التقنية",
-    "why": "أعلى أثر إيجابي بحسب القواعد"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 1,
-    "smallcaps": 0,
-    "telecom": 1,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "الاستثمار في التقنية والذكاء الاصطناعي يدعم شركات التقنية والاتصالات"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [
-    "tech_sector"
-   ],
-   "analysis": "rules",
-   "fundamental": {
-    "scope": {
-     "value": "sector",
-     "label_ar": "قطاعي",
-     "note_ar": "خبر يمس صناعة محددة أكثر من بقية السوق."
-    },
-    "credibility": {
-     "tier": "B",
-     "kind": "رأي/تحليل",
-     "label_ar": "وكالة موثوقة · رأي/تحليل",
-     "note_ar": "وكالة أو صحيفة اقتصادية موثوقة تنقل الخبر، والمادة تحمل علامات رأي أو تحليل أو توقع؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
-    }
-   },
-   "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من Investing.com – Stock Market News بتاريخ الأحد 18 أكتوبر يتعلق بـقطاعات التقنية، الاتصالات ضمن السوق الأمريكية. التصنيف الآلي للإشارة: إيجابي على الأرجح (درجة الثقة 1 من 3). قد يستفيد: التقنية.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "day_local": "2026-10-18",
-   "age_hours": 3.5,
-   "is_today": true
-  },
-  {
-   "title": "Is INmune Bio (NASDAQ:INMB) In A Good Position To Deliver On Growth Plans? - Simply Wall Street",
-   "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPcExNY2VOTGwxOU9DbnJWblVmM3pQWm55Z0FYXzZ2OGFYR01JNTBOZlBKcXpacm5sSUZua1ppZGkxa1Z5M3dfWGNIMGZQWU5NVVJ6UkxrTm5NY01NM0dWdVF6YTFNelNXZHNVTTdqYVZjUlVJY1NWT2dMNmp4NWxJaFBPZDEyai02LWxPdUpfZUhKSG5OdXhhYnVLMzcyLXdBQ3pPaGhiRmo5dVRSVGVSaHktbGhGb19HN3JUaDQyMmp3N0tmRkh0OTUtTU5OLThFM0FZdlZnS1IzNVdt0gHiAUFVX3lxTE5NUjd4VS1Qbk05RE1YOUJJbC1CcF9VWWNxUm5GVjVJdUVrQTBhekxBamZhTWJRQml4UEpxNUJKZ2gxcE9MUkJrbkZzWWdHVlgyck53aUYzclUtR1N6ZVdxcFpqSWt1YXV6aEVsTl9Fbzl5LXl3NnJ1dC16VkIyRDJqcUwxZmRFSmxiemhlUVdwenZQVlpfUmVxR18zVWJUdDB2RWJXelM3MUJXWkdvTWJ6bUNGOElXOFVQT29KM2J4SFZ2bUVyZmF6eEh0Y0RzWG9Rd3Q3NC1GUDlvZjNVcTduZ1E?oc=5",
-   "source": "Simply Wall Street (عبر Google News – S&P Nasdaq Dow)",
-   "published_utc": "2026-10-18T12:14:48Z",
-   "published_riyadh": "2026-10-18 15:14:48",
-   "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 0.85,
-   "raw_published": "Sun, 18 Oct 2026 12:14:48 GMT",
-   "market_hint": "us",
-   "id": "0c4b5a5d2874",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [],
-   "analysis": "rules",
-   "fundamental": {
-    "scope": {
-     "value": "macro",
-     "label_ar": "كلّي",
-     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
-    },
-    "credibility": {
-     "tier": "C",
-     "kind": "رأي/تحليل",
-     "label_ar": "مصدر غير مصنّف · رأي/تحليل",
-     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة تحمل علامات رأي أو تحليل أو توقع؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
-    }
-   },
-   "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من Simply Wall Street (عبر Google News – S&P Nasdaq Dow) بتاريخ الأحد 18 أكتوبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "day_local": "2026-10-18",
-   "age_hours": 3.5,
-   "is_today": true
-  },
-  {
-   "title": "Earnings Week Ahead: TSLA, META, NFLX, CMCSA, GE, GM, T, VZ, and more",
-   "link": "https://seekingalpha.com/news/4653825-earnings-week-ahead-tsla-meta-nflx-cmcsa-ge-gm-t-vz-and-more?utm_source=feed_news_all&utm_medium=referral&feed_item_type=news",
-   "source": "Seeking Alpha – Market News",
-   "published_utc": "2026-10-18T12:07:00Z",
-   "published_riyadh": "2026-10-18 15:07:00",
-   "precision": "second",
-   "fetched_at_utc": "2026-10-18T12:13:11Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 0.55,
-   "raw_published": "Sun, 18 Oct 2026 08:07:00 -0400",
-   "market_hint": "us",
-   "id": "3d7fef4bf574",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [
-    {
-     "code": "META",
-     "name_ar": "ميتا بلاتفورمز",
-     "market": "us"
-    },
-    {
-     "code": "NFLX",
-     "name_ar": "نتفليكس",
-     "market": "us"
-    },
-    {
-     "code": "TSLA",
-     "name_ar": "تسلا",
-     "market": "us"
-    }
-   ],
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "إعلان نتائج مالية"
-   },
-   "impact_market": "us",
-   "cf": 2,
-   "rules": [
-    "earnings_generic"
-   ],
-   "analysis": "rules",
-   "fundamental": {
-    "scope": {
-     "value": "micro",
-     "label_ar": "خاص بالشركة",
-     "note_ar": "خبر يخص شركة بعينها: أرباح أو إدارة أو استحواذ أو عقود."
-    },
-    "credibility": {
-     "tier": "C",
-     "kind": "خبر",
-     "label_ar": "مصدر غير مصنّف · خبر",
-     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة مصنفة آليًا كخبر؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ لم تُرصد مقارنة واضحة بالتوقعات في هذا الخبر."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
-    }
-   },
-   "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T12:13:44Z",
-   "brief_ar": "خبر من Seeking Alpha – Market News بتاريخ الأحد 18 أكتوبر يتعلق بـشركات مدرجة هي ميتا بلاتفورمز (META)، نتفليكس (NFLX)، تسلا (TSLA) ضمن السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 2 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "day_local": "2026-10-18",
-   "age_hours": 3.7,
-   "is_today": true
-  },
-  {
-   "title": "The Fed Has A Problem It Can’t Fix — And Stocks May Be The Surprising Winner, According To IO Fund - TradingView",
-   "link": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxORDNINTV2VDhELTdIbktsWHdYY05JMUhZNXRsbFFwb3pNWWxmZzhIQ09SSW9CU1ZtOU9Xek4tX2MtZVRINm9aUnp4UFJIQklwYkZfUnltM0d3bTIwSy0zbXVMRG80MGNVbGFyS2xSanRNbUs5TUFzUGRPWVFNSk5jVllRQzRaQVlHS09DMzRkX1pxTTgwT3AtYWduMXRXSGh0NEdHUEFwQ3RXYk4tVDhPYnJ4SDNjRkx4NUtwVmd0VklvcWthZzBxdFhoT0t1dkowcnZrblFtYk1TR3lnVjJ2ZGVkZEw5SHNiQW5QNA?oc=5",
-   "source": "TradingView (عبر Google News – Fed rates)",
-   "published_utc": "2026-10-18T12:06:56Z",
-   "published_riyadh": "2026-10-18 15:06:56",
-   "precision": "second",
-   "fetched_at_utc": "2026-10-18T15:46:56Z",
-   "lang": "en",
-   "priority": 3,
-   "relevance": 0.7,
-   "raw_published": "Sun, 18 Oct 2026 12:06:56 GMT",
-   "market_hint": "us",
-   "id": "a973d38b904c",
-   "market": "us",
-   "signal": "mix",
-   "tickers": [],
-   "beneficiary": {
-    "name": "—",
-    "why": "لا يوجد مستفيد واضح"
-   },
-   "hurt": {
-    "name": "—",
-    "why": "لا يوجد متضرر واضح"
-   },
-   "impact": {
-    "energy": 0,
-    "banks": 0,
-    "petrochem": 0,
-    "insurance": 0,
-    "transport": 0,
-    "realestate": 0,
-    "cement": 0,
-    "tech": 0,
-    "smallcaps": 0,
-    "telecom": 0,
-    "health": 0,
-    "retail": 0,
-    "food": 0,
-    "utilities": 0,
-    "why": "لا توجد قاعدة مطابقة؛ الأثر القطاعي محايد"
-   },
-   "impact_market": "us",
-   "cf": 1,
-   "rules": [],
-   "analysis": "rules",
-   "fundamental": {
-    "scope": {
-     "value": "macro",
-     "label_ar": "كلّي",
-     "note_ar": "خبر فائدة أو تضخم أو سلع أو سياسة اقتصادية يمس السوق كله."
-    },
-    "credibility": {
-     "tier": "C",
-     "kind": "رأي/تحليل",
-     "label_ar": "مصدر غير مصنّف · رأي/تحليل",
-     "note_ar": "مصدر غير مصنّف أو مجمّع فقط، ويُستحسن التثبت من الأصل، والمادة تحمل علامات رأي أو تحليل أو توقع؛ يُفصل بين الحقيقة والرأي."
-    },
-    "expectations": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "الأسواق تتفاعل مع الفجوة بين المتوقع والفعلي لا مع الرقم نفسه؛ الخبر ليس عن نتائج أو توجيهات أو بيانات اقتصادية."
-    },
-    "horizon": {
-     "value": "unknown",
-     "label_ar": "غير محدد آليًا",
-     "note_ar": "لم تُرصد إشارات كافية لتحديد مدة الأثر آليًا."
-    },
-    "financials": {
-     "lines": [],
-     "label_ar": "لم يُحدَّد بند مالي آليًا",
-     "note_ar": "لم تُرصد كلمات تربط الخبر ببند مالي محدد في القوائم."
-    },
-    "sentiment": {
-     "value": "calm",
-     "label_ar": "هادئ",
-     "note_ar": "عندما تسيطر ردود الفعل الجماعية قد تبتعد الأسعار عن القيمة مؤقتًا، وهذا وصف فقط لا أكثر؛ لغة الخبر هادئة بلا مفردات حادة."
-    }
-   },
-   "fundamental_origin": "rules",
-   "first_seen_utc": "2026-10-18T15:47:26Z",
-   "brief_ar": "خبر من TradingView (عبر Google News – Fed rates) بتاريخ الأحد 18 أكتوبر يخص السوق الأمريكية. التصنيف الآلي للإشارة: مختلط أو محايد (درجة الثقة 1 من 3). لم تُحدَّد أطراف متأثرة آليًا.",
-   "brief_origin": "template",
-   "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
-   "day_local": "2026-10-18",
-   "age_hours": 3.7,
+   "age_hours": 3.9,
    "is_today": true
   },
   {
@@ -7656,7 +7623,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 2.3,
+   "age_hours": 3.5,
    "is_today": true
   },
   {
@@ -7743,7 +7710,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 4.2,
+   "age_hours": 5.4,
    "is_today": true
   },
   {
@@ -7834,7 +7801,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 4.5,
+   "age_hours": 5.7,
    "is_today": true
   },
   {
@@ -7921,7 +7888,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 4.7,
+   "age_hours": 5.9,
    "is_today": true
   },
   {
@@ -8010,7 +7977,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 4.9,
+   "age_hours": 6.1,
    "is_today": true
   },
   {
@@ -8099,7 +8066,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 5.0,
+   "age_hours": 6.2,
    "is_today": true
   },
   {
@@ -8186,7 +8153,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 5.5,
+   "age_hours": 6.7,
    "is_today": true
   },
   {
@@ -8275,7 +8242,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 5.9,
+   "age_hours": 7.1,
    "is_today": true
   },
   {
@@ -8362,7 +8329,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 7.3,
+   "age_hours": 8.5,
    "is_today": true
   },
   {
@@ -8452,7 +8419,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 8.2,
+   "age_hours": 9.4,
    "is_today": true
   },
   {
@@ -8544,7 +8511,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 9.6,
+   "age_hours": 10.8,
    "is_today": true
   },
   {
@@ -8631,7 +8598,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 9.7,
+   "age_hours": 10.9,
    "is_today": true
   },
   {
@@ -8718,7 +8685,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 10.2,
+   "age_hours": 11.4,
    "is_today": true
   },
   {
@@ -8807,7 +8774,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 10.3,
+   "age_hours": 11.5,
    "is_today": true
   },
   {
@@ -8900,7 +8867,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 10.9,
+   "age_hours": 12.1,
    "is_today": true
   },
   {
@@ -8989,7 +8956,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 12.1,
+   "age_hours": 13.3,
    "is_today": true
   },
   {
@@ -9078,7 +9045,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 14.2,
+   "age_hours": 15.4,
    "is_today": true
   },
   {
@@ -9168,7 +9135,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 15.0,
+   "age_hours": 16.2,
    "is_today": true
   },
   {
@@ -9260,7 +9227,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 15.0,
+   "age_hours": 16.2,
    "is_today": true
   },
   {
@@ -9350,7 +9317,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 16.9,
+   "age_hours": 18.1,
    "is_today": true
   },
   {
@@ -9438,7 +9405,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 0.6,
+   "age_hours": 1.8,
    "is_today": true
   },
   {
@@ -9530,7 +9497,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.5,
+   "age_hours": 2.7,
    "is_today": true
   },
   {
@@ -9619,7 +9586,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 1.7,
+   "age_hours": 2.9,
    "is_today": true
   },
   {
@@ -9709,7 +9676,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 3.8,
+   "age_hours": 5.0,
    "is_today": true
   },
   {
@@ -9797,7 +9764,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 7.1,
+   "age_hours": 8.3,
    "is_today": true
   },
   {
@@ -9890,7 +9857,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 8.1,
+   "age_hours": 9.3,
    "is_today": true
   },
   {
@@ -9983,7 +9950,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-18",
-   "age_hours": 10.7,
+   "age_hours": 11.9,
    "is_today": true
   },
   {
@@ -10070,7 +10037,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 20.1,
+   "age_hours": 21.3,
    "is_today": false
   },
   {
@@ -10157,7 +10124,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 20.4,
+   "age_hours": 21.6,
    "is_today": false
   },
   {
@@ -10248,7 +10215,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 21.7,
+   "age_hours": 22.9,
    "is_today": false
   },
   {
@@ -10337,7 +10304,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 21.9,
+   "age_hours": 23.1,
    "is_today": false
   },
   {
@@ -10426,7 +10393,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 21.9,
+   "age_hours": 23.1,
    "is_today": false
   },
   {
@@ -10516,7 +10483,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 22.0,
+   "age_hours": 23.2,
    "is_today": false
   },
   {
@@ -10605,7 +10572,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 22.8,
+   "age_hours": 24.0,
    "is_today": false
   },
   {
@@ -10692,7 +10659,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 23.3,
+   "age_hours": 24.5,
    "is_today": false
   },
   {
@@ -10788,7 +10755,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 23.3,
+   "age_hours": 24.5,
    "is_today": false
   },
   {
@@ -10875,7 +10842,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 23.5,
+   "age_hours": 24.7,
    "is_today": false
   },
   {
@@ -10966,7 +10933,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 23.7,
+   "age_hours": 24.9,
    "is_today": false
   },
   {
@@ -11053,7 +11020,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 24.3,
+   "age_hours": 25.5,
    "is_today": false
   },
   {
@@ -11144,7 +11111,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 24.8,
+   "age_hours": 26.0,
    "is_today": false
   },
   {
@@ -11235,7 +11202,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 25.3,
+   "age_hours": 26.5,
    "is_today": false
   },
   {
@@ -11327,7 +11294,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 25.5,
+   "age_hours": 26.7,
    "is_today": false
   },
   {
@@ -11418,7 +11385,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 25.9,
+   "age_hours": 27.1,
    "is_today": false
   },
   {
@@ -11509,7 +11476,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 26.0,
+   "age_hours": 27.2,
    "is_today": false
   },
   {
@@ -11600,7 +11567,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 26.2,
+   "age_hours": 27.4,
    "is_today": false
   },
   {
@@ -11691,7 +11658,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 26.3,
+   "age_hours": 27.5,
    "is_today": false
   },
   {
@@ -11782,7 +11749,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 26.7,
+   "age_hours": 27.9,
    "is_today": false
   },
   {
@@ -11873,7 +11840,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 26.8,
+   "age_hours": 28.0,
    "is_today": false
   },
   {
@@ -11960,7 +11927,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 27.6,
+   "age_hours": 28.8,
    "is_today": false
   },
   {
@@ -12047,7 +12014,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 27.6,
+   "age_hours": 28.8,
    "is_today": false
   },
   {
@@ -12145,7 +12112,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 27.8,
+   "age_hours": 29.0,
    "is_today": false
   },
   {
@@ -12243,7 +12210,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 27.8,
+   "age_hours": 29.0,
    "is_today": false
   },
   {
@@ -12334,7 +12301,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 28.4,
+   "age_hours": 29.6,
    "is_today": false
   },
   {
@@ -12425,7 +12392,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 28.8,
+   "age_hours": 30.0,
    "is_today": false
   },
   {
@@ -12516,7 +12483,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 29.4,
+   "age_hours": 30.6,
    "is_today": false
   },
   {
@@ -12607,7 +12574,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 29.4,
+   "age_hours": 30.6,
    "is_today": false
   },
   {
@@ -12702,7 +12669,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 30.0,
+   "age_hours": 31.2,
    "is_today": false
   },
   {
@@ -12798,7 +12765,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 19.1,
+   "age_hours": 20.3,
    "is_today": false
   },
   {
@@ -12888,7 +12855,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 19.2,
+   "age_hours": 20.4,
    "is_today": false
   },
   {
@@ -12982,7 +12949,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 19.4,
+   "age_hours": 20.6,
    "is_today": false
   },
   {
@@ -13070,7 +13037,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 19.4,
+   "age_hours": 20.6,
    "is_today": false
   },
   {
@@ -13158,7 +13125,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 19.6,
+   "age_hours": 20.8,
    "is_today": false
   },
   {
@@ -13252,7 +13219,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 19.7,
+   "age_hours": 20.9,
    "is_today": false
   },
   {
@@ -13344,7 +13311,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 20.0,
+   "age_hours": 21.2,
    "is_today": false
   },
   {
@@ -13435,7 +13402,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 20.0,
+   "age_hours": 21.2,
    "is_today": false
   },
   {
@@ -13525,7 +13492,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 20.0,
+   "age_hours": 21.2,
    "is_today": false
   },
   {
@@ -13619,7 +13586,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 20.6,
+   "age_hours": 21.8,
    "is_today": false
   },
   {
@@ -13712,7 +13679,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 20.7,
+   "age_hours": 21.9,
    "is_today": false
   },
   {
@@ -13802,7 +13769,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 21.0,
+   "age_hours": 22.2,
    "is_today": false
   },
   {
@@ -13896,7 +13863,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 21.1,
+   "age_hours": 22.3,
    "is_today": false
   },
   {
@@ -13986,7 +13953,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 21.2,
+   "age_hours": 22.4,
    "is_today": false
   },
   {
@@ -14074,7 +14041,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 21.4,
+   "age_hours": 22.6,
    "is_today": false
   },
   {
@@ -14164,7 +14131,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 21.4,
+   "age_hours": 22.6,
    "is_today": false
   },
   {
@@ -14257,7 +14224,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 21.6,
+   "age_hours": 22.8,
    "is_today": false
   },
   {
@@ -14347,7 +14314,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 21.7,
+   "age_hours": 22.9,
    "is_today": false
   },
   {
@@ -14437,7 +14404,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 21.8,
+   "age_hours": 23.0,
    "is_today": false
   },
   {
@@ -14525,7 +14492,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 21.9,
+   "age_hours": 23.1,
    "is_today": false
   },
   {
@@ -14615,7 +14582,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 19.9,
+   "age_hours": 21.1,
    "is_today": false
   },
   {
@@ -14702,7 +14669,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 21.8,
+   "age_hours": 23.0,
    "is_today": false
   },
   {
@@ -14792,7 +14759,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 22.7,
+   "age_hours": 23.9,
    "is_today": false
   },
   {
@@ -14879,7 +14846,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 22.8,
+   "age_hours": 24.0,
    "is_today": false
   },
   {
@@ -14966,7 +14933,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 22.8,
+   "age_hours": 24.0,
    "is_today": false
   },
   {
@@ -15059,7 +15026,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 23.4,
+   "age_hours": 24.6,
    "is_today": false
   },
   {
@@ -15149,7 +15116,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 23.8,
+   "age_hours": 25.0,
    "is_today": false
   },
   {
@@ -15239,7 +15206,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 23.9,
+   "age_hours": 25.1,
    "is_today": false
   },
   {
@@ -15329,7 +15296,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 20.0,
+   "age_hours": 21.2,
    "is_today": false
   },
   {
@@ -15423,7 +15390,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-17",
-   "age_hours": 22.3,
+   "age_hours": 23.5,
    "is_today": false
   },
   {
@@ -15515,7 +15482,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 42.8,
+   "age_hours": 44.0,
    "is_today": false
   },
   {
@@ -15604,7 +15571,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 42.9,
+   "age_hours": 44.1,
    "is_today": false
   },
   {
@@ -15694,7 +15661,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.2,
+   "age_hours": 44.4,
    "is_today": false
   },
   {
@@ -15781,7 +15748,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.7,
+   "age_hours": 44.9,
    "is_today": false
   },
   {
@@ -15870,7 +15837,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 44.2,
+   "age_hours": 45.4,
    "is_today": false
   },
   {
@@ -15959,7 +15926,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 44.4,
+   "age_hours": 45.6,
    "is_today": false
   },
   {
@@ -16046,7 +16013,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 44.5,
+   "age_hours": 45.7,
    "is_today": false
   },
   {
@@ -16133,7 +16100,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 44.8,
+   "age_hours": 46.0,
    "is_today": false
   },
   {
@@ -16220,7 +16187,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 44.9,
+   "age_hours": 46.1,
    "is_today": false
   },
   {
@@ -16314,7 +16281,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 45.0,
+   "age_hours": 46.2,
    "is_today": false
   },
   {
@@ -16401,7 +16368,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 45.8,
+   "age_hours": 47.0,
    "is_today": false
   },
   {
@@ -16488,7 +16455,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 46.3,
+   "age_hours": 47.5,
    "is_today": false
   },
   {
@@ -16577,7 +16544,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 46.7,
+   "age_hours": 47.9,
    "is_today": false
   },
   {
@@ -16666,7 +16633,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 46.8,
+   "age_hours": 48.0,
    "is_today": false
   },
   {
@@ -16755,7 +16722,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 46.9,
+   "age_hours": 48.1,
    "is_today": false
   },
   {
@@ -16842,7 +16809,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 47.0,
+   "age_hours": 48.2,
    "is_today": false
   },
   {
@@ -16929,7 +16896,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 47.3,
+   "age_hours": 48.5,
    "is_today": false
   },
   {
@@ -17016,7 +16983,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 47.8,
+   "age_hours": 49.0,
    "is_today": false
   },
   {
@@ -17105,7 +17072,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 47.8,
+   "age_hours": 49.0,
    "is_today": false
   },
   {
@@ -17192,7 +17159,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 47.9,
+   "age_hours": 49.1,
    "is_today": false
   },
   {
@@ -17279,7 +17246,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 49.2,
+   "age_hours": 50.4,
    "is_today": false
   },
   {
@@ -17369,7 +17336,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 49.2,
+   "age_hours": 50.4,
    "is_today": false
   },
   {
@@ -17458,7 +17425,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 49.5,
+   "age_hours": 50.7,
    "is_today": false
   },
   {
@@ -17551,7 +17518,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 49.7,
+   "age_hours": 50.9,
    "is_today": false
   },
   {
@@ -17640,7 +17607,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 50.5,
+   "age_hours": 51.7,
    "is_today": false
   },
   {
@@ -17730,7 +17697,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 50.7,
+   "age_hours": 51.9,
    "is_today": false
   },
   {
@@ -17819,7 +17786,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 50.9,
+   "age_hours": 52.1,
    "is_today": false
   },
   {
@@ -17908,7 +17875,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 51.2,
+   "age_hours": 52.4,
    "is_today": false
   },
   {
@@ -17995,7 +17962,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 51.6,
+   "age_hours": 52.8,
    "is_today": false
   },
   {
@@ -18082,7 +18049,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 52.0,
+   "age_hours": 53.2,
    "is_today": false
   },
   {
@@ -18170,7 +18137,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 42.8,
+   "age_hours": 44.0,
    "is_today": false
   },
   {
@@ -18260,7 +18227,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 42.8,
+   "age_hours": 44.0,
    "is_today": false
   },
   {
@@ -18350,7 +18317,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 42.8,
+   "age_hours": 44.0,
    "is_today": false
   },
   {
@@ -18440,7 +18407,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 42.8,
+   "age_hours": 44.0,
    "is_today": false
   },
   {
@@ -18530,7 +18497,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 42.9,
+   "age_hours": 44.1,
    "is_today": false
   },
   {
@@ -18622,7 +18589,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 42.9,
+   "age_hours": 44.1,
    "is_today": false
   },
   {
@@ -18714,7 +18681,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 42.9,
+   "age_hours": 44.1,
    "is_today": false
   },
   {
@@ -18803,7 +18770,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 42.9,
+   "age_hours": 44.1,
    "is_today": false
   },
   {
@@ -18895,7 +18862,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 42.9,
+   "age_hours": 44.1,
    "is_today": false
   },
   {
@@ -18985,7 +18952,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 42.9,
+   "age_hours": 44.1,
    "is_today": false
   },
   {
@@ -19077,7 +19044,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.0,
+   "age_hours": 44.2,
    "is_today": false
   },
   {
@@ -19167,7 +19134,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.0,
+   "age_hours": 44.2,
    "is_today": false
   },
   {
@@ -19255,7 +19222,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.0,
+   "age_hours": 44.2,
    "is_today": false
   },
   {
@@ -19347,7 +19314,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.0,
+   "age_hours": 44.2,
    "is_today": false
   },
   {
@@ -19435,7 +19402,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.2,
+   "age_hours": 44.4,
    "is_today": false
   },
   {
@@ -19525,7 +19492,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.2,
+   "age_hours": 44.4,
    "is_today": false
   },
   {
@@ -19617,7 +19584,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.2,
+   "age_hours": 44.4,
    "is_today": false
   },
   {
@@ -19707,7 +19674,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.2,
+   "age_hours": 44.4,
    "is_today": false
   },
   {
@@ -19797,7 +19764,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.2,
+   "age_hours": 44.4,
    "is_today": false
   },
   {
@@ -19885,7 +19852,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.2,
+   "age_hours": 44.4,
    "is_today": false
   },
   {
@@ -19974,7 +19941,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.3,
+   "age_hours": 44.5,
    "is_today": false
   },
   {
@@ -20061,7 +20028,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.5,
+   "age_hours": 44.7,
    "is_today": false
   },
   {
@@ -20152,7 +20119,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.5,
+   "age_hours": 44.7,
    "is_today": false
   },
   {
@@ -20239,7 +20206,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.5,
+   "age_hours": 44.7,
    "is_today": false
   },
   {
@@ -20331,7 +20298,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.8,
+   "age_hours": 45.0,
    "is_today": false
   },
   {
@@ -20421,7 +20388,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 44.8,
+   "age_hours": 46.0,
    "is_today": false
   },
   {
@@ -20511,7 +20478,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 44.9,
+   "age_hours": 46.1,
    "is_today": false
   },
   {
@@ -20603,7 +20570,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 45.1,
+   "age_hours": 46.3,
    "is_today": false
   },
   {
@@ -20693,7 +20660,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 43.2,
+   "age_hours": 44.4,
    "is_today": false
   },
   {
@@ -20783,7 +20750,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-16",
-   "age_hours": 44.4,
+   "age_hours": 45.6,
    "is_today": false
   },
   {
@@ -20870,7 +20837,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.4,
+   "age_hours": 68.6,
    "is_today": false
   },
   {
@@ -20957,7 +20924,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 68.1,
+   "age_hours": 69.3,
    "is_today": false
   },
   {
@@ -21044,7 +21011,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 68.2,
+   "age_hours": 69.4,
    "is_today": false
   },
   {
@@ -21136,7 +21103,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 68.3,
+   "age_hours": 69.5,
    "is_today": false
   },
   {
@@ -21223,7 +21190,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 68.5,
+   "age_hours": 69.7,
    "is_today": false
   },
   {
@@ -21310,7 +21277,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 68.8,
+   "age_hours": 70.0,
    "is_today": false
   },
   {
@@ -21398,7 +21365,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 68.9,
+   "age_hours": 70.1,
    "is_today": false
   },
   {
@@ -21487,7 +21454,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 69.7,
+   "age_hours": 70.9,
    "is_today": false
   },
   {
@@ -21577,7 +21544,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 69.8,
+   "age_hours": 71.0,
    "is_today": false
   },
   {
@@ -21664,7 +21631,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 69.9,
+   "age_hours": 71.1,
    "is_today": false
   },
   {
@@ -21756,7 +21723,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 70.1,
+   "age_hours": 71.3,
    "is_today": false
   },
   {
@@ -21845,7 +21812,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 70.6,
+   "age_hours": 71.8,
    "is_today": false
   },
   {
@@ -21938,7 +21905,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 70.7,
+   "age_hours": 71.9,
    "is_today": false
   },
   {
@@ -22030,7 +21997,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 70.7,
+   "age_hours": 71.9,
    "is_today": false
   },
   {
@@ -22119,7 +22086,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 70.7,
+   "age_hours": 71.9,
    "is_today": false
   },
   {
@@ -22214,7 +22181,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 70.8,
+   "age_hours": 72.0,
    "is_today": false
   },
   {
@@ -22303,7 +22270,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 71.2,
+   "age_hours": 72.4,
    "is_today": false
   },
   {
@@ -22404,7 +22371,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 71.7,
+   "age_hours": 72.9,
    "is_today": false
   },
   {
@@ -22496,7 +22463,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 71.9,
+   "age_hours": 73.1,
    "is_today": false
   },
   {
@@ -22583,7 +22550,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 71.9,
+   "age_hours": 73.1,
    "is_today": false
   },
   {
@@ -22678,7 +22645,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 72.3,
+   "age_hours": 73.5,
    "is_today": false
   },
   {
@@ -22765,7 +22732,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 72.4,
+   "age_hours": 73.6,
    "is_today": false
   },
   {
@@ -22854,7 +22821,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 72.4,
+   "age_hours": 73.6,
    "is_today": false
   },
   {
@@ -22941,7 +22908,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 72.5,
+   "age_hours": 73.7,
    "is_today": false
   },
   {
@@ -23028,7 +22995,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 72.5,
+   "age_hours": 73.7,
    "is_today": false
   },
   {
@@ -23118,7 +23085,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 72.6,
+   "age_hours": 73.8,
    "is_today": false
   },
   {
@@ -23207,7 +23174,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 72.8,
+   "age_hours": 74.0,
    "is_today": false
   },
   {
@@ -23296,7 +23263,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 72.8,
+   "age_hours": 74.0,
    "is_today": false
   },
   {
@@ -23385,7 +23352,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 72.9,
+   "age_hours": 74.1,
    "is_today": false
   },
   {
@@ -23476,7 +23443,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 72.9,
+   "age_hours": 74.1,
    "is_today": false
   },
   {
@@ -23569,7 +23536,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 66.8,
+   "age_hours": 68.0,
    "is_today": false
   },
   {
@@ -23659,7 +23626,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.0,
+   "age_hours": 68.2,
    "is_today": false
   },
   {
@@ -23747,7 +23714,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.0,
+   "age_hours": 68.2,
    "is_today": false
   },
   {
@@ -23837,7 +23804,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.0,
+   "age_hours": 68.2,
    "is_today": false
   },
   {
@@ -23925,7 +23892,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.0,
+   "age_hours": 68.2,
    "is_today": false
   },
   {
@@ -24017,7 +23984,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.1,
+   "age_hours": 68.3,
    "is_today": false
   },
   {
@@ -24107,7 +24074,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.1,
+   "age_hours": 68.3,
    "is_today": false
   },
   {
@@ -24197,7 +24164,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.1,
+   "age_hours": 68.3,
    "is_today": false
   },
   {
@@ -24287,7 +24254,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.1,
+   "age_hours": 68.3,
    "is_today": false
   },
   {
@@ -24377,7 +24344,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.1,
+   "age_hours": 68.3,
    "is_today": false
   },
   {
@@ -24467,7 +24434,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.2,
+   "age_hours": 68.4,
    "is_today": false
   },
   {
@@ -24555,7 +24522,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.2,
+   "age_hours": 68.4,
    "is_today": false
   },
   {
@@ -24643,7 +24610,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.2,
+   "age_hours": 68.4,
    "is_today": false
   },
   {
@@ -24745,7 +24712,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.3,
+   "age_hours": 68.5,
    "is_today": false
   },
   {
@@ -24833,7 +24800,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.3,
+   "age_hours": 68.5,
    "is_today": false
   },
   {
@@ -24925,7 +24892,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.3,
+   "age_hours": 68.5,
    "is_today": false
   },
   {
@@ -25030,7 +24997,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.3,
+   "age_hours": 68.5,
    "is_today": false
   },
   {
@@ -25125,7 +25092,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.3,
+   "age_hours": 68.5,
    "is_today": false
   },
   {
@@ -25218,7 +25185,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.3,
+   "age_hours": 68.5,
    "is_today": false
   },
   {
@@ -25310,7 +25277,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.3,
+   "age_hours": 68.5,
    "is_today": false
   },
   {
@@ -25404,7 +25371,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.9,
+   "age_hours": 69.1,
    "is_today": false
   },
   {
@@ -25494,7 +25461,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.9,
+   "age_hours": 69.1,
    "is_today": false
   },
   {
@@ -25581,7 +25548,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.9,
+   "age_hours": 69.1,
    "is_today": false
   },
   {
@@ -25674,7 +25641,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 68.9,
+   "age_hours": 70.1,
    "is_today": false
   },
   {
@@ -25763,7 +25730,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 70.3,
+   "age_hours": 71.5,
    "is_today": false
   },
   {
@@ -25850,7 +25817,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 70.4,
+   "age_hours": 71.6,
    "is_today": false
   },
   {
@@ -25941,7 +25908,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 70.6,
+   "age_hours": 71.8,
    "is_today": false
   },
   {
@@ -26031,7 +25998,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 70.7,
+   "age_hours": 71.9,
    "is_today": false
   },
   {
@@ -26121,7 +26088,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 66.8,
+   "age_hours": 68.0,
    "is_today": false
   },
   {
@@ -26214,7 +26181,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-15",
-   "age_hours": 67.2,
+   "age_hours": 68.4,
    "is_today": false
   },
   {
@@ -26303,7 +26270,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-14",
-   "age_hours": 91.8,
+   "age_hours": 93.0,
    "is_today": false
   },
   {
@@ -26398,7 +26365,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-14",
-   "age_hours": 91.9,
+   "age_hours": 93.1,
    "is_today": false
   },
   {
@@ -26495,7 +26462,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-14",
-   "age_hours": 91.9,
+   "age_hours": 93.1,
    "is_today": false
   },
   {
@@ -26584,7 +26551,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-14",
-   "age_hours": 92.3,
+   "age_hours": 93.5,
    "is_today": false
   },
   {
@@ -26674,7 +26641,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-14",
-   "age_hours": 92.4,
+   "age_hours": 93.6,
    "is_today": false
   },
   {
@@ -26765,7 +26732,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-14",
-   "age_hours": 92.4,
+   "age_hours": 93.6,
    "is_today": false
   },
   {
@@ -26854,7 +26821,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-14",
-   "age_hours": 92.8,
+   "age_hours": 94.0,
    "is_today": false
   },
   {
@@ -26941,7 +26908,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-14",
-   "age_hours": 93.1,
+   "age_hours": 94.3,
    "is_today": false
   },
   {
@@ -27028,7 +26995,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-14",
-   "age_hours": 93.1,
+   "age_hours": 94.3,
    "is_today": false
   },
   {
@@ -27117,7 +27084,7 @@
    "brief_origin": "template",
    "analysis_note_ar": "تحليل آلي إحصائي مبني على معلومات متاحة علناً",
    "day_local": "2026-10-14",
-   "age_hours": 93.3,
+   "age_hours": 94.5,
    "is_today": false
   }
  ]
